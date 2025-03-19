@@ -48,7 +48,7 @@
         bottom: 0;
         left: 0;
         display: inline-flex;
-        position: relative;
+        position: absolute;
         gap: var(--spacing-S);
         z-index: 6000;
     }

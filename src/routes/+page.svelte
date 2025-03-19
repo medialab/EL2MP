@@ -6,9 +6,12 @@
     import TimeButton from "$lib/components/buttons/time_button.svelte";
     import FloatingCard from "$lib/components/floating_card.svelte";
     import ReactionDiffusion from "$lib/components/reactionDiffusion.svelte";
+    import Textbox from "$lib/components/textboxes.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
     import { format, formatDistance, formatRelative, subDays } from 'date-fns'
+    import { writable } from "svelte/store";
+    import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
     
     //The data containes everything passed from the +page.server.js
     export let data
@@ -62,7 +65,7 @@
 
             // Detect transition from mobile to desktop
             if (previousIsDesktop === false) {
-                // console.log("Transitioned from mobile to desktop");
+                // //console.log("Transitioned from mobile to desktop");
                 reloadWebsite();
             }
         } else {
@@ -71,7 +74,7 @@
 
             // Detect transition from desktop to mobile
             if (previousIsDesktop === true) {
-                // console.log("Transitioned from desktop to mobile");
+                // //console.log("Transitioned from desktop to mobile");
                 hideDesktopStuff();
             }
         }
@@ -124,7 +127,7 @@
         // Get card dimensions (assuming all cards are the same size)
         const cardWidth = windowWidth * 0.6;
         const cardHeight = cardWidth / 1.5;
-        // console.log("cardHeight", cardHeight)
+        // //console.log("cardHeight", cardHeight)
 
         // Calculate the total block width and height
         const totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
@@ -134,7 +137,7 @@
         const startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length - 1);
         const startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length - 1);
 
-        // console.log({ startX, startY, totalBlockWidth, totalBlockHeight });
+        // //console.log({ startX, startY, totalBlockWidth, totalBlockHeight });
 
         containers.forEach((container, index) => {
             // Calculate the position for the current container based on the index
@@ -184,13 +187,14 @@
             element.scrollTop = 0;
         });
 
-        if (!isFirstReset) {
-            close_sidebar();
-        }
         closeFloaters(floaters);
 
         highestZIndex = 1;
         isFirstReset = false; // Set the flag to false after the first invocation
+
+        if ($isAlterEgoMode) {
+            switch_alterego();
+        }
     };
 
     const bringToFront = (event) => {
@@ -210,29 +214,46 @@
         }
     };
 
-    const close_sidebar = () => {
-        if (sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-            sidebar.classList.add('closed');
+    const switch_alterego = () => {
+
+        $isAlterEgoMode = !$isAlterEgoMode; // I will need to implement more
+        
+        // Handle floaters based on alter ego mode
+        if (floaters) {
+            floaters.forEach(floater => {
+                if ($isAlterEgoMode) {
+                    // Force close all floaters in alter ego mode
+                    floater.classList.remove('open');
+                    floater.classList.add('closed');
+                    // Remove the direct backgroundColor setting
+                } else {
+                    // Don't reset background color directly anymore
+                    // Let the reactive currentCardColor handle it
+                }
+            });
         }
-    };
-
-    const switch_sidebar = () => {
-        if (isAnimating) return;
-        isAnimating = true;
-
-        if (sidebar.classList.contains('open')) {
-            close_sidebar();
-        } else if (sidebar.classList.contains('closed')) {
-            open_sidebar();
-        } else {
-            open_sidebar();
-        }
-
-        // Re-enable toggling after the animation ends (match duration in CSS)
-        setTimeout(() => {
-            isAnimating = false;
-        }, 1000); // Adjust this value based on your animation duration
+        
+        // Update alter ego containers
+        const alterEgoContainers = document.querySelectorAll('.altergo_container_inner');
+        alterEgoContainers.forEach(container => {
+            if ($isAlterEgoMode) {
+                container.classList.add('open');
+            } else {
+                container.classList.remove('open');
+            }
+        });
+        
+        // Update card container border colors
+        const cardContainers = document.querySelectorAll('.card_container');
+        cardContainers.forEach(card => {
+            if ($isAlterEgoMode) {
+                // Switch to white border in alter ego mode
+                card.style.borderColor = 'white';
+            } else {
+                // Switch back to black border when exiting alter ego mode
+                card.style.borderColor = 'black';
+            }
+        });
     };
 
     const setupMouseDetection = () => {
@@ -246,14 +267,20 @@
         containers.forEach((container) => {
             container.addEventListener("click", (event) => {
                 selectedCard = container.getAttribute("data-section");
-                openFloaters(floaters);
+                if (!$isAlterEgoMode) {
+                    openFloaters(floaters);
+                } else {
+                    return
+                }
             });
         });
 
         scrollContainers.forEach((scrollContainer) => {
             scrollContainer.addEventListener("click", (event) => {
                 selectedCard = scrollContainer.getAttribute("data-section");
-                openFloaters(floaters);
+                if (!$isAlterEgoMode) {
+                    openFloaters(floaters);
+                }
             });
         });
     };
@@ -311,6 +338,13 @@
     };
 
     const alignColor = (selectedCard) => {
+        // If in alter ego mode, always use white color
+        if ($isAlterEgoMode) {
+            currentCardColor = 'white';
+            return;
+        }
+        
+        // Otherwise, use selected card color
         const selected = Object.values(data.cardsDb).find(card => card.Title === selectedCard);
         
         if (selected) {
@@ -322,13 +356,20 @@
     };
 
     const openFloaters = (floaters) => {
-        floaters.forEach(floater => {
+        // Don't open floaters if in alter ego mode
+        if ($isAlterEgoMode) return;
+
+        else if (!$isAlterEgoMode) {
+            floaters.forEach(floater => {
             if (floater.classList.contains('closed')) {
-            floater.classList.remove('closed');
-            floater.classList.add('open');
+                floater.classList.remove('closed');
+                floater.classList.add('open');
+            }
+        }); 
         }
+        
         //console.log("Opening floaters")
-        });
+        
     };
 
     const closeFloaters = (floaters) => {
@@ -337,22 +378,24 @@
             floater.classList.remove('open');
             floater.classList.add('closed');
         }
-        //console.log("Closing floaters")
+        ////console.log("Closing floaters")
         });
     };
 
     const hideFloaters = () => {
         if (!floaters) return;
-        
-        floaters.forEach((floater) => {
-        if (activeMarker !== 'all' && floater.dataset.parent !== activeMarker) {
-            floater.style.display = 'none';
-        } else {
-            floater.style.display = '';
-        }
 
-        floater.classList.remove('clicked');
-        floater.classList.add('open');
+            //console.log("Hiding floaters")
+
+            floaters.forEach((floater) => {
+            if (activeMarker !== 'all' && floater.dataset.parent !== activeMarker) {
+                floater.style.display = 'none';
+            } else {
+                floater.style.display = '';
+            }
+
+            floater.classList.remove('clicked');
+            floater.classList.add('open');
 
         });
     };
@@ -360,12 +403,15 @@
     const updateSelectedCard = (selectedCard) => {
         if (selectedCard !== null && selectedCard !== undefined) {
             activeMarker = selectedCard;
-            // console.log("Active marker set to:", activeMarker)
+            // //console.log("Active marker set to:", activeMarker)
         } else {
-            // console.log("Marker was null, reverted to:", activeMarker)
+            // //console.log("Marker was null, reverted to:", activeMarker)
         }
-
-        hideFloaters();
+        if (!$isAlterEgoMode) {
+            hideFloaters();
+            //console.log("Hiding floaters via updateSelectedCard")
+        }
+        
     }
 
     const checkFloaterInsideHost = (floater) => {
@@ -395,8 +441,9 @@
         }
     };
 
-
     $: updateSelectedCard(selectedCard)
+
+    $: if ($isAlterEgoMode !== undefined) alignColor(selectedCard);
 
     $: alignColor(selectedCard);
 
@@ -479,7 +526,7 @@
 
                 setTimeout(() => {
                     setTimeout(() => {
-                        container.style.display = 'grid';
+                        container.style.display = 'block';
                         container.style.opacity = '1';
                     }, index * 125);
                 }, 500);
@@ -501,7 +548,6 @@
 
                     listeners: {
                         start(event) {
-                            close_sidebar();
                             bringToFront(event);
 
                             const index = event.target.getAttribute('data-index');
@@ -511,7 +557,9 @@
                             // If the cardData exists, update selectedCard with the Title
                             if (cardData && cardData.Title) {
                                 selectedCard = cardData.Title;
-                                openFloaters(floaters);
+                                if (!$isAlterEgoMode) {
+                                    openFloaters(floaters);
+                                }
                             }
 
                             event.target.classList.remove('grab');
@@ -530,7 +578,7 @@
                         },
 
                         end(event) {
-                            //console.log('Drag ended', event);
+                            ////console.log('Drag ended', event);
                             event.target.classList.remove('grabbing');
                             event.target.style.cursor = 'grab';
                         },
@@ -699,11 +747,76 @@
                 });
             });
 
+            // Add draggable functionality to text boxes
+            const textBoxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
+            textBoxes.forEach((textBox) => {
+                textBox.classList.add('grab');
+                textBox.style.touchAction = 'none';
+                
+                // Initialize position attributes if not already set
+                if (!textBox.hasAttribute('data-x')) {
+                    textBox.setAttribute('data-x', 0);
+                }
+                if (!textBox.hasAttribute('data-y')) {
+                    textBox.setAttribute('data-y', 0);
+                }
+
+                interact(textBox).draggable({
+                    inertia: {
+                        resistance: 15,
+                        minSpeed: 100,
+                        endSpeed: 20,
+                        smoothEndDuration: 500,
+                    },
+                    listeners: {
+                        start(event) {
+                            // Bring the text box to the front
+                            textBox.style.zIndex = 501; // Higher than the default z-index
+
+                            // Get current position from computed style
+                            const computedStyle = window.getComputedStyle(textBox);
+                            const transform = computedStyle.transform;
+
+                            if (transform && transform !== "none") {
+                                const matrix = new DOMMatrix(transform);
+                                const currentX = matrix.m41;
+                                const currentY = matrix.m42;
+                                
+                                textBox.setAttribute("data-x", currentX);
+                                textBox.setAttribute("data-y", currentY);
+                            }
+
+                            event.target.classList.remove("grab");
+                            event.target.style.cursor = "grabbing";
+                        },
+                        move(event) {
+                            const x = (parseFloat(textBox.getAttribute('data-x')) || 0) + event.dx;
+                            const y = (parseFloat(textBox.getAttribute('data-y')) || 0) + event.dy;
+
+                            textBox.style.transform = `translate(${x}px, ${y}px)`;
+                            textBox.setAttribute('data-x', x);
+                            textBox.setAttribute('data-y', y);
+                        },
+                        end(event) {
+                            event.target.classList.remove("grabbing");
+                            event.target.style.cursor = "grab";
+                        }
+                    },
+                    modifiers: [
+                        interact.modifiers.restrict({
+                            restriction: 'parent',
+                            endOnly: true,
+                        }),
+                    ],
+                    inertia: true,
+                });
+            });
+
             tick();
 
             cover = document.querySelector('#cover_description')
             sidebar = document.querySelector('#sidebar')
-            console.log(sidebar)
+            //console.log(sidebar)
             scrollableElements = document.querySelectorAll('.card_scrollable_container')
 
             // Here we are selecting the sections for the marker loader
@@ -734,42 +847,51 @@
 
 <div class="content_container">
 
-    <LogoButton
-        data = {data}
-        switch_sidebar = {switch_sidebar}
-        simplebarContainer = {simplebarContainer}
-        selectedCardTitle = {activeMarker}
-        currentScrollLevel = {currentScrollLevel}
-    />
+    
 
     <section class="host">
-        <!-- svelte-ignore a11y_consider_explicit_label -->
-        
 
-        <!-- <PositionMarkerButton
+        <Textbox/>
+
+        <LogoButton
             data = {data}
+            logoImage = {data.logoImage}
+            switch_alterego = {switch_alterego}
+            simplebarContainer = {simplebarContainer}
             selectedCardTitle = {activeMarker}
             currentScrollLevel = {currentScrollLevel}
-        /> -->
+        />
 
         <ResetButton
             data = {data}
             reset_function = {reset_function}
         />
 
-        <TimeButton
+        <!--
+        TimeButton
             data = {data}
             time= {formattedTime || "Loading..."}
+        />
+        -->
+
+        <PositionMarkerButton
+            data = {data}
+            selectedCardTitle = {activeMarker}
+            currentScrollLevel = {currentScrollLevel}
         />
 
         {#if !isMobileDevice}
             {#each Object.values(data.cardsDb) as card (card.IndexNum)}
                 <Capitols
-                    data={card}
+                    {data}
+                    {card}
+                    transitionDelay = {card.IndexNum * 100}
+                    alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
                     bringToFront = {bringToFront}
                     suppressCover = {suppressCover}
                     simplebarContainer = {simplebarContainer}
                     condensed_logo = {data.condensed_logo}
+                    condensed_logo_white = {data.condensed_logo_white}
                     circular_logo =  {data.circular_logo}
                 />
             {/each}   
@@ -1021,6 +1143,8 @@
         --sans-font-family: 'Instrument Sans';
         --fallback-serif-font: 'serif';
         --fallback-sans-font: 'sans-serif';
+        --transition-times: 1s;
+        --transition-curve: cubic-bezier(.84,0,.75,1);
 
         interpolate-size: allow-keywords;
 

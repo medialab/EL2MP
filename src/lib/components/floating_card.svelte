@@ -40,7 +40,7 @@
         if (floaterContainer) {
             floaterContainer.classList.remove('clicked');
             isClicked = false;
-            //console.log('"clicked" class removed from:', floaterContainer);
+            ////console.log('"clicked" class removed from:', floaterContainer);
         } else {
             console.warn('No floater container found for the clicked element');
         }
@@ -72,7 +72,7 @@
                     anchor.click();
                     document.body.removeChild(anchor);
 
-                    console.log('File downloaded');
+                    //console.log('File downloaded');
                 }
 
                 darkerElement.classList.remove('open');
@@ -325,9 +325,8 @@
         z-index: 4;
 
         word-wrap: none;
-        /* transition:
-            width 1s ease-in-out,
-            border 1s ease-in-out; */
+
+        transition: background-color 0.3s ease-in-out;
     }
 
     :global(.floater_container.closed > .floater_bottom) {
@@ -375,11 +374,12 @@
         border: dashed 1px black;
         align-items: center;
         justify-content: center;
+        padding: 0;
     }
 
     .closer_container > svg {
-        width: 90%;
-        height: 90%;
+        width: 30px;
+        height: 30px;
         fill: black;
         place-self: center;
         place-content: center;

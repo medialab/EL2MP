@@ -1,26 +1,28 @@
 <script>
     export let data
-    export let switch_sidebar 
+    export let switch_alterego 
     export let simplebarContainer
     export let selectedCardTitle
     export let currentScrollLevel
+    export let logoImage
 
-    import PositionMarkerButton from "./position_marker_button.svelte";
+    import PositionMarkerButton from "./position_marker_button.svelte"; 
 </script>
 
 <!-- svelte-ignore a11y_consider_explicit_label -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore a11y_missing_attribute -->
- <div class="translation_container open" id="sidebar">
+
+<button class="closing_icon" on:click={switch_alterego}>
+    <img src={logoImage} alt="EL2MP Logo">
+</button>
+
+ <!-- <div class="translation_container closed" id="sidebar">
     <div class="logo_button">
-        <!-- svelte-ignore a11y_click_events_have_key_events -->
-        <a class="header_container" on:click={switch_sidebar}>
+        <a class="header_container" on:click={switch_alterego}>
             <img class="logo_container" src={data.logoImage} alt="Expanded logo version of EL2MP">   
         </a>
-        
-        <!-- svelte-ignore a11y_click_events_have_key_events -->
-        <!-- svelte-ignore a11y_missing_attribute -->
-        <!-- svelte-ignore a11y_consider_explicit_label -->
+
         
         <div class="description_scroll"
                 bind:this={simplebarContainer}
@@ -42,10 +44,12 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div> -->
 
-    <div class="side_column">
-        <button class="closing_icon" on:click={switch_sidebar}>
+    
+
+    <!--<div class="side_column">
+        <button class="closing_icon" on:click={switch_alterego}>
             <svg
                 preserveAspectRatio="xMidYMid meet"
                 xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +66,7 @@
     </div>
     
     
- </div>
+ </div>-->
 
 <style>
 
@@ -205,12 +209,14 @@
     }    
 
     :global(.closing_icon) {
-        height: 3vw;
-        width: 3vw;
+        width: 20vw;
+        height: fit-content;
 
         fill: black;
+        padding: var(--spacing-XS);
+        padding-right: var(--spacing-S);
         opacity: 1;
-        transform: translateX(-1px) rotate(90deg) ;
+        /* transform: translateX(-1px) rotate(90deg) ;*/
 
         cursor: pointer;
 
@@ -218,10 +224,10 @@
 
         position: relative;
 
-        border-radius: 0px 5px 0px 0px;
+        border-radius: 0px 0px 5px 0px;
         border-left: solid 0px black;
+        border-top: solid 0px black;
 
-        padding: 0px;
         z-index: 500;
 
     }

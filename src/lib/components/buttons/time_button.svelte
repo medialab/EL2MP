@@ -1,6 +1,6 @@
 <script>
     export let time;
-    console.log("Current DateTime:", time);
+    ////console.log("Current DateTime:", time);
 </script>
 
 <button class="time_button">

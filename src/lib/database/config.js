@@ -27,7 +27,9 @@ import cover_1 from "$media/capitols_cover/qualifying.jpg?enhanced";
 import circle_logo from "$media/CIRCLE.svg";
 import enhanced_logoImage from "$media/enhanced_logoImage.png?enhanced";
 import condensed_logo from "$media/logo_condensed.svg";
+import condensed_logo_white from "$media/logo_condensed_white.svg";
 import logoImage from "$media/logo_complete.svg";
+import logoImage_white from "$media/logo_complete_white.png?enhanced";
 
 import topcamera_1 from "$videos/Topcamera.webm";
 import cardsgame_1 from "$videos/Cardsgame.webm";
@@ -70,7 +72,9 @@ export const general = {
   circle_logo,
   enhanced_logoImage,
   condensed_logo,
+  condensed_logo_white,
   logoImage,
+  logoImage_white,
 };
 
 // Optionally, export everything as a default object if you prefer:

@@ -14,6 +14,7 @@ import { photos, capitolsCover, general } from "$database/config.js";
 import {
   cardsDb,
   floatersDb,
+  alterEgosDb,
   projectDescription,
 } from "$database/global_db.js";
 
@@ -24,17 +25,19 @@ export function load({ params }) {
     circular_logo: general.circle_logo,
     cardsDb,
     floatersDb,
+    alterEgosDb,
     projectDescription,
     condensed_logo: general.condensed_logo,
+    condensed_logo_white: general.condensed_logo_white,
   };
 }
 
 /*
 //this below is a test to fetching things from a JSON
 
-console.log("Photos:", configs.photos);
-console.log("Capitols Cover:", configs.capitolsCover);
-console.log("General:", configs.general);
+//console.log("Photos:", configs.photos);
+//console.log("Capitols Cover:", configs.capitolsCover);
+//console.log("General:", configs.general);
 
 const defaultImage = { default: "$media/photos/img1.jpg?enhanced" };
 const defaultLogo = "$media/photos/img1.jpg?enhanced";
@@ -60,7 +63,7 @@ export async function load({ fetch }) {
 
   const { cardsDb, floatersDb, projectDescription } = db;
 
-  console.log("cardsDb", cardsDb);
+  //console.log("cardsDb", cardsDb);
 
   return {
     backgroundImage,

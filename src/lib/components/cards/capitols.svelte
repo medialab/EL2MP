@@ -1,13 +1,30 @@
-
 <script>
 import { onMount, setContext } from 'svelte';
+import { cardsDb, alterEgosDb } from '$lib/database/global_db.js';
+import { isAlterEgoMode  } from '$lib/stores/alterEgoStore';
+import { transitionTime } from '$lib/stores/animations';
+
+import {
+	blur,
+	crossfade,
+	draw,
+	fade,
+	fly,
+	scale,
+	slide
+} from 'svelte/transition';
+
+// Instead, use a simple boolean
 export let data
+export let alterEgoCard
 export let bringToFront
-export let suppressCover
 export let simplebarContainer
 export let condensed_logo
-export let circular_logo
+export let condensed_logo_white
+export let card
+export let transitionDelay
 
+//console.log("alterEgoCard", alterEgoCard)
 let isProjCover = data.isProjCover
 
 const splitText = (text) => {
@@ -18,187 +35,210 @@ const splitText = (text) => {
         return [text.slice(0, splitIndex).trim(), text.slice(splitIndex).trim()];
     };
 
-
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-{#if isProjCover === false}
     <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <section
-        class="card_container"
-        draggable="true"
-        on:click={bringToFront}
-        aria-label="Draggable Card"
-        data-section={data.Title}
-    >
-
-        <p class="h0" style="z-index: 7;">
-            {@html data.Title}
-        </p>
-
-
-        <!-- svelte-ignore a11y_no_static_element_interactions 
-        <a class="caption" id="download_button" on:click={generatePDF}>
-            <p>DOWNLOAD</p>
-        </a> -->
-
-
-        <img data-sveltekit-preload-data
-            class="card_corner_logo"
-            src={condensed_logo}
-            alt="EL2MP Logo"
+    
+        <section
+            class="card_container"
+            draggable="true"
+            on:click={bringToFront}
+            aria-label="Draggable Card"
+            data-section={card.Title}
         >
 
-        <div class="description_container" style="background-color: {data.bgColor}; border: 5px solid {data.bgColor};"> 
-            <p class="h4" id="description">
-                {@html data.Description}
-            </p>
-        </div>
+        <div
+        class="card_container_inner"
+        style="transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;">
 
-        <div class="card_scrollable_container"
-            bind:this={simplebarContainer}
-            data-simplebar
-            data-simplebar-auto-hide="false"
-            data-section={data.Title}>
-            
-            <div class="card_scroll_flex" data-section={data.Title}> 
+            <img data-sveltekit-preload-data
+                class="card_corner_logo"
+                src={condensed_logo}
+                style="z-index: 5;"
+                alt="EL2MP Logo"
+            >
+
+            <div class="description_container" style="background-color: {card.bgColor}; border: 5px solid {card.bgColor};"> 
+
                 
-                {#if data.CoverImg}
-                    <div class="duotone_container">
-                        <enhanced:img
-                            data-sveltekit-preload-data
-                            src={data.CoverImg}
-                            alt="CoverImg"
-                            class="duotone_image"
-                        />
-                        <div class="duotone_overlay" style="background-color: {data.bgColor};"></div>
-                    </div>
-                {/if}
-                
-                <!-- Programmatic creation of sections -->
-                {#each data.Content ?? [] as section, index}
+                    <p class="h0" style="z-index: 7;">
+                        {@html card.Title}
+                    </p>
+               
 
-                <!-- We assing a programmatic name for the each block sections -->
-                <div class="section_container" data-sveltekit-preload-data data-section={`Ex ${index+1}`}> 
-                    {#if section.title}
-                        <p class="h4">{@html section.title}</p>
-                    {/if}
-                    
-                    {#if section.subtitle }
-                        <p class="p1" exercise-description >{@html section.subtitle}</p>
-                    {/if}
+                <p class="h4" id="description">
+                    {@html card.Question}
+                </p>
 
-                    {#if section.picture}
-                        <enhanced:img data-sveltekit-preload-data class="article_image" src={section.picture} alt="People"/>
-                    {/if}
-
-                    {#if section.text}
-                        <div class="double_column_text_article">
-                            <p class="p1">{section.text}</p>
-                        </div>
-                    {/if}
-                </div>
-                    
-                {:else}
-                    <p>If you see this we are encountering issues</p>
-                {/each}
             </div>
+
+            <div class="card_scrollable_container"
+                bind:this={simplebarContainer}
+                data-simplebar
+                data-simplebar-auto-hide="false"
+                data-section={card.Title}>
+                
+                <div class="card_scroll_flex" data-section={card.Title}> 
+
+                    {#if card.Description}
+                        <p class="p1" id="description">{@html card.Description}</p>
+                    {/if}
+                    
+                    {#if card.CoverImg}
+                            <enhanced:img
+                                data-sveltekit-preload-data
+                                src={card.CoverImg}
+                                alt="CoverImg"
+                                class="cover_image"
+                            />
+                    {/if}
+                    
+                    <!-- Programmatic creation of sections -->
+                    {#each card.Content ?? [] as section, index}
+                        <!-- We assing a programmatic name for the each block sections -->
+                        <div class="section_container" data-sveltekit-preload-data data-section={`Ex ${index+1}`}> 
+                            {#if section.title}
+                                <p class="h4">{@html section.title}</p>
+                            {/if}
+                            
+                            {#if section.subtitle }
+                                <p class="p1" exercise-description >{@html section.subtitle}</p>
+                            {/if}
+
+                            {#if section.picture}
+                                <enhanced:img data-sveltekit-preload-data class="article_image" src={section.picture} alt="People"/>
+                            {/if}
+
+                            {#if section.text}
+                                <div class="double_column_text_article">
+                                    <p class="p1">{section.text}</p>
+                                </div>
+                            {/if}
+                        </div>
+                            
+                        {:else}
+                            <p>If you see this we are encountering issues</p>
+                    {/each}
+                </div>
+            </div>
+            
+            <img data-sveltekit-preload-data
+                class="card_corner_logo"
+                src={condensed_logo}
+                alt="EL2MP Logo"
+            >
+
         </div>
 
-        
-    </section> 
+        <!-- From this over is the alter ego card -->
 
-<!-- svelte-ignore a11y_click_events_have_key_events -->
-{:else}
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <!-- svelte-ignore a11y_missing_attribute -->
-    <section class="card_container" id="cover_description" draggable="true" on:click={bringToFront} style="color: white;">
-
-        <p class="h0">
-            {data.Title}
-        </p>
-
-        <img 
-            class="card_corner_logo"
-            style="position: absolute; left: 0; bottom: 0; width: 25%; opacity: 1;"
-            src={condensed_logo}
-            alt="EL2MP Logo"
+        <div
+            class="altergo_container_inner"
+            style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;"
         >
 
-        <div class="card_scrollable_container">
-            <div class="card_scroll_flex"> 
-                <p class="h4">
-                    {data.Description}
+            <img data-sveltekit-preload-data
+                class="card_corner_logo"
+                src={condensed_logo_white}
+                alt="EL2MP Logo"
+                style="z-index: 10;"
+            >
+
+            <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"> 
+                <p class="h0" style="z-index: 7;">
+                    {@html alterEgoCard.Title}
                 </p>
             </div>
+
+            <div class="card_scrollable_container"
+                bind:this={simplebarContainer}
+                data-simplebar
+                data-simplebar-auto-hide="false"
+                data-section={alterEgoCard.Title}>
+
+                
+                
+                <div class="card_scroll_flex" data-section={alterEgoCard.Title}> 
+
+                    {#if alterEgoCard.Description}
+                        <p
+                        class="p1"
+                        id="description">{@html alterEgoCard.Description}</p>
+                    {/if}
+
+                    {#if alterEgoCard.CoverImg}
+                        <enhanced:img
+                            data-sveltekit-preload-data
+                            src={alterEgoCard.CoverImg}
+                            alt="CoverImg"
+                            class="cover_image_alterego"
+                        />
+                    {/if}
+
+                </div>
+            </div>
+            
+            <img data-sveltekit-preload-data
+                class="card_corner_logo"
+                src={condensed_logo}
+                alt="EL2MP Logo"
+            >
+
         </div>
 
-        <!-- svelte-ignore a11y_consider_explicit_label -->
-        <a class="x_arrow" on:click={suppressCover}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="none">
-                <path d="M1 1L20 20M1 20L20 1" stroke="white" stroke-width="2"/>
-            </svg>
-        </a>
-
-    </section> 
-{/if} 
-
+    </section>
 
 <style>
-    
-    .caption {
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: var(--spacing-M);
-    }
+
 
     .description_container {
-        width: 99%;
+        width: 100%;
         height: fit-content;
-        position: absolute;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        row-gap: 0;
+
+        grid-column: 1 / 8;
         
         top: 0;
         left: 0;
 
-        transform: translateY(calc(var(--spacing-2XL) + var(--spacing-M) - var(--spacing-XS)));
         z-index: 5;
         pointer-events: none;
-        padding-bottom: var(--spacing-M);
-        padding-right: var(--spacing-M);
-        padding-left: var(--spacing-XL);
+        grid-row: 1;
     }
 
-    .description_container > p { 
-        width: 80%;
+    .description_container > .h4 { 
+        width: 100%;
         font-family: 'Instrument Sans';
-        
+        margin-top: -0.7em;
+        padding-left: 10%;
+    }
+
+    .description_container > .h0 {
+        width: fit-content;
+        height: fit-content;
+        font-family: 'Instrument Serif';
+        white-space: nowrap;
+        user-select: none;
+        pointer-events: none;
+        overflow: hidden;
+        line-height: 1.5;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+        margin-top: -0.4em;
+        transform: translateX(-0.08em);
+        /* Add responsive font sizing */
+        font-size: clamp(4rem, 10vw, 10rem);
     }
 
     [exercise-description] {
-        width: 80%;
+        width: 95%;
         font-family: 'Instrument Sans';
         font-size: 1.2em;
-    }
-
-    .x_arrow {
-        width: 20px;
-        height: 20px;
-        flex-shrink: 0;
-        stroke-width: 2px;
-        stroke: white;
-        position: absolute;
-        bottom: var(--spacing-M);
-        right: var(--spacing-M);
-        transition: all 0.8s ease-in-out;
-        background-color: black;
-    }
-
-    .x_arrow:hover {
-        width: 30px;
-        height: 30px;
-        transition: all 0.8s ease-in-out;
     }
 
     .card_container {
@@ -211,11 +251,11 @@ const splitText = (text) => {
 
         aspect-ratio: 1.5 / 1;
         display: none;
-        grid-template-columns: repeat(7, 1fr);
-        padding-left: var(--spacing-M);
+        
+        /* padding-left: var(--spacing-M); */
         padding-right: var(--spacing-M);
         gap: var(--spacing-M);
-        background-color: #97D2FB;
+        background-color: '';
         
         cursor: grab;
 
@@ -225,31 +265,35 @@ const splitText = (text) => {
 
         user-select: none;
         overflow: hidden;
-        align-content: flex-start;
         
-        border: solid 1px black;
+        border: solid 1.5px black;
+        transition: border 5s ease-in-out;
 
         @media (min-width: 1920px) {
             width: 50vw;
         }
+
+        
     }
 
-    :global(.duotone_container) {
-        width: 100%;
-        height: 100%;
-        display: block;
+    .card_container_inner {
+        display: grid;
         position: relative;
-    }
-
-    :global(.duotone_container > picture) {
-        height: 100%;
+        align-content: flex-start;
+        top: 0;
+        left: 0;
+        grid-template-columns: repeat(7, 1fr);
+        overflow: hidden;
+        
         width: 100%;
-        display: block;
+        height: 100%;
+        min-height: 100%;
+        transform: translateX(0%);
     }
 
-    :global(.duotone_image) {
-        mix-blend-mode: darken;
-        opacity: 0.8;
+
+    :global(.cover_image) {
+        opacity: 1;
         display: block;
         z-index: 1;
         width: 100%;
@@ -258,28 +302,18 @@ const splitText = (text) => {
         object-fit: cover;
     }
 
-    :global(.duotone_overlay) {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        z-index: 2;
-        top: 0;
-        left: 0;
-        mix-blend-mode: color;
+    .cover_image_alterego {
+        opacity: 1;
+        display: block;
+        z-index: 1;
+        width: 30%;
+        height: auto;
+        object-fit: contain;
+        margin-bottom: var(--spacing-L);
     }
 
     .card_container:active {
         cursor: grabbing;
-    }
-
-    .card_container > .h0 {
-        width: max-content;
-        word-wrap: nowrap;
-        user-select: none;
-        pointer-events: none;
-        overflow: hidden;
-        /* animation: title_slide 2s cubic-bezier(0.075, 0.82, 0.165, 1); */
-        transform: '';
     }
 
     @keyframes title_slide {
@@ -306,16 +340,17 @@ const splitText = (text) => {
         height: 100%;
 
         grid-column: 2 / 8;
+        grid-row: 2;
 
         background-color: transparent;
-        margin-top: calc(var(--spacing-2XL) + var(--spacing-M) * 5 );
+
+        margin-top: 2%;
+        padding-right: var(--spacing-XS);
 
         overflow-y: scroll !important;  
         overflow-x: hidden;
 
-        z-index: -1;
-
-        padding-right: var(--spacing-XS);
+        z-index: 1;
     }
 
     .double_column_text_article {
@@ -343,8 +378,12 @@ const splitText = (text) => {
         flex-direction: column;
         gap: var(--spacing-L);
 
-        margin-bottom: var(--spacing-3XL);
+        margin-bottom: var(--spacing-XL);
         z-index: 0;
+    }
+
+    .card_scroll_flex > .p1 {
+        width: 95%;
     }
 
     .section_container {
@@ -357,36 +396,48 @@ const splitText = (text) => {
         
     }
 
-    .card_container > .h0 {
-        transform: translateY(-24%);
+    .altergo_container_inner {
+        display: grid;
         position: absolute;
+        align-content: flex-start;
         top: 0;
-        transform-origin: top left;
         left: 0;
+        grid-template-columns: repeat(7, 1fr);
+        overflow: hidden;
+
+        transform: translateX(-100%);
+        z-index: 10;
+        
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        color: white;
     }
 
-   /* ### OLD VERSION ### */ .card_corner_logo {
+    :global(.altergo_container_inner.open) {
+        transform: translateX(0%);
+    }
+
+    /* This should work for siblings - when card_container has a child with class "altergo_container_inner.open" */
+    :global(.card_container:has(.altergo_container_inner.open)) .card_container_inner {
+        transform: translateX(100%);
+    }
+
+    /* Alternative approach using JavaScript class toggling */
+    :global(.card_container_inner.shift-right) {
+        transform: translateX(100%);
+    }
+
+    .card_corner_logo {
         position: absolute;
         bottom: var(--spacing-S);
         left: var(--spacing-S);
         width: 7%;
         height: auto;
         opacity: 1;
-    } 
-
-    /* ### OLD VERSION ### .card_corner_logo {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 10%;
-        height: auto;
-        opacity: 0.5;
-        mix-blend-mode: darken;
-    } */
+    }
 
     .article_image {
-        filter: grayscale(100%);
-        mix-blend-mode: overlay;
         opacity: 80%;
         width: 100%;
         aspect-ratio: 21 / 9;
