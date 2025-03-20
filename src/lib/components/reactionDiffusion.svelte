@@ -227,7 +227,6 @@
       display: flex;
       flex-direction: column;
       color: #000; /* Labels now black */
-      font-size: 0.9rem;
     }
     input[type="range"] {
       width: 100%;

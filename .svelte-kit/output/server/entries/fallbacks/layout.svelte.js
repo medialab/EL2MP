@@ -1,5 +1,5 @@
 import "clsx";
-import { c as pop, p as push } from "../../chunks/index.js";
+import { S as pop, P as push } from "../../chunks/index.js";
 function Layout($$payload, $$props) {
   push();
   let { children } = $$props;

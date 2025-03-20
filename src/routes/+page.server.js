@@ -7,16 +7,13 @@ export const trailingSlash = "always";
 import { mergeAlias } from "vite";
 import { config as configs } from "$database/config.js";
 import { onMount } from "svelte";
-import backgroundImage from "$media/Dot_background.png?enhanced";
+
+import backgroundImage from "$media/logos/Dot_background.png?enhanced";
+
 import { id } from "date-fns/locale";
 import { photos, capitolsCover, general } from "$database/config.js";
 
-import {
-  cardsDb,
-  floatersDb,
-  alterEgosDb,
-  projectDescription,
-} from "$database/global_db.js";
+import { cardsDb, floatersDb, alterEgosDb } from "$database/global_db.js";
 
 export function load({ params }) {
   return {
@@ -26,7 +23,6 @@ export function load({ params }) {
     cardsDb,
     floatersDb,
     alterEgosDb,
-    projectDescription,
     condensed_logo: general.condensed_logo,
     condensed_logo_white: general.condensed_logo_white,
   };

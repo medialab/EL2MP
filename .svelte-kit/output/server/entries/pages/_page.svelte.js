@@ -1,6 +1,7 @@
-import { e as ensure_array_like, d as stringify, f as bind_props, c as pop, p as push } from "../../chunks/index.js";
-import { e as escape_html } from "../../chunks/escaping.js";
+import { W as ensure_array_like, X as stringify, Y as store_get, Z as unsubscribe_stores, _ as bind_props, S as pop, P as push, $ as store_set } from "../../chunks/index.js";
+import { w as writable } from "../../chunks/index2.js";
 import "clsx";
+import { e as escape_html } from "../../chunks/escaping.js";
 const replacements = {
   translate: /* @__PURE__ */ new Map([
     [true, "yes"],
@@ -18,161 +19,152 @@ function html(value) {
   var open = "<!---->";
   return open + html2 + "<!---->";
 }
+const isAlterEgoMode = writable(true);
+const transitionTime = 1.5;
 function Capitols($$payload, $$props) {
   push();
+  var $$store_subs;
   let data = $$props["data"];
+  let alterEgoCard = $$props["alterEgoCard"];
   let bringToFront = $$props["bringToFront"];
-  let suppressCover = $$props["suppressCover"];
   let simplebarContainer = $$props["simplebarContainer"];
   let condensed_logo = $$props["condensed_logo"];
-  let circular_logo = $$props["circular_logo"];
-  let isProjCover = data.isProjCover;
-  if (isProjCover === false) {
+  let condensed_logo_white = $$props["condensed_logo_white"];
+  let card = $$props["card"];
+  let transitionDelay = $$props["transitionDelay"];
+  data.isProjCover;
+  const each_array_1 = ensure_array_like(card.Content ?? []);
+  $$payload.out += `<section class="card_container svelte-1864dax" draggable="true" aria-label="Draggable Card"${attr("data-section", card.Title)}><div class="card_container_inner svelte-1864dax"${attr("style", `transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo)} style="z-index: 5;" alt="EL2MP Logo"> <div class="description_container svelte-1864dax"${attr("style", `background-color: ${stringify(card.bgColor)}; border: 5px solid ${stringify(card.bgColor)};`)}><p class="h0 svelte-1864dax" style="z-index: 7;">${html(card.Title)}</p></div> <div class="card_scrollable_container svelte-1864dax" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", card.Title)}><div class="card_scroll_flex svelte-1864dax"${attr("data-section", card.Title)}><p class="p1 svelte-1864dax" id="description">${html(card.Question)}</p> `;
+  if (card.Description) {
     $$payload.out += "<!--[-->";
-    const each_array_1 = ensure_array_like(data.Content ?? []);
-    $$payload.out += `<section class="card_container svelte-qoh8n4" draggable="true" aria-label="Draggable Card"${attr("data-section", data.Title)}><p class="h0 svelte-qoh8n4" style="z-index: 7;">${html(data.Title)}</p> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-qoh8n4"${attr("src", condensed_logo)} alt="EL2MP Logo"> <div class="description_container svelte-qoh8n4"${attr("style", `background-color: ${stringify(data.bgColor)}; border: 5px solid ${stringify(data.bgColor)};`)}><p class="h4 svelte-qoh8n4" id="description">${html(data.Description)}</p></div> <div class="card_scrollable_container svelte-qoh8n4" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", data.Title)}><div class="card_scroll_flex svelte-qoh8n4"${attr("data-section", data.Title)}>`;
-    if (data.CoverImg) {
-      $$payload.out += "<!--[-->";
-      $$payload.out += `<div class="duotone_container svelte-qoh8n4">`;
-      if (typeof data.CoverImg === "string") {
-        $$payload.out += "<!--[-->";
-        $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", data.CoverImg.img.src)} alt="CoverImg" class="duotone_image svelte-qoh8n4"${attr("width", data.CoverImg.img.w)}${attr("height", data.CoverImg.img.h)}>`;
-      } else {
-        $$payload.out += "<!--[!-->";
-        const each_array = ensure_array_like(Object.entries(data.CoverImg.sources));
-        $$payload.out += `<picture class="svelte-qoh8n4"><!--[-->`;
-        for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
-          let [format, srcset] = each_array[$$index];
-          $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-qoh8n4">`;
-        }
-        $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", data.CoverImg.img.src)} alt="CoverImg" class="duotone_image svelte-qoh8n4"${attr("width", data.CoverImg.img.w)}${attr("height", data.CoverImg.img.h)}></picture>`;
-      }
-      $$payload.out += `<!--]--> <div class="duotone_overlay svelte-qoh8n4"${attr("style", `background-color: ${stringify(data.bgColor)};`)}></div></div>`;
-    } else {
-      $$payload.out += "<!--[!-->";
-    }
-    $$payload.out += `<!--]--> `;
-    if (each_array_1.length !== 0) {
-      $$payload.out += "<!--[-->";
-      for (let index = 0, $$length = each_array_1.length; index < $$length; index++) {
-        let section = each_array_1[index];
-        $$payload.out += `<div class="section_container svelte-qoh8n4" data-sveltekit-preload-data=""${attr("data-section", `Ex ${index + 1}`)}>`;
-        if (section.title) {
-          $$payload.out += "<!--[-->";
-          $$payload.out += `<p class="h4 svelte-qoh8n4">${html(section.title)}</p>`;
-        } else {
-          $$payload.out += "<!--[!-->";
-        }
-        $$payload.out += `<!--]--> `;
-        if (section.subtitle) {
-          $$payload.out += "<!--[-->";
-          $$payload.out += `<p class="p1 svelte-qoh8n4" exercise-description="">${html(section.subtitle)}</p>`;
-        } else {
-          $$payload.out += "<!--[!-->";
-        }
-        $$payload.out += `<!--]--> `;
-        if (section.picture) {
-          $$payload.out += "<!--[-->";
-          if (typeof section.picture === "string") {
-            $$payload.out += "<!--[-->";
-            $$payload.out += `<img data-sveltekit-preload-data="" class="article_image svelte-qoh8n4"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}>`;
-          } else {
-            $$payload.out += "<!--[!-->";
-            const each_array_2 = ensure_array_like(Object.entries(section.picture.sources));
-            $$payload.out += `<picture class="svelte-qoh8n4"><!--[-->`;
-            for (let $$index_1 = 0, $$length2 = each_array_2.length; $$index_1 < $$length2; $$index_1++) {
-              let [format, srcset] = each_array_2[$$index_1];
-              $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-qoh8n4">`;
-            }
-            $$payload.out += `<!--]--> <img data-sveltekit-preload-data="" class="article_image svelte-qoh8n4"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}></picture>`;
-          }
-          $$payload.out += `<!--]-->`;
-        } else {
-          $$payload.out += "<!--[!-->";
-        }
-        $$payload.out += `<!--]--> `;
-        if (section.text) {
-          $$payload.out += "<!--[-->";
-          $$payload.out += `<div class="double_column_text_article svelte-qoh8n4"><p class="p1 svelte-qoh8n4">${escape_html(section.text)}</p></div>`;
-        } else {
-          $$payload.out += "<!--[!-->";
-        }
-        $$payload.out += `<!--]--></div>`;
-      }
-    } else {
-      $$payload.out += "<!--[!-->";
-      $$payload.out += `<p class="svelte-qoh8n4">If you see this we are encountering issues</p>`;
-    }
-    $$payload.out += `<!--]--></div></div></section>`;
+    $$payload.out += `<p class="p3 svelte-1864dax" id="description">${html(card.Description)}</p>`;
   } else {
     $$payload.out += "<!--[!-->";
-    $$payload.out += `<section class="card_container svelte-qoh8n4" id="cover_description" draggable="true" style="color: white;"><p class="h0 svelte-qoh8n4">${escape_html(data.Title)}</p> <img class="card_corner_logo svelte-qoh8n4" style="position: absolute; left: 0; bottom: 0; width: 25%; opacity: 1;"${attr("src", condensed_logo)} alt="EL2MP Logo"> <div class="card_scrollable_container svelte-qoh8n4"><div class="card_scroll_flex svelte-qoh8n4"><p class="h4 svelte-qoh8n4">${escape_html(data.Description)}</p></div></div> <a class="x_arrow svelte-qoh8n4"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21" fill="none" class="svelte-qoh8n4"><path d="M1 1L20 20M1 20L20 1" stroke="white" stroke-width="2" class="svelte-qoh8n4"></path></svg></a></section>`;
   }
-  $$payload.out += `<!--]-->`;
-  bind_props($$props, {
-    data,
-    bringToFront,
-    suppressCover,
-    simplebarContainer,
-    condensed_logo,
-    circular_logo
-  });
-  pop();
-}
-function Position_marker_button($$payload, $$props) {
-  let selectedCardTitle = $$props["selectedCardTitle"];
-  let currentScrollLevel = $$props["currentScrollLevel"];
-  let exercises = [];
-  const allExercises = Array.from({ length: 12 }, (_, i) => ({ id: `Ex ${i + 1}`, label: `Ex ${i + 1}` }));
-  exercises = allExercises.filter((ex) => {
-    const currentIndex = allExercises.findIndex((e) => e.id === currentScrollLevel);
-    return allExercises.indexOf(ex) <= currentIndex;
-  });
-  const each_array = ensure_array_like(exercises);
-  $$payload.out += `<button class="position_button svelte-laknos"><p class="s1 svelte-laknos">${escape_html(selectedCardTitle)}</p> <p class="s1 svelte-laknos">/</p> <!--[-->`;
-  for (let index = 0, $$length = each_array.length; index < $$length; index++) {
-    let exercise = each_array[index];
-    $$payload.out += `<p class="s1 svelte-laknos">${escape_html(exercise.label)}</p> `;
-    if (index < exercises.length - 1) {
+  $$payload.out += `<!--]--> `;
+  if (card.CoverImg) {
+    $$payload.out += "<!--[-->";
+    $$payload.out += `<div class="cover_image_container svelte-1864dax"><div class="overlay_filter svelte-1864dax"${attr("style", `background-color: ${stringify(card.bgColor)};`)}></div> `;
+    if (typeof card.CoverImg === "string") {
       $$payload.out += "<!--[-->";
-      $$payload.out += `<p class="s1 svelte-laknos">/</p>`;
+      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-1864dax"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}>`;
     } else {
       $$payload.out += "<!--[!-->";
+      const each_array = ensure_array_like(Object.entries(card.CoverImg.sources));
+      $$payload.out += `<picture class="svelte-1864dax"><!--[-->`;
+      for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
+        let [format, srcset] = each_array[$$index];
+        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-1864dax">`;
+      }
+      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-1864dax"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}></picture>`;
+    }
+    $$payload.out += `<!--]--></div>`;
+  } else {
+    $$payload.out += "<!--[!-->";
+  }
+  $$payload.out += `<!--]--> `;
+  if (each_array_1.length !== 0) {
+    $$payload.out += "<!--[-->";
+    for (let index = 0, $$length = each_array_1.length; index < $$length; index++) {
+      let section = each_array_1[index];
+      $$payload.out += `<div class="section_container svelte-1864dax" data-sveltekit-preload-data=""${attr("data-section", `Ex ${index + 1}`)}>`;
+      if (section.title) {
+        $$payload.out += "<!--[-->";
+        $$payload.out += `<p class="h3 svelte-1864dax">${html(section.title)}</p>`;
+      } else {
+        $$payload.out += "<!--[!-->";
+      }
+      $$payload.out += `<!--]--> `;
+      if (section.subtitle) {
+        $$payload.out += "<!--[-->";
+        $$payload.out += `<p class="p3 svelte-1864dax" exercise-description="">${html(section.subtitle)}</p>`;
+      } else {
+        $$payload.out += "<!--[!-->";
+      }
+      $$payload.out += `<!--]--> `;
+      if (section.picture) {
+        $$payload.out += "<!--[-->";
+        $$payload.out += `<div class="cover_image_container svelte-1864dax"><div class="overlay_filter svelte-1864dax"${attr("style", `background-color: ${stringify(card.bgColor)};`)}></div> `;
+        if (typeof section.picture === "string") {
+          $$payload.out += "<!--[-->";
+          $$payload.out += `<img data-sveltekit-preload-data="" class="article_image svelte-1864dax"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}>`;
+        } else {
+          $$payload.out += "<!--[!-->";
+          const each_array_2 = ensure_array_like(Object.entries(section.picture.sources));
+          $$payload.out += `<picture class="svelte-1864dax"><!--[-->`;
+          for (let $$index_1 = 0, $$length2 = each_array_2.length; $$index_1 < $$length2; $$index_1++) {
+            let [format, srcset] = each_array_2[$$index_1];
+            $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-1864dax">`;
+          }
+          $$payload.out += `<!--]--> <img data-sveltekit-preload-data="" class="article_image svelte-1864dax"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}></picture>`;
+        }
+        $$payload.out += `<!--]--></div>`;
+      } else {
+        $$payload.out += "<!--[!-->";
+      }
+      $$payload.out += `<!--]--> `;
+      if (section.text) {
+        $$payload.out += "<!--[-->";
+        $$payload.out += `<div class="double_column_text_article svelte-1864dax"><p class="p3 svelte-1864dax">${html(section.text)}</p></div>`;
+      } else {
+        $$payload.out += "<!--[!-->";
+      }
+      $$payload.out += `<!--]--></div>`;
+    }
+  } else {
+    $$payload.out += "<!--[!-->";
+    $$payload.out += `<p class="svelte-1864dax">If you see this we are encountering issues</p>`;
+  }
+  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo)} alt="EL2MP Logo"></div> <div${attr("class", `altergo_container_inner ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "open" : "")} svelte-1864dax`)}${attr("style", `background-color: ${stringify(alterEgoCard.bgColor)} !important; transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo_white)} alt="EL2MP Logo" style="z-index: 10;"> <div class="description_container svelte-1864dax"${attr("style", `background-color: ${stringify(alterEgoCard.bgColor)}; border: 5px solid ${stringify(alterEgoCard.bgColor)};`)}><p class="h0 svelte-1864dax" style="z-index: 7; line-height: 1;">${html(alterEgoCard.Title)}</p></div> <div class="card_scrollable_container svelte-1864dax" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", alterEgoCard.Title)}><div class="card_scroll_flex svelte-1864dax"${attr("data-section", alterEgoCard.Title)}>`;
+  if (alterEgoCard.Description) {
+    $$payload.out += "<!--[-->";
+    $$payload.out += `<p class="p3 svelte-1864dax" id="description">${html(alterEgoCard.Description)}</p>`;
+  } else {
+    $$payload.out += "<!--[!-->";
+  }
+  $$payload.out += `<!--]--> `;
+  if (alterEgoCard.CoverImg) {
+    $$payload.out += "<!--[-->";
+    if (typeof alterEgoCard.CoverImg === "string") {
+      $$payload.out += "<!--[-->";
+      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-1864dax"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}>`;
+    } else {
+      $$payload.out += "<!--[!-->";
+      const each_array_3 = ensure_array_like(Object.entries(alterEgoCard.CoverImg.sources));
+      $$payload.out += `<picture class="svelte-1864dax"><!--[-->`;
+      for (let $$index_3 = 0, $$length = each_array_3.length; $$index_3 < $$length; $$index_3++) {
+        let [format, srcset] = each_array_3[$$index_3];
+        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-1864dax">`;
+      }
+      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-1864dax"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}></picture>`;
     }
     $$payload.out += `<!--]-->`;
+  } else {
+    $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--></button>`;
-  bind_props($$props, { selectedCardTitle, currentScrollLevel });
-}
-function Logo_button($$payload, $$props) {
-  push();
-  let data = $$props["data"];
-  let switch_sidebar = $$props["switch_sidebar"];
-  let simplebarContainer = $$props["simplebarContainer"];
-  let selectedCardTitle = $$props["selectedCardTitle"];
-  let currentScrollLevel = $$props["currentScrollLevel"];
-  $$payload.out += `<div class="translation_container open svelte-fbelyk" id="sidebar"><div class="logo_button svelte-fbelyk"><a class="header_container svelte-fbelyk"><img class="logo_container"${attr("src", data.logoImage)} alt="Expanded logo version of EL2MP"></a>  <div class="description_scroll svelte-fbelyk" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", data.Title)}><p class="p1">${html(data.projectDescription)}</p> <div class="credits_container"><a><p class="h4">Privacy</p></a> <a><p class="h4">Cookie</p></a></div></div></div> <div class="side_column svelte-fbelyk"><button class="closing_icon"><svg preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M480-154.15 328.62-305.54l26.3-26.31L480-206.77l125.08-125.08 26.3 26.31L480-154.15ZM354.92-628.46l-26.3-26.31L480-806.15l151.38 151.38-26.3 26.31L480-753.54 354.92-628.46Z"></path></svg></button> `;
-  Position_marker_button($$payload, { data, selectedCardTitle, currentScrollLevel });
-  $$payload.out += `<!----></div></div>`;
+  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo)} alt="EL2MP Logo"></div></section>`;
+  if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, {
     data,
-    switch_sidebar,
+    alterEgoCard,
+    bringToFront,
     simplebarContainer,
-    selectedCardTitle,
-    currentScrollLevel
+    condensed_logo,
+    condensed_logo_white,
+    card,
+    transitionDelay
   });
   pop();
+}
+function Logo_button($$payload, $$props) {
+  let logoImage = $$props["logoImage"];
+  $$payload.out += `<button class="closing_icon"><img${attr("src", logoImage)} alt="EL2MP Logo"></button>`;
+  bind_props($$props, { logoImage });
 }
 function Reset_button($$payload, $$props) {
   let reset_function = $$props["reset_function"];
   $$payload.out += `<button class="reset_button svelte-ph3ac6"><p class="s1">Reset everything!</p></button>`;
   bind_props($$props, { reset_function });
-}
-function Time_button($$payload, $$props) {
-  let time = $$props["time"];
-  console.log("Current DateTime:", time);
-  $$payload.out += `<button class="time_button svelte-vpdzwk"><p class="s1">${escape_html(time)}</p></button>`;
-  bind_props($$props, { time });
 }
 function Floating_card($$payload, $$props) {
   push();
@@ -228,16 +220,30 @@ function Floating_card($$payload, $$props) {
   bind_props($$props, { data, randomPosition, color });
   pop();
 }
+function Textboxes($$payload) {
+  var $$store_subs;
+  $$payload.out += `<div${attr("class", `text-box-dx svelte-1ns4ooh ${stringify([
+    !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "closed" : ""
+  ].filter(Boolean).join(" "))}`)}><p class="p3 svelte-1ns4ooh">"The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."</p></div> <div${attr("class", `text-box-sx svelte-1ns4ooh ${stringify([
+    !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "closed" : ""
+  ].filter(Boolean).join(" "))}`)}><p class="p2 svelte-1ns4ooh">"How can we reframe the role <br> of LLMs in ordinary work practices?"</p></div>`;
+  if ($$store_subs) unsubscribe_stores($$store_subs);
+}
+function Slider($$payload, $$props) {
+  var $$store_subs;
+  let switch_alterego = $$props["switch_alterego"];
+  let pillBgColor = $$props["pillBgColor"];
+  $$payload.out += `<div class="slider_container svelte-kp3mje"><button${attr("class", `slider-button first ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")} svelte-kp3mje`)}${attr("disabled", store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr("style", `pointer-events: ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3">Project</p></button> <button${attr("class", `slider-button second ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")} svelte-kp3mje`)}${attr("disabled", !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr("style", `pointer-events: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3" style="padding-left: 12%;">Exercises</p></button> <div${attr("class", `background_slider ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "project" : "exercises")}  svelte-kp3mje`)}${attr("style", `background-color: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? pillBgColor : "black")};`)}></div></div>`;
+  if ($$store_subs) unsubscribe_stores($$store_subs);
+  bind_props($$props, { switch_alterego, pillBgColor });
+}
 function _page($$payload, $$props) {
   push();
+  var $$store_subs;
   let data = $$props["data"];
   let highestZIndex = 1;
   let cover;
-  let sidebar;
-  let isAnimating = false;
   let selectedCard = "Qualifying";
-  let activeMarker;
-  let currentScrollLevel = null;
   let currentCardColor;
   let lastCardColor = null;
   let simplebarContainer;
@@ -255,34 +261,16 @@ function _page($$payload, $$props) {
   const suppressCover = () => {
     cover.style.display = "none";
   };
-  const open_sidebar = () => {
-    if (sidebar.classList.contains("closed")) {
-      sidebar.classList.remove("closed");
-      sidebar.classList.add("open");
-    }
-  };
-  const close_sidebar = () => {
-    if (sidebar.classList.contains("open")) {
-      sidebar.classList.remove("open");
-      sidebar.classList.add("closed");
-    }
-  };
-  const switch_sidebar = () => {
-    if (isAnimating) return;
-    isAnimating = true;
-    if (sidebar.classList.contains("open")) {
-      close_sidebar();
-    } else if (sidebar.classList.contains("closed")) {
-      open_sidebar();
-    } else {
-      open_sidebar();
-    }
-    setTimeout(
-      () => {
-        isAnimating = false;
-      },
-      1e3
-    );
+  const switch_alterego = () => {
+    store_set(isAlterEgoMode, !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode));
+    const cardContainers = document.querySelectorAll(".card_container");
+    cardContainers.forEach((card) => {
+      if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
+        card.style.borderColor = "white";
+      } else {
+        card.style.borderColor = "black";
+      }
+    });
   };
   const calculateRandomPosition = (floaterWidth = 100, floaterHeight = 100) => {
     if (typeof window === "undefined") {
@@ -310,6 +298,10 @@ function _page($$payload, $$props) {
     };
   };
   const alignColor = (selectedCard2) => {
+    if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
+      currentCardColor = "white";
+      return;
+    }
     const selected = Object.values(data.cardsDb).find((card) => card.Title === selectedCard2);
     if (selected) {
       currentCardColor = selected.bgColor;
@@ -319,24 +311,22 @@ function _page($$payload, $$props) {
     }
   };
   const updateSelectedCard = (selectedCard2) => {
-    {
-      activeMarker = selectedCard2;
-    }
+    if (!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) ;
   };
-  updateSelectedCard(selectedCard);
+  updateSelectedCard();
+  if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) !== void 0) alignColor(selectedCard);
   alignColor(selectedCard);
-  $$payload.out += `<div class="content_container">`;
-  Logo_button($$payload, {
-    data,
-    switch_sidebar,
-    simplebarContainer,
-    selectedCardTitle: activeMarker,
-    currentScrollLevel
-  });
-  $$payload.out += `<!----> <section class="host">`;
-  Reset_button($$payload, { data, reset_function });
+  $$payload.out += `<div class="content_container"><section class="host">`;
+  Textboxes($$payload);
   $$payload.out += `<!----> `;
-  Time_button($$payload, { data, time: "Loading..." });
+  Slider($$payload, {
+    switch_alterego,
+    pillBgColor: currentCardColor
+  });
+  $$payload.out += `<!----> `;
+  Logo_button($$payload, { logoImage: data.logoImage, switch_alterego });
+  $$payload.out += `<!----> `;
+  Reset_button($$payload, { data, reset_function });
   $$payload.out += `<!----> `;
   {
     $$payload.out += "<!--[-->";
@@ -345,11 +335,15 @@ function _page($$payload, $$props) {
     for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
       let card = each_array[$$index];
       Capitols($$payload, {
-        data: card,
+        data,
+        card,
+        transitionDelay: card.IndexNum * 100,
+        alterEgoCard: data.alterEgosDb[`Card${card.IndexNum}`],
         bringToFront,
         suppressCover,
         simplebarContainer,
         condensed_logo: data.condensed_logo,
+        condensed_logo_white: data.condensed_logo_white,
         circular_logo: data.circular_logo
       });
     }
@@ -370,7 +364,7 @@ function _page($$payload, $$props) {
     }
     $$payload.out += `<!--]-->`;
   }
-  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-1mwa25i"><div class="mobile_description svelte-1mwa25i"><p class="p2 svelte-1mwa25i">${html(data.projectDescription)}</p></div> <div class="mobile_description tip svelte-1mwa25i"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div> `;
+  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-jj7kzh"><div class="mobile_description svelte-jj7kzh"><p class="p2 svelte-jj7kzh">${html(data.projectDescription)}</p></div> <div class="mobile_description tip svelte-jj7kzh"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div> `;
   if (typeof data.backgroundImage === "string") {
     $$payload.out += "<!--[-->";
     $$payload.out += `<img class="background_image"${attr("src", data.backgroundImage.img.src)} alt="DotsDotsDots?"${attr("width", data.backgroundImage.img.w)}${attr("height", data.backgroundImage.img.h)}>`;
@@ -385,6 +379,7 @@ function _page($$payload, $$props) {
     $$payload.out += `<!--]--> <img class="background_image"${attr("src", data.backgroundImage.img.src)} alt="DotsDotsDots?"${attr("width", data.backgroundImage.img.w)}${attr("height", data.backgroundImage.img.h)}></picture>`;
   }
   $$payload.out += `<!--]-->`;
+  if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, { data });
   pop();
 }

@@ -1,267 +1,231 @@
 import "vite";
 import "clsx";
-const image_1 = {
+const Ex_1 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img1.DB1WrWcd.avif 3012w, /EL2MP/_app/immutable/assets/img1.DwgMpDkg.avif 6024w",
-    webp: "/EL2MP/_app/immutable/assets/img1.fGjxAbni.webp 3012w, /EL2MP/_app/immutable/assets/img1.B_mHLV4o.webp 6024w",
-    jpeg: "/EL2MP/_app/immutable/assets/img1.Dr1t1NR2.jpeg 3012w, /EL2MP/_app/immutable/assets/img1.TQ_a5uLV.jpeg 6024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_1.M4ljEBhX.avif 1694w, /EL2MP/_app/immutable/assets/Ex_1.CMMh1Vzj.avif 3387w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_1.Bx3NSCaH.webp 1694w, /EL2MP/_app/immutable/assets/Ex_1.DrrkBwoK.webp 3387w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_1.jWrIf0p7.jpeg 1694w, /EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpeg 3387w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img1.TQ_a5uLV.jpeg",
-    w: 6024,
-    h: 4016
+    src: "/EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpeg",
+    w: 3387,
+    h: 4853
   }
 };
-const image_2 = {
+const Ex_2 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img2.Dg0eNK3q.avif 2743w, /EL2MP/_app/immutable/assets/img2.DNaBV4kt.avif 5486w",
-    webp: "/EL2MP/_app/immutable/assets/img2.s89m8U1Q.webp 2743w, /EL2MP/_app/immutable/assets/img2.Bih4voAP.webp 5486w",
-    jpeg: "/EL2MP/_app/immutable/assets/img2.CIF7cWqY.jpeg 2743w, /EL2MP/_app/immutable/assets/img2.QlEXNCKQ.jpeg 5486w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_2.CwMjKd24.avif 2822w, /EL2MP/_app/immutable/assets/Ex_2.DJXC-8TR.avif 5643w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_2.CVE6Jd3K.webp 2822w, /EL2MP/_app/immutable/assets/Ex_2.CJGUg6Yd.webp 5643w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_2.1IMO8yRp.jpeg 2822w, /EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg 5643w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img2.QlEXNCKQ.jpeg",
-    w: 5486,
-    h: 3657
-  }
-};
-const image_3 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img3.DAcAMwUO.avif 2828w, /EL2MP/_app/immutable/assets/img3.DKRjOWZu.avif 5656w",
-    webp: "/EL2MP/_app/immutable/assets/img3.CrL67P_z.webp 2828w, /EL2MP/_app/immutable/assets/img3.cCbLVC8j.webp 5656w",
-    jpeg: "/EL2MP/_app/immutable/assets/img3.Dw5GzWUA.jpeg 2828w, /EL2MP/_app/immutable/assets/img3.S3A-o23P.jpeg 5656w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img3.S3A-o23P.jpeg",
-    w: 5656,
-    h: 3771
-  }
-};
-const image_4 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img4.BdpsYb_5.avif 2853w, /EL2MP/_app/immutable/assets/img4.C1JPF0Sz.avif 5705w",
-    webp: "/EL2MP/_app/immutable/assets/img4.BFb0Y3Go.webp 2853w, /EL2MP/_app/immutable/assets/img4.DRMf60Pk.webp 5705w",
-    jpeg: "/EL2MP/_app/immutable/assets/img4.C7yMdn7o.jpeg 2853w, /EL2MP/_app/immutable/assets/img4.DS9EWmuv.jpeg 5705w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img4.DS9EWmuv.jpeg",
-    w: 5705,
-    h: 3803
-  }
-};
-const image_5 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img5.CwMjKd24.avif 2822w, /EL2MP/_app/immutable/assets/img5.DJXC-8TR.avif 5643w",
-    webp: "/EL2MP/_app/immutable/assets/img5.CVE6Jd3K.webp 2822w, /EL2MP/_app/immutable/assets/img5.CJGUg6Yd.webp 5643w",
-    jpeg: "/EL2MP/_app/immutable/assets/img5.1IMO8yRp.jpeg 2822w, /EL2MP/_app/immutable/assets/img5.FbG9S_Lv.jpeg 5643w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img5.FbG9S_Lv.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg",
     w: 5643,
     h: 3762
   }
 };
-const image_6 = {
+const Ex_3 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img6.B3GQC8Cg.avif 2350w, /EL2MP/_app/immutable/assets/img6.C_rKMPaD.avif 4700w",
-    webp: "/EL2MP/_app/immutable/assets/img6.D93WMUM5.webp 2350w, /EL2MP/_app/immutable/assets/img6.D6Ydhm_V.webp 4700w",
-    jpeg: "/EL2MP/_app/immutable/assets/img6.BqszNBh6.jpeg 2350w, /EL2MP/_app/immutable/assets/img6.DII5ae4F.jpeg 4700w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_3.B3GQC8Cg.avif 2350w, /EL2MP/_app/immutable/assets/Ex_3.C_rKMPaD.avif 4700w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_3.D93WMUM5.webp 2350w, /EL2MP/_app/immutable/assets/Ex_3.D6Ydhm_V.webp 4700w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_3.BqszNBh6.jpeg 2350w, /EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpeg 4700w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img6.DII5ae4F.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpeg",
     w: 4700,
     h: 3133
   }
 };
-const image_7 = {
+const Ex_4 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img7.CStKRNcv.avif 2682w, /EL2MP/_app/immutable/assets/img7.Px_JDcgt.avif 5363w",
-    webp: "/EL2MP/_app/immutable/assets/img7.o8LguTa3.webp 2682w, /EL2MP/_app/immutable/assets/img7.Q5jmzP8A.webp 5363w",
-    jpeg: "/EL2MP/_app/immutable/assets/img7.C6XebAgv.jpeg 2682w, /EL2MP/_app/immutable/assets/img7.Ba_ijbl9.jpeg 5363w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_4.CzGTDiGJ.avif 2826w, /EL2MP/_app/immutable/assets/Ex_4.O4hnVjzp.avif 5652w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_4.DXR7pjsX.webp 2826w, /EL2MP/_app/immutable/assets/Ex_4.Cf4Olo8b.webp 5652w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_4.BesA-xiL.jpeg 2826w, /EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpeg 5652w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img7.Ba_ijbl9.jpeg",
-    w: 5363,
-    h: 3575
+    src: "/EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpeg",
+    w: 5652,
+    h: 3768
   }
 };
-const image_8 = {
+const Ex_5 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img8.CZyFTEZZ.avif 2492w, /EL2MP/_app/immutable/assets/img8.mIUVSvdv.avif 4984w",
-    webp: "/EL2MP/_app/immutable/assets/img8.CpXdK72E.webp 2492w, /EL2MP/_app/immutable/assets/img8.Tzy38bwP.webp 4984w",
-    jpeg: "/EL2MP/_app/immutable/assets/img8.BZADjHmi.jpeg 2492w, /EL2MP/_app/immutable/assets/img8.D51aghVx.jpeg 4984w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_5.BLfKqo4S.avif 2016w, /EL2MP/_app/immutable/assets/Ex_5.s3sDnP1L.avif 4032w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_5.COzydrvm.webp 2016w, /EL2MP/_app/immutable/assets/Ex_5.KwHy2-Yi.webp 4032w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_5.C8qyzhRA.jpeg 2016w, /EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpeg 4032w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img8.D51aghVx.jpeg",
-    w: 4984,
-    h: 3323
+    src: "/EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpeg",
+    w: 4032,
+    h: 3024
   }
 };
-const image_9 = {
+const Ex_6 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img9.kHScFfBP.avif 2620w, /EL2MP/_app/immutable/assets/img9.DXPv9Vxw.avif 5239w",
-    webp: "/EL2MP/_app/immutable/assets/img9.CnN3azU5.webp 2620w, /EL2MP/_app/immutable/assets/img9.De4BGNqG.webp 5239w",
-    jpeg: "/EL2MP/_app/immutable/assets/img9.DJ7Laxix.jpeg 2620w, /EL2MP/_app/immutable/assets/img9.CCEavNGe.jpeg 5239w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_6.3U645BzY.avif 3024w, /EL2MP/_app/immutable/assets/Ex_6.dUKrJctU.avif 6048w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_6.DQucCQto.webp 3024w, /EL2MP/_app/immutable/assets/Ex_6.D7qXdLPL.webp 6048w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_6.CvpZkzcq.jpeg 3024w, /EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpeg 6048w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img9.CCEavNGe.jpeg",
-    w: 5239,
-    h: 3493
-  }
-};
-const image_10 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img10.CUMnRAjq.avif 2586w, /EL2MP/_app/immutable/assets/img10.BgC0ysl9.avif 5171w",
-    webp: "/EL2MP/_app/immutable/assets/img10.s01Moy65.webp 2586w, /EL2MP/_app/immutable/assets/img10.ABjY3_Iv.webp 5171w",
-    jpeg: "/EL2MP/_app/immutable/assets/img10.CgupggWs.jpeg 2586w, /EL2MP/_app/immutable/assets/img10.MNhmzOV4.jpeg 5171w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img10.MNhmzOV4.jpeg",
-    w: 5171,
-    h: 3447
-  }
-};
-const image_11 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img11.uSkt7V-R.avif 3024w, /EL2MP/_app/immutable/assets/img11.CYXnCQsn.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/img11.BF8FAJqT.webp 3024w, /EL2MP/_app/immutable/assets/img11.gYcLb7qc.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/img11.CqXhWRZo.jpeg 3024w, /EL2MP/_app/immutable/assets/img11.BLK1kI90.jpeg 6048w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img11.BLK1kI90.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpeg",
     w: 6048,
     h: 4032
   }
 };
-const image_12 = {
+const Ex_7 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img12.BW6_dEfc.avif 2596w, /EL2MP/_app/immutable/assets/img12.COQ5X3dN.avif 5192w",
-    webp: "/EL2MP/_app/immutable/assets/img12.AKYhUTPk.webp 2596w, /EL2MP/_app/immutable/assets/img12.Bye_mEwz.webp 5192w",
-    jpeg: "/EL2MP/_app/immutable/assets/img12.f5Kvm2--.jpeg 2596w, /EL2MP/_app/immutable/assets/img12.DEHF1DmX.jpeg 5192w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_7.DC-zIH8R.avif 2832w, /EL2MP/_app/immutable/assets/Ex_7.DQge5Ldh.avif 5664w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_7.s1PORwBj.webp 2832w, /EL2MP/_app/immutable/assets/Ex_7.BZweUxSJ.webp 5664w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_7.KQ0lzY62.jpeg 2832w, /EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg 5664w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img12.DEHF1DmX.jpeg",
-    w: 5192,
-    h: 3461
-  }
-};
-const image_13 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img13.DC-zIH8R.avif 2832w, /EL2MP/_app/immutable/assets/img13.DQge5Ldh.avif 5664w",
-    webp: "/EL2MP/_app/immutable/assets/img13.s1PORwBj.webp 2832w, /EL2MP/_app/immutable/assets/img13.BZweUxSJ.webp 5664w",
-    jpeg: "/EL2MP/_app/immutable/assets/img13.KQ0lzY62.jpeg 2832w, /EL2MP/_app/immutable/assets/img13.Cz8mYVx-.jpeg 5664w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img13.Cz8mYVx-.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg",
     w: 5664,
     h: 3776
   }
 };
-const image_14 = {
+const Ex_8 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img14.1yMbH2Ki.avif 2981w, /EL2MP/_app/immutable/assets/img14.DVjbrmWW.avif 5961w",
-    webp: "/EL2MP/_app/immutable/assets/img14.Z8aUBe3l.webp 2981w, /EL2MP/_app/immutable/assets/img14.BFJsaXwg.webp 5961w",
-    jpeg: "/EL2MP/_app/immutable/assets/img14.DoK2qpqP.jpeg 2981w, /EL2MP/_app/immutable/assets/img14.Bs5v_CqD.jpeg 5961w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_8.BaRAkATS.avif 3024w, /EL2MP/_app/immutable/assets/Ex_8.D137IxOl.avif 6048w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_8.CW43x6tF.webp 3024w, /EL2MP/_app/immutable/assets/Ex_8.CY6TMriR.webp 6048w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_8.C-O5SW1b.jpeg 3024w, /EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpeg 6048w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img14.Bs5v_CqD.jpeg",
-    w: 5961,
-    h: 3974
+    src: "/EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpeg",
+    w: 6048,
+    h: 4032
   }
 };
-const image_15 = {
+const Ex_9 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img15.CDApgV4n.avif 2821w, /EL2MP/_app/immutable/assets/img15.Cq64g5lU.avif 5641w",
-    webp: "/EL2MP/_app/immutable/assets/img15.BzUAPpZ7.webp 2821w, /EL2MP/_app/immutable/assets/img15.aBLEFQj3.webp 5641w",
-    jpeg: "/EL2MP/_app/immutable/assets/img15.CUKCoY7x.jpeg 2821w, /EL2MP/_app/immutable/assets/img15.vMFbw2qv.jpeg 5641w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_9.CtugEm9K.avif 1512w, /EL2MP/_app/immutable/assets/Ex_9.hYSrjwwQ.avif 3024w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_9.DbG-bmKW.webp 1512w, /EL2MP/_app/immutable/assets/Ex_9.DNifANYX.webp 3024w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_9.B_C0lGa7.jpeg 1512w, /EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpeg 3024w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img15.vMFbw2qv.jpeg",
-    w: 5641,
-    h: 3761
+    src: "/EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpeg",
+    w: 3024,
+    h: 2016
   }
 };
-const image_16 = {
+const Ex_10 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img16.B5zSL8iX.avif 2762w, /EL2MP/_app/immutable/assets/img16.Bbum79Vb.avif 5523w",
-    webp: "/EL2MP/_app/immutable/assets/img16.DddVHBUU.webp 2762w, /EL2MP/_app/immutable/assets/img16.DwGS9Ifg.webp 5523w",
-    jpeg: "/EL2MP/_app/immutable/assets/img16.D9k5SOFz.jpeg 2762w, /EL2MP/_app/immutable/assets/img16.EkNCUklw.jpeg 5523w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_10.BUdpVrB8.avif 1512w, /EL2MP/_app/immutable/assets/Ex_10.DtwpDAK8.avif 3024w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_10.KwYrOhN7.webp 1512w, /EL2MP/_app/immutable/assets/Ex_10.C4TSIm6C.webp 3024w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_10.BdUzJDba.jpeg 1512w, /EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpeg 3024w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img16.EkNCUklw.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpeg",
+    w: 3024,
+    h: 2016
+  }
+};
+const Ex_11 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Ex_11.B5zSL8iX.avif 2762w, /EL2MP/_app/immutable/assets/Ex_11.Bbum79Vb.avif 5523w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_11.DddVHBUU.webp 2762w, /EL2MP/_app/immutable/assets/Ex_11.DwGS9Ifg.webp 5523w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_11.D9k5SOFz.jpeg 2762w, /EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpeg 5523w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpeg",
     w: 5523,
     h: 3682
   }
 };
-const image_17 = {
+const Ex_13 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img17.wl_Xqto1.avif 3009w, /EL2MP/_app/immutable/assets/img17.Cr7uBQJq.avif 6018w",
-    webp: "/EL2MP/_app/immutable/assets/img17.BqBdcjJw.webp 3009w, /EL2MP/_app/immutable/assets/img17.CcG-NPh-.webp 6018w",
-    jpeg: "/EL2MP/_app/immutable/assets/img17.Bntq6L4C.jpeg 3009w, /EL2MP/_app/immutable/assets/img17.BMLFEk4Q.jpeg 6018w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_13.BTo02r7F.avif 1698w, /EL2MP/_app/immutable/assets/Ex_13.C-gOXHIN.avif 3395w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_13.DdrteLJ3.webp 1698w, /EL2MP/_app/immutable/assets/Ex_13.BDsLQPL6.webp 3395w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_13.BvQPUqaw.jpeg 1698w, /EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpeg 3395w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img17.BMLFEk4Q.jpeg",
-    w: 6018,
-    h: 4012
+    src: "/EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpeg",
+    w: 3395,
+    h: 2263
   }
 };
-const image_18 = {
+const Ex_14 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img18.CPXiSl4b.avif 3024w, /EL2MP/_app/immutable/assets/img18.DIEA3gRM.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/img18.BzFRAu5l.webp 3024w, /EL2MP/_app/immutable/assets/img18.bEMQ-Pm6.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/img18.DoVFuo3F.jpeg 3024w, /EL2MP/_app/immutable/assets/img18.BWxwobCw.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_14.Cc-Y2abA.avif 1134w, /EL2MP/_app/immutable/assets/Ex_14.CvUqC0Bs.avif 2268w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_14.BGsddlyT.webp 1134w, /EL2MP/_app/immutable/assets/Ex_14.DN6woQY5.webp 2268w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_14.IIkdVKs4.jpeg 1134w, /EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpeg 2268w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img18.BWxwobCw.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpeg",
+    w: 2268,
+    h: 4032
+  }
+};
+const Ex_15 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Ex_15.D1v9djJX.avif 2122w, /EL2MP/_app/immutable/assets/Ex_15._RPLZuWT.avif 4243w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_15.DDRDEYrd.webp 2122w, /EL2MP/_app/immutable/assets/Ex_15.BjHLAHZX.webp 4243w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_15.DSRhVtvT.jpeg 2122w, /EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpeg 4243w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpeg",
+    w: 4243,
+    h: 2829
+  }
+};
+const Ex_16 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Ex_16.DB1WrWcd.avif 3012w, /EL2MP/_app/immutable/assets/Ex_16.DwgMpDkg.avif 6024w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_16.fGjxAbni.webp 3012w, /EL2MP/_app/immutable/assets/Ex_16.B_mHLV4o.webp 6024w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_16.Dr1t1NR2.jpeg 3012w, /EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg 6024w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg",
+    w: 6024,
+    h: 4016
+  }
+};
+const cover_qualifying = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Cover_Qualifying.PPNdzo-x.avif 969w, /EL2MP/_app/immutable/assets/Cover_Qualifying.w0tT1uid.avif 1938w",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Qualifying.D96L0Yr-.webp 969w, /EL2MP/_app/immutable/assets/Cover_Qualifying.BLk4sVs5.webp 1938w",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Qualifying.BZSPOcQX.jpeg 969w, /EL2MP/_app/immutable/assets/Cover_Qualifying.Cm3vlG1u.jpeg 1938w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Cover_Qualifying.Cm3vlG1u.jpeg",
+    w: 1938,
+    h: 1088
+  }
+};
+const cover_benchmarking = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.BCpfoXVG.avif 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif 6048w",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.D1Sy1JP-.webp 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.BHRQHX6M.webp 6048w",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.B-iK4VNm.jpeg 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg 6048w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg",
     w: 6048,
     h: 4032
   }
 };
-const image_19 = {
+const cover_prompting = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img19.BCpfoXVG.avif 3024w, /EL2MP/_app/immutable/assets/img19.D3muVmKw.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/img19.D1Sy1JP-.webp 3024w, /EL2MP/_app/immutable/assets/img19.BHRQHX6M.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/img19.B-iK4VNm.jpeg 3024w, /EL2MP/_app/immutable/assets/img19.DP92D4S-.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Prompting.DYxdpMma.avif 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting.CVswunsj.avif 1.9996546961325967x",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Prompting.CdQ9s7bm.webp 1x, /EL2MP/_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp 1.9996546961325967x",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpg 1x, /EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpg 1.9996546961325967x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img19.DP92D4S-.jpeg",
-    w: 6048,
-    h: 4032
+    src: "/EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpg",
+    w: 5791,
+    h: 3861
   }
 };
-const image_20 = {
+const cover_excel = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/img20.KS1w7Qyc.avif 2016w, /EL2MP/_app/immutable/assets/img20.BJVE4d6G.avif 4032w",
-    webp: "/EL2MP/_app/immutable/assets/img20.CaCUi9Vo.webp 2016w, /EL2MP/_app/immutable/assets/img20.t1nba1oo.webp 4032w",
-    jpeg: "/EL2MP/_app/immutable/assets/img20.BOBcxo3r.jpeg 2016w, /EL2MP/_app/immutable/assets/img20.BzmeDXRA.jpeg 4032w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Excel.gVnMv0iS.avif 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.YtVyHxSg.avif 5725w",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Excel.B6pS74dt.webp 1x, /EL2MP/_app/immutable/assets/Cover_Excel.rmilwwC7.webp 1.9996507160321342x",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Excel.V_SxdBne.jpg 1x, /EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg 1.9996507160321342x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/img20.BzmeDXRA.jpeg",
-    w: 4032,
-    h: 6048
-  }
-};
-const image_21 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/img21.CUefvncG.avif 2778w, /EL2MP/_app/immutable/assets/img21.Nfh7bMbM.avif 5556w",
-    webp: "/EL2MP/_app/immutable/assets/img21.DOImXydm.webp 2778w, /EL2MP/_app/immutable/assets/img21.DLB_om-W.webp 5556w",
-    jpeg: "/EL2MP/_app/immutable/assets/img21.Brj336Z5.jpeg 2778w, /EL2MP/_app/immutable/assets/img21.JIhPZn1_.jpeg 5556w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/img21.JIhPZn1_.jpeg",
-    w: 5556,
-    h: 3704
-  }
-};
-const cover_1 = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/qualifying.Bsx1BcQS.avif 566w, /EL2MP/_app/immutable/assets/qualifying.CwK9b5U8.avif 1131w",
-    webp: "/EL2MP/_app/immutable/assets/qualifying.k8RAWrh3.webp 566w, /EL2MP/_app/immutable/assets/qualifying.xyV88Pxw.webp 1131w",
-    jpeg: "/EL2MP/_app/immutable/assets/qualifying.DbZTSVnW.jpeg 566w, /EL2MP/_app/immutable/assets/qualifying.Dlmd4Baz.jpeg 1131w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/qualifying.Dlmd4Baz.jpeg",
-    w: 1131,
-    h: 754
+    src: "/EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg",
+    w: 5725,
+    h: 3817
   }
 };
 const circle_logo = "/EL2MP/_app/immutable/assets/CIRCLE.DnMg9Kjx.svg";
@@ -278,34 +242,44 @@ const enhanced_logoImage = {
   }
 };
 const condensed_logo = "/EL2MP/_app/immutable/assets/logo_condensed.Cwwx0yWm.svg";
+const condensed_logo_white = "/EL2MP/_app/immutable/assets/logo_condensed_white.Dp8XqM9M.svg";
 const logoImage = "/EL2MP/_app/immutable/assets/logo_complete.SEqfJBG_.svg";
+const logoImage_white = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/logo_complete_white.DKJONqEU.avif 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.De0QvocJ.avif 3345w",
+    webp: "/EL2MP/_app/immutable/assets/logo_complete_white.BhxAyOYU.webp 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.BUYRRjmx.webp 3345w",
+    png: "/EL2MP/_app/immutable/assets/logo_complete_white.BWMEs-3S.png 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png 3345w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png",
+    w: 3345,
+    h: 421
+  }
+};
 const topcamera_1 = "/EL2MP/_app/immutable/assets/Topcamera.Cs5dpslX.webm";
 const cardsgame_1 = "/EL2MP/_app/immutable/assets/Cardsgame.DTx2i1g2.webm";
 const photos = {
-  image_1,
-  image_2,
-  image_3,
-  image_4,
-  image_5,
-  image_6,
-  image_7,
-  image_8,
-  image_9,
-  image_10,
-  image_11,
-  image_12,
-  image_13,
-  image_14,
-  image_15,
-  image_16,
-  image_17,
-  image_18,
-  image_19,
-  image_20,
-  image_21
+  Ex_1,
+  Ex_2,
+  Ex_3,
+  Ex_4,
+  Ex_5,
+  Ex_6,
+  Ex_7,
+  Ex_8,
+  Ex_9,
+  Ex_10,
+  Ex_11,
+  Ex_13,
+  Ex_14,
+  Ex_15,
+  Ex_16
 };
 const capitolsCover = {
-  cover_1
+  cover_qualifying,
+  cover_benchmarking,
+  cover_prompting,
+  cover_excel
 };
 const videos = {
   cardsgame_1,
@@ -315,235 +289,176 @@ const general = {
   circle_logo,
   enhanced_logoImage,
   condensed_logo,
-  logoImage
-};
-const backgroundImage = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/Dot_background.BMWCEQP3.avif 756w, /EL2MP/_app/immutable/assets/Dot_background.BqYuFsFf.avif 1512w",
-    webp: "/EL2MP/_app/immutable/assets/Dot_background.BF15mkJt.webp 756w, /EL2MP/_app/immutable/assets/Dot_background.C7u_RcRU.webp 1512w",
-    png: "/EL2MP/_app/immutable/assets/Dot_background.B3sYNgA-.png 756w, /EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png 1512w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png",
-    w: 1512,
-    h: 982
-  }
+  condensed_logo_white,
+  logoImage,
+  logoImage_white
 };
 const cardsDb = {
   Card1: {
     Title: "Qualifying",
-    Description: "Where do LLMs live in our professional practices, norms and relationships?",
+    Description: "The first block is about adopting a reflexive posture towards the use of LLMs. Participants engage in exercises that help them become more aware of their practices, attitudes, and assumptions about AI technologies. This block serves as a foundational phase, akin to a practice ground, where participants start to think critically about their relationship with LLMs.",
+    Question: "Where do LLMs live in our professional practices, norms, and relationships?",
     IndexNum: 1,
     CoverImg: capitolsCover.cover_1,
     Content: [
       {
-        title: "Exercise 1 - Breaking the Ice",
-        subtitle: "Where do LLMs live in our professional practices, norms and relationships?",
-        picture: photos.image_1,
-        text: "Participants sketch how they think an LLM function and present it to the group."
+        title: "Exercise 1 - Draw It Like You See It",
+        subtitle: "To carry out the project, we developed an experimental research protocol based on the active involvement of participants. The fruit of a collaboration between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:\n\nRoom for hesitation: Through a series of exercises, the protocol provides participants with various means of documenting and reflecting on their use of LLMs. We aim to establish a framework where doubt and hesitation are not only accepted but encouraged. Some exercises introduce deliberate pauses in professional routines, causing participants to take a step back from their own practices: during these pauses, judgment is suspended, giving users enough room to question their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to intensify the use of LLMs to shed light on what would otherwise remain too subtle to be perceived.\n\nAn ecological archive of practices: The digital traces from LLM use serve as the starting point for the exercises we designed. They are analysed, contextualised, and discussed individually and collectively. Through this process, participants progressively build a multimodal archive (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various professional norms and material configurations.\n\nA workbook (vademecum): The workbook collects all the exercises and their instructions, organized into thematic blocks. Designed as a modular object, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the material support for the protocol and the project's means of dissemination, as it can be reproduced and adapted in various academic and professional contexts.",
+        picture: photos.Ex_1
       },
       {
-        title: "Exercise 2 - Taking Stocks",
-        subtitle: "",
-        text: "This phase involves assessing current strengths and weaknesses. Participants reflect on their achievements, identify growth areas, and discuss obstacles they've faced. Through guided prompts, this exercise promotes self-awareness and sets a foundation for planning future goals. It's a moment for introspection and honest evaluation.",
-        picture: photos.image_6
+        title: "Exercise 2 - Harvesting Tasks",
+        subtitle: "Participants account for the tasks they perform in their work and how LLMs could assist them",
+        text: "This exercise helps participants reflect on their existing work, revealing overlooked or underappreciated tasks. They also explore what other work they could do with the assistance of an LLM, generating material for future exercises",
+        picture: photos.Ex_2
       },
       {
-        title: "Exercise 3 - Bon Anneè",
-        subtitle: "",
-        text: "Celebrate milestones and set goals for the future. Participants take time to appreciate their progress, acknowledge their accomplishments, and craft personal and professional resolutions. This reflective process aims to boost motivation and provide clarity on the next steps in their journey. It’s about starting the new phase with intention and focus.",
-        picture: photos.image_15
+        title: "Exercise 3 - Taking Stock",
+        subtitle: "Participants review their ChatGPT history to identify usage patterns and what stands out",
+        text: "This exercise prompts participants to critically assess their LLM interactions through self-evaluation and a structured review of their conversation history. It highlights gaps between perception and actual use to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
+        picture: photos.Ex_3
       },
       {
-        title: "Exercise 4 - Collaborative Challenge",
-        subtitle: "",
-        text: "Teams collaborate on solving complex puzzles or scenarios that require creativity and cooperation. The challenges are designed to encourage problem-solving under pressure, fostering teamwork and adaptability. By working together, participants learn to value diverse perspectives and leverage each other's strengths.",
-        picture: photos.image_18
+        title: "Exercise 4 - Memorable Conversations",
+        subtitle: "Participants identify what made some conversations with ChatGPT remarkable",
+        text: "Participants analyze past LLM interactions that stood out due to emotional impact, moral hesitation, or significant outcomes. They rate the model's performance and explore why it performed as it did, fostering awareness about LLM capabilities and professional expectations.",
+        picture: photos.Ex_4
       },
       {
-        title: "Exercise 5 - Vision Crafting",
-        subtitle: "",
-        text: "Participants visualize their ideal outcomes and articulate a clear vision for their personal or professional paths. Through guided exercises, they create vision boards or write detailed descriptions of their goals. This process not only fosters inspiration but also provides a tangible roadmap for future action.",
-        picture: photos.image_11
-      },
-      {
-        title: "Exercise 6 - Feedback Loop",
-        subtitle: "",
-        text: "Engage in a structured feedback exchange where participants give and receive constructive insights to encourage improvement. Feedback is framed positively to ensure it is both actionable and supportive. This exercise builds a culture of trust and open communication, emphasizing growth over criticism.",
-        picture: photos.image_19
-      },
-      {
-        title: "Exercise 7 - Reflection and Gratitude",
-        subtitle: "",
-        text: "Participants reflect on their journey, express gratitude for the support they have received, and recognize key lessons learned. Through storytelling and sharing, the group collectively reinforces their achievements. This session closes the exercise series on a high note, with a focus on connection and appreciation.",
-        picture: photos.image_13
+        title: "Exercise 5 - Subtracting the Machine",
+        subtitle: "Participants describe memorable interactions with ChatGPT without using terms like 'LLM' or 'ChatGPT'.",
+        text: "This thought experiment creates artificial constraints on how participants talk about their use of LLMs. Because they cannot rely on ready-made categories (e.g., 'ChatGPT', 'machine', or 'assistant'), participants need to reconsider their interactions with the models, playing with different metaphors and analogies drawn from their social and professional environments.",
+        picture: photos.Ex_5
       }
     ],
-    logoImage: general.logoImage,
     bgColor: "#97D2FB",
     isProjCover: false
   },
   Card2: {
     Title: "Benchmarking",
-    Description: "How do we judge the performance of an LLM?",
+    Description: "In this block, participants are guided through selecting an LLM that best suits their professional needs. They design personal tests comprising specific tasks and evaluate the performance of different models. The goal is to choose a model that aligns with their practical and ethical requirements.",
+    Question: "How do we assess the value of an LLM?",
     IndexNum: 2,
     CoverImg: photos.image_6,
     Content: [
       {
-        title: "Exercise 1 - Breaking the Ice",
-        subtitle: "",
-        text: "Participants share spontaneous descriptions of abstract images to spark creativity and open their minds to new perspectives.",
-        picture: photos.image_7
-        // Randomly chosen
+        title: "Exercise 6 - Design your AI Trial",
+        subtitle: "Participants design a trial to test the usefulness of an LLM, choosing four tasks that are essential or enjoyable parts of their work",
+        text: "This exercise guides participants through a selection process, drawing from their current work practices and the potential implementation of new tasks. In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around their professional experience. This personalized benchmark aims to assess whether the models can provide practical value that actually matters in a specific professional situation.",
+        picture: photos.Ex_6
       },
       {
-        title: "Exercise 2 - Taking Stocks",
-        subtitle: "",
-        text: "This exercise focuses on analyzing visual elements in detail, encouraging participants to articulate their thoughts with precision.",
-        picture: photos.image_12
-        // Randomly chosen
+        title: "Exercise 7 - Preparing for the Trial",
+        subtitle: "Participants write detailed instructions for their tasks and choose four LLMs they wish to test",
+        text: "By formulating detailed instructions, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to consider the weight of their own prompt on the final result. By selecting a human or a specialized model, participants explore different avenues of comparison - machine versus machine or human versus machine.",
+        picture: photos.Ex_7
       },
       {
-        title: "Exercise 3 - Bon Anneè",
-        text: "Reflect on how visual representations influence personal interpretations and compare perspectives within the group.",
-        picture: photos.image_3
-        // Randomly chosen
+        title: "Exercise 8 - Gathering Evidence",
+        subtitle: "Participants ask an acquaintance to collect answers from LLMs and anonymize the results to avoid bias.",
+        text: "In this exercise, participants enlist the help of a fellow co-inquirer, a good friend, or a colleague. In addition to anonymizing results and ensuring fairness in the upcoming trial, this exercise allows participants to concretely experience the collaborative nature of LLM performance evaluation.",
+        picture: photos.Ex_8
       },
       {
-        title: "Exercise 4 - Visual Storytelling",
-        subtitle: "",
-        text: "Create narratives based on image sequences, blending imagination and structured communication.",
-        picture: photos.image_15
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 5 - Collaborative Ekphrasis",
-        text: "Work in pairs or teams to construct descriptions of challenging visuals, enhancing collaborative analysis and creativity.",
-        picture: photos.image_8
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 6 - Abstract Exploration",
-        text: "Dive into abstract images and explore how emotions and context affect interpretation.",
-        picture: photos.image_21
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 7 - Reflective Wrap-Up",
-        text: "Participants share their key insights and discuss the power of visual literacy in communication.",
-        picture: photos.image_5
-        // Randomly chosen
+        title: "Exercise 9 - Judgment Day",
+        subtitle: "Participants assess the blind results of their AI trial: they rank them, explain on what ground they assessed each performance, and reflect on the trial process.",
+        text: "Participants rank anonymized LLM responses for each task, determine the best-performing model, and critically review the trial's fairness and relevance. This evaluation encourages participants to reflect on what matters in assessing the situated value of LLMs.",
+        picture: photos.Ex_9
       }
     ],
-    logoImage: general.logoImage,
     bgColor: "#FB9799",
     isProjCover: false
   },
   Card3: {
-    Title: "InnovationStrategies",
-    Description: "Exploring modern approaches to foster innovation in organizations",
+    Title: "Prompting",
+    Description: "In this block, participants explore how to effectively communicate with LLMs through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM’s outputs, aiming to better align the model's responses with their professional needs and expectations.",
+    Question: "To what extent can we influence the quality of an LLM’s output?",
     IndexNum: 3,
     CoverImg: photos.image_8,
     Content: [
       {
-        title: "Exercise 1 - Ideation",
-        text: "Generate a wide array of ideas to solve a problem or enhance a product. This exercise encourages free thinking and helps develop creative solutions.",
-        picture: photos.image_10
-        // Randomly chosen
+        title: "Exercise 10 - The Art of the Prompt",
+        subtitle: "Participants read about prompting techniques, attempt to put them into practice and share their insights with the group.",
+        text: "Participants explore a specific prompting technique by practicing it throughout the week, and summarizing their findings in a concise presentation. The goal is to develop a nuanced understanding of how prompt design influences LLM responses. Knowledge acquired about a prompting technique is shared among all participants through a short presentation, based on observations participants kept track of in a personal diary.",
+        picture: photos.Ex_10
       },
       {
-        title: "Exercise 2 - SWOT Analysis",
-        text: "Evaluate the strengths, weaknesses, opportunities, and threats related to a new business idea or strategy.",
-        picture: photos.image_14
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 3 - Brainstorming",
-        text: "Collaboratively generate ideas to tackle a specific challenge. This exercise encourages participants to think creatively and build on each other's ideas.",
-        picture: photos.image_16
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 4 - Mind Mapping",
-        text: "Create a visual representation of thoughts and ideas to explore connections and generate new perspectives on a topic.",
-        picture: photos.image_20
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 5 - Rapid Prototyping",
-        text: "Design quick prototypes of ideas to test and iterate rapidly. This exercise promotes agility in the innovation process.",
-        picture: photos.image_19
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 6 - User Feedback",
-        text: "Engage users early to collect feedback on prototypes and ideas. This exercise helps refine and improve solutions.",
-        picture: photos.image_9
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 7 - Innovation Pitch",
-        text: "Present your innovative ideas to stakeholders and gather feedback on their viability and potential for success.",
-        picture: photos.image_18
-        // Randomly chosen
+        title: "Exercise 11 - Tracking Shifts",
+        subtitle: "Participants look back on their LLM practices since the experiment began, searching for shifts and continuities",
+        text: "Participants document how their use of LLMs has changed since the beginning of the experiment. They write two short essays—one on how their practices have evolved and another on what has remained stable—using concrete examples from their experience. Through a structured discussion game, participants also analyze their shifting perspectives on LLMs. The goal is to engage in collective reflection in order to challenge assumptions and reinforce insights gained through the experiment.",
+        picture: photos.Ex_11
       }
     ],
-    logoImage: general.logoImage,
     bgColor: "#A8E2B4",
     isProjCover: false
   },
   Card4: {
-    Title: "Ekhprasis",
-    Description: "Understanding and interpreting data for actionable insights",
+    Title: "Excel",
+    Description: "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
+    Question: "How closely can an LLM approach human excellence?",
     IndexNum: 4,
     CoverImg: photos.image_2,
     Content: [
       {
-        title: "Exercise 1 - Data Collection",
-        text: "Learn how to collect data effectively, ensuring that it is accurate, reliable, and relevant to your analysis goals.",
-        picture: photos.image_11
-        // Randomly chosen
+        title: "Exercise 13 - The Imitation Game",
+        subtitle: "Participants guide an LLM towards reproducing an exemplary text from their professional field, aiming to create an exact copy.",
+        text: "Participants attempt to recreate a high-quality text using an LLM without providing direct access to the original. This experiment tests the LLM’s ability to replicate style, tone, and meaning while challenging participants to refine their prompting strategies. Through 90-minute work sessions, screen recordings, and a logbook, participants document their process and assess the model’s capacity to (re)produce a text it does not have access to.",
+        picture: photos.Ex_13
       },
       {
-        title: "Exercise 2 - Data Cleaning",
-        text: "Explore techniques for cleaning data, handling missing values, and correcting inaccuracies to prepare it for analysis.",
-        picture: photos.image_17
-        // Randomly chosen
+        title: "Exercise 14 - Setting Up the Example",
+        subtitle: "Participants discuss the place of their chosen work within their professional ecology and explain why it’s exemplary",
+        text: "This exercise contextualizes the chosen exemplary work by examining its professional significance. A radar graph helps assess factors like frequency, expertise required, and error tolerance, while a structured reflection highlights what makes the work exemplary and worth emulating.",
+        picture: photos.Ex_14
       },
       {
-        title: "Exercise 3 - Exploratory Data Analysis",
-        text: "Analyze data to uncover patterns, trends, and insights using visualizations and statistical techniques.",
-        picture: photos.image_4
-        // Randomly chosen
+        title: "Exercise 15 - Anatomy of an Exemplary Work",
+        subtitle: "Participants break down their exemplary work into its main components and assess which elements are accessible to an LLM",
+        text: "Participants analyze the underlying structure of their chosen text, mapping its key influences, professional constraints, and dependencies. A layered dependency graph helps distinguish which elements are accessible to an LLM and which remain beyond its reach, reinforcing an understanding of AI’s limitations.",
+        picture: photos.Ex_15
       },
       {
-        title: "Exercise 4 - Predictive Modeling",
-        text: "Learn how to build and evaluate predictive models to forecast future trends or behaviors based on historical data.",
-        picture: photos.image_13
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 5 - Data Visualization",
-        text: "Master the art of creating compelling visualizations that communicate data insights clearly and effectively.",
-        picture: photos.image_14
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 6 - Data Interpretation",
-        text: "Understand how to interpret the results of data analyses and make data-driven decisions.",
-        picture: photos.image_8
-        // Randomly chosen
-      },
-      {
-        title: "Exercise 7 - Reporting Results",
-        text: "Learn how to present data findings in a clear and engaging way to stakeholders, ensuring that the insights are actionable.",
-        picture: photos.image_12
-        // Randomly chosen
+        title: "Exercise 16. Obstacles, Dead Ends, Highways",
+        subtitle: "Participants examine key moments in navigating the LLM—obstacles, dead ends, and highways",
+        text: "By identifying challenges that can be overcome through iteration or adapting a prompt, situations where the LLM fails to generate meaningful progress despite repeated attempts, and effortless response generation, participants discover patterns in their experiences and develop a clearer sense of when to persist, pivot, or abandon a strategy.",
+        picture: photos.Ex_16
       }
     ],
-    logoImage: general.logoImage,
     bgColor: "#E8D1F2",
     isProjCover: false
+  }
+};
+const alterEgosDb = {
+  Card1: {
+    Title: "Ecologies of LLM Practices",
+    CoverImg: general.logoImage_white,
+    Description: "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job. There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. How do AI's well-known problems (bias, confabulation, etc.) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
+    IndexNum: 1,
+    bgColor: "#000000"
+  },
+  Card2: {
+    Title: "Methodology",
+    Description: "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
+    IndexNum: 2,
+    bgColor: "#000000"
+  },
+  Card3: {
+    Title: "Objective",
+    Description: 'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation:</b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort:</b> What new kinds of work do LLMs require from their users?<br><br><b>Perception:</b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
+    IndexNum: 3,
+    bgColor: "#000000"
+  },
+  Card4: {
+    Title: "Context",
+    Description: "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.<br><br>There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. How do AI's well-known problems (bias, confabulation, etc.) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
+    IndexNum: 4,
+    bgColor: "#000000"
+  },
+  Card5: {
+    Title: "AlterEgo4",
+    Description: "This is the description of the alter ego",
+    IndexNum: 5,
+    bgColor: "#000000"
   }
 };
 const floatersDb = {
@@ -660,7 +575,18 @@ const floatersDb = {
     parent: "Benchmarking"
   }
 };
-const projectDescription = "The Écologies des Pratiques project explores the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. Supported by Google through its commitment to advancing ethical and impactful AI practices, this initiative combines cutting-edge technological tools with critical reflection on their implications. <br><br>At the heart of this project lies a collaborative and interdisciplinary approach, engaging researchers, practitioners, and students from diverse fields. By experimenting with LLMs, we seek to understand their potential as catalysts for new forms of knowledge production and dissemination while addressing the ecological and ethical questions they raise. The project delves into three key areas: <br><br> Technological Experimentation: By integrating LLMs into practical workflows, we assess how these tools reshape academic and professional practices. From creative writing to data analysis, the project tests the boundaries of LLMs' generative capabilities.<br><br> Critical Reflection: Alongside experimentation, we foster discussions on the broader societal and ecological implications of LLM adoption. What are the costs and benefits of scaling these technologies? How do they challenge or reinforce existing structures of knowledge and power?<br><br> Community Building: Through workshops, public events, and collaborative platforms, we aim to build a community of thinkers and makers who can collectively imagine and shape the future of AI-driven practices.<br><br> With Google’s support, Écologies des Pratiques not only investigates the possibilities of LLMs but also critically examines their role within contemporary ecological, cultural, and institutional systems. By bridging technological innovation and critical inquiry, this project seeks to illuminate how these powerful tools can contribute responsibly to a sustainable and inclusive future.";
+const backgroundImage = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Dot_background.BMWCEQP3.avif 756w, /EL2MP/_app/immutable/assets/Dot_background.BqYuFsFf.avif 1512w",
+    webp: "/EL2MP/_app/immutable/assets/Dot_background.BF15mkJt.webp 756w, /EL2MP/_app/immutable/assets/Dot_background.C7u_RcRU.webp 1512w",
+    png: "/EL2MP/_app/immutable/assets/Dot_background.B3sYNgA-.png 756w, /EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png 1512w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png",
+    w: 1512,
+    h: 982
+  }
+};
 const prerender = true;
 const trailingSlash = "always";
 function load({ params }) {
@@ -670,8 +596,9 @@ function load({ params }) {
     circular_logo: general.circle_logo,
     cardsDb,
     floatersDb,
-    projectDescription,
-    condensed_logo: general.condensed_logo
+    alterEgosDb,
+    condensed_logo: general.condensed_logo,
+    condensed_logo_white: general.condensed_logo_white
   };
 }
 export {

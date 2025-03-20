@@ -1,66 +1,63 @@
 // config.js
 // Importing assets from the media folder using Vite’s URL resolution
-import image_1 from "$media/photos/img1.jpg?enhanced";
-import image_2 from "$media/photos/img2.jpg?enhanced";
-import image_3 from "$media/photos/img3.jpg?enhanced";
-import image_4 from "$media/photos/img4.jpg?enhanced";
-import image_5 from "$media/photos/img5.jpg?enhanced";
-import image_6 from "$media/photos/img6.jpg?enhanced";
-import image_7 from "$media/photos/img7.jpg?enhanced";
-import image_8 from "$media/photos/img8.jpg?enhanced";
-import image_9 from "$media/photos/img9.jpg?enhanced";
-import image_10 from "$media/photos/img10.jpg?enhanced";
-import image_11 from "$media/photos/img11.jpg?enhanced";
-import image_12 from "$media/photos/img12.jpg?enhanced";
-import image_13 from "$media/photos/img13.jpg?enhanced";
-import image_14 from "$media/photos/img14.jpg?enhanced";
-import image_15 from "$media/photos/img15.jpg?enhanced";
-import image_16 from "$media/photos/img16.jpg?enhanced";
-import image_17 from "$media/photos/img17.jpg?enhanced";
-import image_18 from "$media/photos/img18.jpg?enhanced";
-import image_19 from "$media/photos/img19.jpg?enhanced";
-import image_20 from "$media/photos/img20.jpg?enhanced";
-import image_21 from "$media/photos/img21.jpg?enhanced";
+import Ex_1 from "$media/photos/Ex_1.jpg?enhanced";
+import Ex_2 from "$media/photos/Ex_2.jpg?enhanced";
+import Ex_3 from "$media/photos/Ex_3.jpg?enhanced";
+import Ex_4 from "$media/photos/Ex_4.jpg?enhanced";
+import Ex_5 from "$media/photos/Ex_5.jpg?enhanced";
+import Ex_6 from "$media/photos/Ex_6.jpg?enhanced";
+import Ex_7 from "$media/photos/Ex_7.jpg?enhanced";
+import Ex_8 from "$media/photos/Ex_8.jpg?enhanced";
+import Ex_9 from "$media/photos/Ex_9.jpg?enhanced";
+import Ex_10 from "$media/photos/Ex_10.jpg?enhanced";
+import Ex_11 from "$media/photos/Ex_11.jpg?enhanced";
+import Ex_13 from "$media/photos/Ex_13.jpg?enhanced";
+import Ex_14 from "$media/photos/Ex_14.jpg?enhanced";
+import Ex_15 from "$media/photos/Ex_15.jpg?enhanced";
+import Ex_16 from "$media/photos/Ex_16.jpg?enhanced";
 
-import cover_1 from "$media/capitols_cover/qualifying.jpg?enhanced";
+//Capitols Covers
+import coverQualifying from "$media/capitols_cover/Cover_Qualifying.jpg?enhanced";
+import coverBenchmarking from "$media/capitols_cover/Cover_Benchmarking.jpg?enhanced";
+import coverPrompting from "$media/capitols_cover/Cover_Prompting.jpg?enhanced";
+import coverExcel from "$media/capitols_cover/Cover_Excel.jpg?enhanced";
 
-import circle_logo from "$media/CIRCLE.svg";
-import enhanced_logoImage from "$media/enhanced_logoImage.png?enhanced";
-import condensed_logo from "$media/logo_condensed.svg";
-import condensed_logo_white from "$media/logo_condensed_white.svg";
-import logoImage from "$media/logo_complete.svg";
-import logoImage_white from "$media/logo_complete_white.png?enhanced";
+//Logos and generic
+import circle_logo from "$media/logos/CIRCLE.svg";
+import enhanced_logoImage from "$media/logos/enhanced_logoImage.png?enhanced";
+import condensed_logo from "$media/logos/logo_condensed.svg";
+import condensed_logo_white from "$media/logos/logo_condensed_white.svg";
+import logoImage from "$media/logos/logo_complete.svg";
+import logoImage_white from "$media/logos/logo_complete_white.png?enhanced";
 
+//Videos as webm files
 import topcamera_1 from "$videos/Topcamera.webm";
 import cardsgame_1 from "$videos/Cardsgame.webm";
 
 // Grouping the assets into objects for easy access
 export const photos = {
-  image_1,
-  image_2,
-  image_3,
-  image_4,
-  image_5,
-  image_6,
-  image_7,
-  image_8,
-  image_9,
-  image_10,
-  image_11,
-  image_12,
-  image_13,
-  image_14,
-  image_15,
-  image_16,
-  image_17,
-  image_18,
-  image_19,
-  image_20,
-  image_21,
+  Ex_1,
+  Ex_2,
+  Ex_3,
+  Ex_4,
+  Ex_5,
+  Ex_6,
+  Ex_7,
+  Ex_8,
+  Ex_9,
+  Ex_10,
+  Ex_11,
+  Ex_13,
+  Ex_14,
+  Ex_15,
+  Ex_16,
 };
 
 export const capitolsCover = {
-  cover_1,
+  coverQualifying,
+  coverBenchmarking,
+  coverPrompting,
+  coverExcel,
 };
 
 export const videos = {

@@ -1,5 +1,3 @@
-import { n as noop, c as safe_not_equal } from "./equality.js";
-import "clsx";
 const internal = new URL("sveltekit-internal://");
 function resolve(base, path) {
   if (path[0] === "/" && path[1] === "/") return path;
@@ -111,59 +109,6 @@ function strip_data_suffix(pathname) {
   }
   return pathname.slice(0, -DATA_SUFFIX.length);
 }
-const subscriber_queue = [];
-function readable(value, start) {
-  return {
-    subscribe: writable(value, start).subscribe
-  };
-}
-function writable(value, start = noop) {
-  let stop = null;
-  const subscribers = /* @__PURE__ */ new Set();
-  function set(new_value) {
-    if (safe_not_equal(value, new_value)) {
-      value = new_value;
-      if (stop) {
-        const run_queue = !subscriber_queue.length;
-        for (const subscriber of subscribers) {
-          subscriber[1]();
-          subscriber_queue.push(subscriber, value);
-        }
-        if (run_queue) {
-          for (let i = 0; i < subscriber_queue.length; i += 2) {
-            subscriber_queue[i][0](subscriber_queue[i + 1]);
-          }
-          subscriber_queue.length = 0;
-        }
-      }
-    }
-  }
-  function update(fn) {
-    set(fn(
-      /** @type {T} */
-      value
-    ));
-  }
-  function subscribe(run, invalidate = noop) {
-    const subscriber = [run, invalidate];
-    subscribers.add(subscriber);
-    if (subscribers.size === 1) {
-      stop = start(set, update) || noop;
-    }
-    run(
-      /** @type {T} */
-      value
-    );
-    return () => {
-      subscribers.delete(subscriber);
-      if (subscribers.size === 0 && stop) {
-        stop();
-        stop = null;
-      }
-    };
-  }
-  return { set, update, subscribe };
-}
 function validator(expected) {
   function validate(module, file) {
     if (!module) return;
@@ -229,19 +174,17 @@ const validate_page_server_exports = validator(valid_page_server_exports);
 const validate_server_exports = validator(valid_server_exports);
 export {
   add_data_suffix as a,
-  resolve as b,
-  decode_pathname as c,
+  decode_pathname as b,
+  decode_params as c,
   disable_search as d,
-  decode_params as e,
-  validate_layout_exports as f,
-  validate_page_server_exports as g,
+  validate_layout_exports as e,
+  validate_page_server_exports as f,
+  validate_page_exports as g,
   has_data_suffix as h,
-  validate_page_exports as i,
-  validate_server_exports as j,
+  validate_server_exports as i,
   make_trackable as m,
   normalize_path as n,
-  readable as r,
+  resolve as r,
   strip_data_suffix as s,
-  validate_layout_server_exports as v,
-  writable as w
+  validate_layout_server_exports as v
 };

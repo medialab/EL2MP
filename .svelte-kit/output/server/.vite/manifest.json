@@ -8,6 +8,54 @@
       "_internal.js"
     ]
   },
+  "Cover_Benchmarking.avif": {
+    "file": "_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif",
+    "src": "Cover_Benchmarking.avif"
+  },
+  "Cover_Benchmarking.jpeg": {
+    "file": "_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg",
+    "src": "Cover_Benchmarking.jpeg"
+  },
+  "Cover_Benchmarking.webp": {
+    "file": "_app/immutable/assets/Cover_Benchmarking.BHRQHX6M.webp",
+    "src": "Cover_Benchmarking.webp"
+  },
+  "Cover_Excel.avif": {
+    "file": "_app/immutable/assets/Cover_Excel.YtVyHxSg.avif",
+    "src": "Cover_Excel.avif"
+  },
+  "Cover_Excel.jpg": {
+    "file": "_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg",
+    "src": "Cover_Excel.jpg"
+  },
+  "Cover_Excel.webp": {
+    "file": "_app/immutable/assets/Cover_Excel.rmilwwC7.webp",
+    "src": "Cover_Excel.webp"
+  },
+  "Cover_Prompting.avif": {
+    "file": "_app/immutable/assets/Cover_Prompting.CVswunsj.avif",
+    "src": "Cover_Prompting.avif"
+  },
+  "Cover_Prompting.jpg": {
+    "file": "_app/immutable/assets/Cover_Prompting._sRDpei3.jpg",
+    "src": "Cover_Prompting.jpg"
+  },
+  "Cover_Prompting.webp": {
+    "file": "_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp",
+    "src": "Cover_Prompting.webp"
+  },
+  "Cover_Qualifying.avif": {
+    "file": "_app/immutable/assets/Cover_Qualifying.w0tT1uid.avif",
+    "src": "Cover_Qualifying.avif"
+  },
+  "Cover_Qualifying.jpeg": {
+    "file": "_app/immutable/assets/Cover_Qualifying.Cm3vlG1u.jpeg",
+    "src": "Cover_Qualifying.jpeg"
+  },
+  "Cover_Qualifying.webp": {
+    "file": "_app/immutable/assets/Cover_Qualifying.BLk4sVs5.webp",
+    "src": "Cover_Qualifying.webp"
+  },
   "Dot_background.avif": {
     "file": "_app/immutable/assets/Dot_background.BqYuFsFf.avif",
     "src": "Dot_background.avif"
@@ -20,6 +68,186 @@
     "file": "_app/immutable/assets/Dot_background.C7u_RcRU.webp",
     "src": "Dot_background.webp"
   },
+  "Ex_1.avif": {
+    "file": "_app/immutable/assets/Ex_1.CMMh1Vzj.avif",
+    "src": "Ex_1.avif"
+  },
+  "Ex_1.jpeg": {
+    "file": "_app/immutable/assets/Ex_1.YYmuPqAp.jpeg",
+    "src": "Ex_1.jpeg"
+  },
+  "Ex_1.webp": {
+    "file": "_app/immutable/assets/Ex_1.DrrkBwoK.webp",
+    "src": "Ex_1.webp"
+  },
+  "Ex_10.avif": {
+    "file": "_app/immutable/assets/Ex_10.DtwpDAK8.avif",
+    "src": "Ex_10.avif"
+  },
+  "Ex_10.jpeg": {
+    "file": "_app/immutable/assets/Ex_10.C0AqRzHN.jpeg",
+    "src": "Ex_10.jpeg"
+  },
+  "Ex_10.webp": {
+    "file": "_app/immutable/assets/Ex_10.C4TSIm6C.webp",
+    "src": "Ex_10.webp"
+  },
+  "Ex_11.avif": {
+    "file": "_app/immutable/assets/Ex_11.Bbum79Vb.avif",
+    "src": "Ex_11.avif"
+  },
+  "Ex_11.jpeg": {
+    "file": "_app/immutable/assets/Ex_11.EkNCUklw.jpeg",
+    "src": "Ex_11.jpeg"
+  },
+  "Ex_11.webp": {
+    "file": "_app/immutable/assets/Ex_11.DwGS9Ifg.webp",
+    "src": "Ex_11.webp"
+  },
+  "Ex_13.avif": {
+    "file": "_app/immutable/assets/Ex_13.C-gOXHIN.avif",
+    "src": "Ex_13.avif"
+  },
+  "Ex_13.jpeg": {
+    "file": "_app/immutable/assets/Ex_13.BY2SyFUr.jpeg",
+    "src": "Ex_13.jpeg"
+  },
+  "Ex_13.webp": {
+    "file": "_app/immutable/assets/Ex_13.BDsLQPL6.webp",
+    "src": "Ex_13.webp"
+  },
+  "Ex_14.avif": {
+    "file": "_app/immutable/assets/Ex_14.CvUqC0Bs.avif",
+    "src": "Ex_14.avif"
+  },
+  "Ex_14.jpeg": {
+    "file": "_app/immutable/assets/Ex_14.CB5Mj1df.jpeg",
+    "src": "Ex_14.jpeg"
+  },
+  "Ex_14.webp": {
+    "file": "_app/immutable/assets/Ex_14.DN6woQY5.webp",
+    "src": "Ex_14.webp"
+  },
+  "Ex_15.avif": {
+    "file": "_app/immutable/assets/Ex_15._RPLZuWT.avif",
+    "src": "Ex_15.avif"
+  },
+  "Ex_15.jpeg": {
+    "file": "_app/immutable/assets/Ex_15.CdlKumz2.jpeg",
+    "src": "Ex_15.jpeg"
+  },
+  "Ex_15.webp": {
+    "file": "_app/immutable/assets/Ex_15.BjHLAHZX.webp",
+    "src": "Ex_15.webp"
+  },
+  "Ex_16.avif": {
+    "file": "_app/immutable/assets/Ex_16.DwgMpDkg.avif",
+    "src": "Ex_16.avif"
+  },
+  "Ex_16.jpeg": {
+    "file": "_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg",
+    "src": "Ex_16.jpeg"
+  },
+  "Ex_16.webp": {
+    "file": "_app/immutable/assets/Ex_16.B_mHLV4o.webp",
+    "src": "Ex_16.webp"
+  },
+  "Ex_2.avif": {
+    "file": "_app/immutable/assets/Ex_2.DJXC-8TR.avif",
+    "src": "Ex_2.avif"
+  },
+  "Ex_2.jpeg": {
+    "file": "_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg",
+    "src": "Ex_2.jpeg"
+  },
+  "Ex_2.webp": {
+    "file": "_app/immutable/assets/Ex_2.CJGUg6Yd.webp",
+    "src": "Ex_2.webp"
+  },
+  "Ex_3.avif": {
+    "file": "_app/immutable/assets/Ex_3.C_rKMPaD.avif",
+    "src": "Ex_3.avif"
+  },
+  "Ex_3.jpeg": {
+    "file": "_app/immutable/assets/Ex_3.DII5ae4F.jpeg",
+    "src": "Ex_3.jpeg"
+  },
+  "Ex_3.webp": {
+    "file": "_app/immutable/assets/Ex_3.D6Ydhm_V.webp",
+    "src": "Ex_3.webp"
+  },
+  "Ex_4.avif": {
+    "file": "_app/immutable/assets/Ex_4.O4hnVjzp.avif",
+    "src": "Ex_4.avif"
+  },
+  "Ex_4.jpeg": {
+    "file": "_app/immutable/assets/Ex_4.CUvBcN8b.jpeg",
+    "src": "Ex_4.jpeg"
+  },
+  "Ex_4.webp": {
+    "file": "_app/immutable/assets/Ex_4.Cf4Olo8b.webp",
+    "src": "Ex_4.webp"
+  },
+  "Ex_5.avif": {
+    "file": "_app/immutable/assets/Ex_5.s3sDnP1L.avif",
+    "src": "Ex_5.avif"
+  },
+  "Ex_5.jpeg": {
+    "file": "_app/immutable/assets/Ex_5.qaPlev2Y.jpeg",
+    "src": "Ex_5.jpeg"
+  },
+  "Ex_5.webp": {
+    "file": "_app/immutable/assets/Ex_5.KwHy2-Yi.webp",
+    "src": "Ex_5.webp"
+  },
+  "Ex_6.avif": {
+    "file": "_app/immutable/assets/Ex_6.dUKrJctU.avif",
+    "src": "Ex_6.avif"
+  },
+  "Ex_6.jpeg": {
+    "file": "_app/immutable/assets/Ex_6.DrkqBJlc.jpeg",
+    "src": "Ex_6.jpeg"
+  },
+  "Ex_6.webp": {
+    "file": "_app/immutable/assets/Ex_6.D7qXdLPL.webp",
+    "src": "Ex_6.webp"
+  },
+  "Ex_7.avif": {
+    "file": "_app/immutable/assets/Ex_7.DQge5Ldh.avif",
+    "src": "Ex_7.avif"
+  },
+  "Ex_7.jpeg": {
+    "file": "_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg",
+    "src": "Ex_7.jpeg"
+  },
+  "Ex_7.webp": {
+    "file": "_app/immutable/assets/Ex_7.BZweUxSJ.webp",
+    "src": "Ex_7.webp"
+  },
+  "Ex_8.avif": {
+    "file": "_app/immutable/assets/Ex_8.D137IxOl.avif",
+    "src": "Ex_8.avif"
+  },
+  "Ex_8.jpeg": {
+    "file": "_app/immutable/assets/Ex_8.DIyvFjzs.jpeg",
+    "src": "Ex_8.jpeg"
+  },
+  "Ex_8.webp": {
+    "file": "_app/immutable/assets/Ex_8.CY6TMriR.webp",
+    "src": "Ex_8.webp"
+  },
+  "Ex_9.avif": {
+    "file": "_app/immutable/assets/Ex_9.hYSrjwwQ.avif",
+    "src": "Ex_9.avif"
+  },
+  "Ex_9.jpeg": {
+    "file": "_app/immutable/assets/Ex_9.CG3bTW4C.jpeg",
+    "src": "Ex_9.jpeg"
+  },
+  "Ex_9.webp": {
+    "file": "_app/immutable/assets/Ex_9.DNifANYX.webp",
+    "src": "Ex_9.webp"
+  },
   "_equality.js": {
     "file": "chunks/equality.js",
     "name": "equality"
@@ -30,21 +258,26 @@
   },
   "_exports.js": {
     "file": "chunks/exports.js",
-    "name": "exports",
-    "imports": [
-      "_equality.js"
-    ]
+    "name": "exports"
   },
   "_index.js": {
     "file": "chunks/index.js",
     "name": "index"
   },
+  "_index2.js": {
+    "file": "chunks/index2.js",
+    "name": "index",
+    "imports": [
+      "_index.js",
+      "_equality.js"
+    ]
+  },
   "_internal.js": {
     "file": "chunks/internal.js",
     "name": "internal",
     "imports": [
-      "_equality.js",
-      "_index.js"
+      "_index.js",
+      "_equality.js"
     ]
   },
   "enhanced_logoImage.avif": {
@@ -59,257 +292,17 @@
     "file": "_app/immutable/assets/enhanced_logoImage.JrAXU7cP.webp",
     "src": "enhanced_logoImage.webp"
   },
-  "img1.avif": {
-    "file": "_app/immutable/assets/img1.DwgMpDkg.avif",
-    "src": "img1.avif"
+  "logo_complete_white.avif": {
+    "file": "_app/immutable/assets/logo_complete_white.De0QvocJ.avif",
+    "src": "logo_complete_white.avif"
   },
-  "img1.jpeg": {
-    "file": "_app/immutable/assets/img1.TQ_a5uLV.jpeg",
-    "src": "img1.jpeg"
+  "logo_complete_white.png": {
+    "file": "_app/immutable/assets/logo_complete_white.ClnW4X9F.png",
+    "src": "logo_complete_white.png"
   },
-  "img1.webp": {
-    "file": "_app/immutable/assets/img1.B_mHLV4o.webp",
-    "src": "img1.webp"
-  },
-  "img10.avif": {
-    "file": "_app/immutable/assets/img10.BgC0ysl9.avif",
-    "src": "img10.avif"
-  },
-  "img10.jpeg": {
-    "file": "_app/immutable/assets/img10.MNhmzOV4.jpeg",
-    "src": "img10.jpeg"
-  },
-  "img10.webp": {
-    "file": "_app/immutable/assets/img10.ABjY3_Iv.webp",
-    "src": "img10.webp"
-  },
-  "img11.avif": {
-    "file": "_app/immutable/assets/img11.CYXnCQsn.avif",
-    "src": "img11.avif"
-  },
-  "img11.jpeg": {
-    "file": "_app/immutable/assets/img11.BLK1kI90.jpeg",
-    "src": "img11.jpeg"
-  },
-  "img11.webp": {
-    "file": "_app/immutable/assets/img11.gYcLb7qc.webp",
-    "src": "img11.webp"
-  },
-  "img12.avif": {
-    "file": "_app/immutable/assets/img12.COQ5X3dN.avif",
-    "src": "img12.avif"
-  },
-  "img12.jpeg": {
-    "file": "_app/immutable/assets/img12.DEHF1DmX.jpeg",
-    "src": "img12.jpeg"
-  },
-  "img12.webp": {
-    "file": "_app/immutable/assets/img12.Bye_mEwz.webp",
-    "src": "img12.webp"
-  },
-  "img13.avif": {
-    "file": "_app/immutable/assets/img13.DQge5Ldh.avif",
-    "src": "img13.avif"
-  },
-  "img13.jpeg": {
-    "file": "_app/immutable/assets/img13.Cz8mYVx-.jpeg",
-    "src": "img13.jpeg"
-  },
-  "img13.webp": {
-    "file": "_app/immutable/assets/img13.BZweUxSJ.webp",
-    "src": "img13.webp"
-  },
-  "img14.avif": {
-    "file": "_app/immutable/assets/img14.DVjbrmWW.avif",
-    "src": "img14.avif"
-  },
-  "img14.jpeg": {
-    "file": "_app/immutable/assets/img14.Bs5v_CqD.jpeg",
-    "src": "img14.jpeg"
-  },
-  "img14.webp": {
-    "file": "_app/immutable/assets/img14.BFJsaXwg.webp",
-    "src": "img14.webp"
-  },
-  "img15.avif": {
-    "file": "_app/immutable/assets/img15.Cq64g5lU.avif",
-    "src": "img15.avif"
-  },
-  "img15.jpeg": {
-    "file": "_app/immutable/assets/img15.vMFbw2qv.jpeg",
-    "src": "img15.jpeg"
-  },
-  "img15.webp": {
-    "file": "_app/immutable/assets/img15.aBLEFQj3.webp",
-    "src": "img15.webp"
-  },
-  "img16.avif": {
-    "file": "_app/immutable/assets/img16.Bbum79Vb.avif",
-    "src": "img16.avif"
-  },
-  "img16.jpeg": {
-    "file": "_app/immutable/assets/img16.EkNCUklw.jpeg",
-    "src": "img16.jpeg"
-  },
-  "img16.webp": {
-    "file": "_app/immutable/assets/img16.DwGS9Ifg.webp",
-    "src": "img16.webp"
-  },
-  "img17.avif": {
-    "file": "_app/immutable/assets/img17.Cr7uBQJq.avif",
-    "src": "img17.avif"
-  },
-  "img17.jpeg": {
-    "file": "_app/immutable/assets/img17.BMLFEk4Q.jpeg",
-    "src": "img17.jpeg"
-  },
-  "img17.webp": {
-    "file": "_app/immutable/assets/img17.CcG-NPh-.webp",
-    "src": "img17.webp"
-  },
-  "img18.avif": {
-    "file": "_app/immutable/assets/img18.DIEA3gRM.avif",
-    "src": "img18.avif"
-  },
-  "img18.jpeg": {
-    "file": "_app/immutable/assets/img18.BWxwobCw.jpeg",
-    "src": "img18.jpeg"
-  },
-  "img18.webp": {
-    "file": "_app/immutable/assets/img18.bEMQ-Pm6.webp",
-    "src": "img18.webp"
-  },
-  "img19.avif": {
-    "file": "_app/immutable/assets/img19.D3muVmKw.avif",
-    "src": "img19.avif"
-  },
-  "img19.jpeg": {
-    "file": "_app/immutable/assets/img19.DP92D4S-.jpeg",
-    "src": "img19.jpeg"
-  },
-  "img19.webp": {
-    "file": "_app/immutable/assets/img19.BHRQHX6M.webp",
-    "src": "img19.webp"
-  },
-  "img2.avif": {
-    "file": "_app/immutable/assets/img2.DNaBV4kt.avif",
-    "src": "img2.avif"
-  },
-  "img2.jpeg": {
-    "file": "_app/immutable/assets/img2.QlEXNCKQ.jpeg",
-    "src": "img2.jpeg"
-  },
-  "img2.webp": {
-    "file": "_app/immutable/assets/img2.Bih4voAP.webp",
-    "src": "img2.webp"
-  },
-  "img20.avif": {
-    "file": "_app/immutable/assets/img20.BJVE4d6G.avif",
-    "src": "img20.avif"
-  },
-  "img20.jpeg": {
-    "file": "_app/immutable/assets/img20.BzmeDXRA.jpeg",
-    "src": "img20.jpeg"
-  },
-  "img20.webp": {
-    "file": "_app/immutable/assets/img20.t1nba1oo.webp",
-    "src": "img20.webp"
-  },
-  "img21.avif": {
-    "file": "_app/immutable/assets/img21.Nfh7bMbM.avif",
-    "src": "img21.avif"
-  },
-  "img21.jpeg": {
-    "file": "_app/immutable/assets/img21.JIhPZn1_.jpeg",
-    "src": "img21.jpeg"
-  },
-  "img21.webp": {
-    "file": "_app/immutable/assets/img21.DLB_om-W.webp",
-    "src": "img21.webp"
-  },
-  "img3.avif": {
-    "file": "_app/immutable/assets/img3.DKRjOWZu.avif",
-    "src": "img3.avif"
-  },
-  "img3.jpeg": {
-    "file": "_app/immutable/assets/img3.S3A-o23P.jpeg",
-    "src": "img3.jpeg"
-  },
-  "img3.webp": {
-    "file": "_app/immutable/assets/img3.cCbLVC8j.webp",
-    "src": "img3.webp"
-  },
-  "img4.avif": {
-    "file": "_app/immutable/assets/img4.C1JPF0Sz.avif",
-    "src": "img4.avif"
-  },
-  "img4.jpeg": {
-    "file": "_app/immutable/assets/img4.DS9EWmuv.jpeg",
-    "src": "img4.jpeg"
-  },
-  "img4.webp": {
-    "file": "_app/immutable/assets/img4.DRMf60Pk.webp",
-    "src": "img4.webp"
-  },
-  "img5.avif": {
-    "file": "_app/immutable/assets/img5.DJXC-8TR.avif",
-    "src": "img5.avif"
-  },
-  "img5.jpeg": {
-    "file": "_app/immutable/assets/img5.FbG9S_Lv.jpeg",
-    "src": "img5.jpeg"
-  },
-  "img5.webp": {
-    "file": "_app/immutable/assets/img5.CJGUg6Yd.webp",
-    "src": "img5.webp"
-  },
-  "img6.avif": {
-    "file": "_app/immutable/assets/img6.C_rKMPaD.avif",
-    "src": "img6.avif"
-  },
-  "img6.jpeg": {
-    "file": "_app/immutable/assets/img6.DII5ae4F.jpeg",
-    "src": "img6.jpeg"
-  },
-  "img6.webp": {
-    "file": "_app/immutable/assets/img6.D6Ydhm_V.webp",
-    "src": "img6.webp"
-  },
-  "img7.avif": {
-    "file": "_app/immutable/assets/img7.Px_JDcgt.avif",
-    "src": "img7.avif"
-  },
-  "img7.jpeg": {
-    "file": "_app/immutable/assets/img7.Ba_ijbl9.jpeg",
-    "src": "img7.jpeg"
-  },
-  "img7.webp": {
-    "file": "_app/immutable/assets/img7.Q5jmzP8A.webp",
-    "src": "img7.webp"
-  },
-  "img8.avif": {
-    "file": "_app/immutable/assets/img8.mIUVSvdv.avif",
-    "src": "img8.avif"
-  },
-  "img8.jpeg": {
-    "file": "_app/immutable/assets/img8.D51aghVx.jpeg",
-    "src": "img8.jpeg"
-  },
-  "img8.webp": {
-    "file": "_app/immutable/assets/img8.Tzy38bwP.webp",
-    "src": "img8.webp"
-  },
-  "img9.avif": {
-    "file": "_app/immutable/assets/img9.DXPv9Vxw.avif",
-    "src": "img9.avif"
-  },
-  "img9.jpeg": {
-    "file": "_app/immutable/assets/img9.CCEavNGe.jpeg",
-    "src": "img9.jpeg"
-  },
-  "img9.webp": {
-    "file": "_app/immutable/assets/img9.De4BGNqG.webp",
-    "src": "img9.webp"
+  "logo_complete_white.webp": {
+    "file": "_app/immutable/assets/logo_complete_white.BUYRRjmx.webp",
+    "src": "logo_complete_white.webp"
   },
   "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte": {
     "file": "entries/fallbacks/error.svelte.js",
@@ -319,7 +312,7 @@
     "imports": [
       "_escaping.js",
       "_index.js",
-      "_equality.js",
+      "_index2.js",
       "_exports.js"
     ]
   },
@@ -338,33 +331,27 @@
     "src": "node_modules/@sveltejs/kit/src/runtime/server/index.js",
     "isEntry": true,
     "imports": [
+      "_index.js",
       "_internal.js",
-      "_exports.js"
+      "_exports.js",
+      "_index2.js"
     ]
   },
-  "qualifying.avif": {
-    "file": "_app/immutable/assets/qualifying.CwK9b5U8.avif",
-    "src": "qualifying.avif"
-  },
-  "qualifying.jpeg": {
-    "file": "_app/immutable/assets/qualifying.Dlmd4Baz.jpeg",
-    "src": "qualifying.jpeg"
-  },
-  "qualifying.webp": {
-    "file": "_app/immutable/assets/qualifying.xyV88Pxw.webp",
-    "src": "qualifying.webp"
-  },
-  "src/lib/media/CIRCLE.svg": {
+  "src/lib/media/logos/CIRCLE.svg": {
     "file": "_app/immutable/assets/CIRCLE.DnMg9Kjx.svg",
-    "src": "src/lib/media/CIRCLE.svg"
+    "src": "src/lib/media/logos/CIRCLE.svg"
   },
-  "src/lib/media/logo_complete.svg": {
+  "src/lib/media/logos/logo_complete.svg": {
     "file": "_app/immutable/assets/logo_complete.SEqfJBG_.svg",
-    "src": "src/lib/media/logo_complete.svg"
+    "src": "src/lib/media/logos/logo_complete.svg"
   },
-  "src/lib/media/logo_condensed.svg": {
+  "src/lib/media/logos/logo_condensed.svg": {
     "file": "_app/immutable/assets/logo_condensed.Cwwx0yWm.svg",
-    "src": "src/lib/media/logo_condensed.svg"
+    "src": "src/lib/media/logos/logo_condensed.svg"
+  },
+  "src/lib/media/logos/logo_condensed_white.svg": {
+    "file": "_app/immutable/assets/logo_condensed_white.Dp8XqM9M.svg",
+    "src": "src/lib/media/logos/logo_condensed_white.svg"
   },
   "src/lib/media/videos/Cardsgame.webm": {
     "file": "_app/immutable/assets/Cardsgame.DTx2i1g2.webm",
@@ -380,138 +367,120 @@
     "src": "src/routes/+page.server.js",
     "isEntry": true,
     "assets": [
-      "_app/immutable/assets/img1.DB1WrWcd.avif",
-      "_app/immutable/assets/img1.DwgMpDkg.avif",
-      "_app/immutable/assets/img1.fGjxAbni.webp",
-      "_app/immutable/assets/img1.B_mHLV4o.webp",
-      "_app/immutable/assets/img1.Dr1t1NR2.jpeg",
-      "_app/immutable/assets/img1.TQ_a5uLV.jpeg",
-      "_app/immutable/assets/img2.Dg0eNK3q.avif",
-      "_app/immutable/assets/img2.DNaBV4kt.avif",
-      "_app/immutable/assets/img2.s89m8U1Q.webp",
-      "_app/immutable/assets/img2.Bih4voAP.webp",
-      "_app/immutable/assets/img2.CIF7cWqY.jpeg",
-      "_app/immutable/assets/img2.QlEXNCKQ.jpeg",
-      "_app/immutable/assets/img3.DAcAMwUO.avif",
-      "_app/immutable/assets/img3.DKRjOWZu.avif",
-      "_app/immutable/assets/img3.CrL67P_z.webp",
-      "_app/immutable/assets/img3.cCbLVC8j.webp",
-      "_app/immutable/assets/img3.Dw5GzWUA.jpeg",
-      "_app/immutable/assets/img3.S3A-o23P.jpeg",
-      "_app/immutable/assets/img4.BdpsYb_5.avif",
-      "_app/immutable/assets/img4.C1JPF0Sz.avif",
-      "_app/immutable/assets/img4.BFb0Y3Go.webp",
-      "_app/immutable/assets/img4.DRMf60Pk.webp",
-      "_app/immutable/assets/img4.C7yMdn7o.jpeg",
-      "_app/immutable/assets/img4.DS9EWmuv.jpeg",
-      "_app/immutable/assets/img5.CwMjKd24.avif",
-      "_app/immutable/assets/img5.DJXC-8TR.avif",
-      "_app/immutable/assets/img5.CVE6Jd3K.webp",
-      "_app/immutable/assets/img5.CJGUg6Yd.webp",
-      "_app/immutable/assets/img5.1IMO8yRp.jpeg",
-      "_app/immutable/assets/img5.FbG9S_Lv.jpeg",
-      "_app/immutable/assets/img6.B3GQC8Cg.avif",
-      "_app/immutable/assets/img6.C_rKMPaD.avif",
-      "_app/immutable/assets/img6.D93WMUM5.webp",
-      "_app/immutable/assets/img6.D6Ydhm_V.webp",
-      "_app/immutable/assets/img6.BqszNBh6.jpeg",
-      "_app/immutable/assets/img6.DII5ae4F.jpeg",
-      "_app/immutable/assets/img7.CStKRNcv.avif",
-      "_app/immutable/assets/img7.Px_JDcgt.avif",
-      "_app/immutable/assets/img7.o8LguTa3.webp",
-      "_app/immutable/assets/img7.Q5jmzP8A.webp",
-      "_app/immutable/assets/img7.C6XebAgv.jpeg",
-      "_app/immutable/assets/img7.Ba_ijbl9.jpeg",
-      "_app/immutable/assets/img8.CZyFTEZZ.avif",
-      "_app/immutable/assets/img8.mIUVSvdv.avif",
-      "_app/immutable/assets/img8.CpXdK72E.webp",
-      "_app/immutable/assets/img8.Tzy38bwP.webp",
-      "_app/immutable/assets/img8.BZADjHmi.jpeg",
-      "_app/immutable/assets/img8.D51aghVx.jpeg",
-      "_app/immutable/assets/img9.kHScFfBP.avif",
-      "_app/immutable/assets/img9.DXPv9Vxw.avif",
-      "_app/immutable/assets/img9.CnN3azU5.webp",
-      "_app/immutable/assets/img9.De4BGNqG.webp",
-      "_app/immutable/assets/img9.DJ7Laxix.jpeg",
-      "_app/immutable/assets/img9.CCEavNGe.jpeg",
-      "_app/immutable/assets/img10.CUMnRAjq.avif",
-      "_app/immutable/assets/img10.BgC0ysl9.avif",
-      "_app/immutable/assets/img10.s01Moy65.webp",
-      "_app/immutable/assets/img10.ABjY3_Iv.webp",
-      "_app/immutable/assets/img10.CgupggWs.jpeg",
-      "_app/immutable/assets/img10.MNhmzOV4.jpeg",
-      "_app/immutable/assets/img11.uSkt7V-R.avif",
-      "_app/immutable/assets/img11.CYXnCQsn.avif",
-      "_app/immutable/assets/img11.BF8FAJqT.webp",
-      "_app/immutable/assets/img11.gYcLb7qc.webp",
-      "_app/immutable/assets/img11.CqXhWRZo.jpeg",
-      "_app/immutable/assets/img11.BLK1kI90.jpeg",
-      "_app/immutable/assets/img12.BW6_dEfc.avif",
-      "_app/immutable/assets/img12.COQ5X3dN.avif",
-      "_app/immutable/assets/img12.AKYhUTPk.webp",
-      "_app/immutable/assets/img12.Bye_mEwz.webp",
-      "_app/immutable/assets/img12.f5Kvm2--.jpeg",
-      "_app/immutable/assets/img12.DEHF1DmX.jpeg",
-      "_app/immutable/assets/img13.DC-zIH8R.avif",
-      "_app/immutable/assets/img13.DQge5Ldh.avif",
-      "_app/immutable/assets/img13.s1PORwBj.webp",
-      "_app/immutable/assets/img13.BZweUxSJ.webp",
-      "_app/immutable/assets/img13.KQ0lzY62.jpeg",
-      "_app/immutable/assets/img13.Cz8mYVx-.jpeg",
-      "_app/immutable/assets/img14.1yMbH2Ki.avif",
-      "_app/immutable/assets/img14.DVjbrmWW.avif",
-      "_app/immutable/assets/img14.Z8aUBe3l.webp",
-      "_app/immutable/assets/img14.BFJsaXwg.webp",
-      "_app/immutable/assets/img14.DoK2qpqP.jpeg",
-      "_app/immutable/assets/img14.Bs5v_CqD.jpeg",
-      "_app/immutable/assets/img15.CDApgV4n.avif",
-      "_app/immutable/assets/img15.Cq64g5lU.avif",
-      "_app/immutable/assets/img15.BzUAPpZ7.webp",
-      "_app/immutable/assets/img15.aBLEFQj3.webp",
-      "_app/immutable/assets/img15.CUKCoY7x.jpeg",
-      "_app/immutable/assets/img15.vMFbw2qv.jpeg",
-      "_app/immutable/assets/img16.B5zSL8iX.avif",
-      "_app/immutable/assets/img16.Bbum79Vb.avif",
-      "_app/immutable/assets/img16.DddVHBUU.webp",
-      "_app/immutable/assets/img16.DwGS9Ifg.webp",
-      "_app/immutable/assets/img16.D9k5SOFz.jpeg",
-      "_app/immutable/assets/img16.EkNCUklw.jpeg",
-      "_app/immutable/assets/img17.wl_Xqto1.avif",
-      "_app/immutable/assets/img17.Cr7uBQJq.avif",
-      "_app/immutable/assets/img17.BqBdcjJw.webp",
-      "_app/immutable/assets/img17.CcG-NPh-.webp",
-      "_app/immutable/assets/img17.Bntq6L4C.jpeg",
-      "_app/immutable/assets/img17.BMLFEk4Q.jpeg",
-      "_app/immutable/assets/img18.CPXiSl4b.avif",
-      "_app/immutable/assets/img18.DIEA3gRM.avif",
-      "_app/immutable/assets/img18.BzFRAu5l.webp",
-      "_app/immutable/assets/img18.bEMQ-Pm6.webp",
-      "_app/immutable/assets/img18.DoVFuo3F.jpeg",
-      "_app/immutable/assets/img18.BWxwobCw.jpeg",
-      "_app/immutable/assets/img19.BCpfoXVG.avif",
-      "_app/immutable/assets/img19.D3muVmKw.avif",
-      "_app/immutable/assets/img19.D1Sy1JP-.webp",
-      "_app/immutable/assets/img19.BHRQHX6M.webp",
-      "_app/immutable/assets/img19.B-iK4VNm.jpeg",
-      "_app/immutable/assets/img19.DP92D4S-.jpeg",
-      "_app/immutable/assets/img20.KS1w7Qyc.avif",
-      "_app/immutable/assets/img20.BJVE4d6G.avif",
-      "_app/immutable/assets/img20.CaCUi9Vo.webp",
-      "_app/immutable/assets/img20.t1nba1oo.webp",
-      "_app/immutable/assets/img20.BOBcxo3r.jpeg",
-      "_app/immutable/assets/img20.BzmeDXRA.jpeg",
-      "_app/immutable/assets/img21.CUefvncG.avif",
-      "_app/immutable/assets/img21.Nfh7bMbM.avif",
-      "_app/immutable/assets/img21.DOImXydm.webp",
-      "_app/immutable/assets/img21.DLB_om-W.webp",
-      "_app/immutable/assets/img21.Brj336Z5.jpeg",
-      "_app/immutable/assets/img21.JIhPZn1_.jpeg",
-      "_app/immutable/assets/qualifying.Bsx1BcQS.avif",
-      "_app/immutable/assets/qualifying.CwK9b5U8.avif",
-      "_app/immutable/assets/qualifying.k8RAWrh3.webp",
-      "_app/immutable/assets/qualifying.xyV88Pxw.webp",
-      "_app/immutable/assets/qualifying.DbZTSVnW.jpeg",
-      "_app/immutable/assets/qualifying.Dlmd4Baz.jpeg",
+      "_app/immutable/assets/Ex_1.M4ljEBhX.avif",
+      "_app/immutable/assets/Ex_1.CMMh1Vzj.avif",
+      "_app/immutable/assets/Ex_1.Bx3NSCaH.webp",
+      "_app/immutable/assets/Ex_1.DrrkBwoK.webp",
+      "_app/immutable/assets/Ex_1.jWrIf0p7.jpeg",
+      "_app/immutable/assets/Ex_1.YYmuPqAp.jpeg",
+      "_app/immutable/assets/Ex_2.CwMjKd24.avif",
+      "_app/immutable/assets/Ex_2.DJXC-8TR.avif",
+      "_app/immutable/assets/Ex_2.CVE6Jd3K.webp",
+      "_app/immutable/assets/Ex_2.CJGUg6Yd.webp",
+      "_app/immutable/assets/Ex_2.1IMO8yRp.jpeg",
+      "_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg",
+      "_app/immutable/assets/Ex_3.B3GQC8Cg.avif",
+      "_app/immutable/assets/Ex_3.C_rKMPaD.avif",
+      "_app/immutable/assets/Ex_3.D93WMUM5.webp",
+      "_app/immutable/assets/Ex_3.D6Ydhm_V.webp",
+      "_app/immutable/assets/Ex_3.BqszNBh6.jpeg",
+      "_app/immutable/assets/Ex_3.DII5ae4F.jpeg",
+      "_app/immutable/assets/Ex_4.CzGTDiGJ.avif",
+      "_app/immutable/assets/Ex_4.O4hnVjzp.avif",
+      "_app/immutable/assets/Ex_4.DXR7pjsX.webp",
+      "_app/immutable/assets/Ex_4.Cf4Olo8b.webp",
+      "_app/immutable/assets/Ex_4.BesA-xiL.jpeg",
+      "_app/immutable/assets/Ex_4.CUvBcN8b.jpeg",
+      "_app/immutable/assets/Ex_5.BLfKqo4S.avif",
+      "_app/immutable/assets/Ex_5.s3sDnP1L.avif",
+      "_app/immutable/assets/Ex_5.COzydrvm.webp",
+      "_app/immutable/assets/Ex_5.KwHy2-Yi.webp",
+      "_app/immutable/assets/Ex_5.C8qyzhRA.jpeg",
+      "_app/immutable/assets/Ex_5.qaPlev2Y.jpeg",
+      "_app/immutable/assets/Ex_6.3U645BzY.avif",
+      "_app/immutable/assets/Ex_6.dUKrJctU.avif",
+      "_app/immutable/assets/Ex_6.DQucCQto.webp",
+      "_app/immutable/assets/Ex_6.D7qXdLPL.webp",
+      "_app/immutable/assets/Ex_6.CvpZkzcq.jpeg",
+      "_app/immutable/assets/Ex_6.DrkqBJlc.jpeg",
+      "_app/immutable/assets/Ex_7.DC-zIH8R.avif",
+      "_app/immutable/assets/Ex_7.DQge5Ldh.avif",
+      "_app/immutable/assets/Ex_7.s1PORwBj.webp",
+      "_app/immutable/assets/Ex_7.BZweUxSJ.webp",
+      "_app/immutable/assets/Ex_7.KQ0lzY62.jpeg",
+      "_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg",
+      "_app/immutable/assets/Ex_8.BaRAkATS.avif",
+      "_app/immutable/assets/Ex_8.D137IxOl.avif",
+      "_app/immutable/assets/Ex_8.CW43x6tF.webp",
+      "_app/immutable/assets/Ex_8.CY6TMriR.webp",
+      "_app/immutable/assets/Ex_8.C-O5SW1b.jpeg",
+      "_app/immutable/assets/Ex_8.DIyvFjzs.jpeg",
+      "_app/immutable/assets/Ex_9.CtugEm9K.avif",
+      "_app/immutable/assets/Ex_9.hYSrjwwQ.avif",
+      "_app/immutable/assets/Ex_9.DbG-bmKW.webp",
+      "_app/immutable/assets/Ex_9.DNifANYX.webp",
+      "_app/immutable/assets/Ex_9.B_C0lGa7.jpeg",
+      "_app/immutable/assets/Ex_9.CG3bTW4C.jpeg",
+      "_app/immutable/assets/Ex_10.BUdpVrB8.avif",
+      "_app/immutable/assets/Ex_10.DtwpDAK8.avif",
+      "_app/immutable/assets/Ex_10.KwYrOhN7.webp",
+      "_app/immutable/assets/Ex_10.C4TSIm6C.webp",
+      "_app/immutable/assets/Ex_10.BdUzJDba.jpeg",
+      "_app/immutable/assets/Ex_10.C0AqRzHN.jpeg",
+      "_app/immutable/assets/Ex_11.B5zSL8iX.avif",
+      "_app/immutable/assets/Ex_11.Bbum79Vb.avif",
+      "_app/immutable/assets/Ex_11.DddVHBUU.webp",
+      "_app/immutable/assets/Ex_11.DwGS9Ifg.webp",
+      "_app/immutable/assets/Ex_11.D9k5SOFz.jpeg",
+      "_app/immutable/assets/Ex_11.EkNCUklw.jpeg",
+      "_app/immutable/assets/Ex_13.BTo02r7F.avif",
+      "_app/immutable/assets/Ex_13.C-gOXHIN.avif",
+      "_app/immutable/assets/Ex_13.DdrteLJ3.webp",
+      "_app/immutable/assets/Ex_13.BDsLQPL6.webp",
+      "_app/immutable/assets/Ex_13.BvQPUqaw.jpeg",
+      "_app/immutable/assets/Ex_13.BY2SyFUr.jpeg",
+      "_app/immutable/assets/Ex_14.Cc-Y2abA.avif",
+      "_app/immutable/assets/Ex_14.CvUqC0Bs.avif",
+      "_app/immutable/assets/Ex_14.BGsddlyT.webp",
+      "_app/immutable/assets/Ex_14.DN6woQY5.webp",
+      "_app/immutable/assets/Ex_14.IIkdVKs4.jpeg",
+      "_app/immutable/assets/Ex_14.CB5Mj1df.jpeg",
+      "_app/immutable/assets/Ex_15.D1v9djJX.avif",
+      "_app/immutable/assets/Ex_15._RPLZuWT.avif",
+      "_app/immutable/assets/Ex_15.DDRDEYrd.webp",
+      "_app/immutable/assets/Ex_15.BjHLAHZX.webp",
+      "_app/immutable/assets/Ex_15.DSRhVtvT.jpeg",
+      "_app/immutable/assets/Ex_15.CdlKumz2.jpeg",
+      "_app/immutable/assets/Ex_16.DB1WrWcd.avif",
+      "_app/immutable/assets/Ex_16.DwgMpDkg.avif",
+      "_app/immutable/assets/Ex_16.fGjxAbni.webp",
+      "_app/immutable/assets/Ex_16.B_mHLV4o.webp",
+      "_app/immutable/assets/Ex_16.Dr1t1NR2.jpeg",
+      "_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg",
+      "_app/immutable/assets/Cover_Qualifying.PPNdzo-x.avif",
+      "_app/immutable/assets/Cover_Qualifying.w0tT1uid.avif",
+      "_app/immutable/assets/Cover_Qualifying.D96L0Yr-.webp",
+      "_app/immutable/assets/Cover_Qualifying.BLk4sVs5.webp",
+      "_app/immutable/assets/Cover_Qualifying.BZSPOcQX.jpeg",
+      "_app/immutable/assets/Cover_Qualifying.Cm3vlG1u.jpeg",
+      "_app/immutable/assets/Cover_Benchmarking.BCpfoXVG.avif",
+      "_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif",
+      "_app/immutable/assets/Cover_Benchmarking.D1Sy1JP-.webp",
+      "_app/immutable/assets/Cover_Benchmarking.BHRQHX6M.webp",
+      "_app/immutable/assets/Cover_Benchmarking.B-iK4VNm.jpeg",
+      "_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg",
+      "_app/immutable/assets/Cover_Prompting.DYxdpMma.avif",
+      "_app/immutable/assets/Cover_Prompting.CVswunsj.avif",
+      "_app/immutable/assets/Cover_Prompting.CdQ9s7bm.webp",
+      "_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp",
+      "_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpg",
+      "_app/immutable/assets/Cover_Prompting._sRDpei3.jpg",
+      "_app/immutable/assets/Cover_Excel.gVnMv0iS.avif",
+      "_app/immutable/assets/Cover_Excel.YtVyHxSg.avif",
+      "_app/immutable/assets/Cover_Excel.B6pS74dt.webp",
+      "_app/immutable/assets/Cover_Excel.rmilwwC7.webp",
+      "_app/immutable/assets/Cover_Excel.V_SxdBne.jpg",
+      "_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg",
       "_app/immutable/assets/CIRCLE.DnMg9Kjx.svg",
       "_app/immutable/assets/enhanced_logoImage.BVKc8-Qg.avif",
       "_app/immutable/assets/enhanced_logoImage.Qfmesbrl.avif",
@@ -520,7 +489,14 @@
       "_app/immutable/assets/enhanced_logoImage.D_eIIOoz.png",
       "_app/immutable/assets/enhanced_logoImage.Cvtx-yvb.png",
       "_app/immutable/assets/logo_condensed.Cwwx0yWm.svg",
+      "_app/immutable/assets/logo_condensed_white.Dp8XqM9M.svg",
       "_app/immutable/assets/logo_complete.SEqfJBG_.svg",
+      "_app/immutable/assets/logo_complete_white.DKJONqEU.avif",
+      "_app/immutable/assets/logo_complete_white.De0QvocJ.avif",
+      "_app/immutable/assets/logo_complete_white.BhxAyOYU.webp",
+      "_app/immutable/assets/logo_complete_white.BUYRRjmx.webp",
+      "_app/immutable/assets/logo_complete_white.BWMEs-3S.png",
+      "_app/immutable/assets/logo_complete_white.ClnW4X9F.png",
       "_app/immutable/assets/Topcamera.Cs5dpslX.webm",
       "_app/immutable/assets/Cardsgame.DTx2i1g2.webm",
       "_app/immutable/assets/Dot_background.BMWCEQP3.avif",
@@ -538,10 +514,11 @@
     "isEntry": true,
     "imports": [
       "_index.js",
+      "_index2.js",
       "_escaping.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CFWznWtq.css"
+      "_app/immutable/assets/_page.CE1s4JOc.css"
     ]
   }
 }

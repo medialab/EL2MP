@@ -1,50 +1,52 @@
 /* THIS IS GLOBAL_DB.JS 🚀*/
 
 import { photos, capitolsCover, general, videos } from "$database/config.js";
-export { cardsDb, floatersDb, alterEgosDb, projectDescription };
+export { cardsDb, floatersDb, alterEgosDb };
 
 const cardsDb = {
   Card1: {
     Title: "Qualifying",
     Description:
-      "The first block is about adopting a reflexive posture towards the use of LLMs. Participants engage in exercises that help them become more aware of their practices, attitudes, and assumptions about AI technologies. This block serves as a foundational phase, akin to a practice ground, where participants start to think critically about their relationship with LLMs.",
+      "The first block is about <b>adopting a reflexive posture</b> towards the use of LLMs. Participants engage in exercises that help them become more aware of their practices, attitudes, and assumptions about AI technologies.<br>This block serves as a foundational phase, akin to a practice ground, where participants start to <b>think critically</b> about their relationship with LLMs.",
     Question:
       "Where do LLMs live in our professional practices, norms, and relationships?",
     IndexNum: 1,
-    CoverImg: capitolsCover.cover_1,
+    CoverImg: capitolsCover.coverBenchmarking,
     Content: [
       {
         title: "Exercise 1 - Draw It Like You See It",
         subtitle:
-          "To carry out the project, we developed an experimental research protocol based on the active involvement of participants. The fruit of a collaboration between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:\n\nRoom for hesitation: Through a series of exercises, the protocol provides participants with various means of documenting and reflecting on their use of LLMs. We aim to establish a framework where doubt and hesitation are not only accepted but encouraged. Some exercises introduce deliberate pauses in professional routines, causing participants to take a step back from their own practices: during these pauses, judgment is suspended, giving users enough room to question their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to intensify the use of LLMs to shed light on what would otherwise remain too subtle to be perceived.\n\nAn ecological archive of practices: The digital traces from LLM use serve as the starting point for the exercises we designed. They are analysed, contextualised, and discussed individually and collectively. Through this process, participants progressively build a multimodal archive (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various professional norms and material configurations.\n\nA workbook (vademecum): The workbook collects all the exercises and their instructions, organized into thematic blocks. Designed as a modular object, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the material support for the protocol and the project's means of dissemination, as it can be reproduced and adapted in various academic and professional contexts.",
+          "Participants sketch how they think an LLM works and how they view their work environment.",
+        text: "To carry out the project, we developed an experimental research protocol based on the active involvement of participants. The fruit of a collaboration between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of documenting and reflecting on their use of LLMs. We aim to establish a framework where doubt and hesitation are not only accepted but encouraged. Some exercises introduce deliberate pauses in professional routines, causing participants to take a step back from their own practices: during these pauses, judgment is suspended, giving users enough room to question their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to intensify the use of LLMs to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the starting point for the exercises we designed. They are analysed, contextualised, and discussed individually and collectively. Through this process, participants progressively build a multimodal archive (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various professional norms and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into thematic blocks. Designed as a modular object, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the material support for the protocol and the project's means of dissemination, as it can be reproduced and adapted in various academic and professional contexts.",
+        picture: photos.Ex_1,
       },
       {
         title: "Exercise 2 - Harvesting Tasks",
         subtitle:
           "Participants account for the tasks they perform in their work and how LLMs could assist them",
-        text: "This exercise helps participants reflect on their existing work, revealing overlooked or underappreciated tasks. They also explore what other work they could do with the assistance of an LLM, generating material for future exercises",
-        picture: photos.image_6,
+        text: "This exercise helps participants <b>reflect on their existing work</b>, revealing overlooked or underappreciated tasks.<br><br>They also explore what other work they could do with the assistance of an LLM, generating material for future exercises.",
+        picture: photos.Ex_2,
       },
       {
         title: "Exercise 3 - Taking Stock",
         subtitle:
           "Participants review their ChatGPT history to identify usage patterns and what stands out",
-        text: "This exercise prompts participants to critically assess their LLM interactions through self-evaluation and a structured review of their conversation history. It highlights gaps between perception and actual use to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
-        picture: photos.image_15,
+        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br><br>It highlights gaps between perception and actual use to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
+        picture: photos.Ex_3,
       },
       {
         title: "Exercise 4 - Memorable Conversations",
         subtitle:
           "Participants identify what made some conversations with ChatGPT remarkable",
-        text: "Participants analyze past LLM interactions that stood out due to emotional impact, moral hesitation, or significant outcomes. They rate the model's performance and explore why it performed as it did, fostering awareness about LLM capabilities and professional expectations.",
-        picture: photos.image_18,
+        text: "Participants <b>analyze past LLM interactions</b> that stood out due to emotional impact, moral hesitation, or significant outcomes.<br><br>They rate the model's performance and explore why it performed as it did, fostering awareness about LLM capabilities and professional expectations.",
+        picture: photos.Ex_4,
       },
       {
         title: "Exercise 5 - Subtracting the Machine",
         subtitle:
           "Participants describe memorable interactions with ChatGPT without using terms like 'LLM' or 'ChatGPT'.",
-        text: "This thought experiment creates artificial constraints on how participants talk about their use of LLMs. Because they cannot rely on ready-made categories (e.g., 'ChatGPT', 'machine', or 'assistant'), participants need to reconsider their interactions with the models, playing with different metaphors and analogies drawn from their social and professional environments.",
-        picture: photos.image_11,
+        text: "This thought experiment creates <b>artificial constraints</b> on how participants talk about their use of LLMs.<br><br>Because they cannot rely on ready-made categories (e.g., 'ChatGPT', 'machine', or 'assistant'), participants need to <b>reconsider their interactions</b> with the models, playing with different metaphors and analogies drawn from their social and professional environments.",
+        picture: photos.Ex_5,
       },
     ],
     bgColor: "#97D2FB",
@@ -52,37 +54,39 @@ const cardsDb = {
   },
   Card2: {
     Title: "Benchmarking",
-    Description: "How do we assess the value of an LLM?",
+    Description:
+      "In this block, participants are guided through selecting an LLM that <b>best suits their professional needs</b>. They design personal tests comprising specific tasks and evaluate the performance of different models.<br><br>The goal is to choose a model that aligns with their practical and ethical requirements.",
+    Question: "How do we assess the value of an LLM?",
     IndexNum: 2,
-    CoverImg: photos.image_6,
+    CoverImg: capitolsCover.coverQualyfying,
     Content: [
       {
         title: "Exercise 6 - Design your AI Trial",
         subtitle:
           "Participants design a trial to test the usefulness of an LLM, choosing four tasks that are essential or enjoyable parts of their work",
-        text: "This exercise guides participants through a selection process, drawing from their current work practices and the potential implementation of new tasks. In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around their professional experience. This personalized benchmark aims to assess whether the models can provide practical value that actually matters in a specific professional situation.",
-        picture: photos.image_7,
+        text: "This exercise guides participants through a <b>selection process</b>, drawing from their current work practices and the potential implementation of new tasks. <br><br>In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around their <b>professional experience</b>. <br><br>This personalized benchmark aims to assess whether the models can provide <b>practical value</b> that actually matters in a specific professional situation.",
+        picture: photos.Ex_6,
       },
       {
         title: "Exercise 7 - Preparing for the Trial",
         subtitle:
           "Participants write detailed instructions for their tasks and choose four LLMs they wish to test",
-        text: "By formulating detailed instructions, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to consider the weight of their own prompt on the final result. By selecting a human or a specialized model, participants explore different avenues of comparison - machine versus machine or human versus machine.",
-        picture: photos.image_12,
+        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to consider the <b>weight of their own prompt</b> on the final result. <br><br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
+        picture: photos.Ex_7,
       },
       {
         title: "Exercise 8 - Gathering Evidence",
         subtitle:
           "Participants ask an acquaintance to collect answers from LLMs and anonymize the results to avoid bias.",
-        text: "In this exercise, participants enlist the help of a fellow co-inquirer, a good friend, or a colleague. In addition to anonymizing results and ensuring fairness in the upcoming trial, this exercise allows participants to concretely experience the collaborative nature of LLM performance evaluation.",
-        picture: photos.image_3, // Randomly chosen
+        text: "In this exercise, participants <b>enlist the help</b> of a fellow co-inquirer, a good friend, or a colleague. <br><br>In addition to anonymizing results and ensuring fairness in the upcoming trial, this exercise allows participants to <b>concretely experience</b> the collaborative nature of LLM performance evaluation.",
+        picture: photos.Ex_8,
       },
       {
         title: "Exercise 9 - Judgment Day",
         subtitle:
           "Participants assess the blind results of their AI trial: they rank them, explain on what ground they assessed each performance, and reflect on the trial process.",
-        text: "Participants rank anonymized LLM responses for each task, determine the best-performing model, and critically review the trial's fairness and relevance. This evaluation encourages participants to reflect on what matters in assessing the situated value of LLMs.",
-        picture: photos.image_15, // Randomly chosen
+        text: "Participants <b>rank anonymized LLM responses</b> for each task, determine the best-performing model, and <b>critically review</b> the trial's fairness and relevance.<br><br>This evaluation encourages participants to reflect on what matters in assessing the <b>situated value</b> of LLMs.",
+        picture: photos.Ex_9,
       },
     ],
 
@@ -92,44 +96,24 @@ const cardsDb = {
   Card3: {
     Title: "Prompting",
     Description:
-      "Exploring modern approaches to foster innovation in organizations",
+      "In this block, participants explore how to effectively communicate with LLMs through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM’s outputs, aiming to better align the model's responses with their professional needs and expectations.",
+    Question: "To what extent can we influence the quality of an LLM’s output?",
     IndexNum: 3,
-    CoverImg: photos.image_8,
+    CoverImg: capitolsCover.coverPrompting,
     Content: [
       {
-        title: "Exercise 1 - Ideation",
-        text: "Generate a wide array of ideas to solve a problem or enhance a product. This exercise encourages free thinking and helps develop creative solutions.",
-        picture: photos.image_10, // Randomly chosen
+        title: "Exercise 10 - The Art of the Prompt",
+        subtitle:
+          "Participants read about prompting techniques, attempt to put them into practice and share their insights with the group.",
+        text: "Participants explore a <b>specific prompting technique</b> by practicing it throughout the week, and summarizing their findings in a concise presentation. The goal is to develop a <b>nuanced understanding</b> of how prompt design influences LLM responses.<br><br>Knowledge acquired about a prompting technique is shared among all participants through a short presentation, based on observations participants kept track of in a personal diary.",
+        picture: photos.Ex_10,
       },
       {
-        title: "Exercise 2 - SWOT Analysis",
-        text: "Evaluate the strengths, weaknesses, opportunities, and threats related to a new business idea or strategy.",
-        picture: photos.image_14, // Randomly chosen
-      },
-      {
-        title: "Exercise 3 - Brainstorming",
-        text: "Collaboratively generate ideas to tackle a specific challenge. This exercise encourages participants to think creatively and build on each other's ideas.",
-        picture: photos.image_16, // Randomly chosen
-      },
-      {
-        title: "Exercise 4 - Mind Mapping",
-        text: "Create a visual representation of thoughts and ideas to explore connections and generate new perspectives on a topic.",
-        picture: photos.image_20, // Randomly chosen
-      },
-      {
-        title: "Exercise 5 - Rapid Prototyping",
-        text: "Design quick prototypes of ideas to test and iterate rapidly. This exercise promotes agility in the innovation process.",
-        picture: photos.image_19, // Randomly chosen
-      },
-      {
-        title: "Exercise 6 - User Feedback",
-        text: "Engage users early to collect feedback on prototypes and ideas. This exercise helps refine and improve solutions.",
-        picture: photos.image_9, // Randomly chosen
-      },
-      {
-        title: "Exercise 7 - Innovation Pitch",
-        text: "Present your innovative ideas to stakeholders and gather feedback on their viability and potential for success.",
-        picture: photos.image_18, // Randomly chosen
+        title: "Exercise 11 - Tracking Shifts",
+        subtitle:
+          "Participants look back on their LLM practices since the experiment began, searching for shifts and continuities",
+        text: "Participants document how their use of <b>LLMs</b> has changed since the beginning of the experiment. They write two short essays—one on how their <b>practices have evolved</b> and another on what has <b>remained stable</b>—using concrete examples from their experience.<br><br>Through a structured discussion game, participants also analyze their shifting perspectives on LLMs. The goal is to engage in <b>collective reflection</b> in order to challenge assumptions and reinforce insights gained through the experiment.",
+        picture: photos.Ex_11,
       },
     ],
 
@@ -137,48 +121,42 @@ const cardsDb = {
     isProjCover: false,
   },
   Card4: {
-    Title: "Ekhprasis",
-    Description: "Understanding and interpreting data for actionable insights",
+    Title: "Excel",
+    Description:
+      "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
+    Question: "How closely can an LLM approach human excellence?",
     IndexNum: 4,
-    CoverImg: photos.image_2,
+    CoverImg: capitolsCover.coverExcel,
     Content: [
       {
-        title: "Exercise 1 - Data Collection",
-        text: "Learn how to collect data effectively, ensuring that it is accurate, reliable, and relevant to your analysis goals.",
-        picture: photos.image_11, // Randomly chosen
+        title: "Exercise 13 - The Imitation Game",
+        subtitle:
+          "Participants guide an LLM towards reproducing an exemplary text from their professional field, aiming to create an exact copy.",
+        text: "Participants attempt to recreate a <b>high-quality text</b> using an LLM without providing direct access to the original. This experiment tests the LLM's ability to replicate <b>style, tone, and meaning</b> while challenging participants to refine their prompting strategies.<br><br>Through 90-minute work sessions, screen recordings, and a logbook, participants document their process and assess the model's capacity to <b>(re)produce a text</b> it does not have access to.",
+        picture: photos.Ex_13,
       },
       {
-        title: "Exercise 2 - Data Cleaning",
-        text: "Explore techniques for cleaning data, handling missing values, and correcting inaccuracies to prepare it for analysis.",
-        picture: photos.image_17, // Randomly chosen
+        title: "Exercise 14 - Setting Up the Example",
+        subtitle:
+          "Participants discuss the place of their chosen work within their professional ecology and explain why it’s exemplary",
+        text: "This exercise contextualizes the chosen exemplary work by examining its <b>professional significance</b>. A radar graph helps assess factors like frequency, expertise required, and error tolerance, while a structured reflection highlights what makes the work <b>exemplary</b> and worth emulating.<br><br>",
+        picture: photos.Ex_14,
       },
       {
-        title: "Exercise 3 - Exploratory Data Analysis",
-        text: "Analyze data to uncover patterns, trends, and insights using visualizations and statistical techniques.",
-        picture: photos.image_4, // Randomly chosen
+        title: "Exercise 15 - Anatomy of an Exemplary Work",
+        subtitle:
+          "Participants break down their exemplary work into its main components and assess which elements are accessible to an LLM",
+        text: "Participants analyze the underlying structure of their chosen text, mapping its key influences, professional constraints, and dependencies. <br><br>A layered dependency graph helps distinguish which elements are <b>accessible to an LLM</b> and which remain <b>beyond its reach</b>, reinforcing an understanding of AI's limitations.",
+        picture: photos.Ex_15,
       },
       {
-        title: "Exercise 4 - Predictive Modeling",
-        text: "Learn how to build and evaluate predictive models to forecast future trends or behaviors based on historical data.",
-        picture: photos.image_13, // Randomly chosen
-      },
-      {
-        title: "Exercise 5 - Data Visualization",
-        text: "Master the art of creating compelling visualizations that communicate data insights clearly and effectively.",
-        picture: photos.image_14, // Randomly chosen
-      },
-      {
-        title: "Exercise 6 - Data Interpretation",
-        text: "Understand how to interpret the results of data analyses and make data-driven decisions.",
-        picture: photos.image_8, // Randomly chosen
-      },
-      {
-        title: "Exercise 7 - Reporting Results",
-        text: "Learn how to present data findings in a clear and engaging way to stakeholders, ensuring that the insights are actionable.",
-        picture: photos.image_12, // Randomly chosen
+        title: "Exercise 16. Obstacles, Dead Ends, Highways",
+        subtitle:
+          "Participants examine key moments in navigating the LLM—obstacles, dead ends, and highways",
+        text: "By identifying <b>challenges that can be overcome</b> through iteration or adapting a prompt, <b>situations where the LLM fails</b> to generate meaningful progress despite repeated attempts, and <b>effortless response generation</b>, participants discover patterns in their experiences and develop a clearer sense of when to persist, pivot, or abandon a strategy.<br><br>",
+        picture: photos.Ex_16,
       },
     ],
-
     bgColor: "#E8D1F2",
     isProjCover: false,
   },
@@ -189,28 +167,35 @@ const alterEgosDb = {
     Title: "Ecologies of LLM Practices",
     CoverImg: general.logoImage_white,
     Description:
-      "The booming rise of large language models (LLMs) such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has narrowed the scope of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. However, the problems and consequences associated with their actual use – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a mechanical view of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. Moreover, these discourses present AI as a monolithic and disruptive entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one’s job. There is thus an urgent need to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify current issues – not prospective ones. How do AI's well-known problems (bias, confabulation, etc.) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
+      "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job. There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. How do AI's well-known problems (bias, confabulation, etc.) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
+    Question: "How can we reframe the role of LLMs in ordinary work practices?",
     IndexNum: 1,
     bgColor: "#000000",
   },
   Card2: {
     Title: "Methodology",
+    Question: "A necessary project in today’s research landscape on LLMs",
     Description:
-      "To carry out the project, we developed an experimental research protocol based on the active involvement of participants. The fruit of a collaboration between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:\\n\\nRoom for hesitation: Through a series of exercises, the protocol provides participants with various means of documenting and reflecting on their use of LLMs. We aim to establish a framework where doubt and hesitation are not only accepted but encouraged. Some exercises introduce deliberate pauses in professional routines, causing participants to take a step back from their own practices: during these pauses, judgment is suspended, giving users enough room to question their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to intensify the use of LLMs to shed light on what would otherwise remain too subtle to be perceived.\\n\\nAn ecological archive of practices: The digital traces from LLM use serve as the starting point for the exercises we designed. They are analysed, contextualised, and discussed individually and collectively. Through this process, participants progressively build a multimodal archive (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various professional norms and material configurations.\\n\\nA workbook (vademecum): The workbook collects all the exercises and their instructions, organized into thematic blocks. Designed as a modular object, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the material support for the protocol and the project's means of dissemination, as it can be reproduced and adapted in various academic and professional contexts.",
+      "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
     IndexNum: 2,
     bgColor: "#000000",
   },
   Card3: {
     Title: "Objective",
+    Question:
+      "How do professionals evaluate, adapt to, and perceive LLMs in their work?",
     Description:
-      'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:\\n\\nEvaluation: How do professionals assess the value LLMs add or remove?\\n\\nEffort: What new kinds of work do LLMs require from their users?\\n\\nPerception: How do workers evaluate and perceive LLMs over time as they continue working with them?',
+      'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation:</b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort:</b> What new kinds of work do LLMs require from their users?<br><br><b>Perception:</b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
     IndexNum: 3,
     bgColor: "#000000",
   },
+
   Card4: {
     Title: "Context",
+    Question:
+      "How to document practices shaped and influenced by the project itself?",
     Description:
-      "The booming rise of large language models (LLMs) such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has narrowed the scope of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. However, the problems and consequences associated with their actual use – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a mechanical view of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. Moreover, these discourses present AI as a monolithic and disruptive entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.\\n\\nThere is thus an urgent need to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify current issues – not prospective ones. How do AI's well-known problems (bias, confabulation, etc.) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
+      "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. <br><br>However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. <br><br>Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.<br><br>There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. <br><br>How do AI's well-known problems (<b>bias, confabulation, etc.</b>) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
     IndexNum: 4,
     bgColor: "#000000",
   },
@@ -336,6 +321,3 @@ const floatersDb = {
     parent: "Benchmarking",
   },
 };
-
-const projectDescription =
-  "The Écologies des Pratiques project explores the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. Supported by Google through its commitment to advancing ethical and impactful AI practices, this initiative combines cutting-edge technological tools with critical reflection on their implications. <br><br>At the heart of this project lies a collaborative and interdisciplinary approach, engaging researchers, practitioners, and students from diverse fields. By experimenting with LLMs, we seek to understand their potential as catalysts for new forms of knowledge production and dissemination while addressing the ecological and ethical questions they raise. The project delves into three key areas: <br><br> Technological Experimentation: By integrating LLMs into practical workflows, we assess how these tools reshape academic and professional practices. From creative writing to data analysis, the project tests the boundaries of LLMs' generative capabilities.<br><br> Critical Reflection: Alongside experimentation, we foster discussions on the broader societal and ecological implications of LLM adoption. What are the costs and benefits of scaling these technologies? How do they challenge or reinforce existing structures of knowledge and power?<br><br> Community Building: Through workshops, public events, and collaborative platforms, we aim to build a community of thinkers and makers who can collectively imagine and shape the future of AI-driven practices.<br><br> With Google's support, Écologies des Pratiques not only investigates the possibilities of LLMs but also critically examines their role within contemporary ecological, cultural, and institutional systems. By bridging technological innovation and critical inquiry, this project seeks to illuminate how these powerful tools can contribute responsibly to a sustainable and inclusive future.";

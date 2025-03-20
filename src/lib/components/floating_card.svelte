@@ -345,7 +345,6 @@
 
         appearance: none;
         font-family: none;
-        font-size: inherit;
         line-height: inherit;
         color: transparent;
         border: none;

@@ -1,6 +1,6 @@
 <script>
     import { fade, slide,  } from 'svelte/transition';
-
+    import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
 
     export let selectedCardTitle
     export let currentScrollLevel
@@ -21,7 +21,7 @@
 
 <button class="position_button">
     <p class="s1">
-        {selectedCardTitle}
+        {!$isAlterEgoMode ? selectedCardTitle : "This page is about the project"}
     </p>
     <p class="s1">/</p>
 

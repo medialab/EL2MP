@@ -1,23 +1,22 @@
 <script>
     import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
-    import { transitionTime } from '$lib/stores/animations';
 </script>
+
 
 <div
 class="text-box-dx"
-style="transition: transform {transitionTime}s var(--transition-curve);"
 class:closed={!$isAlterEgoMode}>
-    <p class="p1" style="font-size: 1.3vw;">
+    <p class="p3">
         "The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."
     </p>
 </div>
 
 <div
 class="text-box-sx"
-style="transition: transform {transitionTime}s var(--transition-curve);"
+
 class:closed={!$isAlterEgoMode}
 >
-    <p class="p1" style="font-size: 2vw;">
+    <p class="p2">
         "How can we reframe the role <br> of LLMs in ordinary work practices?"
     </p>
 </div>
@@ -33,8 +32,9 @@ class:closed={!$isAlterEgoMode}
         position: absolute;
         bottom: 7vh;
         right: 2vw;
-        z-index: 500;
+        z-index: 20;
         user-select: none;
+        transition: transform var(--transition-times) var(--transition-curve);
     }
 
     .text-box-sx {
@@ -45,28 +45,31 @@ class:closed={!$isAlterEgoMode}
         width: fit-content;
         box-sizing: border-box;
         position: absolute;
-        top: 7vh;
+        top: 2vw;
         left: 2vw;
-        z-index: 500;
+        z-index: 20;
         user-select: none;
+        transition: transform var(--transition-times) var(--transition-curve);
     }
 
     :global(.text-box-sx.closed) {
         transform: translateX(-120%);
-        transition: transform 0.5s ease-in-out;
+        transition: transform var(--transition-times) var(--transition-curve);
     }
 
     :global(.text-box-dx.closed) {
         transform: translateX(120%);
-        transition: transform 0.5s ease-in-out;
+        transition: transform var(--transition-times) var(--transition-curve);
     }
 
-    .text-box-sx:active {
+    .text-box-sx:focus {
         cursor: grabbing;
+        transition: none;
     }
     
-    .text-box-dx:active {
+    .text-box-dx:focus {
         cursor: grabbing;
+        transition: none;
     }
 
     p {

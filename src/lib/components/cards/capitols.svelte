@@ -65,11 +65,6 @@ const splitText = (text) => {
                     <p class="h0" style="z-index: 7;">
                         {@html card.Title}
                     </p>
-               
-
-                <p class="h4" id="description">
-                    {@html card.Question}
-                </p>
 
             </div>
 
@@ -79,19 +74,26 @@ const splitText = (text) => {
                 data-simplebar-auto-hide="false"
                 data-section={card.Title}>
                 
-                <div class="card_scroll_flex" data-section={card.Title}> 
+                <div class="card_scroll_flex" data-section={card.Title}>
+                    
+                    <p class="p1" id="description">
+                        {@html card.Question}
+                    </p>
 
                     {#if card.Description}
-                        <p class="p1" id="description">{@html card.Description}</p>
+                        <p class="p3" id="description">{@html card.Description}</p>
                     {/if}
                     
                     {#if card.CoverImg}
+                        <div class="cover_image_container">
+                            <div class="overlay_filter" style="background-color: {card.bgColor};"></div>
                             <enhanced:img
                                 data-sveltekit-preload-data
                                 src={card.CoverImg}
                                 alt="CoverImg"
                                 class="cover_image"
                             />
+                        </div>  
                     {/if}
                     
                     <!-- Programmatic creation of sections -->
@@ -99,20 +101,23 @@ const splitText = (text) => {
                         <!-- We assing a programmatic name for the each block sections -->
                         <div class="section_container" data-sveltekit-preload-data data-section={`Ex ${index+1}`}> 
                             {#if section.title}
-                                <p class="h4">{@html section.title}</p>
+                                <p class="h2">{@html section.title}</p>
                             {/if}
                             
                             {#if section.subtitle }
-                                <p class="p1" exercise-description >{@html section.subtitle}</p>
+                                <p class="p3" exercise-description >{@html section.subtitle}</p>
                             {/if}
 
                             {#if section.picture}
-                                <enhanced:img data-sveltekit-preload-data class="article_image" src={section.picture} alt="People"/>
+                                <div class="cover_image_container">
+                                    <div class="overlay_filter" style="background-color: {card.bgColor};"></div>
+                                    <enhanced:img data-sveltekit-preload-data class="article_image" src={section.picture} alt="People"/>
+                                </div>   
                             {/if}
 
                             {#if section.text}
                                 <div class="double_column_text_article">
-                                    <p class="p1">{section.text}</p>
+                                    <p class="p3">{@html section.text}</p>
                                 </div>
                             {/if}
                         </div>
@@ -134,7 +139,7 @@ const splitText = (text) => {
         <!-- From this over is the alter ego card -->
 
         <div
-            class="altergo_container_inner"
+            class="altergo_container_inner {$isAlterEgoMode ? 'open' : ''}"
             style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;"
         >
 
@@ -146,7 +151,7 @@ const splitText = (text) => {
             >
 
             <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"> 
-                <p class="h0" style="z-index: 7;">
+                <p class="h0" style="z-index: 7; line-height: 1;">
                     {@html alterEgoCard.Title}
                 </p>
             </div>
@@ -161,13 +166,18 @@ const splitText = (text) => {
                 
                 <div class="card_scroll_flex" data-section={alterEgoCard.Title}> 
 
+                    <p class="p1" id="description">
+                        {@html alterEgoCard.Question}
+                    </p>
+
                     {#if alterEgoCard.Description}
                         <p
-                        class="p1"
+                        class="p3"
                         id="description">{@html alterEgoCard.Description}</p>
                     {/if}
 
                     {#if alterEgoCard.CoverImg}
+                    
                         <enhanced:img
                             data-sveltekit-preload-data
                             src={alterEgoCard.CoverImg}
@@ -208,37 +218,31 @@ const splitText = (text) => {
         z-index: 5;
         pointer-events: none;
         grid-row: 1;
-    }
-
-    .description_container > .h4 { 
-        width: 100%;
-        font-family: 'Instrument Sans';
-        margin-top: -0.7em;
-        padding-left: 10%;
+        margin-bottom: 3vw;
     }
 
     .description_container > .h0 {
         width: fit-content;
         height: fit-content;
         font-family: 'Instrument Serif';
-        white-space: nowrap;
+        white-space: normal; /* Changed from nowrap to allow text wrapping */
         user-select: none;
         pointer-events: none;
-        overflow: hidden;
-        line-height: 1.5;
+        overflow: visible; /* Changed from hidden to show overflow content */
+        line-height: 1;
         display: inline-block;
         padding: 0;
         margin: 0;
-        margin-top: -0.4em;
+        margin-bottom: -0.2em;
+        margin-top: -0.18em;
         transform: translateX(-0.08em);
-        /* Add responsive font sizing */
-        font-size: clamp(4rem, 10vw, 10rem);
+        /* Add responsive font sizing 
+        font-size: clamp(4rem, 10vw, 10rem); */
     }
 
     [exercise-description] {
         width: 95%;
         font-family: 'Instrument Sans';
-        font-size: 1.2em;
     }
 
     .card_container {
@@ -266,8 +270,8 @@ const splitText = (text) => {
         user-select: none;
         overflow: hidden;
         
-        border: solid 1.5px black;
-        transition: border 5s ease-in-out;
+        border: solid 1.5px white;
+        transition: border 3s ease-in-out;
 
         @media (min-width: 1920px) {
             width: 50vw;
@@ -292,6 +296,13 @@ const splitText = (text) => {
     }
 
 
+    .cover_image_container {
+        width: 100%;
+        display: block;
+        position: relative;
+        z-index: 1;
+    }
+    
     :global(.cover_image) {
         opacity: 1;
         display: block;
@@ -337,14 +348,16 @@ const splitText = (text) => {
         display: block;
 
         width: 100%;
-        height: 100%;
+        height: calc(100% - 2px);
 
         grid-column: 2 / 8;
         grid-row: 2;
 
         background-color: transparent;
 
-        margin-top: 2%;
+        margin-top: 0.1%;
+        
+        padding-top: 1%;
         padding-right: var(--spacing-XS);
 
         overflow-y: scroll !important;  
@@ -382,7 +395,7 @@ const splitText = (text) => {
         z-index: 0;
     }
 
-    .card_scroll_flex > .p1 {
+    .card_scroll_flex > .p3 {
         width: 95%;
     }
 
@@ -423,10 +436,6 @@ const splitText = (text) => {
         transform: translateX(100%);
     }
 
-    /* Alternative approach using JavaScript class toggling */
-    :global(.card_container_inner.shift-right) {
-        transform: translateX(100%);
-    }
 
     .card_corner_logo {
         position: absolute;
@@ -442,6 +451,20 @@ const splitText = (text) => {
         width: 100%;
         aspect-ratio: 21 / 9;
         object-fit: cover;
+        filter: grayscale(100%);
+        mix-blend-mode: overlay;
+    }
+
+    .overlay_filter {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: '';
+        z-index: 1;
+        opacity: 0.8;
+        mix-blend-mode: color;
     }
 
     /* Scrollbar stuff */
@@ -630,9 +653,9 @@ const splitText = (text) => {
 
     :global(.simplebar-track.simplebar-vertical) {
         top: 2px;
-        height: 80%;
+        bottom: 2px;
+        height: 100%;
         width: var(--spacing-S);
-        padding-bottom: var(--spacing-3XL);
     }
 
     :global(.simplebar-scrollbar:before) {
@@ -677,8 +700,8 @@ const splitText = (text) => {
     }
 
     :global(.simplebar-dummy-scrollbar-size > div) {
-        width: 200%;
-        height: 200%;
+        width: 100%;
+        height: 100%;
         margin: 10px 0;
     }
 

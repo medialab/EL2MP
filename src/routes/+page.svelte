@@ -7,6 +7,7 @@
     import FloatingCard from "$lib/components/floating_card.svelte";
     import ReactionDiffusion from "$lib/components/reactionDiffusion.svelte";
     import Textbox from "$lib/components/textboxes.svelte";
+    import Slider from "$lib/components/buttons/slider.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
     import { format, formatDistance, formatRelative, subDays } from 'date-fns'
@@ -193,7 +194,9 @@
         isFirstReset = false; // Set the flag to false after the first invocation
 
         if ($isAlterEgoMode) {
-            switch_alterego();
+            setTimeout(() => {
+                switch_alterego();
+            }, 450);
         }
     };
 
@@ -216,7 +219,7 @@
 
     const switch_alterego = () => {
 
-        $isAlterEgoMode = !$isAlterEgoMode; // I will need to implement more
+        $isAlterEgoMode = !$isAlterEgoMode;
         
         // Handle floaters based on alter ego mode
         if (floaters) {
@@ -232,16 +235,6 @@
                 }
             });
         }
-        
-        // Update alter ego containers
-        const alterEgoContainers = document.querySelectorAll('.altergo_container_inner');
-        alterEgoContainers.forEach(container => {
-            if ($isAlterEgoMode) {
-                container.classList.add('open');
-            } else {
-                container.classList.remove('open');
-            }
-        });
         
         // Update card container border colors
         const cardContainers = document.querySelectorAll('.card_container');
@@ -453,7 +446,6 @@
         const simpleBar = (await import('simplebar')).default;
         const ResizeObserver = (await import('resize-observer-polyfill')).default;
 
-
         const userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
         // Initialize the size
@@ -480,8 +472,6 @@
 
             // Storing positions
             containers.forEach((container, index) => {
-                const totalCards = containers.length;
-
                 // Dimensions of the viewport
                 const hostRect = hostElement.getBoundingClientRect();
                 const windowWidth = hostRect.width;
@@ -492,23 +482,26 @@
 
                 // Get card dimensions (assuming all cards are the same size)
                 const cardWidth = windowWidth * 0.6;
-                const cardHeight = cardWidth / 1.5
-
+                const cardHeight = cardWidth / 1.5;
+                
                 // Calculate the total block width and height
-                const totalBlockWidth = cardWidth + ((totalCards - 1) * Math.abs(offset));
-                const totalBlockHeight = cardHeight + ((totalCards - 1) * Math.abs(offset));
+                const totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
+                const totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
 
                 // Calculate the starting position (top-left of the first card) to center the block
-                const startX = (windowWidth - totalBlockWidth) / 2;
-                const startY = (windowHeight - totalBlockHeight) / 2;
+                const startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length - 1);
+                const startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length - 1);
 
                 // Calculate the position for the current container based on the index
-                let x = startX + index * offset;
-                let y = startY + index * offset;
+                const x = startX + index * offset;
+                const y = startY + index * offset;
 
-                initialPositions.push({ x, y });
+                // Update initial positions
+                initialPositions[index] = { x, y };
 
                 // Apply the position to the container
+                container.style.transition = 'transform 0.3s ease-in-out';
+                container.style.transformOrigin = 'top left';
                 container.style.transform = `translate(${x}px, ${y}px)`;
                 container.setAttribute('data-x', x);
                 container.setAttribute('data-y', y);
@@ -517,13 +510,18 @@
                 container.setAttribute('data-index', index);
 
                 const cardData = Object.values(data.cardsDb)[index];
-
                 if (cardData && cardData.bgColor) {
                     container.style.backgroundColor = cardData.bgColor;
                 }
 
                 container.style.opacity = '0';
 
+                // Remove transition after initial positioning
+                setTimeout(() => {
+                    container.style.transition = '';
+                }, 300);
+
+                // Fade in animation
                 setTimeout(() => {
                     setTimeout(() => {
                         container.style.display = 'block';
@@ -747,6 +745,8 @@
                 });
             });
 
+            /* We leave out the draggability for the textboxs for now and keep them static
+            
             // Add draggable functionality to text boxes
             const textBoxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
             textBoxes.forEach((textBox) => {
@@ -810,7 +810,7 @@
                     ],
                     inertia: true,
                 });
-            });
+            }); */
 
             tick();
 
@@ -830,8 +830,7 @@
             await tick(); // Wait for the DOM to update
 
             // Call the positioning logic here
-            reset_function(); // Call the function that positions the cards
-
+            // reset_function(); // Call the function that positions the cards
         }
 
 
@@ -853,13 +852,13 @@
 
         <Textbox/>
 
+        <Slider
+        switch_alterego = {switch_alterego}
+        pillBgColor = {currentCardColor}/>
+
         <LogoButton
-            data = {data}
             logoImage = {data.logoImage}
             switch_alterego = {switch_alterego}
-            simplebarContainer = {simplebarContainer}
-            selectedCardTitle = {activeMarker}
-            currentScrollLevel = {currentScrollLevel}
         />
 
         <ResetButton
@@ -872,13 +871,14 @@
             data = {data}
             time= {formattedTime || "Loading..."}
         />
-        -->
+        
 
         <PositionMarkerButton
             data = {data}
             selectedCardTitle = {activeMarker}
             currentScrollLevel = {currentScrollLevel}
         />
+        -->
 
         {#if !isMobileDevice}
             {#each Object.values(data.cardsDb) as card (card.IndexNum)}
@@ -911,7 +911,7 @@
 
             <div class="mobile_description">
                 <p class="p2">
-                    {@html data.projectDescription}
+                    {@html data.cardsDb.Card1.Description}
                 </p>
             </div>
 
@@ -1173,7 +1173,8 @@
     }
 
     :global(.h0) {
-        font-size: 8em;
+        font-size: 9vw;
+        line-height: 1;
 
         @media (min-width: 1920px) {
             font-size: 12em;
@@ -1186,19 +1187,19 @@
     }
 
     :global(.h1) {
-        font-size: 6em;
+        font-size: 5vw;
         font-family: var(--serif-font-family), var(--fallback-serif-font);
         font-weight: 400;
     }
 
     :global(.h2) {
-        font-size: 3.75em; /* 60px */
+        font-size: 3.15em; /* 60px */
         font-family: var(--serif-font-family), var(--fallback-serif-font);
         font-weight: 400;
     }
 
     :global(.h3) {
-        font-size: 3em; /* 48px */
+        font-size: 2.5em; /* 48px */
         font-family: var(--serif-font-family), var(--fallback-serif-font);
         font-weight: 400;
     }
@@ -1237,24 +1238,22 @@
     }
 
     :global(.p1) {
-        font-size: 1em;
-
-        @media (min-width: 1920px) {
-            font-size: 1.5em;
-        }
-
+        font-size: 2.6vw;
+        line-height: 1.2;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
     }
 
     :global(.p2) {
-        font-size: 0.875em; /* 14px */
+        font-size: 2vw;
+        line-height: 1.5;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
     }
 
     :global(.p3) {
-        font-size: 0.75em; /* 12px */
+        font-size: 1.5vw;
+        line-height: 1.5;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
     }
