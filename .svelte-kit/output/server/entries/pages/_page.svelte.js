@@ -1,23 +1,17 @@
-import { W as ensure_array_like, X as stringify, Y as store_get, Z as unsubscribe_stores, _ as bind_props, S as pop, P as push, $ as store_set } from "../../chunks/index.js";
+import { I as current_component, J as ensure_array_like, K as attr, M as attr_style, N as stringify, O as attr_class, P as store_get, Q as unsubscribe_stores, R as bind_props, p as pop, b as push, e as escape_html, S as store_set } from "../../chunks/index.js";
 import { w as writable } from "../../chunks/index2.js";
 import "clsx";
-import { e as escape_html } from "../../chunks/escaping.js";
-const replacements = {
-  translate: /* @__PURE__ */ new Map([
-    [true, "yes"],
-    [false, "no"]
-  ])
-};
-function attr(name, value, is_boolean = false) {
-  if (value == null || !value && is_boolean || value === "" && name === "class") return "";
-  const normalized = name in replacements && replacements[name].get(value) || value;
-  const assignment = is_boolean ? "" : `="${escape_html(normalized, true)}"`;
-  return ` ${name}${assignment}`;
-}
 function html(value) {
   var html2 = String(value ?? "");
   var open = "<!---->";
   return open + html2 + "<!---->";
+}
+function onDestroy(fn) {
+  var context = (
+    /** @type {Component} */
+    current_component
+  );
+  (context.d ??= []).push(fn);
 }
 const isAlterEgoMode = writable(true);
 const transitionTime = 1.5;
@@ -34,29 +28,29 @@ function Capitols($$payload, $$props) {
   let transitionDelay = $$props["transitionDelay"];
   data.isProjCover;
   const each_array_1 = ensure_array_like(card.Content ?? []);
-  $$payload.out += `<section class="card_container svelte-1864dax" draggable="true" aria-label="Draggable Card"${attr("data-section", card.Title)}><div class="card_container_inner svelte-1864dax"${attr("style", `transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo)} style="z-index: 5;" alt="EL2MP Logo"> <div class="description_container svelte-1864dax"${attr("style", `background-color: ${stringify(card.bgColor)}; border: 5px solid ${stringify(card.bgColor)};`)}><p class="h0 svelte-1864dax" style="z-index: 7;">${html(card.Title)}</p></div> <div class="card_scrollable_container svelte-1864dax" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", card.Title)}><div class="card_scroll_flex svelte-1864dax"${attr("data-section", card.Title)}><p class="p1 svelte-1864dax" id="description">${html(card.Question)}</p> `;
+  $$payload.out += `<section class="card_container svelte-7xznsd" draggable="true" aria-label="Draggable Card"${attr("data-section", card.Title)}><div class="card_container_inner svelte-7xznsd"${attr_style(`transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo)} style="z-index: 5;" alt="EL2MP Logo"> <div class="description_container svelte-7xznsd"${attr_style(`background-color: ${stringify(card.bgColor)}; border: 5px solid ${stringify(card.bgColor)};`)}><p class="h0 svelte-7xznsd" style="z-index: 7;">${html(card.Title)}</p></div> <div class="card_scrollable_container svelte-7xznsd" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", card.Title)}><div class="card_scroll_flex svelte-7xznsd"${attr("data-section", card.Title)}><p class="p1 svelte-7xznsd" id="description">${html(card.Question)}</p> `;
   if (card.Description) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<p class="p3 svelte-1864dax" id="description">${html(card.Description)}</p>`;
+    $$payload.out += `<p class="p3 svelte-7xznsd" id="description">${html(card.Description)}</p>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]--> `;
   if (card.CoverImg) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<div class="cover_image_container svelte-1864dax"><div class="overlay_filter svelte-1864dax"${attr("style", `background-color: ${stringify(card.bgColor)};`)}></div> `;
+    $$payload.out += `<div class="cover_image_container svelte-7xznsd"><div class="overlay_filter svelte-7xznsd"${attr_style(`background-color: ${stringify(card.bgColor)};`)}></div> `;
     if (typeof card.CoverImg === "string") {
       $$payload.out += "<!--[-->";
-      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-1864dax"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}>`;
+      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-7xznsd"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}>`;
     } else {
       $$payload.out += "<!--[!-->";
       const each_array = ensure_array_like(Object.entries(card.CoverImg.sources));
-      $$payload.out += `<picture class="svelte-1864dax"><!--[-->`;
+      $$payload.out += `<picture class="svelte-7xznsd"><!--[-->`;
       for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
         let [format, srcset] = each_array[$$index];
-        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-1864dax">`;
+        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-7xznsd">`;
       }
-      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-1864dax"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}></picture>`;
+      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-7xznsd"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}></picture>`;
     }
     $$payload.out += `<!--]--></div>`;
   } else {
@@ -67,36 +61,36 @@ function Capitols($$payload, $$props) {
     $$payload.out += "<!--[-->";
     for (let index = 0, $$length = each_array_1.length; index < $$length; index++) {
       let section = each_array_1[index];
-      $$payload.out += `<div class="section_container svelte-1864dax" data-sveltekit-preload-data=""${attr("data-section", `Ex ${index + 1}`)}>`;
+      $$payload.out += `<div class="section_container svelte-7xznsd" data-sveltekit-preload-data=""${attr("data-section", `Ex ${index + 1}`)}>`;
       if (section.title) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<p class="h3 svelte-1864dax">${html(section.title)}</p>`;
+        $$payload.out += `<p class="h2 svelte-7xznsd">${html(section.title)}</p>`;
       } else {
         $$payload.out += "<!--[!-->";
       }
       $$payload.out += `<!--]--> `;
       if (section.subtitle) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<p class="p3 svelte-1864dax" exercise-description="">${html(section.subtitle)}</p>`;
+        $$payload.out += `<p class="p3 svelte-7xznsd" exercise-description="">${html(section.subtitle)}</p>`;
       } else {
         $$payload.out += "<!--[!-->";
       }
       $$payload.out += `<!--]--> `;
       if (section.picture) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<div class="cover_image_container svelte-1864dax"><div class="overlay_filter svelte-1864dax"${attr("style", `background-color: ${stringify(card.bgColor)};`)}></div> `;
+        $$payload.out += `<div class="cover_image_container svelte-7xznsd"><div class="overlay_filter svelte-7xznsd"${attr_style(`background-color: ${stringify(card.bgColor)};`)}></div> `;
         if (typeof section.picture === "string") {
           $$payload.out += "<!--[-->";
-          $$payload.out += `<img data-sveltekit-preload-data="" class="article_image svelte-1864dax"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}>`;
+          $$payload.out += `<img data-sveltekit-preload-data="" class="article_image svelte-7xznsd"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}>`;
         } else {
           $$payload.out += "<!--[!-->";
           const each_array_2 = ensure_array_like(Object.entries(section.picture.sources));
-          $$payload.out += `<picture class="svelte-1864dax"><!--[-->`;
+          $$payload.out += `<picture class="svelte-7xznsd"><!--[-->`;
           for (let $$index_1 = 0, $$length2 = each_array_2.length; $$index_1 < $$length2; $$index_1++) {
             let [format, srcset] = each_array_2[$$index_1];
-            $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-1864dax">`;
+            $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-7xznsd">`;
           }
-          $$payload.out += `<!--]--> <img data-sveltekit-preload-data="" class="article_image svelte-1864dax"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}></picture>`;
+          $$payload.out += `<!--]--> <img data-sveltekit-preload-data="" class="article_image svelte-7xznsd"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}></picture>`;
         }
         $$payload.out += `<!--]--></div>`;
       } else {
@@ -105,7 +99,7 @@ function Capitols($$payload, $$props) {
       $$payload.out += `<!--]--> `;
       if (section.text) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<div class="double_column_text_article svelte-1864dax"><p class="p3 svelte-1864dax">${html(section.text)}</p></div>`;
+        $$payload.out += `<div class="double_column_text_article svelte-7xznsd"><p class="p3 svelte-7xznsd">${html(section.text)}</p></div>`;
       } else {
         $$payload.out += "<!--[!-->";
       }
@@ -113,12 +107,12 @@ function Capitols($$payload, $$props) {
     }
   } else {
     $$payload.out += "<!--[!-->";
-    $$payload.out += `<p class="svelte-1864dax">If you see this we are encountering issues</p>`;
+    $$payload.out += `<p class="svelte-7xznsd">If you see this we are encountering issues</p>`;
   }
-  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo)} alt="EL2MP Logo"></div> <div${attr("class", `altergo_container_inner ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "open" : "")} svelte-1864dax`)}${attr("style", `background-color: ${stringify(alterEgoCard.bgColor)} !important; transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo_white)} alt="EL2MP Logo" style="z-index: 10;"> <div class="description_container svelte-1864dax"${attr("style", `background-color: ${stringify(alterEgoCard.bgColor)}; border: 5px solid ${stringify(alterEgoCard.bgColor)};`)}><p class="h0 svelte-1864dax" style="z-index: 7; line-height: 1;">${html(alterEgoCard.Title)}</p></div> <div class="card_scrollable_container svelte-1864dax" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", alterEgoCard.Title)}><div class="card_scroll_flex svelte-1864dax"${attr("data-section", alterEgoCard.Title)}>`;
+  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo)} alt="EL2MP Logo"></div> <div${attr_class(`altergo_container_inner ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "open" : "")}`, "svelte-7xznsd")}${attr_style(`background-color: ${stringify(alterEgoCard.bgColor)} !important; transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo_white)} alt="EL2MP Logo" style="z-index: 10;"> <div class="description_container svelte-7xznsd"${attr_style(`background-color: ${stringify(alterEgoCard.bgColor)}; border: 5px solid ${stringify(alterEgoCard.bgColor)};`)}><p class="h0 svelte-7xznsd" style="z-index: 7; line-height: 1;">${html(alterEgoCard.Title)}</p></div> <div class="card_scrollable_container svelte-7xznsd" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", alterEgoCard.Title)}><div class="card_scroll_flex svelte-7xznsd"${attr("data-section", alterEgoCard.Title)}><p class="p1 svelte-7xznsd" id="description">${html(alterEgoCard.Question)}</p> `;
   if (alterEgoCard.Description) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<p class="p3 svelte-1864dax" id="description">${html(alterEgoCard.Description)}</p>`;
+    $$payload.out += `<p class="p3 svelte-7xznsd" id="description">${html(alterEgoCard.Description)}</p>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
@@ -127,22 +121,22 @@ function Capitols($$payload, $$props) {
     $$payload.out += "<!--[-->";
     if (typeof alterEgoCard.CoverImg === "string") {
       $$payload.out += "<!--[-->";
-      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-1864dax"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}>`;
+      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-7xznsd"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}>`;
     } else {
       $$payload.out += "<!--[!-->";
       const each_array_3 = ensure_array_like(Object.entries(alterEgoCard.CoverImg.sources));
-      $$payload.out += `<picture class="svelte-1864dax"><!--[-->`;
+      $$payload.out += `<picture class="svelte-7xznsd"><!--[-->`;
       for (let $$index_3 = 0, $$length = each_array_3.length; $$index_3 < $$length; $$index_3++) {
         let [format, srcset] = each_array_3[$$index_3];
-        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-1864dax">`;
+        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-7xznsd">`;
       }
-      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-1864dax"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}></picture>`;
+      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-7xznsd"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}></picture>`;
     }
     $$payload.out += `<!--]-->`;
   } else {
     $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-1864dax"${attr("src", condensed_logo)} alt="EL2MP Logo"></div></section>`;
+  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo)} alt="EL2MP Logo"></div></section>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, {
     data,
@@ -158,7 +152,7 @@ function Capitols($$payload, $$props) {
 }
 function Logo_button($$payload, $$props) {
   let logoImage = $$props["logoImage"];
-  $$payload.out += `<button class="closing_icon"><img${attr("src", logoImage)} alt="EL2MP Logo"></button>`;
+  $$payload.out += `<button class="closing_icon svelte-z5ejyt"><img${attr("src", logoImage)} alt="EL2MP Logo" class="svelte-z5ejyt"></button>`;
   bind_props($$props, { logoImage });
 }
 function Reset_button($$payload, $$props) {
@@ -171,7 +165,7 @@ function Floating_card($$payload, $$props) {
   let data = $$props["data"];
   let randomPosition = $$props["randomPosition"];
   let color = $$props["color"];
-  $$payload.out += `<div class="floater_container closed"${attr("data-parent", data.parent)}${attr("style", `top: ${stringify(randomPosition.top)}; left: ${stringify(randomPosition.left)}; z-index: ${stringify(randomPosition.zIndex)}; animation-delay: ${stringify(randomPosition.animationDelay)};`)}>`;
+  $$payload.out += `<div class="floater_container closed"${attr("data-parent", data.parent)}${attr_style(`top: ${stringify(randomPosition.top)}; left: ${stringify(randomPosition.left)}; z-index: ${stringify(randomPosition.zIndex)}; animation-delay: ${stringify(randomPosition.animationDelay)};`)}>`;
   if (data.media) {
     $$payload.out += "<!--[-->";
     {
@@ -181,33 +175,21 @@ function Floating_card($$payload, $$props) {
   } else {
     $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--> <a class="floater_bottom"${attr("style", `background-color: ${stringify(color)}`)} aria-label="Close" role="button">`;
+  $$payload.out += `<!--]--> <a class="floater_bottom"${attr_style(`background-color: ${stringify(color)}`)} aria-label="Close" role="button">`;
   if (data.category === "document") {
     $$payload.out += "<!--[-->";
     $$payload.out += `<div class="category_icon" id="document"${attr("href", data.file || data.href || void 0)}${attr("download", data.file ? data.Title : void 0)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M330-250h300v-60H330v60Zm0-160h300v-60H330v60Zm-77.69 310Q222-100 201-121q-21-21-21-51.31v-615.38Q180-818 201-839q21-21 51.31-21H570l210 210v477.69Q780-142 759-121q-21 21-51.31 21H252.31ZM540-620v-180H252.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v615.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85h455.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46V-620H540ZM240-800v180-180V-160v-640Z"></path></svg></div> <div class="darker"></div>`;
+  } else if (data.category === "image") {
+    $$payload.out += "<!--[1-->";
+    $$payload.out += `<div class="category_icon" id="image"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM270-290h423.07L561.54-465.38 449.23-319.23l-80-102.31L270-290Zm-70 90v-560 560Z"></path></svg></div>`;
+  } else if (data.category === "video") {
+    $$payload.out += "<!--[2-->";
+    $$payload.out += `<div class="category_icon" id="video"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m172.31-780 70 140h120l-70-140h80l70 140h120l-70-140h80l70 140h120l-70-140h95.38Q818-780 839-759q21 21 21 51.31v455.38Q860-222 839-201q-21 21-51.31 21H172.31Q142-180 121-201q-21-21-21-51.31v-455.38Q100-738 121-759q21-21 51.31-21ZM160-580v327.69q0 5.39 3.46 8.85t8.85 3.46h615.38q5.39 0 8.85-3.46t3.46-8.85V-580H160Zm0 0v340-340Z"></path></svg></div>`;
+  } else if (data.category === "link") {
+    $$payload.out += "<!--[3-->";
+    $$payload.out += `<div class="category_icon" id="video"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M432.31-298.46H281.54q-75.34 0-128.44-53.1Q100-404.65 100-479.98q0-75.33 53.1-128.44 53.1-53.12 128.44-53.12h150.77v60H281.54q-50.39 0-85.96 35.58Q160-530.38 160-480q0 50.38 35.58 85.96 35.57 35.58 85.96 35.58h150.77v60ZM330-450v-60h300v60H330Zm197.69 151.54v-60h150.77q50.39 0 85.96-35.58Q800-429.62 800-480q0-50.38-35.58-85.96-35.57-35.58-85.96-35.58H527.69v-60h150.77q75.34 0 128.44 53.1Q860-555.35 860-480.02q0 75.33-53.1 128.44-53.1 53.12-128.44 53.12H527.69Z"></path></svg></div>`;
   } else {
     $$payload.out += "<!--[!-->";
-    if (data.category === "image") {
-      $$payload.out += "<!--[-->";
-      $$payload.out += `<div class="category_icon" id="image"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM270-290h423.07L561.54-465.38 449.23-319.23l-80-102.31L270-290Zm-70 90v-560 560Z"></path></svg></div>`;
-    } else {
-      $$payload.out += "<!--[!-->";
-      if (data.category === "video") {
-        $$payload.out += "<!--[-->";
-        $$payload.out += `<div class="category_icon" id="video"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m172.31-780 70 140h120l-70-140h80l70 140h120l-70-140h80l70 140h120l-70-140h95.38Q818-780 839-759q21 21 21 51.31v455.38Q860-222 839-201q-21 21-51.31 21H172.31Q142-180 121-201q-21-21-21-51.31v-455.38Q100-738 121-759q21-21 51.31-21ZM160-580v327.69q0 5.39 3.46 8.85t8.85 3.46h615.38q5.39 0 8.85-3.46t3.46-8.85V-580H160Zm0 0v340-340Z"></path></svg></div>`;
-      } else {
-        $$payload.out += "<!--[!-->";
-        if (data.category === "link") {
-          $$payload.out += "<!--[-->";
-          $$payload.out += `<div class="category_icon" id="video"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M432.31-298.46H281.54q-75.34 0-128.44-53.1Q100-404.65 100-479.98q0-75.33 53.1-128.44 53.1-53.12 128.44-53.12h150.77v60H281.54q-50.39 0-85.96 35.58Q160-530.38 160-480q0 50.38 35.58 85.96 35.57 35.58 85.96 35.58h150.77v60ZM330-450v-60h300v60H330Zm197.69 151.54v-60h150.77q50.39 0 85.96-35.58Q800-429.62 800-480q0-50.38-35.58-85.96-35.57-35.58-85.96-35.58H527.69v-60h150.77q75.34 0 128.44 53.1Q860-555.35 860-480.02q0 75.33-53.1 128.44-53.1 53.12-128.44 53.12H527.69Z"></path></svg></div>`;
-        } else {
-          $$payload.out += "<!--[!-->";
-        }
-        $$payload.out += `<!--]-->`;
-      }
-      $$payload.out += `<!--]-->`;
-    }
-    $$payload.out += `<!--]-->`;
   }
   $$payload.out += `<!--]--> `;
   if (data.Title) {
@@ -222,18 +204,18 @@ function Floating_card($$payload, $$props) {
 }
 function Textboxes($$payload) {
   var $$store_subs;
-  $$payload.out += `<div${attr("class", `text-box-dx svelte-1ns4ooh ${stringify([
-    !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "closed" : ""
-  ].filter(Boolean).join(" "))}`)}><p class="p3 svelte-1ns4ooh">"The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."</p></div> <div${attr("class", `text-box-sx svelte-1ns4ooh ${stringify([
-    !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "closed" : ""
-  ].filter(Boolean).join(" "))}`)}><p class="p2 svelte-1ns4ooh">"How can we reframe the role <br> of LLMs in ordinary work practices?"</p></div>`;
+  $$payload.out += `<div${attr_class("text-box-dx svelte-1cagex1", void 0, {
+    "closed": !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)
+  })}><p class="p3 svelte-1cagex1">"The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."</p></div> <div${attr_class("text-box-sx svelte-1cagex1", void 0, {
+    "closed": !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)
+  })}><p class="p2 svelte-1cagex1">"How can we reframe the role <br> of LLMs in ordinary work practices?"</p></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
 }
 function Slider($$payload, $$props) {
   var $$store_subs;
   let switch_alterego = $$props["switch_alterego"];
   let pillBgColor = $$props["pillBgColor"];
-  $$payload.out += `<div class="slider_container svelte-kp3mje"><button${attr("class", `slider-button first ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")} svelte-kp3mje`)}${attr("disabled", store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr("style", `pointer-events: ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3">Project</p></button> <button${attr("class", `slider-button second ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")} svelte-kp3mje`)}${attr("disabled", !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr("style", `pointer-events: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3" style="padding-left: 12%;">Exercises</p></button> <div${attr("class", `background_slider ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "project" : "exercises")}  svelte-kp3mje`)}${attr("style", `background-color: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? pillBgColor : "black")};`)}></div></div>`;
+  $$payload.out += `<div class="slider_container svelte-11zm6lh"><button${attr_class(`slider-button first ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")}`, "svelte-11zm6lh")}${attr("disabled", store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr_style(`pointer-events: ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3">Project</p></button> <button${attr_class(`slider-button second ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")}`, "svelte-11zm6lh")}${attr("disabled", !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr_style(`pointer-events: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3" style="padding-left: 12%;">Exercises</p></button> <div${attr_class(`background_slider ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "project" : "exercises")} `, "svelte-11zm6lh")}${attr_style(`background-color: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? pillBgColor : "black")};`)}></div></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, { switch_alterego, pillBgColor });
 }
@@ -313,6 +295,20 @@ function _page($$payload, $$props) {
   const updateSelectedCard = (selectedCard2) => {
     if (!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) ;
   };
+  onDestroy(() => {
+    const cleanupElements = () => {
+      try {
+        const sections = document.querySelectorAll(".scrollable-section");
+        if (sections) {
+          sections.forEach((section) => {
+            section.removeEventListener("mouseenter", null);
+          });
+        }
+      } catch (e) {
+      }
+    };
+    cleanupElements();
+  });
   updateSelectedCard();
   if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) !== void 0) alignColor(selectedCard);
   alignColor(selectedCard);
@@ -364,21 +360,7 @@ function _page($$payload, $$props) {
     }
     $$payload.out += `<!--]-->`;
   }
-  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-jj7kzh"><div class="mobile_description svelte-jj7kzh"><p class="p2 svelte-jj7kzh">${html(data.projectDescription)}</p></div> <div class="mobile_description tip svelte-jj7kzh"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div> `;
-  if (typeof data.backgroundImage === "string") {
-    $$payload.out += "<!--[-->";
-    $$payload.out += `<img class="background_image"${attr("src", data.backgroundImage.img.src)} alt="DotsDotsDots?"${attr("width", data.backgroundImage.img.w)}${attr("height", data.backgroundImage.img.h)}>`;
-  } else {
-    $$payload.out += "<!--[!-->";
-    const each_array_2 = ensure_array_like(Object.entries(data.backgroundImage.sources));
-    $$payload.out += `<picture><!--[-->`;
-    for (let $$index_2 = 0, $$length = each_array_2.length; $$index_2 < $$length; $$index_2++) {
-      let [format, srcset] = each_array_2[$$index_2];
-      $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)}>`;
-    }
-    $$payload.out += `<!--]--> <img class="background_image"${attr("src", data.backgroundImage.img.src)} alt="DotsDotsDots?"${attr("width", data.backgroundImage.img.w)}${attr("height", data.backgroundImage.img.h)}></picture>`;
-  }
-  $$payload.out += `<!--]-->`;
+  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-45e4q4"><div class="mobile_description svelte-45e4q4"><p class="p2 svelte-45e4q4">${html(data.alterEgosDb.Card1.Description)}</p></div> <div class="mobile_description tip svelte-45e4q4"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, { data });
   pop();

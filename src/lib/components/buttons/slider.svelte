@@ -27,6 +27,7 @@
 </div>
 
 <style>
+    
     .slider_container {
         display: flex;
         flex-direction: row;
@@ -37,38 +38,41 @@
         left: 50%;
         transform: translateX(-50%);
         background-color: #f0f0f0;
-        border-radius: 50px;
-        padding: 5px;
+        border-radius: 10vw;
+        padding: 0.2vw;
         width: fit-content;
 
-        border: solid 1px black;    
+        border: solid 0.05vw black;    
         z-index: 500;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     .slider-button {
         position: relative;
         z-index: 2;
-        padding: 10px 24px;
+        padding: 0.5vw 1.25vw;
         border: none;
         background: transparent;
-        font-size: 18px;
+        font-size: 0.94vw;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 50px;
+        border-radius: 10vw;
         color: #333;
         transition: color var(--transition-times) var(--transition-curve);
     }
-
     .first {
         position: relative;
         z-index: 2;
-        padding: 10px 24px;
+        padding: 0.52vw 1.25vw;
         border: none;
         background: transparent;
-        font-size: 18px;
+        font-size: 0.94vw;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 50px;
+        border-radius: 10vw;
         color: #333;
         transition: color var(--transition-times) var(--transition-curve);
     }
@@ -76,13 +80,13 @@
     .second {
         position: relative;
         z-index: 2;
-        padding: 10px 24px;
+        padding: 0.32vw 1.5vw;
         border: none;
         background: transparent;
-        font-size: 18px;
+        font-size: 0.94vw;
         font-weight: 600;
         cursor: pointer;
-        border-radius: 50px;
+        border-radius: 10vw;
         color: #333;
         transition: color var(--transition-times) var(--transition-curve);
     }
@@ -113,7 +117,7 @@
         transform: translate(-50%, -50%) scaleX(0.95) scaleY(0.9);
         background-color: black;
         
-        border-radius: 50px;
+        border-radius: 10vw;
         border: solid 1px black;
         margin: 0px;
         

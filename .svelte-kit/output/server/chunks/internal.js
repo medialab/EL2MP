@@ -1,8 +1,8 @@
-import { i as increment_write_version, a as DIRTY, s as set_signal_status, C as CLEAN, U as UNOWNED, b as DERIVED, c as schedule_effect, M as MAYBE_DIRTY, d as active_reaction, u as untracking, e as is_runes, B as BLOCK_EFFECT, f as derived_sources, g as state_unsafe_mutation, h as active_effect, j as BRANCH_EFFECT, R as ROOT_EFFECT, k as untracked_writes, l as set_untracked_writes, H as HYDRATION_ERROR, m as get_next_sibling, n as define_property, o as set_active_reaction, p as set_active_effect, q as is_array, r as init_operations, t as get_first_child, v as HYDRATION_START, w as HYDRATION_END, x as hydration_failed, y as clear_text_content, z as array_from, A as component_root, E as create_text, F as branch, G as push, I as pop, J as component_context, K as get, L as LEGACY_PROPS, N as flush_sync, O as render, P as push$1, Q as setContext, S as pop$1 } from "./index.js";
-import { s as safe_equals, e as equals } from "./equality.js";
+import { H as HYDRATION_ERROR, c as get_next_sibling, d as define_property, f as set_active_reaction, h as set_active_effect, i as is_array, j as active_effect, k as active_reaction, l as init_operations, m as get_first_child, o as HYDRATION_START, q as HYDRATION_END, r as hydration_failed, t as clear_text_content, u as array_from, v as component_root, w as create_text, x as branch, y as push, z as component_context, A as pop, B as set, L as LEGACY_PROPS, C as get, D as flushSync, E as mutable_source, F as render, b as push$1, G as setContext, p as pop$1 } from "./index.js";
 import "clsx";
 let base = "/EL2MP";
 let assets = base;
+const app_dir = "_app";
 const initial = { base, assets };
 function override(paths) {
   base = paths.base;
@@ -24,75 +24,6 @@ function set_public_env(environment) {
 }
 function set_safe_public_env(environment) {
   safe_public_env = environment;
-}
-function source(v, stack) {
-  var signal = {
-    f: 0,
-    // TODO ideally we could skip this altogether, but it causes type errors
-    v,
-    reactions: null,
-    equals,
-    rv: 0,
-    wv: 0
-  };
-  return signal;
-}
-// @__NO_SIDE_EFFECTS__
-function mutable_source(initial_value, immutable = false) {
-  const s = source(initial_value);
-  if (!immutable) {
-    s.equals = safe_equals;
-  }
-  return s;
-}
-function set(source2, value) {
-  if (active_reaction !== null && !untracking && is_runes() && (active_reaction.f & (DERIVED | BLOCK_EFFECT)) !== 0 && // If the source was created locally within the current derived, then
-  // we allow the mutation.
-  (derived_sources === null || !derived_sources.includes(source2))) {
-    state_unsafe_mutation();
-  }
-  return internal_set(source2, value);
-}
-function internal_set(source2, value) {
-  if (!source2.equals(value)) {
-    source2.v;
-    source2.v = value;
-    source2.wv = increment_write_version();
-    mark_reactions(source2, DIRTY);
-    if (active_effect !== null && (active_effect.f & CLEAN) !== 0 && (active_effect.f & (BRANCH_EFFECT | ROOT_EFFECT)) === 0) {
-      if (untracked_writes === null) {
-        set_untracked_writes([source2]);
-      } else {
-        untracked_writes.push(source2);
-      }
-    }
-  }
-  return value;
-}
-function mark_reactions(signal, status) {
-  var reactions = signal.reactions;
-  if (reactions === null) return;
-  var length = reactions.length;
-  for (var i = 0; i < length; i++) {
-    var reaction = reactions[i];
-    var flags = reaction.f;
-    if ((flags & DIRTY) !== 0) continue;
-    set_signal_status(reaction, status);
-    if ((flags & (CLEAN | UNOWNED)) !== 0) {
-      if ((flags & DERIVED) !== 0) {
-        mark_reactions(
-          /** @type {Derived} */
-          reaction,
-          MAYBE_DIRTY
-        );
-      } else {
-        schedule_effect(
-          /** @type {Effect} */
-          reaction
-        );
-      }
-    }
-  }
 }
 function hydration_mismatch(location) {
   {
@@ -173,8 +104,10 @@ function handle_event_propagation(event) {
       current_target.host || null;
       try {
         var delegated = current_target["__" + event_name];
-        if (delegated !== void 0 && !/** @type {any} */
-        current_target.disabled) {
+        if (delegated != null && (!/** @type {any} */
+        current_target.disabled || // DOM could've been updated already by the time this is reached, so we check this as well
+        // -> the target could not have been disabled because it emits the event in the first place
+        event.target === current_target)) {
           if (is_array(delegated)) {
             var [fn, ...data] = delegated;
             fn.apply(current_target, [event, ...data]);
@@ -382,7 +315,7 @@ class Svelte4Component {
   constructor(options2) {
     var sources = /* @__PURE__ */ new Map();
     var add_source = (key, value) => {
-      var s = /* @__PURE__ */ mutable_source(value);
+      var s = mutable_source(value);
       sources.set(key, s);
       return s;
     };
@@ -412,7 +345,7 @@ class Svelte4Component {
       recover: options2.recover
     });
     if (!options2?.props?.$$host || options2.sync === false) {
-      flush_sync();
+      flushSync();
     }
     this.#events = props.$$events;
     for (const key of Object.keys(this.#instance)) {
@@ -534,7 +467,6 @@ function Root($$payload, $$props) {
 }
 const root = asClassComponent(Root);
 const options = {
-  app_dir: "_app",
   app_template_contains_nonce: false,
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
@@ -548,7 +480,7 @@ const options = {
   root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en">\n  <head>\n    <meta charset="utf-8" />\n    <link rel="icon" href="og_images/favicon.ico" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    ' + head + '\n\n    <noscript>\n      <style>\n        /**\n          * Reinstate scrolling for non-JS clients\n          */\n        .simplebar-content-wrapper {\n          scrollbar-width: auto;\n          -ms-overflow-style: auto;\n        }\n\n        .simplebar-content-wrapper::-webkit-scrollbar,\n        .simplebar-hide-scrollbar::-webkit-scrollbar {\n          display: initial;\n          width: initial;\n          height: initial;\n        }\n      </style>\n    </noscript>\n  </head>\n  <body data-sveltekit-preload-data="hover">\n    <div class="major_div" style="display: contents">' + body + '</div>\n  </body>\n</html>\n\n<svelte:head>\n  <!-- Page Title -->\n  <title>Écologies des Pratiques LLMs (EL2MP)</title>\n\n  <!-- Meta Description -->\n  <meta\n    name="description"\n    content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains."\n  />\n\n  <!-- Canonical URL -->\n  <link rel="canonical" href="https://medialab.github.io/EL2MP/" />\n\n  <!-- Open Graph Meta Tags -->\n  <meta\n    property="og:logo"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg"\n  />\n  <meta property="og:type" content="website" />\n  <meta property="og:title" content="Écologies des Pratiques LLMs (EL2MP)" />\n  <meta\n    property="og:description"\n    content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains."\n  />\n  <meta property="og:url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="og:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    property="og:image:alt"\n    content="Écologies des Pratiques LLMs (EL2MP) Logo"\n  />\n  <meta\n    property="og:site_name"\n    content="Écologies des Pratiques LLMs (EL2MP)"\n  />\n\n  <!-- Instant Articles Meta Tags -->\n  <meta property="ia:markup_url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="ia:markup_url_dev"\n    content="https://medialab.github.io/EL2MP/dev/"\n  />\n  <meta\n    property="ia:rules_url"\n    content="https://medialab.github.io/EL2MP/rules/"\n  />\n  <meta\n    property="ia:rules_url_dev"\n    content="https://medialab.github.io/EL2MP/rules-dev/"\n  />\n\n  <!-- Twitter Card Meta Tags -->\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta name="twitter:title" content="Écologies des Pratiques LLMs (EL2MP)" />\n  <meta\n    name="twitter:description"\n    content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains."\n  />\n  <meta\n    name="twitter:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    name="twitter:image:alt"\n    content="Écologies des Pratiques LLMs (EL2MP) Logo"\n  />\n  <meta name="twitter:site" content="@your_twitter_handle" />\n  <meta name="twitter:creator" content="@your_twitter_handle" />\n\n  <!-- Author and Publish Date (for LinkedIn, Facebook) -->\n  <meta name="author" content="Médialab, Sciences Po" />\n  <meta name="article:published_time" content="2025-01-01T12:00:00+00:00" />\n  <!-- Replace with actual publish date -->\n\n  <!-- Favicon -->\n  <link rel="icon" href="og_images/favicon.ico" />\n</svelte:head>\n\n<style></style>\n',
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" amp style="background-color: #ffffff" color-scheme="light">\n  <head>\n    <meta charset="utf-8" />\n    <meta\n      name="description"\n      content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains."\n    />\n    <link rel="icon" href="og_images/favicon.ico" />\n    <meta name="viewport" content="width=device-width, initial-scale=1" />\n    ' + head + '\n\n    <noscript>\n      <style>\n        /**\n          * Reinstate scrolling for non-JS clients\n          */\n        .simplebar-content-wrapper {\n          scrollbar-width: auto;\n          -ms-overflow-style: auto;\n        }\n\n        .simplebar-content-wrapper::-webkit-scrollbar,\n        .simplebar-hide-scrollbar::-webkit-scrollbar {\n          display: initial;\n          width: initial;\n          height: initial;\n        }\n      </style>\n    </noscript>\n  </head>\n  <body data-sveltekit-preload-data="hover">\n    <div class="major_div" style="display: contents">' + body + '</div>\n  </body>\n</html>\n\n<svelte:head>\n  <!-- Page Title -->\n  <title>Écologies des Pratiques LLMs (EL2MP)</title>\n\n  <!-- Canonical URL -->\n  <link rel="canonical" href="https://medialab.github.io/EL2MP/" />\n\n  <!-- Open Graph Meta Tags -->\n  <meta\n    property="og:logo"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg"\n  />\n  <meta property="og:type" content="website" />\n  <meta property="og:title" content="Écologies des Pratiques LLMs (EL2MP)" />\n  <meta\n    property="og:description"\n    content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains."\n  />\n  <meta property="og:url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="og:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    property="og:image:alt"\n    content="Écologies des Pratiques LLMs (EL2MP) Logo"\n  />\n  <meta\n    property="og:site_name"\n    content="Écologies des Pratiques LLMs (EL2MP)"\n  />\n\n  <!-- Instant Articles Meta Tags -->\n  <meta property="ia:markup_url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="ia:markup_url_dev"\n    content="https://medialab.github.io/EL2MP/dev/"\n  />\n  <meta\n    property="ia:rules_url"\n    content="https://medialab.github.io/EL2MP/rules/"\n  />\n  <meta\n    property="ia:rules_url_dev"\n    content="https://medialab.github.io/EL2MP/rules-dev/"\n  />\n\n  <!-- Twitter Card Meta Tags -->\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta name="twitter:title" content="Écologies des Pratiques LLMs (EL2MP)" />\n  <meta\n    name="twitter:description"\n    content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains."\n  />\n  <meta\n    name="twitter:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    name="twitter:image:alt"\n    content="Écologies des Pratiques LLMs (EL2MP) Logo"\n  />\n  <meta name="twitter:site" content="@your_twitter_handle" />\n  <meta name="twitter:creator" content="@your_twitter_handle" />\n\n  <!-- Author and Publish Date (for LinkedIn, Facebook) -->\n  <meta name="author" content="Médialab, Sciences Po" />\n  <meta name="article:published_time" content="2025-01-01T12:00:00+00:00" />\n  <!-- Replace with actual publish date -->\n\n  <!-- Favicon -->\n  <link rel="icon" href="og_images/favicon.ico" />\n</svelte:head>\n',
     error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -620,13 +552,14 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1lejgd"
+  version_hash: "1p3xx3r"
 };
 async function get_hooks() {
   let handle;
   let handleFetch;
   let handleError;
   let init;
+  ({ handle, handleFetch, handleError, init } = await import("./hooks.server.js"));
   let reroute;
   let transport;
   return {
@@ -641,20 +574,21 @@ async function get_hooks() {
 export {
   assets as a,
   base as b,
-  read_implementation as c,
-  options as d,
-  set_private_env as e,
-  prerendering as f,
-  set_public_env as g,
-  get_hooks as h,
-  set_safe_public_env as i,
-  set_read_implementation as j,
-  set_assets as k,
-  set_building as l,
-  set_manifest as m,
-  set_prerendering as n,
+  app_dir as c,
+  read_implementation as d,
+  options as e,
+  set_private_env as f,
+  get_hooks as g,
+  prerendering as h,
+  set_public_env as i,
+  set_safe_public_env as j,
+  set_read_implementation as k,
+  set_assets as l,
+  set_building as m,
+  set_manifest as n,
   override as o,
   public_env as p,
+  set_prerendering as q,
   reset as r,
   safe_public_env as s
 };

@@ -331,15 +331,14 @@
 
     :global(.floater_container.closed > .floater_bottom) {
         padding: var(--spacing-S);
-        /* transition: width 0.3s ease-in-out; */
         z-index: 4;
     }
 
     :global(.category_icon) {
         display: block;
 
-        width: 1.25vw;
-        height: 1.25vw;
+        width: 20px;
+        height: 20px;
 
         fill: black;
 

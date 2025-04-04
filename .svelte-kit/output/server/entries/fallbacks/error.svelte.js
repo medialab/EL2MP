@@ -1,31 +1,9 @@
-import { e as escape_html } from "../../chunks/escaping.js";
+import { n as noop, g as getContext, e as escape_html, p as pop, b as push } from "../../chunks/index.js";
 import "clsx";
-import { T as noop, V as getContext, S as pop, P as push } from "../../chunks/index.js";
-import { w as writable } from "../../chunks/index2.js";
 import "../../chunks/exports.js";
+import { w as writable } from "../../chunks/index2.js";
 const SNAPSHOT_KEY = "sveltekit:snapshot";
 const SCROLL_KEY = "sveltekit:scroll";
-function notifiable_store(value) {
-  const store = writable(value);
-  let ready = true;
-  function notify() {
-    ready = true;
-    store.update((val) => val);
-  }
-  function set(new_value) {
-    ready = false;
-    store.set(new_value);
-  }
-  function subscribe(run) {
-    let old_value;
-    return store.subscribe((new_value) => {
-      if (old_value === void 0 || ready && new_value !== old_value) {
-        run(old_value = new_value);
-      }
-    });
-  }
-  return { notify, set, subscribe };
-}
 function create_updated_store() {
   const { set, subscribe } = writable(false);
   {
@@ -36,7 +14,6 @@ function create_updated_store() {
     };
   }
 }
-let updated;
 const is_legacy = noop.toString().includes("$$") || /function \w+\(\) \{\}/.test(noop.toString());
 if (is_legacy) {
   ({
@@ -49,11 +26,6 @@ if (is_legacy) {
     status: -1,
     url: new URL("https://example.com")
   });
-  updated = { current: false };
-} else {
-  updated = new class Updated {
-    current = false;
-  }();
 }
 function get(key, parse = JSON.parse) {
   try {
@@ -64,47 +36,20 @@ function get(key, parse = JSON.parse) {
 get(SCROLL_KEY) ?? {};
 get(SNAPSHOT_KEY) ?? {};
 const stores = {
-  url: /* @__PURE__ */ notifiable_store({}),
-  page: /* @__PURE__ */ notifiable_store({}),
-  navigating: /* @__PURE__ */ writable(
-    /** @type {import('@sveltejs/kit').Navigation | null} */
-    null
-  ),
   updated: /* @__PURE__ */ create_updated_store()
 };
 ({
-  get current() {
-    return updated.current;
-  },
   check: stores.updated.check
 });
 function context() {
   return getContext("__request__");
 }
 const page$1 = {
-  get data() {
-    return context().page.data;
-  },
   get error() {
     return context().page.error;
   },
-  get form() {
-    return context().page.form;
-  },
-  get params() {
-    return context().page.params;
-  },
-  get route() {
-    return context().page.route;
-  },
-  get state() {
-    return context().page.state;
-  },
   get status() {
     return context().page.status;
-  },
-  get url() {
-    return context().page.url;
   }
 };
 const page = page$1;

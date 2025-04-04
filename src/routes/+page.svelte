@@ -14,6 +14,9 @@
     import { writable } from "svelte/store";
     import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
     
+    // Store interact reference for cleanup
+    let interactRef;
+    
     //The data containes everything passed from the +page.server.js
     export let data
 
@@ -245,6 +248,7 @@
             } else {
                 // Switch back to black border when exiting alter ego mode
                 card.style.borderColor = 'black';
+                hideFloaters();
             }
         });
     };
@@ -441,8 +445,9 @@
     $: alignColor(selectedCard);
 
     onMount(async () => {
-
         const interact = (await import('interactjs')).default;
+        // Save interact reference for cleanup
+        interactRef = interact;
         const simpleBar = (await import('simplebar')).default;
         const ResizeObserver = (await import('resize-observer-polyfill')).default;
 
@@ -837,9 +842,64 @@
 
         return () => {
             window.removeEventListener('resize', updateWindowSize);
+            clearInterval(interval);
+            // Remove any other event listeners and cleanup here
         };
         
     }); 
+
+    onDestroy(() => {
+        // Ensure all resources are properly cleaned up
+        // This helps with memory management and prevents the UnloadHandler warning
+        const cleanupElements = () => {
+            // Clean up any animations or timers
+            if (containers && interactRef) {
+                containers.forEach(container => {
+                    // Cleanup interact.js event listeners
+                    try {
+                        interactRef(container).unset();
+                    } catch (e) {
+                        // Interact.js might not be available
+                        console.log("Could not cleanup interact event handlers");
+                    }
+                });
+            }
+            
+            if (floaters && interactRef) {
+                floaters.forEach(floater => {
+                    // Cleanup interact.js event listeners
+                    try {
+                        interactRef(floater).unset();
+                    } catch (e) {
+                        // Interact.js might not be available
+                        console.log("Could not cleanup interact event handlers");
+                    }
+                    
+                    // Cancel any ongoing animations
+                    if (floater.style.animation) {
+                        floater.style.animation = 'none';
+                    }
+                    
+                    // Remove any transform transitions
+                    floater.style.transition = 'none';
+                });
+            }
+            
+            // Cleanup any document-level event listeners
+            try {
+                const sections = document.querySelectorAll('.scrollable-section');
+                if (sections) {
+                    sections.forEach((section) => {
+                        section.removeEventListener("mouseenter", null);
+                    });
+                }
+            } catch (e) {
+                // Elements might not be available
+            }
+        };
+        
+        cleanupElements();
+    });
 
 </script>
 
@@ -911,7 +971,7 @@
 
             <div class="mobile_description">
                 <p class="p2">
-                    {@html data.cardsDb.Card1.Description}
+                    {@html data.alterEgosDb.Card1.Description}
                 </p>
             </div>
 
@@ -928,11 +988,11 @@
 </div>
     
 
-<enhanced:img
+<!-- <enhanced:img
     class="background_image"
     src={data.backgroundImage}
     alt="DotsDotsDots?"
-/>
+/> -->
 
 
 <style global>
@@ -942,13 +1002,15 @@
         height: 100vh;
         display: flex;
         flex-direction: row;
+        background-color: transparent;
 
-        @media (max-width: 760px) {
+        @media (max-width: 768px) {
             height: 100vh;
             max-height: 100vh;
             width: 100%;
             flex-direction: column;
             display: flex;
+            margin-top: calc(1/8 * 100vw);
         }
     }
 
@@ -958,6 +1020,7 @@
         overflow: hidden;
         position: relative;
         z-index: 6;
+        background-color: transparent;
 
         @media (max-width: 768px) {
             display: flex;
@@ -979,6 +1042,7 @@
         user-select: none;
         overflow: hidden;
         object-fit: cover;
+        background-image: url('/og_images/background.png');
     }
 
     :global(.grab) {
@@ -998,6 +1062,12 @@
         -webkit-font-smoothing: antialiased; /* Improves font rendering on WebKit */
         -moz-osx-font-smoothing: grayscale; /* Improves font rendering on macOS */
         overflow: hidden;
+        background-color: white !important;
+        background-image: url('/og_images/background.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 
     :global(.major_div) {
@@ -1015,7 +1085,7 @@
         margin: 0; /* Removes default body margin */
         padding: 0; /* Removes default body padding */
         color: #333; /* Default text color */
-        background-color: #f7f7f7; /* Default background color */
+        background-color: transparent; /* Default background color */
         min-height: 100%;
         min-width: 100%;
         display: flex; /* Allows flexible layout setups */
@@ -1302,10 +1372,6 @@
         background: transparent;
     } */
 
-    .mobile_text {
-        display: none;  
-    }
-
     .mobile_description {
         display: none;
     }
@@ -1315,22 +1381,14 @@
     }
 
     @media only screen and (max-width: 768px) {
-        .closing_icon {
-            display: none;
-        }
-
-        .mobile_text {
-            display: block;
-            height: max-content;
-            width: 100%;
-        }
 
         .mobile_description {
             display: block;
             border: solid 1px black;
             border-radius: 10px 10px 10px 10px;
             width: 100%;
-            height: 100%;
+            height: fit-content;
+            max-height: 90%;
 
             padding: var(--spacing-S);
             overflow-y: scroll;
@@ -1342,6 +1400,8 @@
         .mobile_description.tip {
             height: fit-content;
             overflow: hidden;
+            padding: var(--spacing-S);
+            margin-bottom: var(--spacing-S);
         }
 
         .mobile_description > .p2 {
@@ -1381,11 +1441,12 @@
         .mobile_desc_container {
             display: flex;
             flex: 1;
-
             position: static;
             flex-direction: column;
             justify-content: space-between;
             margin: var(--spacing-L);
+            margin-bottom: 0px;
+            height: 90%;
         }
 
     }

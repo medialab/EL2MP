@@ -24,9 +24,9 @@
     "file": "_app/immutable/assets/Cover_Excel.YtVyHxSg.avif",
     "src": "Cover_Excel.avif"
   },
-  "Cover_Excel.jpg": {
-    "file": "_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg",
-    "src": "Cover_Excel.jpg"
+  "Cover_Excel.jpeg": {
+    "file": "_app/immutable/assets/Cover_Excel.ofYBK4AV.jpeg",
+    "src": "Cover_Excel.jpeg"
   },
   "Cover_Excel.webp": {
     "file": "_app/immutable/assets/Cover_Excel.rmilwwC7.webp",
@@ -36,9 +36,9 @@
     "file": "_app/immutable/assets/Cover_Prompting.CVswunsj.avif",
     "src": "Cover_Prompting.avif"
   },
-  "Cover_Prompting.jpg": {
-    "file": "_app/immutable/assets/Cover_Prompting._sRDpei3.jpg",
-    "src": "Cover_Prompting.jpg"
+  "Cover_Prompting.jpeg": {
+    "file": "_app/immutable/assets/Cover_Prompting._sRDpei3.jpeg",
+    "src": "Cover_Prompting.jpeg"
   },
   "Cover_Prompting.webp": {
     "file": "_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp",
@@ -248,14 +248,6 @@
     "file": "_app/immutable/assets/Ex_9.DNifANYX.webp",
     "src": "Ex_9.webp"
   },
-  "_equality.js": {
-    "file": "chunks/equality.js",
-    "name": "equality"
-  },
-  "_escaping.js": {
-    "file": "chunks/escaping.js",
-    "name": "escaping"
-  },
   "_exports.js": {
     "file": "chunks/exports.js",
     "name": "exports"
@@ -268,16 +260,17 @@
     "file": "chunks/index2.js",
     "name": "index",
     "imports": [
-      "_index.js",
-      "_equality.js"
+      "_index.js"
     ]
   },
   "_internal.js": {
     "file": "chunks/internal.js",
     "name": "internal",
     "imports": [
-      "_index.js",
-      "_equality.js"
+      "_index.js"
+    ],
+    "dynamicImports": [
+      "src/hooks.server.js"
     ]
   },
   "enhanced_logoImage.avif": {
@@ -310,19 +303,9 @@
     "src": "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/error.svelte",
     "isEntry": true,
     "imports": [
-      "_escaping.js",
       "_index.js",
-      "_index2.js",
-      "_exports.js"
-    ]
-  },
-  "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/layout.svelte": {
-    "file": "entries/fallbacks/layout.svelte.js",
-    "name": "entries/fallbacks/layout.svelte",
-    "src": "node_modules/@sveltejs/kit/src/runtime/components/svelte-5/layout.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index.js"
+      "_exports.js",
+      "_index2.js"
     ]
   },
   "node_modules/@sveltejs/kit/src/runtime/server/index.js": {
@@ -336,6 +319,12 @@
       "_exports.js",
       "_index2.js"
     ]
+  },
+  "src/hooks.server.js": {
+    "file": "chunks/hooks.server.js",
+    "name": "hooks.server",
+    "src": "src/hooks.server.js",
+    "isDynamicEntry": true
   },
   "src/lib/media/logos/CIRCLE.svg": {
     "file": "_app/immutable/assets/CIRCLE.DnMg9Kjx.svg",
@@ -360,6 +349,21 @@
   "src/lib/media/videos/Topcamera.webm": {
     "file": "_app/immutable/assets/Topcamera.Cs5dpslX.webm",
     "src": "src/lib/media/videos/Topcamera.webm"
+  },
+  "src/routes/+layout.server.js": {
+    "file": "entries/pages/_layout.server.js",
+    "name": "entries/pages/_layout.server",
+    "src": "src/routes/+layout.server.js",
+    "isEntry": true
+  },
+  "src/routes/+layout.svelte": {
+    "file": "entries/pages/_layout.svelte.js",
+    "name": "entries/pages/_layout.svelte",
+    "src": "src/routes/+layout.svelte",
+    "isEntry": true,
+    "imports": [
+      "_index.js"
+    ]
   },
   "src/routes/+page.server.js": {
     "file": "entries/pages/_page.server.js",
@@ -457,12 +461,6 @@
       "_app/immutable/assets/Ex_16.B_mHLV4o.webp",
       "_app/immutable/assets/Ex_16.Dr1t1NR2.jpeg",
       "_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg",
-      "_app/immutable/assets/Cover_Qualifying.PPNdzo-x.avif",
-      "_app/immutable/assets/Cover_Qualifying.w0tT1uid.avif",
-      "_app/immutable/assets/Cover_Qualifying.D96L0Yr-.webp",
-      "_app/immutable/assets/Cover_Qualifying.BLk4sVs5.webp",
-      "_app/immutable/assets/Cover_Qualifying.BZSPOcQX.jpeg",
-      "_app/immutable/assets/Cover_Qualifying.Cm3vlG1u.jpeg",
       "_app/immutable/assets/Cover_Benchmarking.BCpfoXVG.avif",
       "_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif",
       "_app/immutable/assets/Cover_Benchmarking.D1Sy1JP-.webp",
@@ -473,14 +471,14 @@
       "_app/immutable/assets/Cover_Prompting.CVswunsj.avif",
       "_app/immutable/assets/Cover_Prompting.CdQ9s7bm.webp",
       "_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp",
-      "_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpg",
-      "_app/immutable/assets/Cover_Prompting._sRDpei3.jpg",
+      "_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpeg",
+      "_app/immutable/assets/Cover_Prompting._sRDpei3.jpeg",
       "_app/immutable/assets/Cover_Excel.gVnMv0iS.avif",
       "_app/immutable/assets/Cover_Excel.YtVyHxSg.avif",
       "_app/immutable/assets/Cover_Excel.B6pS74dt.webp",
       "_app/immutable/assets/Cover_Excel.rmilwwC7.webp",
-      "_app/immutable/assets/Cover_Excel.V_SxdBne.jpg",
-      "_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg",
+      "_app/immutable/assets/Cover_Excel.V_SxdBne.jpeg",
+      "_app/immutable/assets/Cover_Excel.ofYBK4AV.jpeg",
       "_app/immutable/assets/CIRCLE.DnMg9Kjx.svg",
       "_app/immutable/assets/enhanced_logoImage.BVKc8-Qg.avif",
       "_app/immutable/assets/enhanced_logoImage.Qfmesbrl.avif",
@@ -514,11 +512,10 @@
     "isEntry": true,
     "imports": [
       "_index.js",
-      "_index2.js",
-      "_escaping.js"
+      "_index2.js"
     ],
     "css": [
-      "_app/immutable/assets/_page.CE1s4JOc.css"
+      "_app/immutable/assets/_page.BdQ0PFe5.css"
     ]
   }
 }

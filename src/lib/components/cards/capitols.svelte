@@ -238,7 +238,11 @@ const splitText = (text) => {
         transform: translateX(-0.08em);
         /* Add responsive font sizing 
         font-size: clamp(4rem, 10vw, 10rem); */
-    }
+
+        @media (min-width: 1920px) {
+            font-size: 8vw;
+            margin-top: -0.14em;
+    }}
 
     [exercise-description] {
         width: 95%;
@@ -301,6 +305,8 @@ const splitText = (text) => {
         display: block;
         position: relative;
         z-index: 1;
+        opacity: 0.85;
+        mix-blend-mode: overlay;
     }
     
     :global(.cover_image) {
@@ -463,7 +469,7 @@ const splitText = (text) => {
         left: 0;
         background-color: '';
         z-index: 1;
-        opacity: 0.8;
+        opacity: 1;
         mix-blend-mode: color;
     }
 
@@ -509,7 +515,7 @@ const splitText = (text) => {
         position: absolute;
         top: 0;
         left: 0;
-        bottom: 0;
+        bottom: -5vh !important; 
         right: 0;
         padding: 0;
         margin: 0;

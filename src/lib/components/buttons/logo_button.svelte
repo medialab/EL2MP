@@ -7,6 +7,27 @@
 </button>
 
 <style>
+    :global(*) {
+        -webkit-tap-highlight-color: transparent; /* Removes tap highlight on mobile */
+        outline: none; /* Removes focus outline */
+    }
+
+    :global(*:focus) {
+        outline: none; /* Ensures no focus outline appears */
+    }
+
+    :global(*:active) {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* For specific interactive elements if needed */
+    :global(button:focus),
+    :global(a:focus),
+    :global(.card_container:focus),
+    :global(.floater_container:focus) {
+        outline: none;
+    }
+
     :global(.closing_icon) {
         width: 20vw;
         height: fit-content;
@@ -26,24 +47,31 @@
 
         bottom: 0px;
         left: 0px;
+
+        @media (max-width: 768px) {
+            top: 0%;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            border-radius: 0px;
+            width: 100%;
+            border: 0;
+            border-bottom: solid 1px black;
+            place-content: center;
+            padding-bottom: var(--spacing-M);
+            padding-top: var(--spacing-M);
+        }
+    }
+
+    .closing_icon > img {
+        @media (max-width: 768px) {
+            width: 70%;
+            place-self: center;
+            align-self: center;
+        }
     }
 
     :global(.closing_icon:active) {
-        background-color: var(--full-black);
-        color: var(--demi-white);
+        background-color: #EAEAEA;
         transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-    }
-
-    @media only screen and (max-width: 768px) {
-        .logo_button {
-            position: static;
-            top: 0;
-            width: 100%;
-            border-radius: 0px;
-            border-right: 0px;
-            border-top: 0px;
-            border-bottom: solid 1px black;
-            height: max-content; /* Adjust height as needed */
-        }
     }
 </style>

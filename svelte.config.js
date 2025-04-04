@@ -4,7 +4,7 @@ import adapter from "@sveltejs/adapter-static";
 const config = {
   kit: {
     paths: {
-      base: process.env.NODE_ENV === "production" ? "/EL2MP" : "", // Updated to match new repository name
+      base: process.env.NODE_ENV === "production" ? "/EL2MP" : "",
     },
 
     adapter: adapter({}),
@@ -16,6 +16,8 @@ const config = {
       $routes: "src/routes",
       $videos: "src/lib/media/videos",
     },
+
+    inlineStyleThreshold: Infinity,
   },
 };
 

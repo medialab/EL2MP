@@ -35,6 +35,10 @@ class:closed={!$isAlterEgoMode}
         z-index: 20;
         user-select: none;
         transition: transform var(--transition-times) var(--transition-curve);
+
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     .text-box-sx {
@@ -50,6 +54,10 @@ class:closed={!$isAlterEgoMode}
         z-index: 20;
         user-select: none;
         transition: transform var(--transition-times) var(--transition-curve);
+
+        @media (max-width: 768px) {
+            display: none;
+        }
     }
 
     :global(.text-box-sx.closed) {
