@@ -17,7 +17,6 @@
     // Store interact reference for cleanup
     let interactRef;
     
-    //The data containes everything passed from the +page.server.js
     export let data
 
     let width = 0;
@@ -238,8 +237,7 @@
                 }
             });
         }
-        
-        // Update card container border colors
+
         const cardContainers = document.querySelectorAll('.card_container');
         cardContainers.forEach(card => {
             if ($isAlterEgoMode) {
@@ -482,29 +480,22 @@
                 const windowWidth = hostRect.width;
                 const windowHeight = hostRect.height;
 
-                // Define the offset and centering values
                 const offset = -30;
 
-                // Get card dimensions (assuming all cards are the same size)
                 const cardWidth = windowWidth * 0.6;
                 const cardHeight = cardWidth / 1.5;
                 
-                // Calculate the total block width and height
                 const totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
                 const totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
 
-                // Calculate the starting position (top-left of the first card) to center the block
                 const startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length - 1);
                 const startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length - 1);
 
-                // Calculate the position for the current container based on the index
                 const x = startX + index * offset;
                 const y = startY + index * offset;
 
-                // Update initial positions
                 initialPositions[index] = { x, y };
 
-                // Apply the position to the container
                 container.style.transition = 'transform 0.3s ease-in-out';
                 container.style.transformOrigin = 'top left';
                 container.style.transform = `translate(${x}px, ${y}px)`;
@@ -521,20 +512,17 @@
 
                 container.style.opacity = '0';
 
-                // Remove transition after initial positioning
                 setTimeout(() => {
                     container.style.transition = '';
                 }, 300);
 
-                // Fade in animation
                 setTimeout(() => {
                     setTimeout(() => {
-                        container.style.display = 'block';
+                        // container.style.display = 'block';
                         container.style.opacity = '1';
                     }, index * 125);
                 }, 500);
             });
-        
 
             containers.forEach(container => {
                 container.classList.add('grab');
@@ -596,13 +584,11 @@
                 });
             });
 
-            // Add draggable functionality to floaters
             floaters.forEach((floater, index) => {
                 floater.classList.add('grab');
                 floater.style.touchAction = 'none';
                 floater.style.transition = 'opacity 0s linear';
 
-                // Delay the appearance of each floater
                 setTimeout(() => {
                     floater.style.opacity = '1';
                 }, 1650 + index * 50); 
@@ -749,10 +735,7 @@
                     inertia: true,
                 });
             });
-
-            /* We leave out the draggability for the textboxs for now and keep them static
             
-            // Add draggable functionality to text boxes
             const textBoxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
             textBoxes.forEach((textBox) => {
                 textBox.classList.add('grab');
@@ -775,24 +758,11 @@
                     },
                     listeners: {
                         start(event) {
-                            // Bring the text box to the front
-                            textBox.style.zIndex = 501; // Higher than the default z-index
-
-                            // Get current position from computed style
-                            const computedStyle = window.getComputedStyle(textBox);
-                            const transform = computedStyle.transform;
-
-                            if (transform && transform !== "none") {
-                                const matrix = new DOMMatrix(transform);
-                                const currentX = matrix.m41;
-                                const currentY = matrix.m42;
-                                
-                                textBox.setAttribute("data-x", currentX);
-                                textBox.setAttribute("data-y", currentY);
-                            }
-
+                            bringToFront(event);
                             event.target.classList.remove("grab");
                             event.target.style.cursor = "grabbing";
+                            // Remove transition during drag
+                            event.target.style.transition = 'none';
                         },
                         move(event) {
                             const x = (parseFloat(textBox.getAttribute('data-x')) || 0) + event.dx;
@@ -805,6 +775,8 @@
                         end(event) {
                             event.target.classList.remove("grabbing");
                             event.target.style.cursor = "grab";
+                            // Re-enable transition after drag
+                            event.target.style.transition = 'transform var(--transition-times) var(--transition-curve)';
                         }
                     },
                     modifiers: [
@@ -815,7 +787,7 @@
                     ],
                     inertia: true,
                 });
-            }); */
+            });
 
             tick();
 
@@ -906,8 +878,6 @@
 
 <div class="content_container">
 
-    
-
     <section class="host">
 
         <Textbox/>
@@ -986,13 +956,6 @@
     </section>
    
 </div>
-    
-
-<!-- <enhanced:img
-    class="background_image"
-    src={data.backgroundImage}
-    alt="DotsDotsDots?"
-/> -->
 
 
 <style global>
@@ -1028,21 +991,6 @@
             height: auto;
             flex: 1;
         }
-    }
-
-    :global(.background_image) {
-        width: 100%;
-        height: 100%;
-        min-width: 100%;
-        min-height: 100%;
-        position: fixed;
-        z-index: -5;
-        top: 0%;
-        left: 0%;
-        user-select: none;
-        overflow: hidden;
-        object-fit: cover;
-        background-image: url('/og_images/background.png');
     }
 
     :global(.grab) {
@@ -1335,42 +1283,6 @@
         text-transform: uppercase;
     }
 
-
-    /* WebKit support */
-    /* :global(::-webkit-scrollbar) {
-        width: var(--spacing-S);
-        min-height: 8px;
-        max-height: 20px;
-        border:  none;
-        border-radius: 0px;
-        margin: 0 60px;
-        z-index: 1000;
-    }
-
-    :global(::-webkit-scrollbar-track) {
-        background: transparent;
-        max-height: 20px;
-        border-radius: 0px;
-        margin: 0 60px;
-        z-index: 1000;
-    }
-
-    :global(::-webkit-scrollbar-thumb) {
-        background-color: white;
-        border: none;
-        border-radius: 0px;
-        width: var(--spacing-S);
-        max-height: 20px;
-        z-index: 1000;
-    }
-
-    :global(::-webkit-scrollbar-thumb:hover) {
-        background-color: #f0f0f0;
-    }
-
-    :global(::-webkit-scrollbar-corner) {
-        background: transparent;
-    } */
 
     .mobile_description {
         display: none;

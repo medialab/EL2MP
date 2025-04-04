@@ -258,7 +258,7 @@ const splitText = (text) => {
         min-width: calc(60vw);
 
         aspect-ratio: 1.5 / 1;
-        display: none;
+        display: block;
         
         /* padding-left: var(--spacing-M); */
         padding-right: var(--spacing-M);
@@ -273,6 +273,7 @@ const splitText = (text) => {
 
         user-select: none;
         overflow: hidden;
+        opacity: 0;
         
         border: solid 1.5px white;
         transition: border 3s ease-in-out;
