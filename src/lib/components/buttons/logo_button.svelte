@@ -62,6 +62,10 @@
         }
     }
 
+    :global(.closing_icon:hover) {
+        background-color: #EAEAEA;
+    }
+
     .closing_icon > img {
         @media (max-width: 768px) {
             width: 70%;

@@ -10,11 +10,9 @@
     import Slider from "$lib/components/buttons/slider.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
-    import { format, formatDistance, formatRelative, subDays } from 'date-fns'
     import { writable } from "svelte/store";
     import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
     
-    // Store interact reference for cleanup
     let interactRef;
     
     export let data
@@ -922,7 +920,6 @@
                     simplebarContainer = {simplebarContainer}
                     condensed_logo = {data.condensed_logo}
                     condensed_logo_white = {data.condensed_logo_white}
-                    circular_logo =  {data.circular_logo}
                 />
             {/each}   
         {/if}
@@ -968,12 +965,11 @@
         background-color: transparent;
 
         @media (max-width: 768px) {
-            height: 100vh;
-            max-height: 100vh;
+            height: 100dvh;
             width: 100%;
             flex-direction: column;
             display: flex;
-            margin-top: calc(1/8 * 100vw);
+            padding-top: calc(1/8 * 100vw);
         }
     }
 
@@ -1042,6 +1038,7 @@
         justify-content: flex-start; /* Aligns content at the top */
         overflow: hidden;
         scroll-behavior: none;
+        touch-action: manipulation; /* Disable double-tap to zoom */
 
         @media (max-width: 768px) {
             height: 100%;
@@ -1299,8 +1296,7 @@
             border: solid 1px black;
             border-radius: 10px 10px 10px 10px;
             width: 100%;
-            height: fit-content;
-            max-height: 90%;
+            flex-shrink: 1;
 
             padding: var(--spacing-S);
             overflow-y: scroll;
@@ -1317,8 +1313,13 @@
         }
 
         .mobile_description > .p2 {
-            height: 100%;
             font-size: 1.25rem;
+            text-align: justify;
+            text-rendering: optimizeLegibility;
+            hyphens: auto;
+            -webkit-hyphens: auto;
+            -ms-hyphens: auto;
+            overflow-wrap: break-word;
         }
 
 
@@ -1334,7 +1335,7 @@
             background: transparent; /* Background of the scrollbar track */
             overflow: hidden;
             border-radius: 10px;
-            height: 90%;
+            
         }
 
         .mobile_description::-webkit-scrollbar-thumb {
@@ -1352,13 +1353,11 @@
 
         .mobile_desc_container {
             display: flex;
-            flex: 1;
             position: static;
             flex-direction: column;
             justify-content: space-between;
             margin: var(--spacing-L);
             margin-bottom: 0px;
-            height: 90%;
         }
 
     }

@@ -29,4 +29,7 @@ vite.config.ts.timestamp-*
 .png
 .svg
 
+/.lighthouse
+
 # Ignore any other files or folders that don't need to be tracked
+.lightouse/lighthousereview.json

@@ -24,7 +24,6 @@ export let condensed_logo_white
 export let card
 export let transitionDelay
 
-//console.log("alterEgoCard", alterEgoCard)
 let isProjCover = data.isProjCover
 
 const splitText = (text) => {
@@ -161,8 +160,6 @@ const splitText = (text) => {
                 data-simplebar
                 data-simplebar-auto-hide="false"
                 data-section={alterEgoCard.Title}>
-
-                
                 
                 <div class="card_scroll_flex" data-section={alterEgoCard.Title}> 
 
@@ -177,7 +174,6 @@ const splitText = (text) => {
                     {/if}
 
                     {#if alterEgoCard.CoverImg}
-                    
                         <enhanced:img
                             data-sveltekit-preload-data
                             src={alterEgoCard.CoverImg}

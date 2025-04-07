@@ -174,36 +174,39 @@ const alterEgosDb = {
   },
   Card2: {
     Title: "Methodology",
+    CoverImg: general.logoImage_white,
     Question: "A necessary project in today’s research landscape on LLMs",
     Description:
       "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
     IndexNum: 2,
-    bgColor: "#000000",
+    bgColor: "#2E2E2E",
   },
   Card3: {
     Title: "Objective",
+    CoverImg: general.logoImage_white,
     Question:
       "How do professionals evaluate, adapt to, and perceive LLMs in their work?",
     Description:
       'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation:</b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort:</b> What new kinds of work do LLMs require from their users?<br><br><b>Perception:</b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
     IndexNum: 3,
-    bgColor: "#000000",
+    bgColor: "#2E2E2E",
   },
 
   Card4: {
     Title: "Context",
+    CoverImg: general.logoImage_white,
     Question:
       "How to document practices shaped and influenced by the project itself?",
     Description:
       "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. <br><br>However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. <br><br>Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.<br><br>There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. <br><br>How do AI's well-known problems (<b>bias, confabulation, etc.</b>) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
     IndexNum: 4,
-    bgColor: "#000000",
+    bgColor: "#2E2E2E",
   },
   Card5: {
     Title: "AlterEgo4",
     Description: "This is the description of the alter ego",
     IndexNum: 5,
-    bgColor: "#000000",
+    bgColor: "#2E2E2E",
   },
 };
 

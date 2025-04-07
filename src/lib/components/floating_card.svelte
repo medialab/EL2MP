@@ -221,7 +221,7 @@
         user-select: none;
         transform-origin: bottom left;
 
-        @media (max-width: 320px) {
+        @media (max-width: 768px) {
             display: none;
         }
 

@@ -28,29 +28,29 @@ function Capitols($$payload, $$props) {
   let transitionDelay = $$props["transitionDelay"];
   data.isProjCover;
   const each_array_1 = ensure_array_like(card.Content ?? []);
-  $$payload.out += `<section class="card_container svelte-7xznsd" draggable="true" aria-label="Draggable Card"${attr("data-section", card.Title)}><div class="card_container_inner svelte-7xznsd"${attr_style(`transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo)} style="z-index: 5;" alt="EL2MP Logo"> <div class="description_container svelte-7xznsd"${attr_style(`background-color: ${stringify(card.bgColor)}; border: 5px solid ${stringify(card.bgColor)};`)}><p class="h0 svelte-7xznsd" style="z-index: 7;">${html(card.Title)}</p></div> <div class="card_scrollable_container svelte-7xznsd" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", card.Title)}><div class="card_scroll_flex svelte-7xznsd"${attr("data-section", card.Title)}><p class="p1 svelte-7xznsd" id="description">${html(card.Question)}</p> `;
+  $$payload.out += `<section class="card_container svelte-11nb0ns" draggable="true" aria-label="Draggable Card"${attr("data-section", card.Title)}><div class="card_container_inner svelte-11nb0ns"${attr_style(`transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-11nb0ns"${attr("src", condensed_logo)} style="z-index: 5;" alt="EL2MP Logo"> <div class="description_container svelte-11nb0ns"${attr_style(`background-color: ${stringify(card.bgColor)}; border: 5px solid ${stringify(card.bgColor)};`)}><p class="h0 svelte-11nb0ns" style="z-index: 7;">${html(card.Title)}</p></div> <div class="card_scrollable_container svelte-11nb0ns" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", card.Title)}><div class="card_scroll_flex svelte-11nb0ns"${attr("data-section", card.Title)}><p class="p1 svelte-11nb0ns" id="description">${html(card.Question)}</p> `;
   if (card.Description) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<p class="p3 svelte-7xznsd" id="description">${html(card.Description)}</p>`;
+    $$payload.out += `<p class="p3 svelte-11nb0ns" id="description">${html(card.Description)}</p>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]--> `;
   if (card.CoverImg) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<div class="cover_image_container svelte-7xznsd"><div class="overlay_filter svelte-7xznsd"${attr_style(`background-color: ${stringify(card.bgColor)};`)}></div> `;
+    $$payload.out += `<div class="cover_image_container svelte-11nb0ns"><div class="overlay_filter svelte-11nb0ns"${attr_style(`background-color: ${stringify(card.bgColor)};`)}></div> `;
     if (typeof card.CoverImg === "string") {
       $$payload.out += "<!--[-->";
-      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-7xznsd"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}>`;
+      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-11nb0ns"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}>`;
     } else {
       $$payload.out += "<!--[!-->";
       const each_array = ensure_array_like(Object.entries(card.CoverImg.sources));
-      $$payload.out += `<picture class="svelte-7xznsd"><!--[-->`;
+      $$payload.out += `<picture class="svelte-11nb0ns"><!--[-->`;
       for (let $$index = 0, $$length = each_array.length; $$index < $$length; $$index++) {
         let [format, srcset] = each_array[$$index];
-        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-7xznsd">`;
+        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-11nb0ns">`;
       }
-      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-7xznsd"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}></picture>`;
+      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", card.CoverImg.img.src)} alt="CoverImg" class="cover_image svelte-11nb0ns"${attr("width", card.CoverImg.img.w)}${attr("height", card.CoverImg.img.h)}></picture>`;
     }
     $$payload.out += `<!--]--></div>`;
   } else {
@@ -61,36 +61,36 @@ function Capitols($$payload, $$props) {
     $$payload.out += "<!--[-->";
     for (let index = 0, $$length = each_array_1.length; index < $$length; index++) {
       let section = each_array_1[index];
-      $$payload.out += `<div class="section_container svelte-7xznsd" data-sveltekit-preload-data=""${attr("data-section", `Ex ${index + 1}`)}>`;
+      $$payload.out += `<div class="section_container svelte-11nb0ns" data-sveltekit-preload-data=""${attr("data-section", `Ex ${index + 1}`)}>`;
       if (section.title) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<p class="h2 svelte-7xznsd">${html(section.title)}</p>`;
+        $$payload.out += `<p class="h2 svelte-11nb0ns">${html(section.title)}</p>`;
       } else {
         $$payload.out += "<!--[!-->";
       }
       $$payload.out += `<!--]--> `;
       if (section.subtitle) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<p class="p3 svelte-7xznsd" exercise-description="">${html(section.subtitle)}</p>`;
+        $$payload.out += `<p class="p3 svelte-11nb0ns" exercise-description="">${html(section.subtitle)}</p>`;
       } else {
         $$payload.out += "<!--[!-->";
       }
       $$payload.out += `<!--]--> `;
       if (section.picture) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<div class="cover_image_container svelte-7xznsd"><div class="overlay_filter svelte-7xznsd"${attr_style(`background-color: ${stringify(card.bgColor)};`)}></div> `;
+        $$payload.out += `<div class="cover_image_container svelte-11nb0ns"><div class="overlay_filter svelte-11nb0ns"${attr_style(`background-color: ${stringify(card.bgColor)};`)}></div> `;
         if (typeof section.picture === "string") {
           $$payload.out += "<!--[-->";
-          $$payload.out += `<img data-sveltekit-preload-data="" class="article_image svelte-7xznsd"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}>`;
+          $$payload.out += `<img data-sveltekit-preload-data="" class="article_image svelte-11nb0ns"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}>`;
         } else {
           $$payload.out += "<!--[!-->";
           const each_array_2 = ensure_array_like(Object.entries(section.picture.sources));
-          $$payload.out += `<picture class="svelte-7xznsd"><!--[-->`;
+          $$payload.out += `<picture class="svelte-11nb0ns"><!--[-->`;
           for (let $$index_1 = 0, $$length2 = each_array_2.length; $$index_1 < $$length2; $$index_1++) {
             let [format, srcset] = each_array_2[$$index_1];
-            $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-7xznsd">`;
+            $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-11nb0ns">`;
           }
-          $$payload.out += `<!--]--> <img data-sveltekit-preload-data="" class="article_image svelte-7xznsd"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}></picture>`;
+          $$payload.out += `<!--]--> <img data-sveltekit-preload-data="" class="article_image svelte-11nb0ns"${attr("src", section.picture.img.src)} alt="People"${attr("width", section.picture.img.w)}${attr("height", section.picture.img.h)}></picture>`;
         }
         $$payload.out += `<!--]--></div>`;
       } else {
@@ -99,7 +99,7 @@ function Capitols($$payload, $$props) {
       $$payload.out += `<!--]--> `;
       if (section.text) {
         $$payload.out += "<!--[-->";
-        $$payload.out += `<div class="double_column_text_article svelte-7xznsd"><p class="p3 svelte-7xznsd">${html(section.text)}</p></div>`;
+        $$payload.out += `<div class="double_column_text_article svelte-11nb0ns"><p class="p3 svelte-11nb0ns">${html(section.text)}</p></div>`;
       } else {
         $$payload.out += "<!--[!-->";
       }
@@ -107,12 +107,12 @@ function Capitols($$payload, $$props) {
     }
   } else {
     $$payload.out += "<!--[!-->";
-    $$payload.out += `<p class="svelte-7xznsd">If you see this we are encountering issues</p>`;
+    $$payload.out += `<p class="svelte-11nb0ns">If you see this we are encountering issues</p>`;
   }
-  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo)} alt="EL2MP Logo"></div> <div${attr_class(`altergo_container_inner ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "open" : "")}`, "svelte-7xznsd")}${attr_style(`background-color: ${stringify(alterEgoCard.bgColor)} !important; transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo_white)} alt="EL2MP Logo" style="z-index: 10;"> <div class="description_container svelte-7xznsd"${attr_style(`background-color: ${stringify(alterEgoCard.bgColor)}; border: 5px solid ${stringify(alterEgoCard.bgColor)};`)}><p class="h0 svelte-7xznsd" style="z-index: 7; line-height: 1;">${html(alterEgoCard.Title)}</p></div> <div class="card_scrollable_container svelte-7xznsd" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", alterEgoCard.Title)}><div class="card_scroll_flex svelte-7xznsd"${attr("data-section", alterEgoCard.Title)}><p class="p1 svelte-7xznsd" id="description">${html(alterEgoCard.Question)}</p> `;
+  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-11nb0ns"${attr("src", condensed_logo)} alt="EL2MP Logo"></div> <div${attr_class(`altergo_container_inner ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "open" : "")}`, "svelte-11nb0ns")}${attr_style(`background-color: ${stringify(alterEgoCard.bgColor)} !important; transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-11nb0ns"${attr("src", condensed_logo_white)} alt="EL2MP Logo" style="z-index: 10;"> <div class="description_container svelte-11nb0ns"${attr_style(`background-color: ${stringify(alterEgoCard.bgColor)}; border: 5px solid ${stringify(alterEgoCard.bgColor)};`)}><p class="h0 svelte-11nb0ns" style="z-index: 7; line-height: 1;">${html(alterEgoCard.Title)}</p></div> <div class="card_scrollable_container svelte-11nb0ns" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", alterEgoCard.Title)}><div class="card_scroll_flex svelte-11nb0ns"${attr("data-section", alterEgoCard.Title)}><p class="p1 svelte-11nb0ns" id="description">${html(alterEgoCard.Question)}</p> `;
   if (alterEgoCard.Description) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<p class="p3 svelte-7xznsd" id="description">${html(alterEgoCard.Description)}</p>`;
+    $$payload.out += `<p class="p3 svelte-11nb0ns" id="description">${html(alterEgoCard.Description)}</p>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
@@ -121,22 +121,22 @@ function Capitols($$payload, $$props) {
     $$payload.out += "<!--[-->";
     if (typeof alterEgoCard.CoverImg === "string") {
       $$payload.out += "<!--[-->";
-      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-7xznsd"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}>`;
+      $$payload.out += `<img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-11nb0ns"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}>`;
     } else {
       $$payload.out += "<!--[!-->";
       const each_array_3 = ensure_array_like(Object.entries(alterEgoCard.CoverImg.sources));
-      $$payload.out += `<picture class="svelte-7xznsd"><!--[-->`;
+      $$payload.out += `<picture class="svelte-11nb0ns"><!--[-->`;
       for (let $$index_3 = 0, $$length = each_array_3.length; $$index_3 < $$length; $$index_3++) {
         let [format, srcset] = each_array_3[$$index_3];
-        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-7xznsd">`;
+        $$payload.out += `<source${attr("srcset", srcset)}${attr("type", "image/" + format)} class="svelte-11nb0ns">`;
       }
-      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-7xznsd"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}></picture>`;
+      $$payload.out += `<!--]--> <img data-sveltekit-preload-data=""${attr("src", alterEgoCard.CoverImg.img.src)} alt="CoverImg" class="cover_image_alterego svelte-11nb0ns"${attr("width", alterEgoCard.CoverImg.img.w)}${attr("height", alterEgoCard.CoverImg.img.h)}></picture>`;
     }
     $$payload.out += `<!--]-->`;
   } else {
     $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-7xznsd"${attr("src", condensed_logo)} alt="EL2MP Logo"></div></section>`;
+  $$payload.out += `<!--]--></div></div> <img data-sveltekit-preload-data="" class="card_corner_logo svelte-11nb0ns"${attr("src", condensed_logo)} alt="EL2MP Logo"></div></section>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, {
     data,
@@ -152,7 +152,7 @@ function Capitols($$payload, $$props) {
 }
 function Logo_button($$payload, $$props) {
   let logoImage = $$props["logoImage"];
-  $$payload.out += `<button class="closing_icon svelte-z5ejyt"><img${attr("src", logoImage)} alt="EL2MP Logo" class="svelte-z5ejyt"></button>`;
+  $$payload.out += `<button class="closing_icon svelte-e2lhyu"><img${attr("src", logoImage)} alt="EL2MP Logo" class="svelte-e2lhyu"></button>`;
   bind_props($$props, { logoImage });
 }
 function Reset_button($$payload, $$props) {
@@ -202,14 +202,39 @@ function Floating_card($$payload, $$props) {
   bind_props($$props, { data, randomPosition, color });
   pop();
 }
-function Textboxes($$payload) {
+function Textboxes($$payload, $$props) {
   var $$store_subs;
-  $$payload.out += `<div${attr_class("text-box-dx svelte-1cagex1", void 0, {
+  let bringToFront = $$props["bringToFront"];
+  function enableSlideTransition(boxElement) {
+    if (boxElement) {
+      boxElement.style.transition = "transform var(--transition-times) var(--transition-curve)";
+    }
+  }
+  function updateBoxVisibility(boxElement, shouldBeVisible) {
+    if (!boxElement) return;
+    boxElement.style.transform = "";
+    if (!shouldBeVisible) {
+      boxElement.setAttribute("data-x", "0");
+      boxElement.setAttribute("data-y", "0");
+    }
+    enableSlideTransition(boxElement);
+    if (shouldBeVisible) {
+      boxElement.classList.remove("closed");
+    } else {
+      boxElement.classList.add("closed");
+    }
+  }
+  if (typeof store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) === "boolean") {
+    const boxes = document.querySelectorAll(".text-box-dx, .text-box-sx");
+    boxes.forEach((box) => updateBoxVisibility(box, store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)));
+  }
+  $$payload.out += `<button${attr_class("text-box-dx svelte-bdzw21", void 0, {
     "closed": !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)
-  })}><p class="p3 svelte-1cagex1">"The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."</p></div> <div${attr_class("text-box-sx svelte-1cagex1", void 0, {
+  })} data-x="0" data-y="0"><p class="p3 svelte-bdzw21">"The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."</p></button> <button${attr_class("text-box-sx svelte-bdzw21", void 0, {
     "closed": !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)
-  })}><p class="p2 svelte-1cagex1">"How can we reframe the role <br> of LLMs in ordinary work practices?"</p></div>`;
+  })} data-x="0" data-y="0"><p class="p2 svelte-bdzw21">"How can we reframe the role <br> of LLMs in ordinary work practices?"</p></button>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
+  bind_props($$props, { bringToFront });
 }
 function Slider($$payload, $$props) {
   var $$store_subs;
@@ -313,7 +338,7 @@ function _page($$payload, $$props) {
   if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) !== void 0) alignColor(selectedCard);
   alignColor(selectedCard);
   $$payload.out += `<div class="content_container"><section class="host">`;
-  Textboxes($$payload);
+  Textboxes($$payload, {});
   $$payload.out += `<!----> `;
   Slider($$payload, {
     switch_alterego,
@@ -339,8 +364,7 @@ function _page($$payload, $$props) {
         suppressCover,
         simplebarContainer,
         condensed_logo: data.condensed_logo,
-        condensed_logo_white: data.condensed_logo_white,
-        circular_logo: data.circular_logo
+        condensed_logo_white: data.condensed_logo_white
       });
     }
     $$payload.out += `<!--]-->`;
@@ -360,7 +384,7 @@ function _page($$payload, $$props) {
     }
     $$payload.out += `<!--]-->`;
   }
-  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-45e4q4"><div class="mobile_description svelte-45e4q4"><p class="p2 svelte-45e4q4">${html(data.alterEgosDb.Card1.Description)}</p></div> <div class="mobile_description tip svelte-45e4q4"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div>`;
+  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-pk4pj3"><div class="mobile_description svelte-pk4pj3"><p class="p2 svelte-pk4pj3">${html(data.alterEgosDb.Card1.Description)}</p></div> <div class="mobile_description tip svelte-pk4pj3"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, { data });
   pop();
