@@ -1,11 +1,10 @@
 <script>
+    export let data
+
     import Capitols from "$lib/components/cards/capitols.svelte"; 
     import LogoButton from "$lib/components/buttons/logo_button.svelte";
-    import PositionMarkerButton from "$lib/components/buttons/position_marker_button.svelte";
     import ResetButton from "$lib/components/buttons/reset_button.svelte";
-    import TimeButton from "$lib/components/buttons/time_button.svelte";
-    import FloatingCard from "$lib/components/floaters.svelte";
-    import ReactionDiffusion from "$lib/components/reactionDiffusion.svelte";
+    import Floater from "$lib/components/floaters.svelte";
     import Textbox from "$lib/components/textboxes.svelte";
     import Slider from "$lib/components/buttons/slider.svelte";
 
@@ -13,11 +12,9 @@
     import { writable } from "svelte/store";
 
     // Here we start to implement more stores
-    import { selectedCard, isAlterEgoMode, currentCardColor } from '$lib/stores/globalStores';
+    import { selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, isFirstReset } from '$lib/stores/globalStores';
     
     let interactRef;
-    
-    export let data
 
     let width = 0;
     let height = 0;
@@ -26,52 +23,39 @@
     let textBoxes;
     let scrollContainers;
     let floaters;
-    let isProjCover;
-    let ResizeObserver;
 
     let initialPositions = [];
     let floaterPositions = [];
 
-    let highestZIndex = 1;
-    let isAnimating = false;
     let scrollableElements;
-    
-    let currentScrollLevel = null;
 
     let currentObserver;
     let sections = [];
-    let lastCardColor = null;
 
     let hostElement;
     let simplebarContainer;
 
-
-    let isDesktop = null;
-    let isMobileDevice = null;
-    let previousIsDesktop;
-
     //Functions
 
     const updateWindowSize = () => {
-        previousIsDesktop = isDesktop
         width = window.innerWidth;
         height = window.innerHeight;
 
         if (width > 768) {
-            isDesktop = true;
-            isMobileDevice = false;
+            $isDesktop = true;
+            $isMobileDevice = false;
 
             // Detect transition from mobile to desktop
-            if (previousIsDesktop === false) {
+            if ($isDesktop === false) {
                 // //console.log("Transitioned from mobile to desktop");
                 reloadWebsite();
             }
         } else {
-            isDesktop = false;
-            isMobileDevice = true;
+            $isDesktop = false;
+            $isMobileDevice = true;
 
             // Detect transition from desktop to mobile
-            if (previousIsDesktop === true) {
+            if ($isDesktop === true) {
                 // //console.log("Transitioned from desktop to mobile");
                 hideDesktopStuff();
             }
@@ -85,6 +69,7 @@
                 container.style.display = 'none';
             });
         }
+
         // Hide all containers
         
         if (floaters) {
@@ -97,8 +82,6 @@
     const reloadWebsite = () => {
         location.reload();
     }
-
-    let isFirstReset = true;
 
     const reset_function = () => {
         if (!containers) {
@@ -177,10 +160,10 @@
             element.scrollTop = 0;
         });
 
-        closeFloaters(floaters);
+        //closeFloaters(floaters);
 
-        highestZIndex = 1;
-        isFirstReset = false; // Set the flag to false after the first invocation
+        $highestZIndex = 1;
+        $isFirstReset = false;
 
         if ($isAlterEgoMode) {
             setTimeout(() => {
@@ -190,9 +173,9 @@
     };
 
     const bringToFront = (event) => {
-        const container = event.currentTarget;
-        highestZIndex += 1;
-        container.style.zIndex = highestZIndex;
+        const frontingTarget = event.currentTarget;
+        $highestZIndex += 1;
+        frontingTarget.style.zIndex = $highestZIndex;
     };
 
     const switch_alterego = () => {
@@ -208,9 +191,7 @@
             });
         }
 
-        const cardContainers = document.querySelectorAll('.card_container');
-
-        cardContainers.forEach(card => {
+        containers.forEach(card => {
             if ($isAlterEgoMode) {
                 card.style.borderColor = 'white';
             } else {
@@ -221,12 +202,6 @@
     };
 
     const setupMouseDetection = () => {
-        sections.forEach((section) => {
-            section.addEventListener("mouseenter", (event) => {
-                const sectionId = event.currentTarget.getAttribute("data-section");
-                currentScrollLevel = sectionId;
-            });
-        });
 
         containers.forEach((container) => {
             container.addEventListener("click", (event) => {
@@ -249,17 +224,7 @@
         });
     };
 
-    const observeSectionsAndContainers = () => {
-        const observer = new MutationObserver(() => {
-            sections = document.querySelectorAll('.scrollable-section');
-            containers = document.querySelectorAll('.card_container');
-            setupMouseDetection();
-        });
-
-        observer.observe(document.body, { childList: true, subtree: true });
-    };
-
-    const calculateRandomPosition = (floaterWidth = 100, floaterHeight = 100) => {
+    const calculateRandomPosition = (floaterWidth = 100, floaterHeight = 50) => {
         if (typeof window === 'undefined') {
             return { top: "0px", left: "0px", zIndex: 0 };
         }
@@ -311,9 +276,9 @@
         } else {
             if (selected) {
                 $currentCardColor = selected.bgColor;
-                lastCardColor = selected.bgColor;
+                $lastCardColor = selected.bgColor;
             } else {
-                $currentCardColor = lastCardColor;
+                $currentCardColor = $lastCardColor;
             }
         }
         
@@ -352,6 +317,7 @@
                 } else {
                     floater.style.display = '';
                 }
+                
             floater.classList.remove('clicked');
             floater.classList.add('open');
         });
@@ -387,7 +353,7 @@
             scrollableElements = document.querySelectorAll('.card_scrollable_container')
             sections = document.querySelectorAll('.section_container');
 
-        if (isDesktop) {
+        if ($isDesktop) {
 
             await tick();
 
@@ -709,7 +675,6 @@
             tick();
             
             setupMouseDetection();
-            observeSectionsAndContainers();
 
             tick();
 
@@ -856,23 +821,21 @@
 
     <section class="host">
 
-        <Textbox/>
+        <Textbox bringToFront={bringToFront}/>
 
         <Slider
-        switch_alterego = {switch_alterego}
-        pillBgColor = {$currentCardColor}/>
-
-        <LogoButton
-            logoImage = {data.logoImage}
             switch_alterego = {switch_alterego}
         />
 
+        <LogoButton
+            logoImage = {data.logoImage}
+        />
+
         <ResetButton
-            data = {data}
             reset_function = {reset_function}
         />
 
-        {#if !isMobileDevice}
+        {#if !$isMobileDevice}
             {#each Object.values(data.cardsDb) as card (card.IndexNum)}
                 <Capitols
                     {data}
@@ -881,18 +844,15 @@
                     alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
                     bringToFront = {bringToFront}
                     simplebarContainer = {simplebarContainer}
-                    condensed_logo = {data.condensed_logo}
-                    condensed_logo_white = {data.condensed_logo_white}
                 />
             {/each}   
         {/if}
 
-        {#if !isMobileDevice}
-            {#each Object.values(data.floatersDb) as floater (floater.id)}
-                <FloatingCard
-                    data={floater}
+        {#if !$isMobileDevice}
+            {#each Object.values(data.floatersDb) as singleFloater (singleFloater.id)}
+                <Floater
+                    data={singleFloater}
                     randomPosition = {calculateRandomPosition()}
-                    color = {$currentCardColor}
                 />
             {/each}
         {/if}
@@ -1321,6 +1281,7 @@
             justify-content: space-between;
             margin: var(--spacing-L);
             margin-bottom: 0px;
+            max-height: 95%;
         }
 
     }

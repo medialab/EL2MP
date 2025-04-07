@@ -16,6 +16,11 @@ function onDestroy(fn) {
 const selectedCard = writable("Qualifying");
 const isAlterEgoMode = writable(true);
 const currentCardColor = writable("white");
+const highestZIndex = writable(1);
+const lastCardColor = writable(null);
+const isDesktop = writable(null);
+const isMobileDevice = writable(null);
+const isFirstReset = writable(true);
 const transitionTime = 1.5;
 function Capitols($$payload, $$props) {
   push();
@@ -24,10 +29,10 @@ function Capitols($$payload, $$props) {
   let alterEgoCard = $$props["alterEgoCard"];
   let bringToFront = $$props["bringToFront"];
   let simplebarContainer = $$props["simplebarContainer"];
-  let condensed_logo = $$props["condensed_logo"];
-  let condensed_logo_white = $$props["condensed_logo_white"];
   let card = $$props["card"];
   let transitionDelay = $$props["transitionDelay"];
+  let condensed_logo = data.condensed_logo;
+  let condensed_logo_white = data.condensed_logo_white;
   data.isProjCover;
   const each_array_1 = ensure_array_like(card.Content ?? []);
   $$payload.out += `<section class="card_container svelte-11nb0ns" draggable="true" aria-label="Draggable Card"${attr("data-section", card.Title)}><div class="card_container_inner svelte-11nb0ns"${attr_style(`transition: transform ${stringify(transitionTime)}s var(--transition-curve) ${stringify(transitionDelay)}ms;`)}><img data-sveltekit-preload-data="" class="card_corner_logo svelte-11nb0ns"${attr("src", condensed_logo)} style="z-index: 5;" alt="EL2MP Logo"> <div class="description_container svelte-11nb0ns"${attr_style(`background-color: ${stringify(card.bgColor)}; border: 5px solid ${stringify(card.bgColor)};`)}><p class="h0 svelte-11nb0ns" style="z-index: 7;">${html(card.Title)}</p></div> <div class="card_scrollable_container svelte-11nb0ns" data-simplebar="" data-simplebar-auto-hide="false"${attr("data-section", card.Title)}><div class="card_scroll_flex svelte-11nb0ns"${attr("data-section", card.Title)}><p class="p1 svelte-11nb0ns" id="description">${html(card.Question)}</p> `;
@@ -145,8 +150,6 @@ function Capitols($$payload, $$props) {
     alterEgoCard,
     bringToFront,
     simplebarContainer,
-    condensed_logo,
-    condensed_logo_white,
     card,
     transitionDelay
   });
@@ -164,9 +167,9 @@ function Reset_button($$payload, $$props) {
 }
 function Floaters($$payload, $$props) {
   push();
+  var $$store_subs;
   let data = $$props["data"];
   let randomPosition = $$props["randomPosition"];
-  let color = $$props["color"];
   $$payload.out += `<div class="floater_container closed"${attr("data-parent", data.parent)}${attr_style(`top: ${stringify(randomPosition.top)}; left: ${stringify(randomPosition.left)}; z-index: ${stringify(randomPosition.zIndex)}; animation-delay: ${stringify(randomPosition.animationDelay)};`)}>`;
   if (data.media) {
     $$payload.out += "<!--[-->";
@@ -177,7 +180,7 @@ function Floaters($$payload, $$props) {
   } else {
     $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--> <a href="#" class="floater_bottom"${attr_style(`background-color: ${stringify(color)}`)} aria-label="Close" role="button" tabindex="0">`;
+  $$payload.out += `<!--]--> <a href="#" class="floater_bottom"${attr_style(`background-color: ${stringify(store_get($$store_subs ??= {}, "$currentCardColor", currentCardColor))}`)} aria-label="Close" role="button" tabindex="0">`;
   if (data.category === "document") {
     $$payload.out += "<!--[-->";
     $$payload.out += `<div class="category_icon" id="document"${attr("href", data.file || data.href || void 0)}${attr("download", data.file ? data.Title : void 0)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M330-250h300v-60H330v60Zm0-160h300v-60H330v60Zm-77.69 310Q222-100 201-121q-21-21-21-51.31v-615.38Q180-818 201-839q21-21 51.31-21H570l210 210v477.69Q780-142 759-121q-21 21-51.31 21H252.31ZM540-620v-180H252.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v615.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85h455.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46V-620H540ZM240-800v180-180V-160v-640Z"></path></svg></div> <div class="darker"></div>`;
@@ -201,7 +204,8 @@ function Floaters($$payload, $$props) {
     $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]--></a></div>`;
-  bind_props($$props, { data, randomPosition, color });
+  if ($$store_subs) unsubscribe_stores($$store_subs);
+  bind_props($$props, { data, randomPosition });
   pop();
 }
 function Textboxes($$payload, $$props) {
@@ -241,44 +245,37 @@ function Textboxes($$payload, $$props) {
 function Slider($$payload, $$props) {
   var $$store_subs;
   let switch_alterego = $$props["switch_alterego"];
-  let pillBgColor = $$props["pillBgColor"];
-  $$payload.out += `<div class="slider_container svelte-11zm6lh"><button${attr_class(`slider-button first ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")}`, "svelte-11zm6lh")}${attr("disabled", store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr_style(`pointer-events: ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3">Project</p></button> <button${attr_class(`slider-button second ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")}`, "svelte-11zm6lh")}${attr("disabled", !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr_style(`pointer-events: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3" style="padding-left: 12%;">Exercises</p></button> <div${attr_class(`background_slider ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "project" : "exercises")} `, "svelte-11zm6lh")}${attr_style(`background-color: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? pillBgColor : "black")};`)}></div></div>`;
+  $$payload.out += `<div class="slider_container svelte-11zm6lh"><button${attr_class(`slider-button first ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")}`, "svelte-11zm6lh")}${attr("disabled", store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr_style(`pointer-events: ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3">Project</p></button> <button${attr_class(`slider-button second ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "active" : "")}`, "svelte-11zm6lh")}${attr("disabled", !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode), true)}${attr_style(`pointer-events: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "none" : "auto")};`)}><p class="p3" style="padding-left: 12%;">Exercises</p></button> <div${attr_class(`background_slider ${stringify(store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? "project" : "exercises")} `, "svelte-11zm6lh")}${attr_style(`background-color: ${stringify(!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) ? store_get($$store_subs ??= {}, "$currentCardColor", currentCardColor) : "black")};`)}></div></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
-  bind_props($$props, { switch_alterego, pillBgColor });
+  bind_props($$props, { switch_alterego });
 }
 function _page($$payload, $$props) {
   push();
   var $$store_subs;
-  let interactRef;
   let data = $$props["data"];
+  let interactRef;
   let width = 0;
   let containers;
   let textBoxes;
   let scrollContainers;
   let floaters;
   let initialPositions = [];
-  let highestZIndex = 1;
   let scrollableElements;
   let sections = [];
-  let lastCardColor = null;
   let hostElement;
   let simplebarContainer;
-  let isDesktop = null;
-  let isMobileDevice = null;
-  let previousIsDesktop;
   const updateWindowSize = () => {
-    previousIsDesktop = isDesktop;
     width = window.innerWidth;
     if (width > 768) {
-      isDesktop = true;
-      isMobileDevice = false;
-      if (previousIsDesktop === false) {
+      store_set(isDesktop, true);
+      store_set(isMobileDevice, false);
+      if (store_get($$store_subs ??= {}, "$isDesktop", isDesktop) === false) {
         reloadWebsite();
       }
     } else {
-      isDesktop = false;
-      isMobileDevice = true;
-      if (previousIsDesktop === true) {
+      store_set(isDesktop, false);
+      store_set(isMobileDevice, true);
+      if (store_get($$store_subs ??= {}, "$isDesktop", isDesktop) === true) {
         hideDesktopStuff();
       }
     }
@@ -354,8 +351,8 @@ function _page($$payload, $$props) {
     scrollableElements.forEach((element) => {
       element.scrollTop = 0;
     });
-    closeFloaters(floaters);
-    highestZIndex = 1;
+    store_set(highestZIndex, 1);
+    store_set(isFirstReset, false);
     if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
       setTimeout(
         () => {
@@ -366,9 +363,9 @@ function _page($$payload, $$props) {
     }
   };
   const bringToFront = (event) => {
-    const container = event.currentTarget;
-    highestZIndex += 1;
-    container.style.zIndex = highestZIndex;
+    const frontingTarget = event.currentTarget;
+    store_set(highestZIndex, store_get($$store_subs ??= {}, "$highestZIndex", highestZIndex) + 1);
+    frontingTarget.style.zIndex = store_get($$store_subs ??= {}, "$highestZIndex", highestZIndex);
   };
   const switch_alterego = () => {
     store_set(isAlterEgoMode, !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode));
@@ -380,8 +377,7 @@ function _page($$payload, $$props) {
         }
       });
     }
-    const cardContainers = document.querySelectorAll(".card_container");
-    cardContainers.forEach((card) => {
+    containers.forEach((card) => {
       if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
         card.style.borderColor = "white";
       } else {
@@ -390,7 +386,7 @@ function _page($$payload, $$props) {
       }
     });
   };
-  const calculateRandomPosition = (floaterWidth = 100, floaterHeight = 100) => {
+  const calculateRandomPosition = (floaterWidth = 100, floaterHeight = 50) => {
     if (typeof window === "undefined") {
       return { top: "0px", left: "0px", zIndex: 0 };
     }
@@ -423,19 +419,11 @@ function _page($$payload, $$props) {
     } else {
       if (selected) {
         store_set(currentCardColor, selected.bgColor);
-        lastCardColor = selected.bgColor;
+        store_set(lastCardColor, selected.bgColor);
       } else {
-        store_set(currentCardColor, lastCardColor);
+        store_set(currentCardColor, store_get($$store_subs ??= {}, "$lastCardColor", lastCardColor));
       }
     }
-  };
-  const closeFloaters = (floaters2) => {
-    floaters2.forEach((floater) => {
-      if (floater.classList.contains("open")) {
-        floater.classList.remove("open");
-        floater.classList.add("closed");
-      }
-    });
   };
   const hideFloaters = (card) => {
     if (!floaters) return;
@@ -536,18 +524,15 @@ function _page($$payload, $$props) {
   if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) !== void 0) alignColor(store_get($$store_subs ??= {}, "$selectedCard", selectedCard));
   if (!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) hideFloaters(store_get($$store_subs ??= {}, "$selectedCard", selectedCard));
   $$payload.out += `<div class="content_container"><section class="host">`;
-  Textboxes($$payload, {});
+  Textboxes($$payload, { bringToFront });
   $$payload.out += `<!----> `;
-  Slider($$payload, {
-    switch_alterego,
-    pillBgColor: store_get($$store_subs ??= {}, "$currentCardColor", currentCardColor)
-  });
+  Slider($$payload, { switch_alterego });
   $$payload.out += `<!----> `;
-  Logo_button($$payload, { logoImage: data.logoImage, switch_alterego });
+  Logo_button($$payload, { logoImage: data.logoImage });
   $$payload.out += `<!----> `;
-  Reset_button($$payload, { data, reset_function });
+  Reset_button($$payload, { reset_function });
   $$payload.out += `<!----> `;
-  if (!isMobileDevice) {
+  if (!store_get($$store_subs ??= {}, "$isMobileDevice", isMobileDevice)) {
     $$payload.out += "<!--[-->";
     const each_array = ensure_array_like(Object.values(data.cardsDb));
     $$payload.out += `<!--[-->`;
@@ -559,9 +544,7 @@ function _page($$payload, $$props) {
         transitionDelay: card.IndexNum * 100,
         alterEgoCard: data.alterEgosDb[`Card${card.IndexNum}`],
         bringToFront,
-        simplebarContainer,
-        condensed_logo: data.condensed_logo,
-        condensed_logo_white: data.condensed_logo_white
+        simplebarContainer
       });
     }
     $$payload.out += `<!--]-->`;
@@ -569,23 +552,22 @@ function _page($$payload, $$props) {
     $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]--> `;
-  if (!isMobileDevice) {
+  if (!store_get($$store_subs ??= {}, "$isMobileDevice", isMobileDevice)) {
     $$payload.out += "<!--[-->";
     const each_array_1 = ensure_array_like(Object.values(data.floatersDb));
     $$payload.out += `<!--[-->`;
     for (let $$index_1 = 0, $$length = each_array_1.length; $$index_1 < $$length; $$index_1++) {
-      let floater = each_array_1[$$index_1];
+      let singleFloater = each_array_1[$$index_1];
       Floaters($$payload, {
-        data: floater,
-        randomPosition: calculateRandomPosition(),
-        color: store_get($$store_subs ??= {}, "$currentCardColor", currentCardColor)
+        data: singleFloater,
+        randomPosition: calculateRandomPosition()
       });
     }
     $$payload.out += `<!--]-->`;
   } else {
     $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-pk4pj3"><div class="mobile_description svelte-pk4pj3"><p class="p2 svelte-pk4pj3">${html(data.alterEgosDb.Card1.Description)}</p></div> <div class="mobile_description tip svelte-pk4pj3"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div>`;
+  $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-y52wst"><div class="mobile_description svelte-y52wst"><p class="p2 svelte-y52wst">${html(data.alterEgosDb.Card1.Description)}</p></div> <div class="mobile_description tip svelte-y52wst"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);
   bind_props($$props, { data });
   pop();

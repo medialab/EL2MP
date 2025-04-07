@@ -1,8 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
 import { cardsDb, alterEgosDb } from '$lib/database/global_db.js';
-import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
-import { transitionTime } from '$lib/stores/animations';
+import { selectedCard, isAlterEgoMode, transitionTime } from '$lib/stores/globalStores';
 
 import {
 	blur,
@@ -19,21 +18,21 @@ export let data
 export let alterEgoCard
 export let bringToFront
 export let simplebarContainer
-export let condensed_logo
-export let condensed_logo_white
+
 export let card
 export let transitionDelay
 
+let condensed_logo = data.condensed_logo
+let condensed_logo_white = data.condensed_logo_white
 let isProjCover = data.isProjCover
 
 const splitText = (text) => {
-        const midpoint = Math.floor(text.length / 2);
-        const spaceIndex = text.indexOf(' ', midpoint);
-        const splitIndex = spaceIndex === -1 ? midpoint : spaceIndex;
+    const midpoint = Math.floor(text.length / 2);
+    const spaceIndex = text.indexOf(' ', midpoint);
+    const splitIndex = spaceIndex === -1 ? midpoint : spaceIndex;
 
-        return [text.slice(0, splitIndex).trim(), text.slice(splitIndex).trim()];
-    };
-
+    return [text.slice(0, splitIndex).trim(), text.slice(splitIndex).trim()];
+};
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -60,7 +59,6 @@ const splitText = (text) => {
 
             <div class="description_container" style="background-color: {card.bgColor}; border: 5px solid {card.bgColor};"> 
 
-                
                     <p class="h0" style="z-index: 7;">
                         {@html card.Title}
                     </p>

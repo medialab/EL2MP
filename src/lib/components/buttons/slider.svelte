@@ -1,7 +1,6 @@
 <script>
-    import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
+    import { selectedCard, isAlterEgoMode, currentCardColor } from '$lib/stores/globalStores';
     export let switch_alterego;
-    export let pillBgColor;
 </script>
 
 <div class="slider_container">
@@ -22,7 +21,7 @@
         <p class="p3" style="padding-left: 12%;">Exercises</p>
     </button>
     <div class="background_slider {$isAlterEgoMode ? 'project' : 'exercises'}
-    " style="background-color: {!$isAlterEgoMode ? pillBgColor : 'black'};">
+    " style="background-color: {!$isAlterEgoMode ? $currentCardColor : 'black'};">
     </div>
 </div>
 

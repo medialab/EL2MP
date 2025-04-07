@@ -3,9 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta
+      name="google-site-verification"
+      content="pgTk4-SglUqFCGjw5F_ag2flpUYxmOhleOQujEElFQw"
+    />
+    <meta
       name="description"
       content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. The Ecologies of LLM Practices (EL2MP) project by Sciences Po medialab documents how LLMs influence professional practices."
     />
+
     <!-- SEO Keywords -->
     <meta
       name="keywords"
@@ -17,11 +22,11 @@
       content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"
     />
     
-		<link rel="modulepreload" href="./_app/immutable/entry/start.BxMculnY.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/_ytAD7OO.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.4otUhyTn.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/C4PItdu9.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/CRk2hgVu.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/-Ts6F4AD.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.CKvajqO2.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.BQo-t3lD.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/CCL35J2P.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/BN_nbJLP.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/BscLUmOG.js">
@@ -30,22 +35,52 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "ResearchProject",
-        "name": "Écologies des Pratiques LLMs (EL2MP)",
-        "alternateName": "Ecologies of LLM Practices",
-        "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use",
-        "url": "https://medialab.github.io/EL2MP/",
-        "logo": "https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg",
-        "funder": {
-          "@type": "Organization",
-          "name": "Sciences Po"
-        },
-        "keywords": [
-          "Ecologies of LLM",
-          "EL2MP",
-          "Ecologies medialab",
-          "Ecologies sciencespo",
-          "Ecologies de practiques"
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://medialab.sciencespo.fr/",
+            "name": "Medialab Sciencespo",
+            "url": "https://medialab.sciencespo.fr/",
+            "logo": "https://medialab.sciencespo.fr/img/cover-fb.png",
+            "parentOrganization": {
+              "@type": "Organization",
+              "name": "Sciences Po"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "name": "EL2MP Research Project Website",
+            "url": "https://medialab.github.io/EL2MP/",
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://medialab.sciencespo.fr/"
+            },
+            "description": "Official website for the EL2MP Research Project by Medialab Sciencespo, documenting the integration and impact of Large Language Models in professional practices.",
+            "mainEntity": {
+              "@type": "ResearchProject",
+              "@id": "https://medialab.github.io/EL2MP/#project"
+            }
+          },
+          {
+            "@type": "ResearchProject",
+            "@id": "https://medialab.github.io/EL2MP/#project",
+            "name": "Écologies des Pratiques LLMs (EL2MP)",
+            "alternateName": "Ecologies of LLM Practices",
+            "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use",
+            "url": "https://medialab.github.io/EL2MP/",
+            "logo": "https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg",
+            "provider": {
+              "@type": "Organization",
+              "@id": "https://medialab.sciencespo.fr/"
+            },
+            "keywords": [
+              "Ecologies of LLM",
+              "EL2MP",
+              "Ecologies medialab",
+              "Ecologies sciencespo",
+              "Ecologies de practiques"
+            ]
+          }
         ]
       }
     </script>
@@ -73,7 +108,7 @@
     <div class="major_div" style="display: contents">
 			<script>
 				{
-					__sveltekit_1hzmtgf = {
+					__sveltekit_1enuekc = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						assets: "/EL2MP"
 					};
@@ -81,8 +116,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("./_app/immutable/entry/start.BxMculnY.js"),
-						import("./_app/immutable/entry/app.CKvajqO2.js")
+						import("./_app/immutable/entry/start.4otUhyTn.js"),
+						import("./_app/immutable/entry/app.BQo-t3lD.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element);
 					});

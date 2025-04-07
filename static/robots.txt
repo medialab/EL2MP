@@ -1,0 +1,15 @@
+# robots.txt for EL2MP Research Project
+User-agent: *
+
+# Disallow common development/config directories
+Disallow: /node_modules/
+Disallow: /.svelte-kit/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.cursor/
+Disallow: /.lighthouse/
+
+# Allow everything else (modify if specific paths need disallowing)
+Allow: /
+
+Sitemap: https://medialab.github.io/EL2MP/sitemap.xml
