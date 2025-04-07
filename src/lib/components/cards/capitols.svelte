@@ -59,7 +59,7 @@ const splitText = (text) => {
 
             <div class="description_container" style="background-color: {card.bgColor}; border: 5px solid {card.bgColor};"> 
 
-                    <p class="h0" style="z-index: 7;">
+                    <p class="h1" style="z-index: 7;">
                         {@html card.Title}
                     </p>
 
@@ -148,7 +148,7 @@ const splitText = (text) => {
             >
 
             <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"> 
-                <p class="h0" style="z-index: 7; line-height: 1;">
+                <p class="h1" style="z-index: 7; line-height: 1;">
                     {@html alterEgoCard.Title}
                 </p>
             </div>
@@ -215,7 +215,7 @@ const splitText = (text) => {
         margin-bottom: 3vw;
     }
 
-    .description_container > .h0 {
+    .description_container > .h1 {
         width: fit-content;
         height: fit-content;
         font-family: 'Instrument Serif';

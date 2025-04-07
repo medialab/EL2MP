@@ -1110,7 +1110,7 @@
         }
     }
 
-    :global(.h0) {
+    :global(.h1) {
         font-size: 9vw;
         line-height: 1;
 
@@ -1122,12 +1122,6 @@
         font-weight: 400;
         user-select: none;
         touch-action: none;
-    }
-
-    :global(.h1) {
-        font-size: 5vw;
-        font-family: var(--serif-font-family), var(--fallback-serif-font);
-        font-weight: 400;
     }
 
     :global(.h2) {
