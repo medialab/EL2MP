@@ -13,7 +13,9 @@ function onDestroy(fn) {
   );
   (context.d ??= []).push(fn);
 }
+const selectedCard = writable("Qualifying");
 const isAlterEgoMode = writable(true);
+const currentCardColor = writable("white");
 const transitionTime = 1.5;
 function Capitols($$payload, $$props) {
   push();
@@ -160,7 +162,7 @@ function Reset_button($$payload, $$props) {
   $$payload.out += `<button class="reset_button svelte-ph3ac6"><p class="s1">Reset everything!</p></button>`;
   bind_props($$props, { reset_function });
 }
-function Floating_card($$payload, $$props) {
+function Floaters($$payload, $$props) {
   push();
   let data = $$props["data"];
   let randomPosition = $$props["randomPosition"];
@@ -175,7 +177,7 @@ function Floating_card($$payload, $$props) {
   } else {
     $$payload.out += "<!--[!-->";
   }
-  $$payload.out += `<!--]--> <a class="floater_bottom"${attr_style(`background-color: ${stringify(color)}`)} aria-label="Close" role="button">`;
+  $$payload.out += `<!--]--> <a href="#" class="floater_bottom"${attr_style(`background-color: ${stringify(color)}`)} aria-label="Close" role="button" tabindex="0">`;
   if (data.category === "document") {
     $$payload.out += "<!--[-->";
     $$payload.out += `<div class="category_icon" id="document"${attr("href", data.file || data.href || void 0)}${attr("download", data.file ? data.Title : void 0)}><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M330-250h300v-60H330v60Zm0-160h300v-60H330v60Zm-77.69 310Q222-100 201-121q-21-21-21-51.31v-615.38Q180-818 201-839q21-21 51.31-21H570l210 210v477.69Q780-142 759-121q-21 21-51.31 21H252.31ZM540-620v-180H252.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v615.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85h455.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46V-620H540ZM240-800v180-180V-160v-640Z"></path></svg></div> <div class="darker"></div>`;
@@ -194,7 +196,7 @@ function Floating_card($$payload, $$props) {
   $$payload.out += `<!--]--> `;
   if (data.Title) {
     $$payload.out += "<!--[-->";
-    $$payload.out += `<p class="s2">${escape_html(data.Title)}</p>`;
+    $$payload.out += `<p class="s2" id="floater_text">${escape_html(data.Title)}</p>`;
   } else {
     $$payload.out += "<!--[!-->";
   }
@@ -247,17 +249,120 @@ function Slider($$payload, $$props) {
 function _page($$payload, $$props) {
   push();
   var $$store_subs;
+  let interactRef;
   let data = $$props["data"];
+  let width = 0;
+  let containers;
+  let textBoxes;
+  let scrollContainers;
+  let floaters;
+  let initialPositions = [];
   let highestZIndex = 1;
-  let cover;
-  let selectedCard = "Qualifying";
-  let currentCardColor;
+  let scrollableElements;
+  let sections = [];
   let lastCardColor = null;
+  let hostElement;
   let simplebarContainer;
+  let isDesktop = null;
+  let isMobileDevice = null;
+  let previousIsDesktop;
+  const updateWindowSize = () => {
+    previousIsDesktop = isDesktop;
+    width = window.innerWidth;
+    if (width > 768) {
+      isDesktop = true;
+      isMobileDevice = false;
+      if (previousIsDesktop === false) {
+        reloadWebsite();
+      }
+    } else {
+      isDesktop = false;
+      isMobileDevice = true;
+      if (previousIsDesktop === true) {
+        hideDesktopStuff();
+      }
+    }
+  };
+  const hideDesktopStuff = () => {
+    if (containers) {
+      containers.forEach((container) => {
+        container.style.display = "none";
+      });
+    }
+    if (floaters) {
+      floaters.forEach((floater) => {
+        floater.style.display = "none";
+      });
+    }
+  };
+  const reloadWebsite = () => {
+    location.reload();
+  };
   const reset_function = () => {
-    {
+    if (!containers) {
       console.error("No containers found!");
       return;
+    }
+    const hostRect = hostElement.getBoundingClientRect();
+    const windowWidth = hostRect.width;
+    const windowHeight = hostRect.height;
+    const offset = -30;
+    const cardWidth = windowWidth * 0.6;
+    const cardHeight = cardWidth / 1.5;
+    const totalBlockWidth = cardWidth + (containers.length - 1) * Math.abs(offset);
+    const totalBlockHeight = cardHeight + (containers.length - 1) * Math.abs(offset);
+    const startX = (windowWidth - totalBlockWidth) / 2 - offset * (containers.length - 1);
+    const startY = (windowHeight - totalBlockHeight) / 2 - offset * (containers.length - 1);
+    containers.forEach((container, index) => {
+      const x = startX + index * offset;
+      const y = startY + index * offset;
+      initialPositions[index] = { x, y };
+      container.style.transition = "transform 0.3s ease-in-out";
+      container.style.transformOrigin = "top left";
+      container.style.transform = `translate(${x}px, ${y}px)`;
+      container.setAttribute("data-x", x);
+      container.setAttribute("data-y", y);
+      container.style.zIndex = -index;
+      setTimeout(
+        () => {
+          container.style.transition = "";
+        },
+        300
+      );
+      const cardData = Object.values(data.cardsDb)[index];
+      if (cardData && cardData.bgColor) {
+        container.style.backgroundColor = cardData.bgColor;
+      }
+    });
+    store_set(selectedCard, "Qualifying");
+    if (floaters) {
+      floaters.forEach((floater) => {
+        const newPosition = calculateRandomPosition();
+        floater.style.position = "absolute";
+        floater.style.transition = "all 0.3s ease-in-out";
+        floater.style.top = newPosition.top;
+        floater.style.left = newPosition.left;
+        floater.style.zIndex = newPosition.zIndex;
+        setTimeout(
+          () => {
+            floater.style.transition = "";
+          },
+          300
+        );
+      });
+    }
+    scrollableElements.forEach((element) => {
+      element.scrollTop = 0;
+    });
+    closeFloaters(floaters);
+    highestZIndex = 1;
+    if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
+      setTimeout(
+        () => {
+          switch_alterego();
+        },
+        450
+      );
     }
   };
   const bringToFront = (event) => {
@@ -265,17 +370,23 @@ function _page($$payload, $$props) {
     highestZIndex += 1;
     container.style.zIndex = highestZIndex;
   };
-  const suppressCover = () => {
-    cover.style.display = "none";
-  };
   const switch_alterego = () => {
     store_set(isAlterEgoMode, !store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode));
+    if (floaters) {
+      floaters.forEach((floater) => {
+        if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
+          floater.classList.remove("open");
+          floater.classList.add("closed");
+        }
+      });
+    }
     const cardContainers = document.querySelectorAll(".card_container");
     cardContainers.forEach((card) => {
       if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
         card.style.borderColor = "white";
       } else {
         card.style.borderColor = "black";
+        hideFloaters();
       }
     });
   };
@@ -304,52 +415,139 @@ function _page($$payload, $$props) {
       // Randomize zIndex
     };
   };
-  const alignColor = (selectedCard2) => {
+  const alignColor = ($selectedCard) => {
+    const selected = Object.values(data.cardsDb).find((card) => card.Title === $selectedCard);
     if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) {
-      currentCardColor = "white";
+      store_set(currentCardColor, "white");
       return;
-    }
-    const selected = Object.values(data.cardsDb).find((card) => card.Title === selectedCard2);
-    if (selected) {
-      currentCardColor = selected.bgColor;
-      lastCardColor = selected.bgColor;
     } else {
-      currentCardColor = lastCardColor;
+      if (selected) {
+        store_set(currentCardColor, selected.bgColor);
+        lastCardColor = selected.bgColor;
+      } else {
+        store_set(currentCardColor, lastCardColor);
+      }
     }
   };
-  const updateSelectedCard = (selectedCard2) => {
-    if (!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) ;
+  const closeFloaters = (floaters2) => {
+    floaters2.forEach((floater) => {
+      if (floater.classList.contains("open")) {
+        floater.classList.remove("open");
+        floater.classList.add("closed");
+      }
+    });
+  };
+  const hideFloaters = (card) => {
+    if (!floaters) return;
+    floaters.forEach((floater) => {
+      if (card !== "all" && floater.dataset.parent !== card) {
+        floater.style.display = "none";
+      } else {
+        floater.style.display = "";
+      }
+      floater.classList.remove("clicked");
+      floater.classList.add("open");
+    });
   };
   onDestroy(() => {
-    const cleanupElements = () => {
-      try {
-        const sections = document.querySelectorAll(".scrollable-section");
-        if (sections) {
-          sections.forEach((section) => {
-            section.removeEventListener("mouseenter", null);
+    window.removeEventListener("resize", updateWindowSize);
+    if (holdTimeout) clearTimeout(holdTimeout);
+    const cleanupInteract = () => {
+      if (interactRef) {
+        if (containers) {
+          containers.forEach((container) => {
+            try {
+              interactRef(container).unset();
+            } catch (e) {
+              console.log("Could not cleanup container interact handlers");
+            }
           });
         }
-      } catch (e) {
+        if (floaters) {
+          floaters.forEach((floater) => {
+            try {
+              interactRef(floater).unset();
+            } catch (e) {
+              console.log("Could not cleanup floater interact handlers");
+            }
+            if (floater.style) {
+              floater.style.animation = "none";
+              floater.style.transition = "none";
+            }
+          });
+        }
+        if (textBoxes) {
+          textBoxes.forEach((textBox) => {
+            try {
+              interactRef(textBox).unset();
+            } catch (e) {
+              console.log("Could not cleanup textBox interact handlers");
+            }
+          });
+        }
       }
     };
-    cleanupElements();
+    const cleanupEventListeners = () => {
+      if (sections) {
+        sections.forEach((section) => {
+          try {
+            section.removeEventListener("mouseenter", null);
+          } catch (e) {
+            console.log("Could not remove mouseenter listener");
+          }
+        });
+      }
+      if (containers) {
+        containers.forEach((container) => {
+          try {
+            container.removeEventListener("click", null);
+          } catch (e) {
+            console.log("Could not remove click listener from container");
+          }
+        });
+      }
+      if (scrollContainers) {
+        scrollContainers.forEach((scrollContainer) => {
+          try {
+            scrollContainer.removeEventListener("click", null);
+          } catch (e) {
+            console.log("Could not remove click listener from scroll container");
+          }
+        });
+      }
+    };
+    const clearReferences = () => {
+      containers = null;
+      floaters = null;
+      textBoxes = null;
+      scrollContainers = null;
+      hostElement = null;
+      simplebarContainer = null;
+      scrollableElements = null;
+      sections = null;
+      initialPositions = [];
+      interactRef = null;
+    };
+    cleanupInteract();
+    cleanupEventListeners();
+    clearReferences();
+    console.log("Component cleanup complete");
   });
-  updateSelectedCard();
-  if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) !== void 0) alignColor(selectedCard);
-  alignColor(selectedCard);
+  if (store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode) !== void 0) alignColor(store_get($$store_subs ??= {}, "$selectedCard", selectedCard));
+  if (!store_get($$store_subs ??= {}, "$isAlterEgoMode", isAlterEgoMode)) hideFloaters(store_get($$store_subs ??= {}, "$selectedCard", selectedCard));
   $$payload.out += `<div class="content_container"><section class="host">`;
   Textboxes($$payload, {});
   $$payload.out += `<!----> `;
   Slider($$payload, {
     switch_alterego,
-    pillBgColor: currentCardColor
+    pillBgColor: store_get($$store_subs ??= {}, "$currentCardColor", currentCardColor)
   });
   $$payload.out += `<!----> `;
   Logo_button($$payload, { logoImage: data.logoImage, switch_alterego });
   $$payload.out += `<!----> `;
   Reset_button($$payload, { data, reset_function });
   $$payload.out += `<!----> `;
-  {
+  if (!isMobileDevice) {
     $$payload.out += "<!--[-->";
     const each_array = ensure_array_like(Object.values(data.cardsDb));
     $$payload.out += `<!--[-->`;
@@ -361,28 +559,31 @@ function _page($$payload, $$props) {
         transitionDelay: card.IndexNum * 100,
         alterEgoCard: data.alterEgosDb[`Card${card.IndexNum}`],
         bringToFront,
-        suppressCover,
         simplebarContainer,
         condensed_logo: data.condensed_logo,
         condensed_logo_white: data.condensed_logo_white
       });
     }
     $$payload.out += `<!--]-->`;
+  } else {
+    $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]--> `;
-  {
+  if (!isMobileDevice) {
     $$payload.out += "<!--[-->";
     const each_array_1 = ensure_array_like(Object.values(data.floatersDb));
     $$payload.out += `<!--[-->`;
     for (let $$index_1 = 0, $$length = each_array_1.length; $$index_1 < $$length; $$index_1++) {
       let floater = each_array_1[$$index_1];
-      Floating_card($$payload, {
+      Floaters($$payload, {
         data: floater,
         randomPosition: calculateRandomPosition(),
-        color: currentCardColor
+        color: store_get($$store_subs ??= {}, "$currentCardColor", currentCardColor)
       });
     }
     $$payload.out += `<!--]-->`;
+  } else {
+    $$payload.out += "<!--[!-->";
   }
   $$payload.out += `<!--]--> <div class="mobile_desc_container svelte-pk4pj3"><div class="mobile_description svelte-pk4pj3"><p class="p2 svelte-pk4pj3">${html(data.alterEgosDb.Card1.Description)}</p></div> <div class="mobile_description tip svelte-pk4pj3"><p class="h4" style="text-align: center;">Try this website on a  💻  device.</p></div></div></section></div>`;
   if ($$store_subs) unsubscribe_stores($$store_subs);

@@ -2,216 +2,216 @@ import "vite";
 import "clsx";
 const Ex_1 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_1.M4ljEBhX.avif 1694w, /EL2MP/_app/immutable/assets/Ex_1.CMMh1Vzj.avif 3387w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_1.Bx3NSCaH.webp 1694w, /EL2MP/_app/immutable/assets/Ex_1.DrrkBwoK.webp 3387w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_1.jWrIf0p7.jpeg 1694w, /EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpeg 3387w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_1.M4ljEBhX.avif 1x, /EL2MP/_app/immutable/assets/Ex_1.CMMh1Vzj.avif 1.999409681227863x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_1.Bx3NSCaH.webp 1x, /EL2MP/_app/immutable/assets/Ex_1.DrrkBwoK.webp 1.999409681227863x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_1.jWrIf0p7.jpg 1x, /EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpg 1.999409681227863x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpg",
     w: 3387,
     h: 4853
   }
 };
 const Ex_2 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_2.CwMjKd24.avif 2822w, /EL2MP/_app/immutable/assets/Ex_2.DJXC-8TR.avif 5643w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_2.CVE6Jd3K.webp 2822w, /EL2MP/_app/immutable/assets/Ex_2.CJGUg6Yd.webp 5643w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_2.1IMO8yRp.jpeg 2822w, /EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg 5643w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_2.CwMjKd24.avif 1x, /EL2MP/_app/immutable/assets/Ex_2.DJXC-8TR.avif 1.9996456413890857x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_2.CVE6Jd3K.webp 1x, /EL2MP/_app/immutable/assets/Ex_2.CJGUg6Yd.webp 1.9996456413890857x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_2.1IMO8yRp.jpg 1x, /EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpg 1.9996456413890857x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpg",
     w: 5643,
     h: 3762
   }
 };
 const Ex_3 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_3.B3GQC8Cg.avif 2350w, /EL2MP/_app/immutable/assets/Ex_3.C_rKMPaD.avif 4700w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_3.D93WMUM5.webp 2350w, /EL2MP/_app/immutable/assets/Ex_3.D6Ydhm_V.webp 4700w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_3.BqszNBh6.jpeg 2350w, /EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpeg 4700w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_3.B3GQC8Cg.avif 1x, /EL2MP/_app/immutable/assets/Ex_3.C_rKMPaD.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_3.D93WMUM5.webp 1x, /EL2MP/_app/immutable/assets/Ex_3.D6Ydhm_V.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_3.BqszNBh6.jpg 1x, /EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpg",
     w: 4700,
     h: 3133
   }
 };
 const Ex_4 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_4.CzGTDiGJ.avif 2826w, /EL2MP/_app/immutable/assets/Ex_4.O4hnVjzp.avif 5652w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_4.DXR7pjsX.webp 2826w, /EL2MP/_app/immutable/assets/Ex_4.Cf4Olo8b.webp 5652w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_4.BesA-xiL.jpeg 2826w, /EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpeg 5652w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_4.CzGTDiGJ.avif 1x, /EL2MP/_app/immutable/assets/Ex_4.O4hnVjzp.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_4.DXR7pjsX.webp 1x, /EL2MP/_app/immutable/assets/Ex_4.Cf4Olo8b.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_4.BesA-xiL.jpg 1x, /EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpg",
     w: 5652,
     h: 3768
   }
 };
 const Ex_5 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_5.BLfKqo4S.avif 2016w, /EL2MP/_app/immutable/assets/Ex_5.s3sDnP1L.avif 4032w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_5.COzydrvm.webp 2016w, /EL2MP/_app/immutable/assets/Ex_5.KwHy2-Yi.webp 4032w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_5.C8qyzhRA.jpeg 2016w, /EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpeg 4032w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_5.BLfKqo4S.avif 1x, /EL2MP/_app/immutable/assets/Ex_5.s3sDnP1L.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_5.COzydrvm.webp 1x, /EL2MP/_app/immutable/assets/Ex_5.KwHy2-Yi.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_5.C8qyzhRA.jpg 1x, /EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpg",
     w: 4032,
     h: 3024
   }
 };
 const Ex_6 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_6.3U645BzY.avif 3024w, /EL2MP/_app/immutable/assets/Ex_6.dUKrJctU.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_6.DQucCQto.webp 3024w, /EL2MP/_app/immutable/assets/Ex_6.D7qXdLPL.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_6.CvpZkzcq.jpeg 3024w, /EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_6.3U645BzY.avif 1x, /EL2MP/_app/immutable/assets/Ex_6.dUKrJctU.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_6.DQucCQto.webp 1x, /EL2MP/_app/immutable/assets/Ex_6.D7qXdLPL.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_6.CvpZkzcq.jpg 1x, /EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpg",
     w: 6048,
     h: 4032
   }
 };
 const Ex_7 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_7.DC-zIH8R.avif 2832w, /EL2MP/_app/immutable/assets/Ex_7.DQge5Ldh.avif 5664w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_7.s1PORwBj.webp 2832w, /EL2MP/_app/immutable/assets/Ex_7.BZweUxSJ.webp 5664w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_7.KQ0lzY62.jpeg 2832w, /EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg 5664w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_7.DC-zIH8R.avif 1x, /EL2MP/_app/immutable/assets/Ex_7.DQge5Ldh.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_7.s1PORwBj.webp 1x, /EL2MP/_app/immutable/assets/Ex_7.BZweUxSJ.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_7.KQ0lzY62.jpg 1x, /EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpg",
     w: 5664,
     h: 3776
   }
 };
 const Ex_8 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_8.BaRAkATS.avif 3024w, /EL2MP/_app/immutable/assets/Ex_8.D137IxOl.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_8.CW43x6tF.webp 3024w, /EL2MP/_app/immutable/assets/Ex_8.CY6TMriR.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_8.C-O5SW1b.jpeg 3024w, /EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_8.BaRAkATS.avif 1x, /EL2MP/_app/immutable/assets/Ex_8.D137IxOl.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_8.CW43x6tF.webp 1x, /EL2MP/_app/immutable/assets/Ex_8.CY6TMriR.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_8.C-O5SW1b.jpg 1x, /EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpg",
     w: 6048,
     h: 4032
   }
 };
 const Ex_9 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_9.CtugEm9K.avif 1512w, /EL2MP/_app/immutable/assets/Ex_9.hYSrjwwQ.avif 3024w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_9.DbG-bmKW.webp 1512w, /EL2MP/_app/immutable/assets/Ex_9.DNifANYX.webp 3024w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_9.B_C0lGa7.jpeg 1512w, /EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpeg 3024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_9.CtugEm9K.avif 1x, /EL2MP/_app/immutable/assets/Ex_9.hYSrjwwQ.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_9.DbG-bmKW.webp 1x, /EL2MP/_app/immutable/assets/Ex_9.DNifANYX.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_9.B_C0lGa7.jpg 1x, /EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpg",
     w: 3024,
     h: 2016
   }
 };
 const Ex_10 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_10.BUdpVrB8.avif 1512w, /EL2MP/_app/immutable/assets/Ex_10.DtwpDAK8.avif 3024w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_10.KwYrOhN7.webp 1512w, /EL2MP/_app/immutable/assets/Ex_10.C4TSIm6C.webp 3024w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_10.BdUzJDba.jpeg 1512w, /EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpeg 3024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_10.BUdpVrB8.avif 1x, /EL2MP/_app/immutable/assets/Ex_10.DtwpDAK8.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_10.KwYrOhN7.webp 1x, /EL2MP/_app/immutable/assets/Ex_10.C4TSIm6C.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_10.BdUzJDba.jpg 1x, /EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpg",
     w: 3024,
     h: 2016
   }
 };
 const Ex_11 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_11.B5zSL8iX.avif 2762w, /EL2MP/_app/immutable/assets/Ex_11.Bbum79Vb.avif 5523w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_11.DddVHBUU.webp 2762w, /EL2MP/_app/immutable/assets/Ex_11.DwGS9Ifg.webp 5523w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_11.D9k5SOFz.jpeg 2762w, /EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpeg 5523w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_11.B5zSL8iX.avif 1x, /EL2MP/_app/immutable/assets/Ex_11.Bbum79Vb.avif 1.9996379435191889x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_11.DddVHBUU.webp 1x, /EL2MP/_app/immutable/assets/Ex_11.DwGS9Ifg.webp 1.9996379435191889x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_11.D9k5SOFz.jpg 1x, /EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpg 1.9996379435191889x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpg",
     w: 5523,
     h: 3682
   }
 };
 const Ex_13 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_13.BTo02r7F.avif 1698w, /EL2MP/_app/immutable/assets/Ex_13.C-gOXHIN.avif 3395w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_13.DdrteLJ3.webp 1698w, /EL2MP/_app/immutable/assets/Ex_13.BDsLQPL6.webp 3395w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_13.BvQPUqaw.jpeg 1698w, /EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpeg 3395w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_13.BTo02r7F.avif 1x, /EL2MP/_app/immutable/assets/Ex_13.C-gOXHIN.avif 1.9994110718492344x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_13.DdrteLJ3.webp 1x, /EL2MP/_app/immutable/assets/Ex_13.BDsLQPL6.webp 1.9994110718492344x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_13.BvQPUqaw.jpg 1x, /EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpg 1.9994110718492344x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpg",
     w: 3395,
     h: 2263
   }
 };
 const Ex_14 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_14.Cc-Y2abA.avif 1134w, /EL2MP/_app/immutable/assets/Ex_14.CvUqC0Bs.avif 2268w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_14.BGsddlyT.webp 1134w, /EL2MP/_app/immutable/assets/Ex_14.DN6woQY5.webp 2268w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_14.IIkdVKs4.jpeg 1134w, /EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpeg 2268w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_14.Cc-Y2abA.avif 1x, /EL2MP/_app/immutable/assets/Ex_14.CvUqC0Bs.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_14.BGsddlyT.webp 1x, /EL2MP/_app/immutable/assets/Ex_14.DN6woQY5.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_14.IIkdVKs4.jpg 1x, /EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpg",
     w: 2268,
     h: 4032
   }
 };
 const Ex_15 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_15.D1v9djJX.avif 2122w, /EL2MP/_app/immutable/assets/Ex_15._RPLZuWT.avif 4243w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_15.DDRDEYrd.webp 2122w, /EL2MP/_app/immutable/assets/Ex_15.BjHLAHZX.webp 4243w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_15.DSRhVtvT.jpeg 2122w, /EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpeg 4243w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_15.D1v9djJX.avif 1x, /EL2MP/_app/immutable/assets/Ex_15._RPLZuWT.avif 1.9995287464655984x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_15.DDRDEYrd.webp 1x, /EL2MP/_app/immutable/assets/Ex_15.BjHLAHZX.webp 1.9995287464655984x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_15.DSRhVtvT.jpg 1x, /EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpg 1.9995287464655984x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpg",
     w: 4243,
     h: 2829
   }
 };
 const Ex_16 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_16.DB1WrWcd.avif 3012w, /EL2MP/_app/immutable/assets/Ex_16.DwgMpDkg.avif 6024w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_16.fGjxAbni.webp 3012w, /EL2MP/_app/immutable/assets/Ex_16.B_mHLV4o.webp 6024w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_16.Dr1t1NR2.jpeg 3012w, /EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg 6024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_16.DB1WrWcd.avif 1x, /EL2MP/_app/immutable/assets/Ex_16.DwgMpDkg.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Ex_16.fGjxAbni.webp 1x, /EL2MP/_app/immutable/assets/Ex_16.B_mHLV4o.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_16.Dr1t1NR2.jpg 1x, /EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpg",
     w: 6024,
     h: 4016
   }
 };
 const coverBenchmarking = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.BCpfoXVG.avif 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.D1Sy1JP-.webp 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.BHRQHX6M.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.B-iK4VNm.jpeg 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.BCpfoXVG.avif 1x, /EL2MP/_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.D1Sy1JP-.webp 1x, /EL2MP/_app/immutable/assets/Cover_Benchmarking.BHRQHX6M.webp 2x",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.B-iK4VNm.jpg 1x, /EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpg 2x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpg",
     w: 6048,
     h: 4032
   }
 };
 const coverPrompting = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Cover_Prompting.DYxdpMma.avif 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting.CVswunsj.avif 5791w",
-    webp: "/EL2MP/_app/immutable/assets/Cover_Prompting.CdQ9s7bm.webp 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp 5791w",
-    jpeg: "/EL2MP/_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpeg 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpeg 5791w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Prompting.DYxdpMma.avif 1x, /EL2MP/_app/immutable/assets/Cover_Prompting.CVswunsj.avif 1.9996546961325967x",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Prompting.CdQ9s7bm.webp 1x, /EL2MP/_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp 1.9996546961325967x",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpg 1x, /EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpg 1.9996546961325967x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpg",
     w: 5791,
     h: 3861
   }
 };
 const coverExcel = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Cover_Excel.gVnMv0iS.avif 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.YtVyHxSg.avif 5725w",
-    webp: "/EL2MP/_app/immutable/assets/Cover_Excel.B6pS74dt.webp 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.rmilwwC7.webp 5725w",
-    jpeg: "/EL2MP/_app/immutable/assets/Cover_Excel.V_SxdBne.jpeg 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpeg 5725w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Excel.gVnMv0iS.avif 1x, /EL2MP/_app/immutable/assets/Cover_Excel.YtVyHxSg.avif 1.9996507160321342x",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Excel.B6pS74dt.webp 1x, /EL2MP/_app/immutable/assets/Cover_Excel.rmilwwC7.webp 1.9996507160321342x",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Excel.V_SxdBne.jpg 1x, /EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg 1.9996507160321342x"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpeg",
+    src: "/EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpg",
     w: 5725,
     h: 3817
   }
@@ -219,9 +219,9 @@ const coverExcel = {
 const circle_logo = "/EL2MP/_app/immutable/assets/CIRCLE.DnMg9Kjx.svg";
 const enhanced_logoImage = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/enhanced_logoImage.BVKc8-Qg.avif 2607w, /EL2MP/_app/immutable/assets/enhanced_logoImage.Qfmesbrl.avif 5213w",
-    webp: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cbf4PYtl.webp 2607w, /EL2MP/_app/immutable/assets/enhanced_logoImage.JrAXU7cP.webp 5213w",
-    png: "/EL2MP/_app/immutable/assets/enhanced_logoImage.D_eIIOoz.png 2607w, /EL2MP/_app/immutable/assets/enhanced_logoImage.Cvtx-yvb.png 5213w"
+    avif: "/EL2MP/_app/immutable/assets/enhanced_logoImage.BVKc8-Qg.avif 1x, /EL2MP/_app/immutable/assets/enhanced_logoImage.Qfmesbrl.avif 1.9996164173379363x",
+    webp: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cbf4PYtl.webp 1x, /EL2MP/_app/immutable/assets/enhanced_logoImage.JrAXU7cP.webp 1.9996164173379363x",
+    png: "/EL2MP/_app/immutable/assets/enhanced_logoImage.D_eIIOoz.png 1x, /EL2MP/_app/immutable/assets/enhanced_logoImage.Cvtx-yvb.png 1.9996164173379363x"
   },
   img: {
     src: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cvtx-yvb.png",
@@ -234,9 +234,9 @@ const condensed_logo_white = "/EL2MP/_app/immutable/assets/logo_condensed_white.
 const logoImage = "/EL2MP/_app/immutable/assets/logo_complete.SEqfJBG_.svg";
 const logoImage_white = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/logo_complete_white.DKJONqEU.avif 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.De0QvocJ.avif 3345w",
-    webp: "/EL2MP/_app/immutable/assets/logo_complete_white.BhxAyOYU.webp 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.BUYRRjmx.webp 3345w",
-    png: "/EL2MP/_app/immutable/assets/logo_complete_white.BWMEs-3S.png 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png 3345w"
+    avif: "/EL2MP/_app/immutable/assets/logo_complete_white.DKJONqEU.avif 1x, /EL2MP/_app/immutable/assets/logo_complete_white.De0QvocJ.avif 1.9994022713687987x",
+    webp: "/EL2MP/_app/immutable/assets/logo_complete_white.BhxAyOYU.webp 1x, /EL2MP/_app/immutable/assets/logo_complete_white.BUYRRjmx.webp 1.9994022713687987x",
+    png: "/EL2MP/_app/immutable/assets/logo_complete_white.BWMEs-3S.png 1x, /EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png 1.9994022713687987x"
   },
   img: {
     src: "/EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png",
@@ -463,7 +463,7 @@ const floatersDb = {
     category: "document",
     media: "",
     file: "documents/template.pdf",
-    parent: "Qualifying"
+    parent: "Prompting"
   },
   Floater2: {
     Title: "tutorial-video.mp4",
@@ -471,7 +471,7 @@ const floatersDb = {
     category: "video",
     media: videos.topcamera_1,
     href: "",
-    parent: "Qualifying"
+    parent: "Prompting"
   },
   Floater3: {
     Title: "landscape-photo.jpg",
@@ -479,7 +479,7 @@ const floatersDb = {
     category: "image",
     media: photos.image_13,
     href: "",
-    parent: "Qualifying"
+    parent: "Prompting"
   },
   Floater4: {
     Title: "team-introduction.mp4",
@@ -487,7 +487,7 @@ const floatersDb = {
     category: "video",
     media: videos.cardsgame_1,
     href: "",
-    parent: "Qualifying"
+    parent: "Prompting"
   },
   Floater5: {
     Title: "design-mockup.png",
@@ -527,7 +527,7 @@ const floatersDb = {
     category: "document",
     media: "",
     file: "documents/template.pdf",
-    parent: "Qualifying"
+    parent: "Excelling"
   },
   Floater10: {
     Title: "holiday-slideshow.mp4",
@@ -535,7 +535,7 @@ const floatersDb = {
     category: "video",
     media: "",
     href: "",
-    parent: "Qualifying"
+    parent: "Excelling"
   },
   Floater11: {
     Title: "https://medialabsciencespo.com",
@@ -543,7 +543,7 @@ const floatersDb = {
     category: "link",
     media: "",
     href: "",
-    parent: "Qualifying"
+    parent: "Excelling"
   },
   Floater12: {
     Title: "extended_logo.svg",
@@ -551,7 +551,7 @@ const floatersDb = {
     category: "image",
     media: general.enhanced_logoImage,
     href: "",
-    parent: "Qualifying"
+    parent: "Excelling"
   },
   Floater13: {
     Title: "extended_logo.svg",
@@ -572,9 +572,9 @@ const floatersDb = {
 };
 const backgroundImage = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Dot_background.BMWCEQP3.avif 756w, /EL2MP/_app/immutable/assets/Dot_background.BqYuFsFf.avif 1512w",
-    webp: "/EL2MP/_app/immutable/assets/Dot_background.BF15mkJt.webp 756w, /EL2MP/_app/immutable/assets/Dot_background.C7u_RcRU.webp 1512w",
-    png: "/EL2MP/_app/immutable/assets/Dot_background.B3sYNgA-.png 756w, /EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png 1512w"
+    avif: "/EL2MP/_app/immutable/assets/Dot_background.BMWCEQP3.avif 1x, /EL2MP/_app/immutable/assets/Dot_background.BqYuFsFf.avif 2x",
+    webp: "/EL2MP/_app/immutable/assets/Dot_background.BF15mkJt.webp 1x, /EL2MP/_app/immutable/assets/Dot_background.C7u_RcRU.webp 2x",
+    png: "/EL2MP/_app/immutable/assets/Dot_background.B3sYNgA-.png 1x, /EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png 2x"
   },
   img: {
     src: "/EL2MP/_app/immutable/assets/Dot_background.CvoK4E8a.png",
