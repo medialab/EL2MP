@@ -1,7 +1,6 @@
 <script>
     //This is floating_card.svelte
     import { onMount } from "svelte";
-    import { fade, slide, scale } from "svelte/transition";
 
     export let data
     export let randomPosition;
@@ -9,6 +8,7 @@
     let isClicked = false;
 
     const addClickedClass = (event) => {
+        event.preventDefault();
         if (data.category === 'image' || data.category === 'video' && data.media) {
                         // Find the closest .floater_container relative to the clicked element, this is to scope it in this single item
                     const floaterContainer = event.target.closest('.floater_container');
@@ -97,6 +97,14 @@
         }
     };
 
+    const handleKeyDown = (event) => {
+        // Trigger click on Enter or Space key press
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            addClickedClass(event);
+        }
+    };
+
     onMount(() => {
         //cavoli
     })
@@ -138,11 +146,14 @@
         {/if}
         
         <a
+            href="#" 
             class="floater_bottom"
             style="background-color: {color}"
             aria-label="Close"
             role="button"
+            tabindex="0"
             on:click={addClickedClass}
+            on:keydown={handleKeyDown}
 
             on:mousedown={handleMouseDown}
             on:mouseup={handleMouseUp}
@@ -166,16 +177,16 @@
                 </div>
 
                 {:else if data.category === 'image'}
-                <div class="category_icon" id="image">
-                    <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM270-290h423.07L561.54-465.38 449.23-319.23l-80-102.31L270-290Zm-70 90v-560 560Z"/></svg>
-                </div>
+                    <div class="category_icon" id="image">
+                        <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM270-290h423.07L561.54-465.38 449.23-319.23l-80-102.31L270-290Zm-70 90v-560 560Z"/></svg>
+                    </div>
 
                 
 
                 {:else if data.category === 'video'}
-                <div class="category_icon" id="video">
-                    <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m172.31-780 70 140h120l-70-140h80l70 140h120l-70-140h80l70 140h120l-70-140h95.38Q818-780 839-759q21 21 21 51.31v455.38Q860-222 839-201q-21 21-51.31 21H172.31Q142-180 121-201q-21-21-21-51.31v-455.38Q100-738 121-759q21-21 51.31-21ZM160-580v327.69q0 5.39 3.46 8.85t8.85 3.46h615.38q5.39 0 8.85-3.46t3.46-8.85V-580H160Zm0 0v340-340Z"/></svg>
-                </div>
+                    <div class="category_icon" id="video">
+                        <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m172.31-780 70 140h120l-70-140h80l70 140h120l-70-140h80l70 140h120l-70-140h95.38Q818-780 839-759q21 21 21 51.31v455.38Q860-222 839-201q-21 21-51.31 21H172.31Q142-180 121-201q-21-21-21-51.31v-455.38Q100-738 121-759q21-21 51.31-21ZM160-580v327.69q0 5.39 3.46 8.85t8.85 3.46h615.38q5.39 0 8.85-3.46t3.46-8.85V-580H160Zm0 0v340-340Z"/></svg>
+                    </div>
 
                 {:else if data.category === 'link'}
                 <div class="category_icon" id="video">
@@ -184,7 +195,7 @@
             {/if}
 
             {#if data.Title}
-                <p class="s2">
+                <p class="s2" id="floater_text">
                     {data.Title}
                 </p>
             {/if}
@@ -210,16 +221,13 @@
         overflow: hidden;
         
         will-change: transform, max-height; 
-
-        /* transition: 
-            max-height 0.3s ease-in-out,
-            width 1s ease-in-out, 
-            padding 0.3s ease-in-out; */
             
         cursor: grab; 
         touch-action: none;
         user-select: none;
         transform-origin: bottom left;
+
+        transition: width 0.3s ease-in-out;
 
         @media (max-width: 768px) {
             display: none;
@@ -234,11 +242,17 @@
     }
 
     :global(.floater_container.closed > .floater_bottom > p) {
-        display: none;
+        display: block;
+        width: 0px;
+        transition: all var(--transition-times) var(--transition-curve);
+        padding-left: 0;
     }
 
     :global(.floater_container.open > .floater_bottom > p) {
         display: block;
+        width: fit-content;
+        transition: all var(--transition-times) var(--transition-curve);
+        padding-left: var(--spacing-S);
     }
 
     :global(.floater_container.open > .floater_bottom) {
@@ -316,7 +330,7 @@
 
         justify-content: center;
         align-items: center;
-        gap: 5px;
+        gap: 0px;
 
         background-color: white;
         color: black;
@@ -326,7 +340,7 @@
 
         word-wrap: none;
 
-        transition: background-color 0.3s ease-in-out;
+        transition: background-color var(--transition-times) var(--transition-curve);
     }
 
     :global(.floater_container.closed > .floater_bottom) {

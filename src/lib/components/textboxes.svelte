@@ -1,5 +1,5 @@
 <script>
-    import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
+    import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
     // This prop might not be needed if bringToFront is handled solely by drag interactions
     export let bringToFront; 
 

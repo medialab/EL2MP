@@ -1,7 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
 import { cardsDb, alterEgosDb } from '$lib/database/global_db.js';
-import { isAlterEgoMode  } from '$lib/stores/alterEgoStore';
+import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
 import { transitionTime } from '$lib/stores/animations';
 
 import {

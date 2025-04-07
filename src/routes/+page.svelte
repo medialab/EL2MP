@@ -4,14 +4,16 @@
     import PositionMarkerButton from "$lib/components/buttons/position_marker_button.svelte";
     import ResetButton from "$lib/components/buttons/reset_button.svelte";
     import TimeButton from "$lib/components/buttons/time_button.svelte";
-    import FloatingCard from "$lib/components/floating_card.svelte";
+    import FloatingCard from "$lib/components/floaters.svelte";
     import ReactionDiffusion from "$lib/components/reactionDiffusion.svelte";
     import Textbox from "$lib/components/textboxes.svelte";
     import Slider from "$lib/components/buttons/slider.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
     import { writable } from "svelte/store";
-    import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
+
+    // Here we start to implement more stores
+    import { selectedCard, isAlterEgoMode, currentCardColor } from '$lib/stores/globalStores';
     
     let interactRef;
     
@@ -21,9 +23,9 @@
     let height = 0;
 
     let containers;
+    let textBoxes;
     let scrollContainers;
     let floaters;
-    let formattedTime;
     let isProjCover;
     let ResizeObserver;
 
@@ -31,15 +33,10 @@
     let floaterPositions = [];
 
     let highestZIndex = 1;
-    let cover;
-    let sidebar;
     let isAnimating = false;
     let scrollableElements;
     
-    let selectedCard = "Qualifying";
-    let activeMarker;
     let currentScrollLevel = null;
-    let currentCardColor;
 
     let currentObserver;
     let sections = [];
@@ -101,15 +98,7 @@
         location.reload();
     }
 
-    const updateTime = () => {
-        const now = new Date();
-        setTimeout(() => {
-            formattedTime = format(now, "eee do MMM - HH:mm:ss");
-        }, 600);
-        
-    };
-
-    let isFirstReset = true; // Flag to track the first invocation
+    let isFirstReset = true;
 
     const reset_function = () => {
         if (!containers) {
@@ -138,8 +127,6 @@
         const startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length - 1);
         const startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length - 1);
 
-        // //console.log({ startX, startY, totalBlockWidth, totalBlockHeight });
-
         containers.forEach((container, index) => {
             // Calculate the position for the current container based on the index
             const x = startX + index * offset;
@@ -167,7 +154,9 @@
             }
         });
 
-        selectedCard = "Qualifying";
+        // Now we reset the active card to qualifying
+
+        $selectedCard = "Qualifying";
 
         if (floaters) {
             floaters.forEach(floater => {
@@ -206,43 +195,25 @@
         container.style.zIndex = highestZIndex;
     };
 
-    const suppressCover = () => {
-        cover.style.display = 'none'
-    }
-
-    const open_sidebar = () => {
-        if (sidebar.classList.contains('closed')) {
-            sidebar.classList.remove('closed');
-            sidebar.classList.add('open');
-        }
-    };
-
     const switch_alterego = () => {
 
         $isAlterEgoMode = !$isAlterEgoMode;
         
-        // Handle floaters based on alter ego mode
         if (floaters) {
             floaters.forEach(floater => {
                 if ($isAlterEgoMode) {
-                    // Force close all floaters in alter ego mode
                     floater.classList.remove('open');
                     floater.classList.add('closed');
-                    // Remove the direct backgroundColor setting
-                } else {
-                    // Don't reset background color directly anymore
-                    // Let the reactive currentCardColor handle it
                 }
             });
         }
 
         const cardContainers = document.querySelectorAll('.card_container');
+
         cardContainers.forEach(card => {
             if ($isAlterEgoMode) {
-                // Switch to white border in alter ego mode
                 card.style.borderColor = 'white';
             } else {
-                // Switch back to black border when exiting alter ego mode
                 card.style.borderColor = 'black';
                 hideFloaters();
             }
@@ -259,7 +230,7 @@
 
         containers.forEach((container) => {
             container.addEventListener("click", (event) => {
-                selectedCard = container.getAttribute("data-section");
+                $selectedCard = container.getAttribute("data-section");
                 if (!$isAlterEgoMode) {
                     openFloaters(floaters);
                 } else {
@@ -270,7 +241,7 @@
 
         scrollContainers.forEach((scrollContainer) => {
             scrollContainer.addEventListener("click", (event) => {
-                selectedCard = scrollContainer.getAttribute("data-section");
+                $selectedCard = scrollContainer.getAttribute("data-section");
                 if (!$isAlterEgoMode) {
                     openFloaters(floaters);
                 }
@@ -330,29 +301,29 @@
         };
     };
 
-    const alignColor = (selectedCard) => {
-        // If in alter ego mode, always use white color
+    const alignColor = ($selectedCard) => {
+        const selected = Object.values(data.cardsDb).find(card => card.Title === $selectedCard);
+
         if ($isAlterEgoMode) {
-            currentCardColor = 'white';
+            $currentCardColor = 'white';
             return;
-        }
-        
-        // Otherwise, use selected card color
-        const selected = Object.values(data.cardsDb).find(card => card.Title === selectedCard);
-        
-        if (selected) {
-            currentCardColor = selected.bgColor;
-            lastCardColor = selected.bgColor;
+
         } else {
-            currentCardColor = lastCardColor;
+            if (selected) {
+                $currentCardColor = selected.bgColor;
+                lastCardColor = selected.bgColor;
+            } else {
+                $currentCardColor = lastCardColor;
+            }
         }
+        
+        
     };
 
     const openFloaters = (floaters) => {
-        // Don't open floaters if in alter ego mode
         if ($isAlterEgoMode) return;
 
-        else if (!$isAlterEgoMode) {
+        else {
             floaters.forEach(floater => {
             if (floater.classList.contains('closed')) {
                 floater.classList.remove('closed');
@@ -360,9 +331,6 @@
             }
         }); 
         }
-        
-        //console.log("Opening floaters")
-        
     };
 
     const closeFloaters = (floaters) => {
@@ -371,74 +339,26 @@
             floater.classList.remove('open');
             floater.classList.add('closed');
         }
-        ////console.log("Closing floaters")
         });
     };
 
-    const hideFloaters = () => {
+    const hideFloaters = (card) => {
         if (!floaters) return;
 
-            //console.log("Hiding floaters")
-
+            // Use $selectedCard directly instead of activeMarker
             floaters.forEach((floater) => {
-            if (activeMarker !== 'all' && floater.dataset.parent !== activeMarker) {
-                floater.style.display = 'none';
-            } else {
-                floater.style.display = '';
-            }
-
+                if (card !== 'all' && floater.dataset.parent !== card) {
+                    floater.style.display = 'none';
+                } else {
+                    floater.style.display = '';
+                }
             floater.classList.remove('clicked');
             floater.classList.add('open');
-
         });
     };
 
-    const updateSelectedCard = (selectedCard) => {
-        if (selectedCard !== null && selectedCard !== undefined) {
-            activeMarker = selectedCard;
-            // //console.log("Active marker set to:", activeMarker)
-        } else {
-            // //console.log("Marker was null, reverted to:", activeMarker)
-        }
-        if (!$isAlterEgoMode) {
-            hideFloaters();
-            //console.log("Hiding floaters via updateSelectedCard")
-        }
-        
-    }
-
-    const checkFloaterInsideHost = (floater) => {
-        // Make sure we have a host element
-        if (!hostElement) return;
-        
-        const hostRect = hostElement.getBoundingClientRect();
-        const floaterRect = floater.getBoundingClientRect();
-        
-        // Check if the floater is completely inside the host
-        const isInside = (
-            floaterRect.top >= hostRect.top &&
-            floaterRect.left >= hostRect.left &&
-            floaterRect.bottom <= hostRect.bottom &&
-            floaterRect.right <= hostRect.right
-        );
-        
-        // If it's not, recalculate and update its position
-        if (!isInside) {
-            const newPosition = calculateRandomPosition();
-            floater.style.top = newPosition.top;
-            floater.style.left = newPosition.left;
-            floater.style.zIndex = newPosition.zIndex;
-            // Optionally update data attributes
-            floater.setAttribute("data-x", parseFloat(newPosition.left));
-            floater.setAttribute("data-y", parseFloat(newPosition.top));
-        }
-    };
-
-    $: updateSelectedCard(selectedCard)
-
-    $: if ($isAlterEgoMode !== undefined) alignColor(selectedCard);
-
-    $: alignColor(selectedCard);
+    $: if ($isAlterEgoMode !== undefined) alignColor($selectedCard);
+    $: if (!$isAlterEgoMode) hideFloaters($selectedCard);
 
     onMount(async () => {
         const interact = (await import('interactjs')).default;
@@ -447,25 +367,25 @@
         const simpleBar = (await import('simplebar')).default;
         const ResizeObserver = (await import('resize-observer-polyfill')).default;
 
-        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
         // Initialize the size
         updateWindowSize();
         window.addEventListener('resize', updateWindowSize);
 
         if (simplebarContainer) {
             new SimpleBar(simplebarContainer, {
-                autoHide: false, // Keeps the scrollbar visible all the time
-                scrollbarMinSize: 10, // Sets the minimum scrollbar size
+                autoHide: false,
+                scrollbarMinSize: 10,
             });
         }
 
-        updateTime();
-        const interval = setInterval(updateTime, 1000);
-        containers = document.querySelectorAll('.card_container')
-        floaters = document.querySelectorAll('.floater_container')
-        hostElement = document.querySelector('.host');
-        scrollContainers = document.querySelectorAll('.card_scrollable_container')
+        // Here we setup the containers that we'll use 
+            containers = document.querySelectorAll('.card_container')
+            floaters = document.querySelectorAll('.floater_container')
+            hostElement = document.querySelector('.host');
+            scrollContainers = document.querySelectorAll('.card_scrollable_container')
+            textBoxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
+            scrollableElements = document.querySelectorAll('.card_scrollable_container')
+            sections = document.querySelectorAll('.section_container');
 
         if (isDesktop) {
 
@@ -545,7 +465,7 @@
 
                             // If the cardData exists, update selectedCard with the Title
                             if (cardData && cardData.Title) {
-                                selectedCard = cardData.Title;
+                               $selectedCard = cardData.Title;
                                 if (!$isAlterEgoMode) {
                                     openFloaters(floaters);
                                 }
@@ -733,8 +653,7 @@
                     inertia: true,
                 });
             });
-            
-            const textBoxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
+        
             textBoxes.forEach((textBox) => {
                 textBox.classList.add('grab');
                 textBox.style.touchAction = 'none';
@@ -788,87 +707,146 @@
             });
 
             tick();
-
-            cover = document.querySelector('#cover_description')
-            sidebar = document.querySelector('#sidebar')
-            //console.log(sidebar)
-            scrollableElements = document.querySelectorAll('.card_scrollable_container')
-
-            // Here we are selecting the sections for the marker loader
-            sections = document.querySelectorAll('.section_container');
+            
             setupMouseDetection();
             observeSectionsAndContainers();
 
             tick();
 
-            // Ensure the cards are rendered before positioning
             await tick(); // Wait for the DOM to update
-
-            // Call the positioning logic here
-            // reset_function(); // Call the function that positions the cards
         }
-
-
 
         return () => {
             window.removeEventListener('resize', updateWindowSize);
             clearInterval(interval);
-            // Remove any other event listeners and cleanup here
         };
         
     }); 
 
     onDestroy(() => {
-        // Ensure all resources are properly cleaned up
-        // This helps with memory management and prevents the UnloadHandler warning
-        const cleanupElements = () => {
-            // Clean up any animations or timers
-            if (containers && interactRef) {
-                containers.forEach(container => {
-                    // Cleanup interact.js event listeners
-                    try {
-                        interactRef(container).unset();
-                    } catch (e) {
-                        // Interact.js might not be available
-                        console.log("Could not cleanup interact event handlers");
-                    }
-                });
-            }
-            
-            if (floaters && interactRef) {
-                floaters.forEach(floater => {
-                    // Cleanup interact.js event listeners
-                    try {
-                        interactRef(floater).unset();
-                    } catch (e) {
-                        // Interact.js might not be available
-                        console.log("Could not cleanup interact event handlers");
-                    }
-                    
-                    // Cancel any ongoing animations
-                    if (floater.style.animation) {
-                        floater.style.animation = 'none';
-                    }
-                    
-                    // Remove any transform transitions
-                    floater.style.transition = 'none';
-                });
-            }
-            
-            // Cleanup any document-level event listeners
-            try {
-                const sections = document.querySelectorAll('.scrollable-section');
-                if (sections) {
-                    sections.forEach((section) => {
-                        section.removeEventListener("mouseenter", null);
+        // Remove all global event listeners
+        window.removeEventListener('resize', updateWindowSize);
+        
+        // Cancel any animation frames or timeouts
+        if (holdTimeout) clearTimeout(holdTimeout);
+        
+        // Clean up interact.js event handlers
+        const cleanupInteract = () => {
+            if (interactRef) {
+                // Clean up containers
+                if (containers) {
+                    containers.forEach(container => {
+                        try {
+                            interactRef(container).unset();
+                        } catch (e) {
+                            console.log("Could not cleanup container interact handlers");
+                        }
                     });
                 }
-            } catch (e) {
-                // Elements might not be available
+                
+                // Clean up floaters
+                if (floaters) {
+                    floaters.forEach(floater => {
+                        try {
+                            interactRef(floater).unset();
+                        } catch (e) {
+                            console.log("Could not cleanup floater interact handlers");
+                        }
+                        
+                        // Cancel animations and transitions
+                        if (floater.style) {
+                            floater.style.animation = 'none';
+                            floater.style.transition = 'none';
+                        }
+                    });
+                }
+                
+                // Clean up text boxes
+                if (textBoxes) {
+                    textBoxes.forEach(textBox => {
+                        try {
+                            interactRef(textBox).unset();
+                        } catch (e) {
+                            console.log("Could not cleanup textBox interact handlers");
+                        }
+                    });
+                }
             }
         };
         
-        cleanupElements();
+        // Clean up event listeners on DOM elements
+        const cleanupEventListeners = () => {
+            // Clean up section event listeners
+            if (sections) {
+                sections.forEach(section => {
+                    try {
+                        section.removeEventListener("mouseenter", null);
+                    } catch (e) {
+                        console.log("Could not remove mouseenter listener");
+                    }
+                });
+            }
+            
+            // Clean up container event listeners
+            if (containers) {
+                containers.forEach(container => {
+                    try {
+                        container.removeEventListener("click", null);
+                    } catch (e) {
+                        console.log("Could not remove click listener from container");
+                    }
+                });
+            }
+            
+            // Clean up scroll container event listeners
+            if (scrollContainers) {
+                scrollContainers.forEach(scrollContainer => {
+                    try {
+                        scrollContainer.removeEventListener("click", null);
+                    } catch (e) {
+                        console.log("Could not remove click listener from scroll container");
+                    }
+                });
+            }
+        };
+        
+        // Clean up any observers
+        const cleanupObservers = () => {
+            if (currentObserver) {
+                try {
+                    currentObserver.disconnect();
+                } catch (e) {
+                    console.log("Could not disconnect observer");
+                }
+            }
+        };
+        
+        // Clear references to DOM elements to help garbage collection
+        const clearReferences = () => {
+            containers = null;
+            floaters = null;
+            textBoxes = null;
+            scrollContainers = null;
+            hostElement = null;
+            simplebarContainer = null;
+            scrollableElements = null;
+            sections = null;
+            
+            // Clear arrays
+            initialPositions = [];
+            floaterPositions = [];
+            
+            // Clear interact reference
+            interactRef = null;
+        };
+        
+        // Execute all cleanup functions
+        cleanupInteract();
+        cleanupEventListeners();
+        cleanupObservers();
+        clearReferences();
+        
+        console.log("Component cleanup complete");
     });
 
 </script>
@@ -882,7 +860,7 @@
 
         <Slider
         switch_alterego = {switch_alterego}
-        pillBgColor = {currentCardColor}/>
+        pillBgColor = {$currentCardColor}/>
 
         <LogoButton
             logoImage = {data.logoImage}
@@ -894,20 +872,6 @@
             reset_function = {reset_function}
         />
 
-        <!--
-        TimeButton
-            data = {data}
-            time= {formattedTime || "Loading..."}
-        />
-        
-
-        <PositionMarkerButton
-            data = {data}
-            selectedCardTitle = {activeMarker}
-            currentScrollLevel = {currentScrollLevel}
-        />
-        -->
-
         {#if !isMobileDevice}
             {#each Object.values(data.cardsDb) as card (card.IndexNum)}
                 <Capitols
@@ -916,7 +880,6 @@
                     transitionDelay = {card.IndexNum * 100}
                     alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
                     bringToFront = {bringToFront}
-                    suppressCover = {suppressCover}
                     simplebarContainer = {simplebarContainer}
                     condensed_logo = {data.condensed_logo}
                     condensed_logo_white = {data.condensed_logo_white}
@@ -929,7 +892,7 @@
                 <FloatingCard
                     data={floater}
                     randomPosition = {calculateRandomPosition()}
-                    color = {currentCardColor}
+                    color = {$currentCardColor}
                 />
             {/each}
         {/if}

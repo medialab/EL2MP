@@ -217,7 +217,7 @@ const floatersDb = {
     category: "document",
     media: "",
     file: "documents/template.pdf",
-    parent: "Qualifying",
+    parent: "Prompting",
   },
   Floater2: {
     Title: "tutorial-video.mp4",
@@ -225,7 +225,7 @@ const floatersDb = {
     category: "video",
     media: videos.topcamera_1,
     href: "",
-    parent: "Qualifying",
+    parent: "Prompting",
   },
   Floater3: {
     Title: "landscape-photo.jpg",
@@ -233,7 +233,7 @@ const floatersDb = {
     category: "image",
     media: photos.image_13,
     href: "",
-    parent: "Qualifying",
+    parent: "Prompting",
   },
   Floater4: {
     Title: "team-introduction.mp4",
@@ -241,7 +241,7 @@ const floatersDb = {
     category: "video",
     media: videos.cardsgame_1,
     href: "",
-    parent: "Qualifying",
+    parent: "Prompting",
   },
   Floater5: {
     Title: "design-mockup.png",
@@ -281,7 +281,7 @@ const floatersDb = {
     category: "document",
     media: "",
     file: "documents/template.pdf",
-    parent: "Qualifying",
+    parent: "Excelling",
   },
   Floater10: {
     Title: "holiday-slideshow.mp4",
@@ -289,7 +289,7 @@ const floatersDb = {
     category: "video",
     media: "",
     href: "",
-    parent: "Qualifying",
+    parent: "Excelling",
   },
   Floater11: {
     Title: "https://medialabsciencespo.com",
@@ -297,7 +297,7 @@ const floatersDb = {
     category: "link",
     media: "",
     href: "",
-    parent: "Qualifying",
+    parent: "Excelling",
   },
   Floater12: {
     Title: "extended_logo.svg",
@@ -305,7 +305,7 @@ const floatersDb = {
     category: "image",
     media: general.enhanced_logoImage,
     href: "",
-    parent: "Qualifying",
+    parent: "Excelling",
   },
   Floater13: {
     Title: "extended_logo.svg",

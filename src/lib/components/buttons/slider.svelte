@@ -1,5 +1,5 @@
 <script>
-    import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
+    import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
     export let switch_alterego;
     export let pillBgColor;
 </script>

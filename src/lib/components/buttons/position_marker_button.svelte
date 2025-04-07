@@ -1,6 +1,6 @@
 <script>
     import { fade, slide,  } from 'svelte/transition';
-    import { isAlterEgoMode } from '$lib/stores/alterEgoStore';
+    import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
 
     export let selectedCardTitle
     export let currentScrollLevel
