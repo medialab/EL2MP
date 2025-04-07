@@ -2,231 +2,231 @@ import "vite";
 import "clsx";
 const Ex_1 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_1.M4ljEBhX.avif 1694w, /EL2MP/_app/immutable/assets/Ex_1.CMMh1Vzj.avif 3387w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_1.Bx3NSCaH.webp 1694w, /EL2MP/_app/immutable/assets/Ex_1.DrrkBwoK.webp 3387w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_1.jWrIf0p7.jpeg 1694w, /EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpeg 3387w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_1.QO0HGdLW.avif 670w, /EL2MP/_app/immutable/assets/Ex_1.DY5HsD28.avif 1340w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_1.Ce18cyLf.webp 670w, /EL2MP/_app/immutable/assets/Ex_1.DxE7ICmY.webp 1340w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_1.DlyXszQ9.jpeg 670w, /EL2MP/_app/immutable/assets/Ex_1.BGIgipI9.jpeg 1340w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_1.YYmuPqAp.jpeg",
-    w: 3387,
-    h: 4853
+    src: "/EL2MP/_app/immutable/assets/Ex_1.BGIgipI9.jpeg",
+    w: 1340,
+    h: 1920
   }
 };
 const Ex_2 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_2.CwMjKd24.avif 2822w, /EL2MP/_app/immutable/assets/Ex_2.DJXC-8TR.avif 5643w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_2.CVE6Jd3K.webp 2822w, /EL2MP/_app/immutable/assets/Ex_2.CJGUg6Yd.webp 5643w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_2.1IMO8yRp.jpeg 2822w, /EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg 5643w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_2.CVF4CKZ4.avif 960w, /EL2MP/_app/immutable/assets/Ex_2.CVn5BRBI.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_2.BMCmOg90.webp 960w, /EL2MP/_app/immutable/assets/Ex_2.BqVto5hy.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_2.C38l8F2C.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_2.B4qyiG-1.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_2.FbG9S_Lv.jpeg",
-    w: 5643,
-    h: 3762
+    src: "/EL2MP/_app/immutable/assets/Ex_2.B4qyiG-1.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_3 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_3.B3GQC8Cg.avif 2350w, /EL2MP/_app/immutable/assets/Ex_3.C_rKMPaD.avif 4700w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_3.D93WMUM5.webp 2350w, /EL2MP/_app/immutable/assets/Ex_3.D6Ydhm_V.webp 4700w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_3.BqszNBh6.jpeg 2350w, /EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpeg 4700w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_3.DD42LvSH.avif 960w, /EL2MP/_app/immutable/assets/Ex_3.BT_LvxT7.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_3.ChBHQeR0.webp 960w, /EL2MP/_app/immutable/assets/Ex_3.B3rDMTUF.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_3.Brf-OB4s.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_3.Dn8zLI96.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_3.DII5ae4F.jpeg",
-    w: 4700,
-    h: 3133
+    src: "/EL2MP/_app/immutable/assets/Ex_3.Dn8zLI96.jpeg",
+    w: 1920,
+    h: 1279
   }
 };
 const Ex_4 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_4.CzGTDiGJ.avif 2826w, /EL2MP/_app/immutable/assets/Ex_4.O4hnVjzp.avif 5652w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_4.DXR7pjsX.webp 2826w, /EL2MP/_app/immutable/assets/Ex_4.Cf4Olo8b.webp 5652w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_4.BesA-xiL.jpeg 2826w, /EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpeg 5652w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_4.DoH59Luw.avif 960w, /EL2MP/_app/immutable/assets/Ex_4.siwJG96W.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_4.BJwOeTz-.webp 960w, /EL2MP/_app/immutable/assets/Ex_4.CtbxrWgq.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_4.BWeHHLUz.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_4.C3z7wvk7.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_4.CUvBcN8b.jpeg",
-    w: 5652,
-    h: 3768
+    src: "/EL2MP/_app/immutable/assets/Ex_4.C3z7wvk7.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_5 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_5.BLfKqo4S.avif 2016w, /EL2MP/_app/immutable/assets/Ex_5.s3sDnP1L.avif 4032w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_5.COzydrvm.webp 2016w, /EL2MP/_app/immutable/assets/Ex_5.KwHy2-Yi.webp 4032w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_5.C8qyzhRA.jpeg 2016w, /EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpeg 4032w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_5.CKaZvBrt.avif 960w, /EL2MP/_app/immutable/assets/Ex_5.Z0Jj_zXo.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_5.Ckz3ayMg.webp 960w, /EL2MP/_app/immutable/assets/Ex_5.CQI6jWac.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_5.uxEIErPT.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_5.BCzBP-E9.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_5.qaPlev2Y.jpeg",
-    w: 4032,
-    h: 3024
+    src: "/EL2MP/_app/immutable/assets/Ex_5.BCzBP-E9.jpeg",
+    w: 1920,
+    h: 1440
   }
 };
 const Ex_6 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_6.3U645BzY.avif 3024w, /EL2MP/_app/immutable/assets/Ex_6.dUKrJctU.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_6.DQucCQto.webp 3024w, /EL2MP/_app/immutable/assets/Ex_6.D7qXdLPL.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_6.CvpZkzcq.jpeg 3024w, /EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_6.C3xlUj9A.avif 960w, /EL2MP/_app/immutable/assets/Ex_6.CbJR4tZe.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_6.iduaeo2B.webp 960w, /EL2MP/_app/immutable/assets/Ex_6.QHKU0Bgc.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_6.DueK2eiT.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_6.BYSogFO-.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_6.DrkqBJlc.jpeg",
-    w: 6048,
-    h: 4032
+    src: "/EL2MP/_app/immutable/assets/Ex_6.BYSogFO-.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_7 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_7.DC-zIH8R.avif 2832w, /EL2MP/_app/immutable/assets/Ex_7.DQge5Ldh.avif 5664w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_7.s1PORwBj.webp 2832w, /EL2MP/_app/immutable/assets/Ex_7.BZweUxSJ.webp 5664w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_7.KQ0lzY62.jpeg 2832w, /EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg 5664w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_7.BtVnzWmm.avif 960w, /EL2MP/_app/immutable/assets/Ex_7.yS0jQH2P.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_7.DVxhIfo8.webp 960w, /EL2MP/_app/immutable/assets/Ex_7.QU95y3Us.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_7.Cy-ggOJd.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_7.eKE3DRkj.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_7.Cz8mYVx-.jpeg",
-    w: 5664,
-    h: 3776
+    src: "/EL2MP/_app/immutable/assets/Ex_7.eKE3DRkj.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_8 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_8.BaRAkATS.avif 3024w, /EL2MP/_app/immutable/assets/Ex_8.D137IxOl.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_8.CW43x6tF.webp 3024w, /EL2MP/_app/immutable/assets/Ex_8.CY6TMriR.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_8.C-O5SW1b.jpeg 3024w, /EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_8.p-0pH8f4.avif 960w, /EL2MP/_app/immutable/assets/Ex_8.pKrt-kIl.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_8.C6xmYp_Y.webp 960w, /EL2MP/_app/immutable/assets/Ex_8.kLDtPm-T.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_8.B65WNOzL.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_8.BiuKaGXt.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_8.DIyvFjzs.jpeg",
-    w: 6048,
-    h: 4032
+    src: "/EL2MP/_app/immutable/assets/Ex_8.BiuKaGXt.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_9 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_9.CtugEm9K.avif 1512w, /EL2MP/_app/immutable/assets/Ex_9.hYSrjwwQ.avif 3024w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_9.DbG-bmKW.webp 1512w, /EL2MP/_app/immutable/assets/Ex_9.DNifANYX.webp 3024w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_9.B_C0lGa7.jpeg 1512w, /EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpeg 3024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_9.DpQrDHpm.avif 960w, /EL2MP/_app/immutable/assets/Ex_9.C99pHXo6.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_9.DUL1N7A8.webp 960w, /EL2MP/_app/immutable/assets/Ex_9.Bel3gru6.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_9.q_mfK4ko.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_9.CaIuZVxN.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_9.CG3bTW4C.jpeg",
-    w: 3024,
-    h: 2016
+    src: "/EL2MP/_app/immutable/assets/Ex_9.CaIuZVxN.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_10 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_10.BUdpVrB8.avif 1512w, /EL2MP/_app/immutable/assets/Ex_10.DtwpDAK8.avif 3024w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_10.KwYrOhN7.webp 1512w, /EL2MP/_app/immutable/assets/Ex_10.C4TSIm6C.webp 3024w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_10.BdUzJDba.jpeg 1512w, /EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpeg 3024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_10.C-k20tx7.avif 960w, /EL2MP/_app/immutable/assets/Ex_10.BB2ibXyN.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_10.de9Y2Szt.webp 960w, /EL2MP/_app/immutable/assets/Ex_10.D9qhKfdS.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_10.DZln1OH7.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_10.BbQHGN6Z.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_10.C0AqRzHN.jpeg",
-    w: 3024,
-    h: 2016
+    src: "/EL2MP/_app/immutable/assets/Ex_10.BbQHGN6Z.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_11 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_11.B5zSL8iX.avif 2762w, /EL2MP/_app/immutable/assets/Ex_11.Bbum79Vb.avif 5523w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_11.DddVHBUU.webp 2762w, /EL2MP/_app/immutable/assets/Ex_11.DwGS9Ifg.webp 5523w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_11.D9k5SOFz.jpeg 2762w, /EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpeg 5523w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_11._DZtjA3j.avif 960w, /EL2MP/_app/immutable/assets/Ex_11.CO5v_MnA.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_11.B-1ERtW0.webp 960w, /EL2MP/_app/immutable/assets/Ex_11.Blne1nL2.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_11.6w5_Pi8a.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_11.a49IhSFa.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_11.EkNCUklw.jpeg",
-    w: 5523,
-    h: 3682
+    src: "/EL2MP/_app/immutable/assets/Ex_11.a49IhSFa.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_13 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_13.BTo02r7F.avif 1698w, /EL2MP/_app/immutable/assets/Ex_13.C-gOXHIN.avif 3395w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_13.DdrteLJ3.webp 1698w, /EL2MP/_app/immutable/assets/Ex_13.BDsLQPL6.webp 3395w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_13.BvQPUqaw.jpeg 1698w, /EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpeg 3395w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_13.DemIquml.avif 960w, /EL2MP/_app/immutable/assets/Ex_13.CSfbVOWb.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_13.DeyBcGje.webp 960w, /EL2MP/_app/immutable/assets/Ex_13.BJuIl5ns.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_13.2nzGUpdj.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_13.C9EKhB-A.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_13.BY2SyFUr.jpeg",
-    w: 3395,
-    h: 2263
+    src: "/EL2MP/_app/immutable/assets/Ex_13.C9EKhB-A.jpeg",
+    w: 1920,
+    h: 1279
   }
 };
 const Ex_14 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_14.Cc-Y2abA.avif 1134w, /EL2MP/_app/immutable/assets/Ex_14.CvUqC0Bs.avif 2268w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_14.BGsddlyT.webp 1134w, /EL2MP/_app/immutable/assets/Ex_14.DN6woQY5.webp 2268w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_14.IIkdVKs4.jpeg 1134w, /EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpeg 2268w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_14.Bq8GI6kM.avif 540w, /EL2MP/_app/immutable/assets/Ex_14.BHurXZdp.avif 1080w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_14.Ds0nInkV.webp 540w, /EL2MP/_app/immutable/assets/Ex_14.BQPpg8kb.webp 1080w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_14.HJ5tJY1I.jpeg 540w, /EL2MP/_app/immutable/assets/Ex_14.K1XzolDS.jpeg 1080w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_14.CB5Mj1df.jpeg",
-    w: 2268,
-    h: 4032
+    src: "/EL2MP/_app/immutable/assets/Ex_14.K1XzolDS.jpeg",
+    w: 1080,
+    h: 1920
   }
 };
 const Ex_15 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_15.D1v9djJX.avif 2122w, /EL2MP/_app/immutable/assets/Ex_15._RPLZuWT.avif 4243w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_15.DDRDEYrd.webp 2122w, /EL2MP/_app/immutable/assets/Ex_15.BjHLAHZX.webp 4243w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_15.DSRhVtvT.jpeg 2122w, /EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpeg 4243w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_15.CgsogS9R.avif 960w, /EL2MP/_app/immutable/assets/Ex_15.BXx3fa4j.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_15.Pxq2FVkj.webp 960w, /EL2MP/_app/immutable/assets/Ex_15.mvHHimsl.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_15.CAs192Lr.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_15.DMeW06Vm.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_15.CdlKumz2.jpeg",
-    w: 4243,
-    h: 2829
+    src: "/EL2MP/_app/immutable/assets/Ex_15.DMeW06Vm.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const Ex_16 = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Ex_16.DB1WrWcd.avif 3012w, /EL2MP/_app/immutable/assets/Ex_16.DwgMpDkg.avif 6024w",
-    webp: "/EL2MP/_app/immutable/assets/Ex_16.fGjxAbni.webp 3012w, /EL2MP/_app/immutable/assets/Ex_16.B_mHLV4o.webp 6024w",
-    jpeg: "/EL2MP/_app/immutable/assets/Ex_16.Dr1t1NR2.jpeg 3012w, /EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg 6024w"
+    avif: "/EL2MP/_app/immutable/assets/Ex_16.Bw3KdYpZ.avif 960w, /EL2MP/_app/immutable/assets/Ex_16.B2mkdAO0.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Ex_16.DdEjvdIT.webp 960w, /EL2MP/_app/immutable/assets/Ex_16.D395xjMT.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Ex_16.Cf3zoPQC.jpeg 960w, /EL2MP/_app/immutable/assets/Ex_16.DuoV-0Z3.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Ex_16.TQ_a5uLV.jpeg",
-    w: 6024,
-    h: 4016
+    src: "/EL2MP/_app/immutable/assets/Ex_16.DuoV-0Z3.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const coverBenchmarking = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.BCpfoXVG.avif 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.D3muVmKw.avif 6048w",
-    webp: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.D1Sy1JP-.webp 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.BHRQHX6M.webp 6048w",
-    jpeg: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.B-iK4VNm.jpeg 3024w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg 6048w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.CX90D8eQ.avif 960w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.CBKUV94J.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.CR59BdCX.webp 960w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.BCHUDNeJ.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.CyW6vMLI.jpeg 960w, /EL2MP/_app/immutable/assets/Cover_Benchmarking.BTIbY43S.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.DP92D4S-.jpeg",
-    w: 6048,
-    h: 4032
+    src: "/EL2MP/_app/immutable/assets/Cover_Benchmarking.BTIbY43S.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const coverPrompting = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Cover_Prompting.DYxdpMma.avif 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting.CVswunsj.avif 5791w",
-    webp: "/EL2MP/_app/immutable/assets/Cover_Prompting.CdQ9s7bm.webp 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting.l1e8Py1m.webp 5791w",
-    jpeg: "/EL2MP/_app/immutable/assets/Cover_Prompting.BgEZSSqu.jpeg 2896w, /EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpeg 5791w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Prompting.BJ9LRWet.avif 960w, /EL2MP/_app/immutable/assets/Cover_Prompting.DgxJZtnq.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Prompting.BPzaIXmB.webp 960w, /EL2MP/_app/immutable/assets/Cover_Prompting.DcoMmifW.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Prompting.DfKByWKD.jpeg 960w, /EL2MP/_app/immutable/assets/Cover_Prompting.4L6tuupZ.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Cover_Prompting._sRDpei3.jpeg",
-    w: 5791,
-    h: 3861
+    src: "/EL2MP/_app/immutable/assets/Cover_Prompting.4L6tuupZ.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const coverExcel = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/Cover_Excel.gVnMv0iS.avif 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.YtVyHxSg.avif 5725w",
-    webp: "/EL2MP/_app/immutable/assets/Cover_Excel.B6pS74dt.webp 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.rmilwwC7.webp 5725w",
-    jpeg: "/EL2MP/_app/immutable/assets/Cover_Excel.V_SxdBne.jpeg 2863w, /EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpeg 5725w"
+    avif: "/EL2MP/_app/immutable/assets/Cover_Excel.CzUj_5Cf.avif 960w, /EL2MP/_app/immutable/assets/Cover_Excel.BSbO8HTz.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Cover_Excel.Bk4ZBHZW.webp 960w, /EL2MP/_app/immutable/assets/Cover_Excel.Nwy4APHN.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Cover_Excel.xR62xpDD.jpeg 960w, /EL2MP/_app/immutable/assets/Cover_Excel.3hdr_PRx.jpeg 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/Cover_Excel.ofYBK4AV.jpeg",
-    w: 5725,
-    h: 3817
+    src: "/EL2MP/_app/immutable/assets/Cover_Excel.3hdr_PRx.jpeg",
+    w: 1920,
+    h: 1280
   }
 };
 const circle_logo = "/EL2MP/_app/immutable/assets/CIRCLE.DnMg9Kjx.svg";
 const enhanced_logoImage = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/enhanced_logoImage.BVKc8-Qg.avif 2607w, /EL2MP/_app/immutable/assets/enhanced_logoImage.Qfmesbrl.avif 5213w",
-    webp: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cbf4PYtl.webp 2607w, /EL2MP/_app/immutable/assets/enhanced_logoImage.JrAXU7cP.webp 5213w",
-    png: "/EL2MP/_app/immutable/assets/enhanced_logoImage.D_eIIOoz.png 2607w, /EL2MP/_app/immutable/assets/enhanced_logoImage.Cvtx-yvb.png 5213w"
+    avif: "/EL2MP/_app/immutable/assets/enhanced_logoImage.CQGRuXeO.avif 960w, /EL2MP/_app/immutable/assets/enhanced_logoImage.ZrSf7gF8.avif 1919w",
+    webp: "/EL2MP/_app/immutable/assets/enhanced_logoImage.BHzWDBsR.webp 960w, /EL2MP/_app/immutable/assets/enhanced_logoImage.UgA1ztmd.webp 1919w",
+    png: "/EL2MP/_app/immutable/assets/enhanced_logoImage.CfJdag1n.png 960w, /EL2MP/_app/immutable/assets/enhanced_logoImage.Cx1pPJGO.png 1919w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cvtx-yvb.png",
-    w: 5213,
-    h: 2259
+    src: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cx1pPJGO.png",
+    w: 1919,
+    h: 832
   }
 };
 const condensed_logo = "/EL2MP/_app/immutable/assets/logo_condensed.Cwwx0yWm.svg";
@@ -234,14 +234,14 @@ const condensed_logo_white = "/EL2MP/_app/immutable/assets/logo_condensed_white.
 const logoImage = "/EL2MP/_app/immutable/assets/logo_complete.SEqfJBG_.svg";
 const logoImage_white = {
   sources: {
-    avif: "/EL2MP/_app/immutable/assets/logo_complete_white.DKJONqEU.avif 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.De0QvocJ.avif 3345w",
-    webp: "/EL2MP/_app/immutable/assets/logo_complete_white.BhxAyOYU.webp 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.BUYRRjmx.webp 3345w",
-    png: "/EL2MP/_app/immutable/assets/logo_complete_white.BWMEs-3S.png 1673w, /EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png 3345w"
+    avif: "/EL2MP/_app/immutable/assets/logo_complete_white.CH0bWIyG.avif 960w, /EL2MP/_app/immutable/assets/logo_complete_white.CLmOAyWn.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/logo_complete_white.C8xh-Ln2.webp 960w, /EL2MP/_app/immutable/assets/logo_complete_white.Da2vsWQe.webp 1920w",
+    png: "/EL2MP/_app/immutable/assets/logo_complete_white.DdnvK92z.png 960w, /EL2MP/_app/immutable/assets/logo_complete_white.kq8KE4Lv.png 1920w"
   },
   img: {
-    src: "/EL2MP/_app/immutable/assets/logo_complete_white.ClnW4X9F.png",
-    w: 3345,
-    h: 421
+    src: "/EL2MP/_app/immutable/assets/logo_complete_white.kq8KE4Lv.png",
+    w: 1920,
+    h: 241
   }
 };
 const topcamera_1 = "/EL2MP/_app/immutable/assets/Topcamera.Cs5dpslX.webm";
