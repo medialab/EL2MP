@@ -230,11 +230,9 @@ const splitText = (text) => {
         margin-bottom: -0.2em;
         margin-top: -0.18em;
         transform: translateX(-0.08em);
-        /* Add responsive font sizing 
-        font-size: clamp(4rem, 10vw, 10rem); */
 
         @media (min-width: 1920px) {
-            font-size: 8vw;
+            font-size: 6.5vw;
             margin-top: -0.14em;
     }}
 
@@ -249,7 +247,7 @@ const splitText = (text) => {
         height: auto;
 
         min-height: calc(60vw * (1 / 1.5));
-        min-width: calc(60vw);
+        min-width: calc(60vw * (1 / 1.5));
 
         aspect-ratio: 1.5 / 1;
         display: block;
@@ -274,6 +272,8 @@ const splitText = (text) => {
 
         @media (min-width: 1920px) {
             width: 50vw;
+            min-height: calc(30vw * (1 / 1.5));
+            min-width: calc(30vw * (1 / 1.5));
         }
 
         

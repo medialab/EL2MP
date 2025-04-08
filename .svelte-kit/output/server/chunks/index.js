@@ -932,7 +932,7 @@ function update_reaction(reaction) {
         );
       }
     }
-    if (previous_reaction !== null) {
+    if (previous_reaction !== reaction) {
       read_version++;
       if (untracked_writes !== null) {
         if (previous_untracked_writes === null) {
@@ -1057,12 +1057,12 @@ function flush_queued_root_effects() {
         var collected_effects = process_effects(root_effects[i]);
         flush_queued_effects(collected_effects);
       }
+      old_values.clear();
     }
   } finally {
     is_flushing = false;
     is_updating_effect = was_updating_effect;
     last_scheduled_effect = null;
-    old_values.clear();
   }
 }
 function flush_queued_effects(effects) {

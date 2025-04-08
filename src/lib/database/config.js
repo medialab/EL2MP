@@ -1,5 +1,5 @@
 // config.js
-// Importing assets from the media folder using Vite’s URL resolution
+// Importing assets from the media folder using Vite's URL resolution
 import Ex_1 from "$media/photos/Ex_1.jpg?enhanced";
 import Ex_2 from "$media/photos/Ex_2.jpg?enhanced";
 import Ex_3 from "$media/photos/Ex_3.jpg?enhanced";
@@ -23,16 +23,36 @@ import coverPrompting from "$media/capitols_cover/Cover_Prompting.jpg?enhanced";
 import coverExcel from "$media/capitols_cover/Cover_Excel.jpg?enhanced";
 
 //Logos and generic
-import circle_logo from "$media/logos/CIRCLE.svg";
 import enhanced_logoImage from "$media/logos/enhanced_logoImage.png?enhanced";
 import condensed_logo from "$media/logos/logo_condensed.svg";
 import condensed_logo_white from "$media/logos/logo_condensed_white.svg";
 import logoImage from "$media/logos/logo_complete.svg";
 import logoImage_white from "$media/logos/logo_complete_white.png?enhanced";
 
-//Videos as webm files
-import topcamera_1 from "$videos/Topcamera.webm";
-import cardsgame_1 from "$videos/Cardsgame.webm";
+//Floaters_content
+
+import Qualifying_floater_1 from "$lib/media/floaters/qualifying/Floater_qualifying_1.webm"
+import Qualifying_floater_2 from "$lib/media/floaters/qualifying/Floater_qualifying_2.webm"
+import Qualifying_floater_3 from "$lib/media/floaters/qualifying/Floater_qualifying_3.jpg?enhanced"
+import Qualifying_floater_4 from "$lib/media/floaters/qualifying/Floater_qualifying_4.jpg?enhanced"
+
+// Prompting floaters
+import Prompting_floater_1 from "$lib/media/floaters/prompting/Floater_prompting_1.webm"
+import Prompting_floater_2 from "$lib/media/floaters/prompting/Floater_prompting_2.webm"
+import Prompting_floater_3 from "$lib/media/floaters/prompting/Floater_prompting_3.jpg?enhanced"
+import Prompting_floater_4 from "$lib/media/floaters/prompting/Floater_prompting_4.jpg?enhanced"
+
+// Excelling floaters
+import Excelling_floater_1 from "$lib/media/floaters/excelling/Floater_excelling_1.jpg?enhanced"
+import Excelling_floater_2 from "$lib/media/floaters/excelling/Floater_excelling_2.webm"
+import Excelling_floater_3 from "$lib/media/floaters/excelling/Floater_excelling_3.webm"
+import Excelling_floater_4 from "$lib/media/floaters/excelling/Floater_excelling_4.webm"
+
+// Benchmarking floaters
+import Benchmarking_floater_1 from "$lib/media/floaters/benchmarking/Floater_benchmarking_1.webm"
+import Benchmarking_floater_2 from "$lib/media/floaters/benchmarking/Floater_benchmarking_2.webm"
+import Benchmarking_floater_3 from "$lib/media/floaters/benchmarking/Floater_benchmarking_3.jpg?enhanced"
+import Benchmarking_floater_4 from "$lib/media/floaters/benchmarking/Floater_benchmarking_4.jpg?enhanced"
 
 // Grouping the assets into objects for easy access
 export const photos = {
@@ -60,13 +80,26 @@ export const capitolsCover = {
   coverExcel,
 };
 
-export const videos = {
-  cardsgame_1,
-  topcamera_1,
+export const floaters = {
+  Qualifying_floater_1,
+  Qualifying_floater_2,
+  Qualifying_floater_3,
+  Qualifying_floater_4,
+  Prompting_floater_1,
+  Prompting_floater_2,
+  Prompting_floater_3,
+  Prompting_floater_4,
+  Excelling_floater_1,
+  Excelling_floater_2,
+  Excelling_floater_3,
+  Excelling_floater_4,
+  Benchmarking_floater_1,
+  Benchmarking_floater_2,
+  Benchmarking_floater_3,
+  Benchmarking_floater_4,
 };
 
 export const general = {
-  circle_logo,
   enhanced_logoImage,
   condensed_logo,
   condensed_logo_white,
@@ -74,10 +107,8 @@ export const general = {
   logoImage_white,
 };
 
-// Optionally, export everything as a default object if you prefer:
 export default {
   photos,
   capitolsCover,
   general,
-  videos,
 };

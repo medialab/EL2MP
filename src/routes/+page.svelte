@@ -1128,6 +1128,8 @@
         font-size: 3.15em; /* 60px */
         font-family: var(--serif-font-family), var(--fallback-serif-font);
         font-weight: 400;
+
+        
     }
 
     :global(.h3) {
@@ -1174,6 +1176,11 @@
         line-height: 1.2;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
+
+        @media (min-width: 1920px) {
+                font-size: 2vw;
+                margin-top: -0.14em;
+        }
     }
 
     :global(.p2) {
@@ -1181,6 +1188,11 @@
         line-height: 1.5;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
+
+        @media (min-width: 1920px) {
+                font-size: 1.8vw;
+                margin-top: -0.14em;
+        }
     }
 
     :global(.p3) {
@@ -1188,6 +1200,11 @@
         line-height: 1.5;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
+
+        @media (min-width: 1920px) {
+                font-size: 1.2vw;
+                margin-top: -0.14em;
+        }
     }
 
     :global(.caption) {

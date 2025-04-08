@@ -19,7 +19,6 @@ export function load({ params }) {
   return {
     backgroundImage,
     logoImage: general.logoImage,
-    circular_logo: general.circle_logo,
     cardsDb,
     floatersDb,
     alterEgosDb,

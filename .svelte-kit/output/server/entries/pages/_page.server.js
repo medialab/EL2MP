@@ -216,19 +216,6 @@ const coverExcel = {
     h: 1280
   }
 };
-const circle_logo = "/EL2MP/_app/immutable/assets/CIRCLE.DnMg9Kjx.svg";
-const enhanced_logoImage = {
-  sources: {
-    avif: "/EL2MP/_app/immutable/assets/enhanced_logoImage.CQGRuXeO.avif 960w, /EL2MP/_app/immutable/assets/enhanced_logoImage.ZrSf7gF8.avif 1919w",
-    webp: "/EL2MP/_app/immutable/assets/enhanced_logoImage.BHzWDBsR.webp 960w, /EL2MP/_app/immutable/assets/enhanced_logoImage.UgA1ztmd.webp 1919w",
-    png: "/EL2MP/_app/immutable/assets/enhanced_logoImage.CfJdag1n.png 960w, /EL2MP/_app/immutable/assets/enhanced_logoImage.Cx1pPJGO.png 1919w"
-  },
-  img: {
-    src: "/EL2MP/_app/immutable/assets/enhanced_logoImage.Cx1pPJGO.png",
-    w: 1919,
-    h: 832
-  }
-};
 const condensed_logo = "/EL2MP/_app/immutable/assets/logo_condensed.Cwwx0yWm.svg";
 const condensed_logo_white = "/EL2MP/_app/immutable/assets/logo_condensed_white.Dp8XqM9M.svg";
 const logoImage = "/EL2MP/_app/immutable/assets/logo_complete.SEqfJBG_.svg";
@@ -244,8 +231,99 @@ const logoImage_white = {
     h: 241
   }
 };
-const topcamera_1 = "/EL2MP/_app/immutable/assets/Topcamera.Cs5dpslX.webm";
-const cardsgame_1 = "/EL2MP/_app/immutable/assets/Cardsgame.DTx2i1g2.webm";
+const Qualifying_floater_1 = "/EL2MP/_app/immutable/assets/Floater_qualifying_1.B2qQGqtB.webm";
+const Qualifying_floater_2 = "/EL2MP/_app/immutable/assets/Floater_qualifying_2.EqiyAY5A.webm";
+const Qualifying_floater_3 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_qualifying_3.GenW3uvE.avif 960w, /EL2MP/_app/immutable/assets/Floater_qualifying_3.Vsdkf1tN.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_qualifying_3.BJ-MtQmJ.webp 960w, /EL2MP/_app/immutable/assets/Floater_qualifying_3.Be2R3Qp0.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_qualifying_3.D2JxlcgZ.jpeg 960w, /EL2MP/_app/immutable/assets/Floater_qualifying_3.ndkzr11A.jpeg 1920w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_qualifying_3.ndkzr11A.jpeg",
+    w: 1920,
+    h: 1280
+  }
+};
+const Qualifying_floater_4 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_qualifying_4.C62bENPl.avif 960w, /EL2MP/_app/immutable/assets/Floater_qualifying_4.DaIn-lIg.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_qualifying_4.C7Jh7Q0s.webp 960w, /EL2MP/_app/immutable/assets/Floater_qualifying_4.Du85gdoA.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_qualifying_4.76eQKhEg.jpeg 960w, /EL2MP/_app/immutable/assets/Floater_qualifying_4.DuPUAT8b.jpeg 1920w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_qualifying_4.DuPUAT8b.jpeg",
+    w: 1920,
+    h: 1280
+  }
+};
+const Prompting_floater_1 = "/EL2MP/_app/immutable/assets/Floater_prompting_1.BxS_eHeQ.webm";
+const Prompting_floater_2 = "/EL2MP/_app/immutable/assets/Floater_prompting_2.DXeQ5Hwc.webm";
+const Prompting_floater_3 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_prompting_3.CyCBiBjg.avif 960w, /EL2MP/_app/immutable/assets/Floater_prompting_3.CrmdMKFP.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_prompting_3.k1lgf3vu.webp 960w, /EL2MP/_app/immutable/assets/Floater_prompting_3.CZEF4GPx.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_prompting_3.OdP4DtNn.jpeg 960w, /EL2MP/_app/immutable/assets/Floater_prompting_3.BXB3onjb.jpeg 1920w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_prompting_3.BXB3onjb.jpeg",
+    w: 1920,
+    h: 1280
+  }
+};
+const Prompting_floater_4 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_prompting_4.cA_YPoxK.avif 960w, /EL2MP/_app/immutable/assets/Floater_prompting_4.CLzNsvVd.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_prompting_4.DsVTenSS.webp 960w, /EL2MP/_app/immutable/assets/Floater_prompting_4.CIj1ikfO.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_prompting_4.D5hjyAoW.jpeg 960w, /EL2MP/_app/immutable/assets/Floater_prompting_4.CL4M7co3.jpeg 1920w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_prompting_4.CL4M7co3.jpeg",
+    w: 1920,
+    h: 1280
+  }
+};
+const Excelling_floater_1 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_excelling_1.CvC9o-mu.avif 640w, /EL2MP/_app/immutable/assets/Floater_excelling_1.CpAAOiE6.avif 1280w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_excelling_1.Cbdc7O9P.webp 640w, /EL2MP/_app/immutable/assets/Floater_excelling_1.DZx4GET-.webp 1280w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_excelling_1.DY27VF3h.jpeg 640w, /EL2MP/_app/immutable/assets/Floater_excelling_1.kNjoCapU.jpeg 1280w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_excelling_1.kNjoCapU.jpeg",
+    w: 1280,
+    h: 1920
+  }
+};
+const Excelling_floater_2 = "/EL2MP/_app/immutable/assets/Floater_excelling_2.NcuAPY4C.webm";
+const Excelling_floater_3 = "/EL2MP/_app/immutable/assets/Floater_excelling_3.Vd6q-uxt.webm";
+const Excelling_floater_4 = "/EL2MP/_app/immutable/assets/Floater_excelling_4.DKN_u153.webm";
+const Benchmarking_floater_1 = "/EL2MP/_app/immutable/assets/Floater_benchmarking_1.BEMw65ZL.webm";
+const Benchmarking_floater_2 = "/EL2MP/_app/immutable/assets/Floater_benchmarking_2.Dt952kc9.webm";
+const Benchmarking_floater_3 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_benchmarking_3.JfIShY-M.avif 960w, /EL2MP/_app/immutable/assets/Floater_benchmarking_3.C6e1-qVF.avif 1920w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_benchmarking_3.Dm38Ld3T.webp 960w, /EL2MP/_app/immutable/assets/Floater_benchmarking_3.AaFJ6jda.webp 1920w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_benchmarking_3.iEl0NBEf.jpeg 960w, /EL2MP/_app/immutable/assets/Floater_benchmarking_3.BkzfmEJD.jpeg 1920w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_benchmarking_3.BkzfmEJD.jpeg",
+    w: 1920,
+    h: 1080
+  }
+};
+const Benchmarking_floater_4 = {
+  sources: {
+    avif: "/EL2MP/_app/immutable/assets/Floater_benchmarking_4.Dcwt6FV5.avif 1512w, /EL2MP/_app/immutable/assets/Floater_benchmarking_4.DWxr23JH.avif 3024w",
+    webp: "/EL2MP/_app/immutable/assets/Floater_benchmarking_4.Dw28CPuO.webp 1512w, /EL2MP/_app/immutable/assets/Floater_benchmarking_4.CRJufxMc.webp 3024w",
+    jpeg: "/EL2MP/_app/immutable/assets/Floater_benchmarking_4.DzqX1i_o.jpeg 1512w, /EL2MP/_app/immutable/assets/Floater_benchmarking_4.DaCAWuEm.jpeg 3024w"
+  },
+  img: {
+    src: "/EL2MP/_app/immutable/assets/Floater_benchmarking_4.DaCAWuEm.jpeg",
+    w: 3024,
+    h: 4032
+  }
+};
 const photos = {
   Ex_1,
   Ex_2,
@@ -268,13 +346,25 @@ const capitolsCover = {
   coverPrompting,
   coverExcel
 };
-const videos = {
-  cardsgame_1,
-  topcamera_1
+const floaters = {
+  Qualifying_floater_1,
+  Qualifying_floater_2,
+  Qualifying_floater_3,
+  Qualifying_floater_4,
+  Prompting_floater_1,
+  Prompting_floater_2,
+  Prompting_floater_3,
+  Prompting_floater_4,
+  Excelling_floater_1,
+  Excelling_floater_2,
+  Excelling_floater_3,
+  Excelling_floater_4,
+  Benchmarking_floater_1,
+  Benchmarking_floater_2,
+  Benchmarking_floater_3,
+  Benchmarking_floater_4
 };
 const general = {
-  circle_logo,
-  enhanced_logoImage,
   condensed_logo,
   condensed_logo_white,
   logoImage,
@@ -359,8 +449,8 @@ const cardsDb = {
   },
   Card3: {
     Title: "Prompting",
-    Description: "In this block, participants explore how to effectively communicate with LLMs through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM’s outputs, aiming to better align the model's responses with their professional needs and expectations.",
-    Question: "To what extent can we influence the quality of an LLM’s output?",
+    Description: "In this block, participants explore how to effectively communicate with LLMs through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM's outputs, aiming to better align the model's responses with their professional needs and expectations.",
+    Question: "To what extent can we influence the quality of an LLM's output?",
     IndexNum: 3,
     CoverImg: capitolsCover.coverPrompting,
     Content: [
@@ -395,7 +485,7 @@ const cardsDb = {
       },
       {
         title: "Exercise 14 - Setting Up the Example",
-        subtitle: "Participants discuss the place of their chosen work within their professional ecology and explain why it’s exemplary",
+        subtitle: "Participants discuss the place of their chosen work within their professional ecology and explain why it's exemplary",
         text: "This exercise contextualizes the chosen exemplary work by examining its <b>professional significance</b>. A radar graph helps assess factors like frequency, expertise required, and error tolerance, while a structured reflection highlights what makes the work <b>exemplary</b> and worth emulating.",
         picture: photos.Ex_14
       },
@@ -428,7 +518,7 @@ const alterEgosDb = {
   Card2: {
     Title: "Methodology",
     CoverImg: general.logoImage_white,
-    Question: "A necessary project in today’s research landscape on LLMs",
+    Question: "A necessary project in today's research landscape on LLMs",
     Description: "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
     IndexNum: 2,
     bgColor: "#000000"
@@ -458,114 +548,130 @@ const alterEgosDb = {
 };
 const floatersDb = {
   Floater1: {
-    Title: "project-plan.pdf",
+    Title: "Floater_prompting_1.webm",
     id: 1,
-    category: "document",
-    media: "",
+    category: "video",
+    media: floaters.Prompting_floater_1,
     file: "documents/template.pdf",
     parent: "Prompting"
   },
   Floater2: {
-    Title: "tutorial-video.mp4",
+    Title: "Floater_prompting_2.webm",
     id: 2,
     category: "video",
-    media: videos.topcamera_1,
+    media: floaters.Prompting_floater_2,
     href: "",
     parent: "Prompting"
   },
   Floater3: {
-    Title: "landscape-photo.jpg",
+    Title: "Floater_prompting_3.jpg",
     id: 3,
     category: "image",
-    media: photos.image_13,
+    media: floaters.Prompting_floater_3,
     href: "",
     parent: "Prompting"
   },
   Floater4: {
-    Title: "team-introduction.mp4",
+    Title: "Floater_prompting_4.jpg",
     id: 4,
-    category: "video",
-    media: videos.cardsgame_1,
+    category: "image",
+    media: floaters.Prompting_floater_4,
     href: "",
     parent: "Prompting"
   },
   Floater5: {
-    Title: "design-mockup.png",
+    Title: "Floater_qualifying_1.webm",
     id: 5,
-    category: "image",
-    media: photos.image_12,
+    category: "video",
+    media: floaters.Qualifying_floater_1,
     href: "",
     parent: "Qualifying"
   },
   Floater6: {
-    Title: "page-template.pdf",
+    Title: "Floater_qualifying_2.webm",
     id: 6,
-    category: "document",
-    media: "",
+    category: "video",
+    media: floaters.Qualifying_floater_2,
     file: "documents/template.pdf",
     parent: "Qualifying"
   },
   Floater7: {
-    Title: "coding-tutorial.mp4",
+    Title: "Floater_qualifying_3.jpg",
     id: 7,
-    category: "video",
-    media: "",
+    category: "image",
+    media: floaters.Qualifying_floater_3,
     href: "",
     parent: "Qualifying"
   },
   Floater8: {
-    Title: "company-logo.svg",
+    Title: "Floater_qualifying_4.jpg",
     id: 8,
     category: "image",
-    media: photos.image_3,
+    media: floaters.Qualifying_floater_4,
     href: "",
     parent: "Qualifying"
   },
   Floater9: {
-    Title: "meeting-notes.docx",
+    Title: "Floater_excelling_1.jpg",
     id: 9,
-    category: "document",
-    media: "",
+    category: "image",
+    media: floaters.Excelling_floater_1,
     file: "documents/template.pdf",
     parent: "Excelling"
   },
   Floater10: {
-    Title: "holiday-slideshow.mp4",
+    Title: "Floater_excelling_2.webm",
     id: 10,
     category: "video",
-    media: "",
+    media: floaters.Excelling_floater_2,
     href: "",
     parent: "Excelling"
   },
   Floater11: {
-    Title: "https://medialabsciencespo.com",
+    Title: "Floater_excelling_3.webm",
     id: 11,
-    category: "link",
-    media: "",
+    category: "video",
+    media: floaters.Excelling_floater_3,
     href: "",
     parent: "Excelling"
   },
   Floater12: {
-    Title: "extended_logo.svg",
+    Title: "Floater_excelling_4.webm",
     id: 12,
-    category: "image",
-    media: general.enhanced_logoImage,
+    category: "video",
+    media: floaters.Excelling_floater_4,
     href: "",
     parent: "Excelling"
   },
   Floater13: {
-    Title: "extended_logo.svg",
+    Title: "Floater_benchmarking_1.webm",
     id: 13,
-    category: "image",
-    media: general.enhanced_logoImage,
+    category: "video",
+    media: floaters.Benchmarking_floater_1,
     href: "",
     parent: "Benchmarking"
   },
   Floater14: {
-    Title: "extended_logo.svg",
+    Title: "Floater_benchmarking_2.webm",
     id: 14,
+    category: "video",
+    media: floaters.Benchmarking_floater_2,
+    href: "",
+    parent: "Benchmarking"
+  },
+  Floater15: {
+    Title: "Floater_benchmarking_3.jpg",
+    id: 15,
     category: "image",
-    media: general.enhanced_logoImage,
+    media: floaters.Benchmarking_floater_3,
+    href: "",
+    parent: "Benchmarking"
+  },
+  Floater16: {
+    Title: "Floater_benchmarking_4.jpg",
+    id: 16,
+    category: "image",
+    media: floaters.Benchmarking_floater_4,
     href: "",
     parent: "Benchmarking"
   }
@@ -588,7 +694,6 @@ function load({ params }) {
   return {
     backgroundImage,
     logoImage: general.logoImage,
-    circular_logo: general.circle_logo,
     cardsDb,
     floatersDb,
     alterEgosDb,

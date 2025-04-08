@@ -2,10 +2,10 @@
 	"compilerOptions": {
 		"paths": {
 			"$styles": [
-				"../../../../../../../../src/lib/styles"
+				"../../../../../../../../../../src/lib/styles"
 			],
 			"$styles/*": [
-				"../../../../../../../../src/lib/styles/*"
+				"../../../../../../../../../../src/lib/styles/*"
 			],
 			"$media": [
 				"../src/lib/media"
