@@ -29,6 +29,10 @@ desktop.ini
 *.njsproj
 *.sln
 *.sw?
+/.cursor/
+/cursor/
+.cursor.*
+.lightouse
 
 # Environment and secrets
 .env

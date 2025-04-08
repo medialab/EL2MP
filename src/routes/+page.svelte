@@ -1022,7 +1022,7 @@
     }
 
     /* Responsive Typography */
-    :global(.h1),
+    :global(h1),
     :global(.h2),
     :global(.h3),
     :global(.h4),
@@ -1110,7 +1110,7 @@
         }
     }
 
-    :global(.h1) {
+    :global(h1) {
         font-size: 9vw;
         line-height: 1;
 

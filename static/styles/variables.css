@@ -31,7 +31,7 @@
   font-weight: 400;
 }
 
-.h1 {
+h1 {
   font-size: 96px;
   font-family: var(--serif-font-family), var(--fallback-serif-font);
   font-weight: 400;
