@@ -1023,7 +1023,7 @@
 
     /* Responsive Typography */
     :global(h1),
-    :global(.h2),
+    :global(h2),
     :global(.h3),
     :global(.h4),
     :global(.h5),
@@ -1124,7 +1124,7 @@
         touch-action: none;
     }
 
-    :global(.h2) {
+    :global(h2) {
         font-size: 3.15em; /* 60px */
         font-family: var(--serif-font-family), var(--fallback-serif-font);
         font-weight: 400;

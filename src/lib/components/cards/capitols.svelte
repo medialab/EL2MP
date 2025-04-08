@@ -98,7 +98,7 @@ const splitText = (text) => {
                         <!-- We assing a programmatic name for the each block sections -->
                         <div class="section_container" data-sveltekit-preload-data data-section={`Ex ${index+1}`}> 
                             {#if section.title}
-                                <p class="h2">{@html section.title}</p>
+                                <h2>{@html section.title}</h2>
                             {/if}
                             
                             {#if section.subtitle }
