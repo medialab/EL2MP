@@ -318,11 +318,13 @@ const splitText = (text) => {
         opacity: 1;
         display: block;
         z-index: 1;
-        width: 30%;
+        width: 50%;
         height: auto;
         object-fit: contain;
         margin-bottom: var(--spacing-L);
     }
+
+
 
     .card_container:active {
         cursor: grabbing;

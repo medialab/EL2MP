@@ -819,7 +819,7 @@
         cleanupObservers();
         clearReferences();
         
-        console.log("Component cleanup complete");
+        //console.log("Component cleanup complete");
     });
 
 </script>

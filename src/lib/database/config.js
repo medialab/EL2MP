@@ -28,6 +28,7 @@ import condensed_logo from "$media/logos/logo_condensed.svg";
 import condensed_logo_white from "$media/logos/logo_condensed_white.svg";
 import logoImage from "$media/logos/logo_complete.svg";
 import logoImage_white from "$media/logos/logo_complete_white.png?enhanced";
+import googleSupport from "$media/logos/google_support.png?enhanced";
 
 //Floaters_content
 
@@ -105,6 +106,7 @@ export const general = {
   condensed_logo_white,
   logoImage,
   logoImage_white,
+  googleSupport,
 };
 
 export default {
