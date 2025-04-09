@@ -35,6 +35,9 @@
     let hostElement;
     let simplebarContainer;
 
+    let holdTimeout;
+    let interval;
+
     //Functions
 
     const updateWindowSize = () => {
@@ -682,18 +685,23 @@
         }
 
         return () => {
-            window.removeEventListener('resize', updateWindowSize);
-            clearInterval(interval);
+            if (typeof window !== 'undefined') {
+                window.removeEventListener('resize', updateWindowSize);
+                clearInterval(interval);
+            }
         };
         
     }); 
 
     onDestroy(() => {
-        // Remove all global event listeners
-        window.removeEventListener('resize', updateWindowSize);
+        if (typeof window !== 'undefined') {
+            window.removeEventListener('resize', updateWindowSize);
+        }
         
         // Cancel any animation frames or timeouts
-        if (holdTimeout) clearTimeout(holdTimeout);
+        if (typeof holdTimeout !== 'undefined' && holdTimeout) {
+            clearTimeout(holdTimeout);
+        }
         
         // Clean up interact.js event handlers
         const cleanupInteract = () => {

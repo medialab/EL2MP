@@ -1,5 +1,5 @@
 // Enable/disable SSR
-export const ssr = false;
+export const ssr = true;
 
 // Configure hydration
 export const csr = true;
@@ -10,6 +10,6 @@ export const prerender = true;
 // Configure preloading
 export const load = async () => {
   return {
-    dependencies: ["/og_images/background.png"],
+    dependencies: ["og_images/background.png"],
   };
 };

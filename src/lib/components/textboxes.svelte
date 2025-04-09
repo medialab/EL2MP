@@ -1,7 +1,10 @@
 <script>
     import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
+    import { onMount } from 'svelte';
     // This prop might not be needed if bringToFront is handled solely by drag interactions
     export let bringToFront; 
+
+    let boxes = [];
 
     // Called via on:transitionend after the slide animation
     function handleTransitionEnd(event) {
@@ -46,10 +49,14 @@
 
     // Reactive statement: watch for changes in alter ego mode
     $: if (typeof $isAlterEgoMode === 'boolean') { // Ensure it's initialized
-        const boxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
         // Update visibility based on the current mode (visible when true)
         boxes.forEach(box => updateBoxVisibility(box, $isAlterEgoMode));
     }
+
+    onMount(() => {
+        boxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
+    });
+
 </script>
 
 <button
