@@ -480,7 +480,93 @@ const options = {
   root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" amp style="background-color: #ffffff" color-scheme="light">\n  <head>\n    <meta charset="utf-8" />\n    <meta\n      name="google-site-verification"\n      content="pgTk4-SglUqFCGjw5F_ag2flpUYxmOhleOQujEElFQw"\n    />\n    <meta\n      name="description"\n      content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. The Ecologies of LLM Practices (EL2MP) project by Sciences Po medialab documents how LLMs influence professional practices."\n    />\n\n    <!-- SEO Keywords -->\n    <meta\n      name="keywords"\n      content="Ecologies of LLM, EL2MP, Ecologies medialab, Ecologies sciencespo, Ecologies de practiques, Large Language Models, Sciences Po, medialab, AI research"\n    />\n    <link rel="icon" href="og_images/favicon.ico" />\n    <meta\n      name="viewport"\n      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"\n    />\n    ' + head + '\n\n    <!-- Structured data for better SEO -->\n    <script type="application/ld+json">\n      {\n        "@context": "https://schema.org",\n        "@graph": [\n          {\n            "@type": "Organization",\n            "@id": "https://medialab.sciencespo.fr/",\n            "name": "Medialab Sciencespo",\n            "url": "https://medialab.sciencespo.fr/",\n            "logo": "https://medialab.sciencespo.fr/img/cover-fb.png",\n            "parentOrganization": {\n              "@type": "Organization",\n              "name": "Sciences Po"\n            }\n          },\n          {\n            "@type": "WebSite",\n            "name": "EL2MP Research Project Website",\n            "url": "https://medialab.github.io/EL2MP/",\n            "publisher": {\n              "@type": "Organization",\n              "@id": "https://medialab.sciencespo.fr/"\n            },\n            "description": "Official website for the EL2MP Research Project by Medialab Sciencespo, documenting the integration and impact of Large Language Models in professional practices.",\n            "mainEntity": {\n              "@type": "ResearchProject",\n              "@id": "https://medialab.github.io/EL2MP/#project"\n            }\n          },\n          {\n            "@type": "ResearchProject",\n            "@id": "https://medialab.github.io/EL2MP/#project",\n            "name": "Écologies des Pratiques LLMs (EL2MP)",\n            "alternateName": "Ecologies of LLM Practices",\n            "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use",\n            "url": "https://medialab.github.io/EL2MP/",\n            "logo": "https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg",\n            "provider": {\n              "@type": "Organization",\n              "@id": "https://medialab.sciencespo.fr/"\n            },\n            "keywords": [\n              "Ecologies of LLM",\n              "EL2MP",\n              "Ecologies medialab",\n              "Ecologies sciencespo",\n              "Ecologies de practiques"\n            ]\n          }\n        ]\n      }\n    <\/script>\n\n    <noscript>\n      <style>\n        /**\n          * Reinstate scrolling for non-JS clients\n          */\n        .simplebar-content-wrapper {\n          scrollbar-width: auto;\n          -ms-overflow-style: auto;\n        }\n\n        .simplebar-content-wrapper::-webkit-scrollbar,\n        .simplebar-hide-scrollbar::-webkit-scrollbar {\n          display: initial;\n          width: initial;\n          height: initial;\n        }\n      </style>\n    </noscript>\n  </head>\n  <body data-sveltekit-preload-data="hover">\n    <div class="major_div" style="display: contents">' + body + '</div>\n  </body>\n</html>\n\n<svelte:head>\n  <!-- Page Title -->\n  <title>Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab</title>\n\n  <!-- Canonical URL -->\n  <link rel="canonical" href="https://medialab.github.io/EL2MP/" />\n\n  <!-- Open Graph Meta Tags -->\n  <meta\n    property="og:logo"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg"\n  />\n  <meta property="og:type" content="website" />\n  <meta\n    property="og:title"\n    content="How can we reframe the role of LLMs in ordinary work practices? | Ecologies of LLM (EL2MP)"\n  />\n  <meta\n    property="og:description"\n    content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. A Sciences Po medialab research initiative exploring AI integration in workplaces."\n  />\n  <meta property="og:url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="og:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    property="og:image:alt"\n    content="EL2MP Logo - Ecologies des Pratiques LLMs"\n  />\n  <meta property="og:site_name" content="Écologies des Pratiques LLMs" />\n  <meta property="og:locale" content="en_US" />\n  <meta property="og:locale:alternate" content="fr_FR" />\n\n  <!-- Instant Articles Meta Tags -->\n  <meta property="ia:markup_url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="ia:markup_url_dev"\n    content="https://medialab.github.io/EL2MP/dev/"\n  />\n  <meta\n    property="ia:rules_url"\n    content="https://medialab.github.io/EL2MP/rules/"\n  />\n  <meta\n    property="ia:rules_url_dev"\n    content="https://medialab.github.io/EL2MP/rules-dev/"\n  />\n\n  <!-- Twitter Card Meta Tags -->\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta\n    name="twitter:title"\n    content="Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab"\n  />\n  <meta\n    name="twitter:description"\n    content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. Discover research from Sciences Po medialab."\n  />\n  <meta\n    name="twitter:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    name="twitter:image:alt"\n    content="EL2MP Logo - Ecologies of LLM Practices"\n  />\n  <meta name="twitter:site" content="@your_twitter_handle" />\n  <meta name="twitter:creator" content="@your_twitter_handle" />\n\n  <!-- Author and Publish Date (for LinkedIn, Facebook) -->\n  <meta name="author" content="Médialab, Sciences Po" />\n  <meta name="article:published_time" content="2025-01-01T12:00:00+00:00" />\n  <!-- Replace with actual publish date -->\n\n  <!-- Favicon -->\n  <link rel="icon" href="og_images/favicon.ico" />\n</svelte:head>\n',
+    app: ({ head, body, assets: assets2, nonce, env }) => '<!DOCTYPE html>\n<html lang="en" style="background-color: #ffffff">\n  <head>\n    <meta charset="utf-8" />\n    <meta\n      name="google-site-verification"\n      content="pgTk4-SglUqFCGjw5F_ag2flpUYxmOhleOQujEElFQw"\n    />\n    <meta\n      name="description"\n      content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. The Ecologies of LLM Practices (EL2MP) project by Sciences Po medialab documents how LLMs influence professional practices."\n    />\n\n    <!-- SEO Keywords -->\n    <meta\n      name="keywords"\n      content="Ecologies of LLM, EL2MP, Ecologies medialab, Ecologies sciencespo, Ecologies de practiques, Large Language Models, Sciences Po, medialab, AI research"\n    />\n    <link rel="icon" href="og_images/favicon.ico" />\n    <meta\n      name="viewport"\n      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"\n    />\n    ' + head + `
+
+
+    <!-- Structured data for better SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://medialab.sciencespo.fr/",
+            "name": "Medialab Sciencespo",
+            "url": "https://medialab.sciencespo.fr/",
+            "logo": "https://medialab.sciencespo.fr/img/cover-fb.png",
+            "parentOrganization": {
+              "@type": "Organization",
+              "name": "Sciences Po"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "name": "EL2MP Research Project Website",
+            "url": "https://medialab.github.io/EL2MP/",
+            "publisher": {
+              "@type": "Organization",
+              "@id": "https://medialab.sciencespo.fr/"
+            },
+            "description": "Official website for the EL2MP Research Project by Medialab Sciencespo, documenting the integration and impact of Large Language Models in professional practices.",
+            "mainEntity": {
+              "@type": "ResearchProject",
+              "@id": "https://medialab.github.io/EL2MP/#project"
+            }
+          },
+          {
+            "@type": "ResearchProject",
+            "@id": "https://medialab.github.io/EL2MP/#project",
+            "name": "Écologies des Pratiques LLMs (EL2MP)",
+            "alternateName": "Ecologies of LLM Practices",
+            "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use",
+            "url": "https://medialab.github.io/EL2MP/",
+            "logo": "https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg",
+            "provider": {
+              "@type": "Organization",
+              "@id": "https://medialab.sciencespo.fr/"
+            },
+            "keywords": [
+              "Ecologies of LLM",
+              "EL2MP",
+              "Ecologies medialab",
+              "Ecologies sciencespo",
+              "Ecologies de practiques"
+            ]
+          }
+        ]
+      }
+    <\/script>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DHX3VYCYS"><\/script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8DHX3VYCYS');
+  <\/script>
+
+    <noscript>
+      <style>
+        /**
+          * Reinstate scrolling for non-JS clients
+          */
+        .simplebar-content-wrapper {
+          scrollbar-width: auto;
+          -ms-overflow-style: auto;
+        }
+
+        .simplebar-content-wrapper::-webkit-scrollbar,
+        .simplebar-hide-scrollbar::-webkit-scrollbar {
+          display: initial;
+          width: initial;
+          height: initial;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body data-sveltekit-preload-data="hover">
+    <div class="major_div" style="display: contents">` + body + '</div>\n  </body>\n</html>\n\n<svelte:head>\n  <!-- Page Title -->\n  <title>Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab</title>\n\n  <!-- Canonical URL -->\n  <link rel="canonical" href="https://medialab.github.io/EL2MP/" />\n\n  <!-- Open Graph Meta Tags -->\n  <meta\n    property="og:logo"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg"\n  />\n  <meta property="og:type" content="website" />\n  <meta\n    property="og:title"\n    content="How can we reframe the role of LLMs in ordinary work practices? | Ecologies of LLM (EL2MP)"\n  />\n  <meta\n    property="og:description"\n    content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. A Sciences Po medialab research initiative exploring AI integration in workplaces."\n  />\n  <meta property="og:url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="og:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    property="og:image:alt"\n    content="EL2MP Logo - Ecologies des Pratiques LLMs"\n  />\n  <meta property="og:site_name" content="Écologies des Pratiques LLMs" />\n  <meta property="og:locale" content="en_US" />\n  <meta property="og:locale:alternate" content="fr_FR" />\n\n  <!-- Instant Articles Meta Tags -->\n  <meta property="ia:markup_url" content="https://medialab.github.io/EL2MP/" />\n  <meta\n    property="ia:markup_url_dev"\n    content="https://medialab.github.io/EL2MP/dev/"\n  />\n  <meta\n    property="ia:rules_url"\n    content="https://medialab.github.io/EL2MP/rules/"\n  />\n  <meta\n    property="ia:rules_url_dev"\n    content="https://medialab.github.io/EL2MP/rules-dev/"\n  />\n\n  <!-- Twitter Card Meta Tags -->\n  <meta name="twitter:card" content="summary_large_image" />\n  <meta\n    name="twitter:title"\n    content="Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab"\n  />\n  <meta\n    name="twitter:description"\n    content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. Discover research from Sciences Po medialab."\n  />\n  <meta\n    name="twitter:image"\n    content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg\n    "\n  />\n  <meta\n    name="twitter:image:alt"\n    content="EL2MP Logo - Ecologies of LLM Practices"\n  />\n  <meta name="twitter:site" content="@your_twitter_handle" />\n  <meta name="twitter:creator" content="@your_twitter_handle" />\n\n  <!-- Author and Publish Date (for LinkedIn, Facebook) -->\n  <meta name="author" content="Médialab, Sciences Po" />\n  <meta name="article:published_time" content="2025-01-01T12:00:00+00:00" />\n  <!-- Replace with actual publish date -->\n\n  <!-- Favicon -->\n  <link rel="icon" href="og_images/favicon.ico" />\n</svelte:head>\n\n<h1 style="position:absolute; color: transparent; user-select: none; pointer-events: none; z-index: -1;">Ecologies of LLM Practices | EL2MP | Sciences Po medialab</h1>\n',
     error: ({ status, message }) => '<!doctype html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -552,7 +638,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1feblst"
+  version_hash: "wxqtfh"
 };
 async function get_hooks() {
   let handle;
