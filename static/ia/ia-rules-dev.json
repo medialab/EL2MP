@@ -1,0 +1,24 @@
+{
+  "version": "1.0",
+  "rules": [
+    {
+      "name": "capture_everything",
+      "selector": "body",
+      "priority": 1
+    },
+    {
+      "name": "mark_development",
+      "action": "add_banner",
+      "banner_text": "Development Version",
+      "priority": 0
+    }
+  ],
+  "capture_preferences": {
+    "preserve_styles": true,
+    "capture_images": true,
+    "capture_links": true,
+    "debug_mode": true
+  },
+  "is_development": true,
+  "last_updated": "2023-11-01T00:00:00Z"
+} 

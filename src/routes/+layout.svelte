@@ -20,9 +20,17 @@
   <meta property="og:url" content="https://medialab.github.io/EL2MP/" />
   <meta property="og:image" content="https://raw.githubusercontent.com/medialab/EL2MP/f2be408a5d92875040f0f0ba385a1fa67ad30b10/static/og_images/opengraph.jpg" />
   <meta property="og:image:alt" content="EL2MP Logo - Ecologies des Pratiques LLMs" />
+  <meta property="og:logo" content="https://raw.githubusercontent.com/medialab/EL2MP/main/static/og_images/enhanced_logoImage.png" />
   <meta property="og:site_name" content="Écologies des Pratiques LLMs" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="fb:app_id" content="123456789012345" />
+
+  <!-- IA Meta Tags -->
+  <meta property="ia:markup_url" content="https://medialab.github.io/EL2MP/ia/ia-markup.json" />
+  <meta property="ia:markup_url_dev" content="https://medialab.github.io/EL2MP/ia/ia-markup-dev.json" />
+  <meta property="ia:rules_url" content="https://medialab.github.io/EL2MP/ia/ia-rules.json" />
+  <meta property="ia:rules_url_dev" content="https://medialab.github.io/EL2MP/ia/ia-rules-dev.json" />
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
