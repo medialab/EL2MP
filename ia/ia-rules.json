@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "rules": [
+    {
+      "name": "capture_main_content",
+      "selector": "main",
+      "priority": 1
+    },
+    {
+      "name": "exclude_navigation",
+      "selector": "nav",
+      "action": "exclude",
+      "priority": 2
+    },
+    {
+      "name": "exclude_footer",
+      "selector": "footer",
+      "action": "exclude",
+      "priority": 2
+    }
+  ],
+  "capture_preferences": {
+    "preserve_styles": true,
+    "capture_images": true,
+    "capture_links": true
+  },
+  "last_updated": "2023-11-01T00:00:00Z"
+} 
