@@ -17,8 +17,7 @@ const cardsDb = {
         title: "Exercise 1 - Draw It Like You See It",
         subtitle:
           "Participants sketch how they think an LLM works and how they view their work environment.",
-        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through spontaneous and deliberately imperfect sketches, participants capture their intuitive and metaphorical understanding of LLMs.
-",
+        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through spontaneous and deliberately imperfect sketches, participants capture their intuitive and metaphorical understanding of LLMs.",
         picture: photos.Ex_1,
       },
       {
