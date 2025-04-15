@@ -11,7 +11,7 @@ const cardsDb = {
     Question:
       "Where do LLMs live in our professional practices, norms, and relationships?",
     IndexNum: 1,
-    CoverImg: capitolsCover.coverBenchmarking,
+    CoverImg: capitolsCover.coverQualifying,
     Content: [
       {
         title: "Exercise 1 - Draw It Like You See It",
@@ -58,7 +58,7 @@ const cardsDb = {
       "In this block, participants are guided through selecting an LLM that <b>best suits their professional needs</b>. They design personal tests comprising specific tasks and evaluate the performance of different models.<br><br>The goal is to choose a model that aligns with their practical and ethical requirements.",
     Question: "How do we assess the value of an LLM?",
     IndexNum: 2,
-    CoverImg: capitolsCover.coverQualyfying,
+    CoverImg: capitolsCover.coverBenchmarking,
     Content: [
       {
         title: "Exercise 6 - Design your AI Trial",
