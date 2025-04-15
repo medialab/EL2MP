@@ -212,7 +212,7 @@ const alterEgosDb = {
 
 const floatersDb = {
   Floater1: {
-    Title: "Floater_prompting_1.webm",
+    Title: "cards_presentation.webm",
     id: 1,
     category: "video",
     media: floaters.Prompting_floater_1,
@@ -228,7 +228,7 @@ const floatersDb = {
     parent: "Prompting",
   },
   Floater3: {
-    Title: "Floater_prompting_3.jpg",
+    Title: "filming_from_above.jpg",
     id: 3,
     category: "image",
     media: floaters.Prompting_floater_3,
@@ -236,7 +236,7 @@ const floatersDb = {
     parent: "Prompting",
   },
   Floater4: {
-    Title: "Floater_prompting_4.jpg",
+    Title: "tracking_shifts.jpg",
     id: 4,
     category: "image",
     media: floaters.Prompting_floater_4,
@@ -244,7 +244,7 @@ const floatersDb = {
     parent: "Prompting",
   },
   Floater5: {
-    Title: "Floater_qualifying_1.webm",
+    Title: "collective_work.webm",
     id: 5,
     category: "video",
     media: floaters.Qualifying_floater_1,
@@ -252,7 +252,7 @@ const floatersDb = {
     parent: "Qualifying",
   },
   Floater6: {
-    Title: "Floater_qualifying_2.webm",
+    Title: "first_session.webm",
     id: 6,
     category: "video",
     media: floaters.Qualifying_floater_2,
@@ -260,7 +260,7 @@ const floatersDb = {
     parent: "Qualifying",
   },
   Floater7: {
-    Title: "Floater_qualifying_3.jpg",
+    Title: "presenting_results.jpg",
     id: 7,
     category: "image",
     media: floaters.Qualifying_floater_3,
@@ -268,7 +268,7 @@ const floatersDb = {
     parent: "Qualifying",
   },
   Floater8: {
-    Title: "Floater_qualifying_4.jpg",
+    Title: "recording_sessions.jpg",
     id: 8,
     category: "image",
     media: floaters.Qualifying_floater_4,
@@ -276,7 +276,7 @@ const floatersDb = {
     parent: "Qualifying",
   },
   Floater9: {
-    Title: "Floater_excelling_1.jpg",
+    Title: "presenting_results.jpg",
     id: 9,
     category: "image",
     media: floaters.Excelling_floater_1,
@@ -284,7 +284,7 @@ const floatersDb = {
     parent: "Excelling",
   },
   Floater10: {
-    Title: "Floater_excelling_2.webm",
+    Title: "sharing_notes.webm",
     id: 10,
     category: "video",
     media: floaters.Excelling_floater_2,
@@ -292,7 +292,7 @@ const floatersDb = {
     parent: "Excelling",
   },
   Floater11: {
-    Title: "Floater_excelling_3.webm",
+    Title: "working_together.webm",
     id: 11,
     category: "video",
     media: floaters.Excelling_floater_3,
@@ -300,7 +300,7 @@ const floatersDb = {
     parent: "Excelling",
   },
   Floater12: {
-    Title: "Floater_excelling_4.webm",
+    Title: "explaining_the_exercise.webm",
     id: 12,
     category: "video",
     media: floaters.Excelling_floater_4,
@@ -308,7 +308,7 @@ const floatersDb = {
     parent: "Excelling",
   },
   Floater13: {
-    Title: "Floater_benchmarking_1.webm",
+    Title: "judgment_session.webm",
     id: 13,
     category: "video",
     media: floaters.Benchmarking_floater_1,
@@ -316,7 +316,7 @@ const floatersDb = {
     parent: "Benchmarking",
   },
   Floater14: {
-    Title: "Floater_benchmarking_2.webm",
+    Title: "commenting_the_playground.webm",
     id: 14,
     category: "video",
     media: floaters.Benchmarking_floater_2,
@@ -324,7 +324,7 @@ const floatersDb = {
     parent: "Benchmarking",
   },
   Floater15: {
-    Title: "Floater_benchmarking_3.jpg",
+    Title: "designing_the_block.jpg",
     id: 15,
     category: "image",
     media: floaters.Benchmarking_floater_3,
@@ -332,7 +332,7 @@ const floatersDb = {
     parent: "Benchmarking",
   },
   Floater16: {
-    Title: "Floater_benchmarking_4.jpg",
+    Title: "working_on_the_judgment.jpg",
     id: 16,
     category: "image",
     media: floaters.Benchmarking_floater_4,
