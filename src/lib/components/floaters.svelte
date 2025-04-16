@@ -103,6 +103,7 @@
 
     <!-- svelte-ignore a11y_no_static_element_interactions -->
         <div class="floater_container closed"
+            data-sveltekit-preload-data="hover"
             data-parent={data.parent}
             style="top: {randomPosition.top};
                 left: {randomPosition.left};

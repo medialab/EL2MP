@@ -12,4 +12,11 @@ Disallow: /.lighthouse/
 # Allow everything else (modify if specific paths need disallowing)
 Allow: /
 
+# Block access to admin areas
+Disallow: /admin/
+Disallow: /wp-admin/
+
 Sitemap: https://medialab.github.io/EL2MP/sitemap.xml
+
+# Crawl delay for specific robots if needed
+# Crawl-delay: 10

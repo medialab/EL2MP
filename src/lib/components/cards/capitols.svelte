@@ -387,6 +387,7 @@ const splitText = (text) => {
     }
 
     .card_scroll_flex {
+        padding-right: 20px;
         display: flex;
         width: 100%;
         height: fit-content;
