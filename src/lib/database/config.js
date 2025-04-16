@@ -11,10 +11,12 @@ import Ex_8 from "$media/photos/Ex_8.jpg?enhanced";
 import Ex_9 from "$media/photos/Ex_9.jpg?enhanced";
 import Ex_10 from "$media/photos/Ex_10.jpg?enhanced";
 import Ex_11 from "$media/photos/Ex_11.jpg?enhanced";
+import Ex_12 from "$media/photos/Ex_12.jpg?enhanced";
 import Ex_13 from "$media/photos/Ex_13.jpg?enhanced";
 import Ex_14 from "$media/photos/Ex_14.jpg?enhanced";
 import Ex_15 from "$media/photos/Ex_15.jpg?enhanced";
 import Ex_16 from "$media/photos/Ex_16.jpg?enhanced";
+import Ex_17 from "$media/photos/Ex_17.jpg?enhanced";
 
 //Capitols Covers
 import coverQualifying from "$media/capitols_cover/Cover_Qualifying.jpg?enhanced";

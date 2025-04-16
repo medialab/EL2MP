@@ -133,7 +133,7 @@ const cardsDb = {
         subtitle:
           "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
         text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
-        picture: photos.Ex_13,
+        picture: photos.Ex_12,
       },
       {
         title: "Exercise 13 - The Imitation Game",
@@ -168,10 +168,29 @@ const cardsDb = {
         subtitle:
           "Participants examine key moParticipants sketch three evolving, hand-drawn graphs depicting their learning journey.",
         text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
-        picture: photos.Ex_16,
+        picture: photos.Ex_17,
       },
     ],
     bgColor: "#E8D1F2",
+    isProjCover: false,
+  },
+  Card5: {
+    Title: "NEW CARD",
+    Description:
+      "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
+    Question: "How closely can an LLM approach human excellence?",
+    IndexNum: 5,
+    CoverImg: capitolsCover.coverExcel,
+    Content: [
+       {
+        title: "Exercise 12 - Choosing Your exemplary Work",
+        subtitle:
+          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
+        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
+        picture: photos.Ex_12,
+      },
+    ],
+    bgColor: "#FFCE93",
     isProjCover: false,
   },
 };
@@ -217,8 +236,12 @@ const alterEgosDb = {
     bgColor: "#000000",
   },
   Card5: {
-    Title: "AlterEgo4",
-    Description: "This is the description of the alter ego",
+    Title: "Context",
+    CoverImg: general.logoImage_white,
+    Question:
+      "How to document practices shaped and influenced by the project itself?",
+    Description:
+      "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. <br><br>However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. <br><br>Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.<br><br>There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. <br><br>How do AI's well-known problems (<b>bias, confabulation, etc.</b>) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
     IndexNum: 5,
     bgColor: "#000000",
   },
