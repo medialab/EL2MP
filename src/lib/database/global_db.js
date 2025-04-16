@@ -167,8 +167,7 @@ const cardsDb = {
         title: "Exercise 17 - Charting Your Path",
         subtitle:
           "Participants examine key moParticipants sketch three evolving, hand-drawn graphs depicting their learning journey.",
-        text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story. 
-",
+        text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
         picture: photos.Ex_16,
       },
     ],
