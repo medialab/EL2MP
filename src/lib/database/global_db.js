@@ -128,6 +128,13 @@ const cardsDb = {
     IndexNum: 4,
     CoverImg: capitolsCover.coverExcel,
     Content: [
+       {
+        title: "Exercise 12 - Choosing Your exemplary Work",
+        subtitle:
+          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
+        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
+        picture: photos.Ex_13,
+      },
       {
         title: "Exercise 13 - The Imitation Game",
         subtitle:
@@ -150,10 +157,17 @@ const cardsDb = {
         picture: photos.Ex_15,
       },
       {
-        title: "Exercise 16. Obstacles, Dead Ends, Highways",
+        title: "Exercise 16 - Obstacles, Dead Ends, Highways",
         subtitle:
           "Participants examine key moments in navigating the LLM—obstacles, dead ends, and highways.",
         text: "By identifying <b>challenges that can be overcome</b> through iteration or adapting a prompt, <b>situations where the LLM fails</b> to generate meaningful progress despite repeated attempts, and <b>effortless response generation</b>, participants discover patterns in their experiences and develop a clearer sense of when to persist, pivot, or abandon a strategy.<br>",
+        picture: photos.Ex_16,
+      },
+      {
+        title: "Exercise 17 - Charting Your Path",
+        subtitle:
+          "Participants examine key moParticipants sketch three evolving, hand-drawn graphs depicting their learning journey.",
+        text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
         picture: photos.Ex_16,
       },
     ],
