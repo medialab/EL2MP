@@ -175,18 +175,18 @@ const cardsDb = {
     isProjCover: false,
   },
   Card5: {
-    Title: "NEW CARD",
+    Title: "Distilling",
     Description:
-      "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
-    Question: "How closely can an LLM approach human excellence?",
+      "In this final block, participants circle back to the essential aspects of their use of LLMs. Delving into previous exercises, they uncover key features that have remained stable or which have evolved during the course of the experiment, thus producing a detailed overview of the integration of LLMs within their workflow.",
+    Question: "What story emerges when we look back on our evolving relationship with LLMs?",
     IndexNum: 5,
     CoverImg: capitolsCover.coverExcel,
     Content: [
        {
-        title: "Exercise 12 - Choosing Your exemplary Work",
+        title: "Exercise 18 - Choosing Your exemplary Work",
         subtitle:
-          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
-        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
+          "Participants synthesize their own perspective on the entire experiment into a cohesive narrative.",
+        text: "Rather than summarizing past exercises, this exercise encourages <b>the creation of a personal booklet</b> that combines selected pages from the vademecum with additional notes, sketches, and digital traces. This curated archive serves as both <b>a tangible memory and a storytelling device</b> —capturing key moments, doubts, and insights that have shaped the participant’s evolving relationship with LLMs. ",
         picture: photos.Ex_12,
       },
     ],
