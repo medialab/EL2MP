@@ -2,85 +2,67 @@
     import { onMount, onDestroy } from "svelte";
     import { highestZIndex, selectedCard } from '$lib/stores/globalStores';
     import interact from 'interactjs';
+    import { fade, scale, slide } from 'svelte/transition';
 
     export let randomPosition;
 
     let floaterElement;
     let interactRef;
+    let isDownloaded = false; // Track if download has occurred
+    let downloadTimeout; // Timer reference
+    let isDragging = false; // Track if currently dragging
 
-    // State for download interaction
-    let isPressing = false;
-    let pressStartTime = 0;
-    let progressInterval = null;
-    let progress = 0; // 0 to 100
+    // Simplified button state and text
     let buttonText = "DOWNLOAD THE VADEMECUM!";
-    const HOLD_DURATION = 2000; // 2 seconds
     const VADEMECUM_PATH = 'Vademecum.pdf'; // <<< --- CONFIRM THIS PATH
 
-    const downloadFile = () => {
+    const downloadFile = (e) => {
+        // Skip if already in downloaded state or if we're dragging
+        if (isDownloaded || isDragging) return;
+        
+        // Stop event propagation to prevent triggering drag
+        if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+        
         console.log("Starting download...");
+        
+        // Track download event with Google Analytics
+        if (typeof gtag === 'function') {
+            gtag('event', 'download', {
+                'event_category': 'Document',
+                'event_label': 'Vademecum',
+                'value': 1
+            });
+            
+        } else {
+            console.log("Google Analytics not available");
+        }
+        
         const link = document.createElement('a');
         link.href = VADEMECUM_PATH;
         link.download = VADEMECUM_PATH.split('/').pop() || 'vademecum.pdf'; // Suggest filename
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-
-        progress = 0; // Reset progress bar
-    };
-
-    const startPress = () => {
-        isPressing = true;
-        pressStartTime = Date.now();
-        progress = 0;
         
-        // Use a smaller interval for smoother updates
-        clearInterval(progressInterval);
-        progressInterval = setInterval(() => {
-            const elapsedTime = Date.now() - pressStartTime;
-            // Make the easing much more subtle
-            const progressPercent = (elapsedTime / HOLD_DURATION);
-           
-            progress = Math.min(100, 100 * progressPercent * (1.1 - 0.03 * progressPercent));
-            
-            if (elapsedTime >= HOLD_DURATION) {
-                clearInterval(progressInterval);
-                progressInterval = null;
-                // Optional: trigger download immediately upon reaching 100%
-                // downloadFile(); 
-            }
-        }, 10); // More frequent updates: 10ms instead of 16ms
-    };
-
-    const endPress = () => {
-        if (!isPressing) return;
+        // Set download state to show green button
+        isDownloaded = true;
         
-        clearInterval(progressInterval);
-        progressInterval = null;
-        const pressDuration = Date.now() - pressStartTime;
-
-        if (pressDuration >= HOLD_DURATION) {
-            downloadFile();
-        } else {
-            // Reset if hold was too short
-             progress = 0;
-        }
-        isPressing = false;
+        // Clear any existing timeout
+        if (downloadTimeout) clearTimeout(downloadTimeout);
+        
+        // Set timeout to revert to download state after 5 seconds
+        downloadTimeout = setTimeout(() => {
+            isDownloaded = false;
+        }, 6000);
     };
 
-    const cancelPress = () => {
-        if (!isPressing) return;
-        clearInterval(progressInterval);
-        progressInterval = null;
-        isPressing = false;
-        progress = 0;
-    };
-
-    // Modified KeyDown Handler
+    // Simplified KeyDown Handler
     const handleKeyDown = (event) => {
         if (event.key === 'Enter' || event.key === ' ') {
             event.preventDefault();
-            // For accessibility, trigger download directly on key press
             downloadFile(); 
         }
     };
@@ -173,10 +155,6 @@
             // Let's correct this: We update data-x/data-y with the final position including float.
             floaterElement.setAttribute('data-x', finalX);
             floaterElement.setAttribute('data-y', finalY);
-            // Reset floatX/Y for the next frame, as they represent the delta for this frame
-            // floatX = 0; // <-- This reset was preventing continuous movement
-            // floatY = 0; // <-- This reset was preventing continuous movement
-
 
             animationFrame = requestAnimationFrame(animateFloating);
         };
@@ -241,6 +219,7 @@
                 },
                 listeners: {
                     start(event) {
+                        isDragging = true;
                         bringToFront();
                         if (animationFrame) { // Check if animation frame exists before cancelling
                             cancelAnimationFrame(animationFrame);
@@ -270,6 +249,11 @@
                         if (!animationFrame) { // Check before starting to prevent duplicates
                             startFloatingAnimation();
                         }
+                        
+                        // Add a small delay before allowing clicks again to prevent accidental clicks after drag
+                        setTimeout(() => {
+                            isDragging = false;
+                        }, 100);
                     },
                 },
                 modifiers: [
@@ -284,10 +268,9 @@
     });
 
     onDestroy(() => {
-        clearInterval(progressInterval); // Cleanup interval on destroy
         if (animationFrame) {
             cancelAnimationFrame(animationFrame);
-            animationFrame = null;
+            animationFrame = null; // Ensure it's nullified
         }
         if (interactRef && floaterElement) {
             try {
@@ -296,50 +279,76 @@
                 console.log("Could not cleanup vademecum floater interact handler", e);
             }
         }
+        // Clear any pending timeout
+        if (downloadTimeout) clearTimeout(downloadTimeout);
     });
 </script>
 
-<div 
+<svelte:head>
+      <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DHX3VYCYS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8DHX3VYCYS');
+  </script>
+</svelte:head>
+
+<button 
     class="custom-floater-container"
     bind:this={floaterElement}
     style="top: {randomPosition.top};
         left: {randomPosition.left};
         z-index: {randomPosition.zIndex || $highestZIndex};"
-    on:mousedown={bringToFront}>
+    on:mousedown={bringToFront}
+    aria-label="Draggable vademecum download button">
     
     <a
         href="#" 
         class="custom-floater-bottom"
-        class:pressing={isPressing}
-        aria-label="Custom Floater"
+        class:downloaded={isDownloaded}
+        aria-label={isDownloaded ? "VADEMECUM DOWNLOADED" : "DOWNLOAD VADEMECUM"}
         role="button"
         tabindex="0"
-        on:mousedown={startPress}
-        on:mouseup={endPress}
-        on:mouseleave={cancelPress}
-        on:touchstart={startPress}
-        on:touchend={endPress}
-        on:touchcancel={cancelPress}
+        on:click={(e) => downloadFile(e)}
         on:keydown={handleKeyDown}
-        on:click={(e) => e.preventDefault()}
     >
         <span class="custom-floater-text" style="font-weight: 600;">
-            {buttonText}
+            {isDownloaded ? "VADEMECUM DOWNLOADED" : buttonText}
         </span>
 
         <span class="custom-floater-text-absolute" style="font-weight: 600;">
-            {buttonText}
+            {isDownloaded ? "VADEMECUM DOWNLOADED" : buttonText}
         </span>
 
         <div class="category-icon" id="custom">
             <!-- Custom icon SVG -->
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#1f1f1f"><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg>
+            {#if !isDownloaded}
+                <!-- Download Icon -->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="#1f1f1f"
+                    in:slide={{ axis: 'y', y: -20, duration: 200 }}
+                    out:slide={{ axis: 'y', y: 20, duration: 150 }}>
+                    <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
+                </svg>
+            {:else}
+                <!-- Checkmark Icon -->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill="#1f1f1f"
+                    in:slide={{ axis: 'y', y: -20, duration: 300, delay: 50 }}
+                    out:slide={{ axis: 'y', y: 20, duration: 150 }}>
+                    <path d="M382-320 155-547l57-57 170 170 366-366 57 57-423 423ZM200-160v-80h560v80H200Z"/>
+                </svg>
+            {/if}
         </div>
-
-        <!-- Progress Bar -->
-        <div class="progress-bar" style="width: {progress}%;"></div>
     </a>
-</div>
+</button>
 
 <style>
     .custom-floater-container {
@@ -355,6 +364,11 @@
         user-select: none;
         transform-origin: top left;
         z-index: 999;
+        overflow: hidden;
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
     }
 
     .custom-floater-bottom {
@@ -367,25 +381,19 @@
         gap: 10px;
         background-color: #FF4444 !important;
         color: white;
-        border: dashed 1px black;
+        border: dashed 1px white;
         line-height: 1.2;
         z-index: 4;
-        position: relative; /* Needed for absolute positioning of progress bar */
-        overflow: hidden; /* Hide progress bar overflow */
-        transition: transform 0.2s ease-out, background-color 0.3s ease; /* Add transition for transform */
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.2s ease-out, background-color 0.3s ease;
     }
 
-    .custom-floater-bottom:hover {
-        transform: scale(1.05);
+    .custom-floater-bottom.downloaded {
+        background-color: #2ecc71 !important;
     }
 
-    /* New pressing state style */
-    .custom-floater-bottom.pressing {
-        transform: scale(0.95); /* Scale down to 95% of original size */
-    }
-
-    /* Modified active state to not conflict */
-    .custom-floater-bottom:active:not(.pressing) {
+    .custom-floater-bottom:active {
         filter: brightness(0.9);
         transform: scale(0.97);
         transition: transform 0.1s ease-in-out;
@@ -404,11 +412,9 @@
         position: static;
         padding: 0;
         flex-shrink: 0;
-        z-index: 7; /* Ensure icon is above progress bar */
-        position: relative; /* Needed for z-index */
+        z-index: 7;
+        position: relative;
     }
-
-
 
     .category-icon svg {
         fill: white;
@@ -422,12 +428,11 @@
         padding-left: var(--spacing-S);
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
-        z-index: 6; /* Ensure text is above progress bar for blend mode */
-        position: relative; /* Needed for z-index */
-        color: white; /* Explicitly set text color */
+        z-index: 6;
+        position: relative;
+        color: white;
         transform: translateY(0);
         transition: transform 0.6s ease-in-out;
-
     }
 
     .custom-floater-bottom:hover .custom-floater-text-absolute {
@@ -438,7 +443,6 @@
     .custom-floater-bottom:hover .custom-floater-text {
         transform: translateY(-200%);
         transition: transform 0.6s ease-in-out;
-
     }
 
     .custom-floater-text-absolute {
@@ -448,30 +452,14 @@
         transition: transform 0.6s ease-in-out;
         padding-left: 0;
         margin-left: 0;
-
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         font-size: 0.875em;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
-        z-index: 6; /* Ensure text is above progress bar for blend mode */
-        color: white; /* Explicitly set text color */
-    }
-
-
-
-    .progress-bar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        background-color: white;
-        mix-blend-mode: difference; /* This will invert colors below it */
-        transition: width 0.15s cubic-bezier(0.4, 0.0, 0.2, 1); /* Smoother transition with material design curve */
-        pointer-events: none; /* Don't interfere with clicks */
-        z-index: 5; /* Above text but below icon potentially */
-        will-change: width; /* Hint to browser to optimize this animation */
+        z-index: 6;
+        color: white;
     }
 
     /* Mobile display none to match other floaters */
