@@ -287,7 +287,7 @@
         clearInterval(progressInterval); // Cleanup interval on destroy
         if (animationFrame) {
             cancelAnimationFrame(animationFrame);
-            animationFrame = null; // Ensure it's nullified
+            animationFrame = null;
         }
         if (interactRef && floaterElement) {
             try {
@@ -367,7 +367,7 @@
         gap: 10px;
         background-color: #FF4444 !important;
         color: white;
-        border: dashed 1px white;
+        border: dashed 1px black;
         line-height: 1.2;
         z-index: 4;
         position: relative; /* Needed for absolute positioning of progress bar */

@@ -240,17 +240,8 @@ const alterEgosDb = {
     Title: "Contact",
     Question: "Our Team",
     Description:
-      '[Donato Ricci](https://medialab.sciencespo.fr/equipe/donato-ricci/): Principal Investigator, Designer <br> <a href="mailto:donato.ricci@sciencespo.fr">Send Email</a><br><br>[Gabriel Alcaras](https://medialab.sciencespo.fr/equipe/gabriel-alcaras/): Postdoctoral researcher, Sociologist <br> <a href="mailto:gabriel.alcaras@sciencespo.fr">Send Email</a><br><br>[Tommaso Prinetti](https://medialab.sciencespo.fr/equipe/tommaso-prinetti/): Research Assistant, Designer <br> <a href="mailto:tommaso.prinetti@sciencespo.fr">Send Email</a><br><br>[Zoé de Vries](https://medialab.sciencespo.fr/equipe/zoe-de-vries/): Research Assistant, Linguist <br> <a href="mailto:zoe.devries@sciencespo.fr">Send Email</a><br><br>',
+      '<b>Donato Ricci</b>: <a href="https://medialab.sciencespo.fr/equipe/donato-ricci/" target="_blank" style="text-decoration: underline;">Principal Investigator, Designer</a> <br> <b>Contact</b>: <a href="mailto:donato.ricci@sciencespo.fr" target="_blank" style="text-decoration: underline;">donato.ricci@sciencespo.fr</a><br><br><b>Gabriel Alcaras</b>: <a href="https://medialab.sciencespo.fr/equipe/gabriel-alcaras/" target="_blank" style="text-decoration: underline;">Postdoctoral researcher, Sociologist</a> <br> <b>Contact</b>: <a href="mailto:gabriel.alcaras@sciencespo.fr" target="_blank" style="text-decoration: underline;">gabriel.alcaras@sciencespo.fr</a><br><br><b>Tommaso Prinetti</b>: <a href="https://medialab.sciencespo.fr/equipe/tommaso-prinetti/" target="_blank" style="text-decoration: underline;">Research Assistant, Designer</a> <br> <b>Contact</b>: <a href="mailto:tommaso.prinetti@sciencespo.fr" target="_blank" style="text-decoration: underline;">tommaso.prinetti@sciencespo.fr</a><br><br><b>Zoé de Vries</b>: <a href="https://medialab.sciencespo.fr/equipe/zoe-de-vries/" target="_blank" style="text-decoration: underline;">Research Assistant, Linguist</a> <br> <b>Contact</b>: <a href="mailto:zoe.devries@sciencespo.fr" target="_blank" style="text-decoration: underline;">zoe.devries@sciencespo.fr</a><br><br>',
     IndexNum: 5,
-    Content: [
-      {
-        title: "Exercise 12 - Choosing Your exemplary Work",
-        subtitle:
-          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
-        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
-        picture: photos.Ex_12,
-      },
-    ],
     bgColor: "#000000",
   },
 };
