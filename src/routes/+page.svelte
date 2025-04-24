@@ -7,6 +7,7 @@
     import Floater from "$lib/components/floaters.svelte";
     import Textbox from "$lib/components/textboxes.svelte";
     import Slider from "$lib/components/buttons/slider.svelte";
+    import VademecumFloater from "$lib/components/vademecum_floater.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
     import { writable } from "svelte/store";
@@ -863,6 +864,11 @@
                     randomPosition = {calculateRandomPosition()}
                 />
             {/each}
+
+            <!-- Custom always-open red floater -->
+            <VademecumFloater 
+                randomPosition={calculateRandomPosition()}
+            />
         {/if}
 
         <div class="mobile_desc_container">
