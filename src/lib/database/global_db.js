@@ -240,7 +240,7 @@ const alterEgosDb = {
     Title: "Contact",
     Question: "Our Team",
     Description:
-      '[Donato Ricci](https://medialab.sciencespo.fr/equipe/donato-ricci/): Principal Investigator, Designer <br> <a href="mailto:donato.ricci@sciencespo.fr">Send Email</a><br><br>[Gabriel Alcaras](https://medialab.sciencespo.fr/equipe/gabriel-alcaras/): Postdoctoral researcher, Sociologist <br> <a href="mailto:gabriel.alcaras@sciencespo.fr">Send Email</a><br><br>[Tommaso Prinetti](https://medialab.sciencespo.fr/equipe/tommaso-prinetti/): Research Assistant, Designer <br> <a href="mailto:tommaso.prinetti@sciencespo.fr">Send Email</a><br><br>[Zoé de Vries](https://medialab.sciencespo.fr/equipe/zoe-de-vries/): Research Assistant, Linguist <br> <a href="mailto:zoe.devries@sciencespo.fr">Send Email</a><br><br>',
+      '<a href="https://medialab.sciencespo.fr/equipe/donato-ricci/"><b>Donato Ricci</b></a>: Principal Investigator, Designer <br> <a href="mailto:donato.ricci@sciencespo.fr">Send Email</a><br><br> <a href="https://medialab.sciencespo.fr/equipe/gabriel-alcaras/"><b>Gabriel Alcaras</b></a>: Postdoctoral researcher, Sociologist <br> <a href="mailto:gabriel.alcaras@sciencespo.fr">Send Email</a><br><br><a href="https://medialab.sciencespo.fr/equipe/tommaso-prinetti/"><b>Tommaso Prinetti</b></a>: Research Assistant, Designer <br> <a href="mailto:tommaso.prinetti@sciencespo.fr">Send Email</a><br><br><a href="https://medialab.sciencespo.fr/equipe/zoe-de-vries/"><b>Zoé de Vries</b></a>: Research Assistant, Linguist <br> <a href="mailto:zoe.devries@sciencespo.fr">Send Email</a><br><br>',
     IndexNum: 5,
     Content: [
       {
