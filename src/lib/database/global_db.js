@@ -128,7 +128,7 @@ const cardsDb = {
     IndexNum: 4,
     CoverImg: capitolsCover.coverExcel,
     Content: [
-       {
+      {
         title: "Exercise 12 - Choosing Your exemplary Work",
         subtitle:
           "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
@@ -175,19 +175,20 @@ const cardsDb = {
     isProjCover: false,
   },
   Card5: {
-    Title: "NEW CARD",
+    Title: "Distilling",
+    Question:
+      "What story emerges when we look back on our evolving relationship with LLMs?",
     Description:
-      "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
-    Question: "How closely can an LLM approach human excellence?",
+      "In this final block, participants circle back to the essential aspects of their use of LLMs. Delving into previous exercises, they uncover key features that have remained stable or which have evolved during the course of the experiment, thus producing a detailed overview of the integration of LLMs within their workflow.",
     IndexNum: 5,
-    CoverImg: capitolsCover.coverExcel,
+    CoverImg: capitolsCover.coverDistilling,
     Content: [
-       {
-        title: "Exercise 12 - Choosing Your exemplary Work",
+      {
+        title: "Exercise 18 - Choosing Your exemplary Work",
         subtitle:
-          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
-        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
-        picture: photos.Ex_12,
+          "Participants synthesize their own perspective on the entire experiment into a cohesive narrative.",
+        text: "Rather than summarizing past exercises, this exercise encourages <b>the creation of a personal booklet</b> that combines selected pages from the vademecum with additional notes, sketches, and digital traces. This curated archive serves as both <b>a tangible memory and a storytelling device</b> —capturing key moments, doubts, and insights that have shaped the participant’s evolving relationship with LLMs.",
+        picture: photos.Ex_18,
       },
     ],
     bgColor: "#FFCE93",
@@ -236,13 +237,20 @@ const alterEgosDb = {
     bgColor: "#000000",
   },
   Card5: {
-    Title: "Context",
-    CoverImg: general.logoImage_white,
-    Question:
-      "How to document practices shaped and influenced by the project itself?",
+    Title: "Contact",
+    Question: "Our Team",
     Description:
-      "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. <br><br>However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. <br><br>Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.<br><br>There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. <br><br>How do AI's well-known problems (<b>bias, confabulation, etc.</b>) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
+      '[Donato Ricci](https://medialab.sciencespo.fr/equipe/donato-ricci/): Principal Investigator, Designer <br> <a href="mailto:donato.ricci@sciencespo.fr">Send Email</a><br><br>[Gabriel Alcaras](https://medialab.sciencespo.fr/equipe/gabriel-alcaras/): Postdoctoral researcher, Sociologist <br> <a href="mailto:gabriel.alcaras@sciencespo.fr">Send Email</a><br><br>[Tommaso Prinetti](https://medialab.sciencespo.fr/equipe/tommaso-prinetti/): Research Assistant, Designer <br> <a href="mailto:tommaso.prinetti@sciencespo.fr">Send Email</a><br><br>[Zoé de Vries](https://medialab.sciencespo.fr/equipe/zoe-de-vries/): Research Assistant, Linguist <br> <a href="mailto:zoe.devries@sciencespo.fr">Send Email</a><br><br>',
     IndexNum: 5,
+    Content: [
+      {
+        title: "Exercise 12 - Choosing Your exemplary Work",
+        subtitle:
+          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
+        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
+        picture: photos.Ex_12,
+      },
+    ],
     bgColor: "#000000",
   },
 };
@@ -375,5 +383,5 @@ const floatersDb = {
     media: floaters.Benchmarking_floater_4,
     href: "",
     parent: "Benchmarking",
-  }
+  },
 };
