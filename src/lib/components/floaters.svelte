@@ -417,7 +417,7 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        background-color: white;
+        background-color: grey;
     }
 
     :global(.floater_container.open.clicked > .closer_container) {

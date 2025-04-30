@@ -927,11 +927,11 @@
     }
 
     :global(.grab) {
-        cursor: grab;
+        cursor: grab !important;
     }
 
     :global(.grabbing) {
-        cursor: grabbing;
+        cursor: grabbing !important;
     }
 
     /* Base styles for html and body */
