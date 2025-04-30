@@ -17,7 +17,7 @@ const cardsDb = {
         title: "Exercise 1 - Draw It Like You See It",
         subtitle:
           "Participants sketch how they think an LLM works and how they view their work environment.",
-        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through spontaneous and deliberately imperfect sketches, participants capture their intuitive and metaphorical understanding of LLMs.",
+        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through <b>spontaneous and deliberately imperfect sketches</b>, participants capture their intuitive and metaphorical understanding of LLMs.",
         picture: photos.Ex_1,
       },
       {
@@ -31,7 +31,7 @@ const cardsDb = {
         title: "Exercise 3 - Taking Stock",
         subtitle:
           "Participants review their ChatGPT history to identify usage patterns and what stands out.",
-        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights gaps between perception and actual use to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
+        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights <b>gaps between perception and actual use</b> to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
         picture: photos.Ex_3,
       },
       {
@@ -71,7 +71,7 @@ const cardsDb = {
         title: "Exercise 7 - Preparing for the Trial",
         subtitle:
           "Participants write detailed instructions for their tasks and choose four LLMs they wish to test.",
-        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to consider the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
+        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to reflect on the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
         picture: photos.Ex_7,
       },
       {
@@ -96,7 +96,7 @@ const cardsDb = {
   Card3: {
     Title: "Prompting",
     Description:
-      "In this block, participants explore how to effectively communicate with LLMs through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM's outputs, aiming to better align the model's responses with their professional needs and expectations.",
+      "In this block, participants explore <b>how to effectively communicate with LLMs</b> through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM's outputs, aiming to <b>better align</b> the model's responses with their professional needs and expectations.",
     Question: "To what extent can we influence the quality of an LLM's output?",
     IndexNum: 3,
     CoverImg: capitolsCover.coverPrompting,
@@ -123,7 +123,7 @@ const cardsDb = {
   Card4: {
     Title: "Excelling",
     Description:
-      "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
+      "In this block, participants use their chosen LLM to produce <b>the highest quality work possible</b>, attempting to recreate a masterpiece from their field. The goal is <b>to push the model's capabilities to the fullest</b>, testing its ability to reach the gold standard in a specialized field.",
     Question: "How closely can an LLM approach human excellence?",
     IndexNum: 4,
     CoverImg: capitolsCover.coverExcel,
@@ -166,7 +166,7 @@ const cardsDb = {
       {
         title: "Exercise 17 - Charting Your Path",
         subtitle:
-          "Participants examine key moParticipants sketch three evolving, hand-drawn graphs depicting their learning journey.",
+          "Participants sketch three evolving, hand-drawn graphs depicting their learning journey.",
         text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
         picture: photos.Ex_17,
       },
@@ -179,7 +179,7 @@ const cardsDb = {
     Question:
       "What story emerges when we look back on our evolving relationship with LLMs?",
     Description:
-      "In this final block, participants circle back to the essential aspects of their use of LLMs. Delving into previous exercises, they uncover key features that have remained stable or which have evolved during the course of the experiment, thus producing a detailed overview of the integration of LLMs within their workflow.",
+      "In this final block, participants circle back to the essential aspects of their use of LLMs. Delving into previous exercises, <b>they uncover key features</b> that have remained stable or which have evolved during the course of the experiment, thus producing <b>a detailed overview</b> of the integration of LLMs within their workflow.",
     IndexNum: 5,
     CoverImg: capitolsCover.coverDistilling,
     Content: [
@@ -206,41 +206,39 @@ const alterEgosDb = {
     IndexNum: 1,
     bgColor: "#000000",
   },
-  Card2: {
-    Title: "Methodology",
-    CoverImg: general.logoImage_white,
-    Question: "A necessary project in today's research landscape on LLMs",
-    Description:
-      "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
-    IndexNum: 2,
-    bgColor: "#000000",
-  },
-  Card3: {
+   Card2: {
     Title: "Objective",
     CoverImg: general.logoImage_white,
     Question:
       "How do professionals evaluate, adapt to, and perceive LLMs in their work?",
     Description:
       'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation:</b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort:</b> What new kinds of work do LLMs require from their users?<br><br><b>Perception:</b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
+    IndexNum: 2,
+    bgColor: "#000000",
+  },
+  Card3: {
+    Title: "Methodology",
+    CoverImg: general.logoImage_white,
+    Question: "A necessary project in today's research landscape on LLMs",
+    Description:
+      "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
     IndexNum: 3,
     bgColor: "#000000",
   },
-
   Card4: {
-    Title: "Context",
-    CoverImg: general.logoImage_white,
-    Question:
-      "How to document practices shaped and influenced by the project itself?",
-    Description:
-      "The booming rise of <b>large language models (LLMs)</b> such as ChatGPT has sparked a rush to produce discourse about these technologies. The quick crystallisation of a shared outlook around a few key themes has <b>narrowed the scope</b> of potential interrogations. Public and scientific debates focus on technical issues: algorithmic bias, confabulation, and intellectual property violations. <br><br>However, the problems and consequences associated with their <b>actual use</b> – for both their users and their professional contexts – remain largely unexplored. This asymmetry fuels a <b>mechanical view</b> of technological development and its effects, as if the technical analysis of these systems were enough to predict their social impact. <br><br>Moreover, these discourses present AI as a <b>monolithic and disruptive</b> entity, dismissing the possibility that it may be aligned with existing practices and that its effects may vary depending on situations encountered in one's job.<br><br>There is thus an <b>urgent need</b> to move beyond predictions about the future of work, to account for the professional contexts in which LLMs are used, and to identify <b>current issues</b> – not prospective ones. <br><br>How do AI's well-known problems (<b>bias, confabulation, etc.</b>) manifest in established practices? What new, unexpected problems are surfacing? How do LLMs shape individual work practices? And in turn, how do professional environments shape LLMs and their use?",
-    IndexNum: 4,
-    bgColor: "#000000",
-  },
-  Card5: {
     Title: "Contact",
     Question: "Our Team",
     Description:
       '<b>Donato Ricci</b>: <a href="https://medialab.sciencespo.fr/equipe/donato-ricci/" target="_blank" style="text-decoration: underline;">Principal Investigator, Designer</a> <br> <b>Contact</b>: <a href="mailto:donato.ricci@sciencespo.fr" target="_blank" style="text-decoration: underline;">donato.ricci@sciencespo.fr</a><br><br><b>Gabriel Alcaras</b>: <a href="https://medialab.sciencespo.fr/equipe/gabriel-alcaras/" target="_blank" style="text-decoration: underline;">Postdoctoral researcher, Sociologist</a> <br> <b>Contact</b>: <a href="mailto:gabriel.alcaras@sciencespo.fr" target="_blank" style="text-decoration: underline;">gabriel.alcaras@sciencespo.fr</a><br><br><b>Tommaso Prinetti</b>: <a href="https://medialab.sciencespo.fr/equipe/tommaso-prinetti/" target="_blank" style="text-decoration: underline;">Research Assistant, Designer</a> <br> <b>Contact</b>: <a href="mailto:tommaso.prinetti@sciencespo.fr" target="_blank" style="text-decoration: underline;">tommaso.prinetti@sciencespo.fr</a><br><br><b>Zoé de Vries</b>: <a href="https://medialab.sciencespo.fr/equipe/zoe-de-vries/" target="_blank" style="text-decoration: underline;">Research Assistant, Linguist</a> <br> <b>Contact</b>: <a href="mailto:zoe.devries@sciencespo.fr" target="_blank" style="text-decoration: underline;">zoe.devries@sciencespo.fr</a><br><br>',
+    IndexNum: 4,
+    bgColor: "#000000",
+  },
+  
+  Card5: {
+  Title: "Co-Inquirers",
+    Question:
+      "We would like to thank all co-inquirers who took part in our protocol. Without their participation, our project could not have been developed.",
+    Description: "Clara Demarty-Coadic<br>François Lambert<br>Josephine Preißler<br>Léa Stephan<br>Lukas Brand<br><Mathilde Blanchon<br>Thérèse d'Orléans<br>Yajing Hu",
     IndexNum: 5,
     bgColor: "#000000",
   },
@@ -256,7 +254,7 @@ const floatersDb = {
     parent: "Prompting",
   },
   Floater2: {
-    Title: "Floater_prompting_2.webm",
+    Title: "card_closeup.webm",
     id: 2,
     category: "video",
     media: floaters.Prompting_floater_2,
