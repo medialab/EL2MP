@@ -17,7 +17,7 @@ const cardsDb = {
         title: "Exercise 1 - Draw It Like You See It",
         subtitle:
           "Participants sketch how they think an LLM works and how they view their work environment.",
-        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through spontaneous and deliberately imperfect sketches, participants capture their intuitive and metaphorical understanding of LLMs.",
+        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through <b>spontaneous and deliberately imperfect sketches</b>, participants capture their intuitive and metaphorical understanding of LLMs.",
         picture: photos.Ex_1,
       },
       {
@@ -31,7 +31,7 @@ const cardsDb = {
         title: "Exercise 3 - Taking Stock",
         subtitle:
           "Participants review their ChatGPT history to identify usage patterns and what stands out.",
-        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights gaps between perception and actual use to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
+        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights <b>gaps between perception and actual use</b> to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
         picture: photos.Ex_3,
       },
       {
@@ -71,7 +71,7 @@ const cardsDb = {
         title: "Exercise 7 - Preparing for the Trial",
         subtitle:
           "Participants write detailed instructions for their tasks and choose four LLMs they wish to test.",
-        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to consider the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
+        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to reflect on the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
         picture: photos.Ex_7,
       },
       {
@@ -96,7 +96,7 @@ const cardsDb = {
   Card3: {
     Title: "Prompting",
     Description:
-      "In this block, participants explore how to effectively communicate with LLMs through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM's outputs, aiming to better align the model's responses with their professional needs and expectations.",
+      "In this block, participants explore <b>how to effectively communicate with LLMs</b> through prompt engineering. They experiment with different prompt styles and techniques to see how they influence an LLM's outputs, aiming to <b>better align</b> the model's responses with their professional needs and expectations.",
     Question: "To what extent can we influence the quality of an LLM's output?",
     IndexNum: 3,
     CoverImg: capitolsCover.coverPrompting,
@@ -123,7 +123,7 @@ const cardsDb = {
   Card4: {
     Title: "Excelling",
     Description:
-      "In this block, participants use their chosen LLM to produce the highest quality work possible, attempting to recreate a masterpiece from their field. The goal is to push the model's capabilities to the fullest, testing its ability to reach the gold standard in a specialized field.",
+      "In this block, participants use their chosen LLM to produce <b>the highest quality work possible</b>, attempting to recreate a masterpiece from their field. The goal is <b>to push the model's capabilities to the fullest</b>, testing its ability to reach the gold standard in a specialized field.",
     Question: "How closely can an LLM approach human excellence?",
     IndexNum: 4,
     CoverImg: capitolsCover.coverExcel,
@@ -166,7 +166,7 @@ const cardsDb = {
       {
         title: "Exercise 17 - Charting Your Path",
         subtitle:
-          "Participants examine key moParticipants sketch three evolving, hand-drawn graphs depicting their learning journey.",
+          "Participants sketch three evolving, hand-drawn graphs depicting their learning journey.",
         text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
         picture: photos.Ex_17,
       },
@@ -179,7 +179,7 @@ const cardsDb = {
     Question:
       "What story emerges when we look back on our evolving relationship with LLMs?",
     Description:
-      "In this final block, participants circle back to the essential aspects of their use of LLMs. Delving into previous exercises, they uncover key features that have remained stable or which have evolved during the course of the experiment, thus producing a detailed overview of the integration of LLMs within their workflow.",
+      "In this final block, participants circle back to the essential aspects of their use of LLMs. Delving into previous exercises, <b>they uncover key features</b> that have remained stable or which have evolved during the course of the experiment, thus producing <b>a detailed overview</b> of the integration of LLMs within their workflow.",
     IndexNum: 5,
     CoverImg: capitolsCover.coverDistilling,
     Content: [
