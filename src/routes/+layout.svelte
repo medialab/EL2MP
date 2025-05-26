@@ -6,7 +6,7 @@
   <link rel="canonical" href="https://medialab.github.io/EL2MP/" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="pgTk4-SglUqFCGjw5F_ag2flpUYxmOhleOQujEElFQw" />
+  <meta name="google-site-verification" content="aCBTb2lNIupPesJ45f0x0AFWx8Wy9VpvWxFBNJnZ4e8" />
   
   <!-- SEO Description and Keywords -->
   <meta name="description" content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. The Ecologies of LLM Practices (EL2MP) project by Sciences Po medialab documents how LLMs influence professional practices." />
@@ -25,6 +25,8 @@
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
   <meta property="fb:app_id" content="123456789012345" />
+
+  
 
   <!-- IA Meta Tags -->
   <meta property="ia:markup_url" content="https://medialab.github.io/EL2MP/ia/ia-markup.json" />
