@@ -206,7 +206,7 @@ const alterEgosDb = {
     IndexNum: 1,
     bgColor: "#000000",
   },
-   Card2: {
+  Card2: {
     Title: "Objective",
     CoverImg: general.logoImage_white,
     Question:
@@ -233,12 +233,13 @@ const alterEgosDb = {
     IndexNum: 4,
     bgColor: "#000000",
   },
-  
+
   Card5: {
-  Title: "Co-Inquirers",
+    Title: "Co-Inquirers",
     Question:
       "We would like to thank all co-inquirers who took part in our protocol. Without their participation, our project could not have been developed.",
-    Description: "Clara Demarty-Coadic<br>François Lambert<br>Josephine Preißler<br>Léa Stephan<br>Lukas Brand<br><Mathilde Blanchon<br>Thérèse d'Orléans<br>Yajing Hu",
+    Description:
+      "Clara Demarty-Coadic<br>François Lambert<br>Josephine Preißler<br>Léa Stephan<br>Lukas Brand<br>Mathilde Blanchon<br>Thérèse d'Orléans<br>Yajing Hu",
     IndexNum: 5,
     bgColor: "#000000",
   },
