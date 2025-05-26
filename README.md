@@ -62,7 +62,7 @@ With support from Google, **Écologies des Pratiques LLM** critically investigat
 
 ---
 
-For more information, visit the [EL2MP project website](https://medialab.github.io/EL2MP/).
+For more information, visit the [EL2MP project website](https://ecologiesofllm.medialab.sciencespo.fr/).
 
 ---
 
@@ -80,5 +80,5 @@ For more information, visit the [EL2MP project website](https://medialab.github.
 
 We welcome collaboration and discussion. 
 If you are interested in the intersection of LLMs, research practices, and ecological considerations, please feel free to reach out: INSERT EMAIL HERE. 
-Visit our [project website](https://medialab.github.io/EL2MP/) to learn more about ongoing activities and events.
+Visit our [project website](https://ecologiesofllm.medialab.sciencespo.fr/) to learn more about ongoing activities and events.
 

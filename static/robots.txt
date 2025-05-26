@@ -16,7 +16,7 @@ Allow: /
 Disallow: /admin/
 Disallow: /wp-admin/
 
-Sitemap: https://medialab.github.io/EL2MP/sitemap.xml
+Sitemap: https://ecologiesofllm.medialab.sciencespo.fr/sitemap.xml
 
 # Crawl delay for specific robots if needed
 # Crawl-delay: 10

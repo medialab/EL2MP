@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "title": "Écologies des Pratiques LLMs (Development) | EL2MP | Sciences Po medialab",
-  "url": "https://medialab.github.io/EL2MP/",
+  "url": "https://ecologiesofllm.medialab.sciencespo.fr/",
   "description": "Development version - The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s).",
   "identifiers": {
     "primary": "el2mp-dev"
