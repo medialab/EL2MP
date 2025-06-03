@@ -2,7 +2,7 @@
 
 <svelte:head>
   <!-- Essential Metadata -->
-  <title>Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab</title>
+  <title>Ecologies of LLM Practices | EL2MP | Sciences Po medialab</title>
   <link rel="canonical" href="https://ecologiesofllm.medialab.sciencespo.fr/" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
   <meta property="og:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta property="og:image:alt" content="EL2MP Logo - Ecologies des Pratiques LLMs" />
   <meta property="og:logo" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/enhanced_logoImage.png" />
-  <meta property="og:site_name" content="Écologies des Pratiques LLMs" />
+  <meta property="og:site_name" content="Ecologies of LLM Practices" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:locale:alternate" content="fr_FR" />
   <meta property="fb:app_id" content="123456789012345" />
@@ -36,7 +36,7 @@
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab" />
+  <meta name="twitter:title" content="Ecologies of LLM Practices | EL2MP | Sciences Po medialab" />
   <meta name="twitter:description" content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. Discover research from Sciences Po medialab." />
   <meta name="twitter:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta name="twitter:image:alt" content="EL2MP Logo - Ecologies of LLM Practices" />
@@ -68,13 +68,13 @@
           "description": "Official website for the EL2MP Research Project by Medialab Sciencespo, documenting the integration and impact of Large Language Models in professional practices.",
           "mainEntity": {
             "@type": "ResearchProject",
-            "@id": "https://ecologiesofllm.medialab.sciencespo.fr/#project"
+            "@id": "https://ecologiesofllm.medialab.sciencespo.fr/"
           }
         },
         {
           "@type": "ResearchProject",
-          "@id": "https://ecologiesofllm.medialab.sciencespo.fr/#project",
-          "name": "Écologies des Pratiques LLMs (EL2MP)",
+          "@id": "https://ecologiesofllm.medialab.sciencespo.fr/",
+          "name": "Ecologies of LLM Practices (EL2MP)",
           "alternateName": "Ecologies of LLM Practices",
           "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use",
           "url": "https://ecologiesofllm.medialab.sciencespo.fr/",

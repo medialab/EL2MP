@@ -4,8 +4,8 @@
     
     // Handle 301 redirects
     onMount(() => {
-        if ($page.status === 301 && $page.error.location) {
-            window.location.href = $page.error.location;
+        if ($page.status === 301) {
+            window.location.href = 'https://ecologiesofllm.medialab.sciencespo.fr/';
         }
     });
 </script>

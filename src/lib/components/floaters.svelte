@@ -5,7 +5,8 @@
 
     export let data
     export let randomPosition;
-
+    let holdTimeout;
+    let isHolding = false;
     let isClicked = false;
 
     const addClickedClass = (event) => {
@@ -36,9 +37,6 @@
             console.warn('No floater container found for the clicked element');
         }
     };
-
-    let holdTimeout;
-    let isHolding = false;
 
     const handleMouseDown = () => {
         if (data.category === "document") {
@@ -94,10 +92,6 @@
             addClickedClass(event);
         }
     };
-
-    onMount(() => {
-        //cavoli
-    })
 
 </script>
 

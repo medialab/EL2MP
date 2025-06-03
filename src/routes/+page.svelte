@@ -830,19 +830,24 @@
 
     <section class="host">
 
-        <Textbox bringToFront={bringToFront}/>
+        {#if !$isMobileDevice}
+            <Textbox bringToFront={bringToFront}/>
+        {/if}
 
-        <Slider
-            switch_alterego = {switch_alterego}
-        />
+        {#if !$isMobileDevice}
+            <Slider
+                switch_alterego = {switch_alterego}
+            />
+        {/if}
+        
+        
 
-        <LogoButton
-            logoImage = {data.logoImage}
-        />
-
-        <ResetButton
-            reset_function = {reset_function}
-        />
+        {#if !$isMobileDevice}
+            <ResetButton
+                reset_function = {reset_function}
+            />  
+        {/if}
+        
 
         {#if !$isMobileDevice}
             {#each Object.values(data.cardsDb) as card (card.IndexNum)}
@@ -871,7 +876,17 @@
             />
         {/if}
 
+        <LogoButton
+            logoImage = {data.logoImage}
+        />
+
         <div class="mobile_desc_container">
+
+            <div class="mobile_description tip">
+                <p class="h4" style="text-align: center;">
+                    What is this project about?
+                </p>
+            </div>
 
             <div class="mobile_description">
                 <p class="p2">
@@ -902,11 +917,15 @@
         background-color: transparent;
 
         @media (max-width: 768px) {
-            height: 100dvh;
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile */
+            height: 100svh; /* Small viewport height as fallback */
             width: 100%;
-            flex-direction: column;
-            display: flex;
-            padding-top: calc(1/8 * 100vw);
+            display: block;
+            justify-content: start;
+            margin: 0;
+            padding: 0;
+            overflow-y: auto;
         }
     }
 
@@ -919,10 +938,12 @@
         background-color: transparent;
 
         @media (max-width: 768px) {
-            display: flex;
+            display: grid;
+            grid-template-rows: auto 1fr; /* LogoButton takes auto height, container takes remaining */
             position: static;
-            height: auto;
-            flex: 1;
+            height: 100vh;
+            height: 100dvh; /* Modern viewport height */
+            overflow: hidden;
         }
     }
 
@@ -957,8 +978,10 @@
         overflow: hidden;
 
         @media (max-width: 768px) {
-            height: auto;
-            
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+                
         }
     }
 
@@ -979,6 +1002,7 @@
 
         @media (max-width: 768px) {
             height: 100%;
+            max-height: 100vh;
         }
     }
 
@@ -1239,29 +1263,47 @@
 
     @media only screen and (max-width: 768px) {
 
+        .mobile_desc_container {
+            display: flex;
+            position: static;
+            flex-direction: column;
+            padding: var(--spacing-L);
+            height: 100%; /* Fill the grid row completely */
+            min-height: 0; /* Allow shrinking if needed */
+            overflow-y: auto; /* Allow scrolling if content overflows */
+            row-gap: 10px;
+        }
+
         .mobile_description {
-            display: block;
+            display: flex;
+            position: static;
             border: solid 1px black;
             border-radius: 10px 10px 10px 10px;
             width: 100%;
-            flex-shrink: 1;
-
             padding: var(--spacing-S);
             overflow-y: scroll;
             scrollbar-width: 0px;
             background-color: white;
-            margin-bottom: var(--spacing-S);
+            height: 100%;
+            padding-bottom: var(--spacing-L);
         }
+
 
         .mobile_description.tip {
             height: fit-content;
+            min-height: 40px;
             overflow: hidden;
-            padding: var(--spacing-S);
-            margin-bottom: var(--spacing-S);
+            padding: var(--spacing-XS);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            vertical-align: middle;
         }
 
         .mobile_description > .p2 {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             text-align: justify;
             text-rendering: optimizeLegibility;
             hyphens: auto;
@@ -1299,15 +1341,7 @@
             border-radius: 10px;
         }
 
-        .mobile_desc_container {
-            display: flex;
-            position: static;
-            flex-direction: column;
-            justify-content: space-between;
-            margin: var(--spacing-L);
-            margin-bottom: 0px;
-            max-height: 95%;
-        }
+        
 
     }
 

@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "title": "Écologies des Pratiques LLMs | EL2MP | Sciences Po medialab",
+  "title": "Ecologies of LLM Practices | EL2MP | Sciences Po medialab",
   "url": "https://ecologiesofllm.medialab.sciencespo.fr/",
   "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use.",
   "identifiers": {
@@ -8,4 +8,4 @@
   },
   "annotations": {},
   "last_updated": "2023-11-01T00:00:00Z"
-} 
+}

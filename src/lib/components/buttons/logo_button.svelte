@@ -50,8 +50,8 @@
 
         @media (max-width: 768px) {
             top: 0%;
-            left: 50%;
-            transform: translate(-50%, 0%);
+            left: 0%;
+            transform: translate(0%, 0%);
             border-radius: 0px;
             width: 100%;
             border: 0;
@@ -59,6 +59,7 @@
             place-content: center;
             padding-bottom: var(--spacing-M);
             padding-top: var(--spacing-M);
+            position: static;
         }
     }
 
