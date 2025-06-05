@@ -5,12 +5,13 @@ export async function handle({ event, resolve }) {
   // Define your Content Security Policy (CSP) directives
   const cspDirectives = [
     "default-src 'self'",
-    // To avoid using 'unsafe-inline' consider using nonces or hashes if possible
-    "script-src 'self' 'unsafe-inline'",
+    // Allow Google Analytics and Tag Manager scripts
+    "script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data:",
+    "img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com",
     "font-src 'self'",
-    "connect-src 'self'",
+    // Allow connections to Google Analytics
+    "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com",
     "object-src 'none'",
     "frame-ancestors 'none'",
     "base-uri 'self'",

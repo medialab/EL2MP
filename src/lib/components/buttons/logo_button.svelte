@@ -29,24 +29,21 @@
     }
 
     :global(.closing_icon) {
-        width: 20vw;
+        width: 14vw;
         height: fit-content;
         fill: black;
-        padding: var(--spacing-XS);
-        padding-right: var(--spacing-M);
-        padding-left: var(--spacing-M);
         opacity: 1;
         cursor: pointer;
-        background-color: #EAEAEA;
+        background-color: transparent;
         position: fixed;
         border-radius: 0px 5px 0px 0px;
-        border: solid 1px black;
-        border-bottom: solid 0px black;
-        border-left: solid 0px black;
-        z-index: 500;
+        z-index: 1;
 
-        bottom: 0px;
-        left: 0px;
+        bottom: 1%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+
+        border: 0px;
 
         @media (max-width: 768px) {
             top: 0%;
@@ -64,7 +61,15 @@
     }
 
     :global(.closing_icon:hover) {
-        background-color: #EAEAEA;
+        background-color: transparent;
+        user-select: none;
+        pointer-events: none;
+    }
+
+    :global(.closing_icon:active) {
+        background-color: transparent;
+        user-select: none;
+        pointer-events: none;
     }
 
     .closing_icon > img {

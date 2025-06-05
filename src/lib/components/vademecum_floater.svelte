@@ -203,9 +203,10 @@
             // Set initial opacity to 0 (should match CSS)
             floaterElement.style.opacity = '0';
             
-            // Fade in after 1 second
             setTimeout(() => {
-                floaterElement.style.opacity = '1';
+                if (floaterElement) {
+                    floaterElement.style.opacity = '1';
+                }
             }, 1000);
 
             startFloatingAnimation();

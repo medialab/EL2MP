@@ -104,3 +104,73 @@
     gtag('config', 'G-8DHX3VYCYS');
   </script>
 </svelte:head>
+
+
+<style>
+  :global(button) {
+        appearance: none; /* Removes default styles */
+        font-family: inherit; /* Matches the button font with the surrounding text */
+        font-size: 1rem; /* Ensures consistent sizing */
+        font-weight: 400; /* Neutral font weight */
+        line-height: 1.5; /* Comfortable line height */
+        color: #333; /* Neutral text color */
+        background-color: #f8f9fa; /* Neutral light gray background */
+
+        border: 1px solid black; /* Light gray border */
+
+        border-radius: 4px; /* Slight rounding for modern feel */
+        padding: 0.5em 1em; /* Comfortable padding */
+        text-align: center; /* Center-aligns text */
+        display: inline-block; /* Suitable for buttons */
+        transition: background-color 0.2s ease, border-color 0.2s ease,
+            color 0.2s ease; /* Smooth hover effect */
+
+        /*these are the stable classes */
+
+        position: fixed;
+
+        display: inline-flex;
+        height: auto;
+        width: auto;
+        padding: var(--spacing-S, 10px);
+        flex-shrink: 0;
+
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        background-color: #EAEAEA;
+        cursor: pointer;
+        z-index: 100;
+    }
+
+    :global(button:hover) {
+        background-color: #D9D9D9;
+        color: var(--full-black);
+        cursor: pointer;
+    }
+
+
+    @font-face {
+        font-family: 'Instrument Sans';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/InstrumentSans-Regular.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Delicious Handrawn';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/DeliciousHandrawn-Regular.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'Instrument Serif';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/InstrumentSerif-Regular.ttf') format('truetype');
+    }
+</style>

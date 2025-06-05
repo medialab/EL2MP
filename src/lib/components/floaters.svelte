@@ -1,7 +1,7 @@
 <script>
     //This is floating_card.svelte
     import { onMount } from "svelte";
-    import { currentCardColor, selectedCard } from '$lib/stores/globalStores';
+    import { currentCardColor, selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
 
     export let data
     export let randomPosition;
@@ -96,10 +96,11 @@
 </script>
 
     <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <div class="floater_container closed"
+        <div class="floater_container closed" class:alterEgo={$isAlterEgoMode}
             data-sveltekit-preload-data="hover"
             data-parent={data.parent}
-            style="top: {randomPosition.top};
+            style="
+            top: {randomPosition.top};
                 left: {randomPosition.left};
                 z-index: {randomPosition.zIndex};
                 animation-delay: {randomPosition.animationDelay};" >
@@ -166,8 +167,6 @@
                             <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="M212.31-140Q182-140 161-161q-21-21-21-51.31v-535.38Q140-778 161-799q21-21 51.31-21h535.38Q778-820 799-799q21 21 21 51.31v535.38Q820-182 799-161q-21 21-51.31 21H212.31Zm0-60h535.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-535.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H212.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v535.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85ZM270-290h423.07L561.54-465.38 449.23-319.23l-80-102.31L270-290Zm-70 90v-560 560Z"/></svg>
                         </div>
 
-                    
-
                     {:else if data.category === 'video'}
                         <div class="category_icon" id="video">
                             <svg xmlns="http://www.w3.org/2000/svg"viewBox="0 -960 960 960"><path d="m172.31-780 70 140h120l-70-140h80l70 140h120l-70-140h80l70 140h120l-70-140h95.38Q818-780 839-759q21 21 21 51.31v455.38Q860-222 839-201q-21 21-51.31 21H172.31Q142-180 121-201q-21-21-21-51.31v-455.38Q100-738 121-759q21-21 51.31-21ZM160-580v327.69q0 5.39 3.46 8.85t8.85 3.46h615.38q5.39 0 8.85-3.46t3.46-8.85V-580H160Zm0 0v340-340Z"/></svg>
@@ -191,6 +190,7 @@
 <style>
     :global(.floater_container) {
         width: auto;
+        max-width: 300px;
         height: auto;
 
         position: absolute;
@@ -212,13 +212,15 @@
         user-select: none;
         transform-origin: bottom left;
 
-        transition: width 0.3s ease-in-out;
+        transition: width 0.3s ease-in-out, opacity 0.8s ease-in-out;
 
         @media (max-width: 768px) {
             display: none;
         }
 
     }
+
+    
   
     :global(.floater_container > .floater_bottom > p) {
         white-space: nowrap;
@@ -233,6 +235,10 @@
         padding-left: 0;
     }
 
+    :global(.floater_container.closed) {
+        transition: opacity 0.8s ease-in-out;
+    }
+
     :global(.floater_container.open > .floater_bottom > p) {
         display: block;
         width: fit-content;
@@ -242,7 +248,6 @@
 
     :global(.floater_container.open > .floater_bottom) {
         padding: var(--spacing-S);
-        /* transition: width 0.3s ease-in-out; */
         width: 100%;
         z-index: 4;
         transform: none;
@@ -269,7 +274,7 @@
         max-width: 300px;
         max-height: none;
         aspect-ratio: 21 / 9;
-        width: 100%;
+        width: 300px;
         height: 0px;
         overflow: hidden;
         filter: grayscale(1);
@@ -282,6 +287,7 @@
         border-bottom: none;
         
         opacity: 1; 
+        transition: opacity 0.8s ease-in-out;
 
         display: block;
     }
@@ -327,6 +333,13 @@
 
         transition: background-color var(--transition-times) var(--transition-curve);
     }
+
+
+    :global(.floater_container.alterEgo) {
+        opacity: 0 !important;
+        transition: opacity 0.8s ease-in-out;
+    }
+
 
     :global(.floater_container.closed > .floater_bottom) {
         padding: var(--spacing-S);
@@ -424,9 +437,6 @@
 
     :global(.floater_container.open.clicked > .floater_bottom) {
         border: dashed 1px black;
-        /* transition:
-            border 1s ease-in-out,
-            width 1s ease-in-out; */
     }
 
     :global(.floater_container.open.clicked > .floater_bottom:active) {

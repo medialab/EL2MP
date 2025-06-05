@@ -43,6 +43,7 @@
 
         border: solid 0.05vw black;    
         z-index: 500;
+        user-select: none;
 
         @media (max-width: 768px) {
             display: none;

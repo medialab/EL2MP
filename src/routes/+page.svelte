@@ -39,29 +39,31 @@
     let holdTimeout;
     let interval;
 
-    //Functions
-
     const updateWindowSize = () => {
         width = window.innerWidth;
         height = window.innerHeight;
 
-        if (width > 768) {
+        const actualScreenWidth = window.screen.width;
+        const isTrueMobile = actualScreenWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (!isTrueMobile && width > 768) {
             $isDesktop = true;
             $isMobileDevice = false;
 
+            reset_function();
+
             // Detect transition from mobile to desktop
             if ($isDesktop === false) {
-                // //console.log("Transitioned from mobile to desktop");
-                reloadWebsite();
+                reset_function();
             }
-        } else {
+        } else if (isTrueMobile) {
             $isDesktop = false;
             $isMobileDevice = true;
 
             // Detect transition from desktop to mobile
             if ($isDesktop === true) {
-                // //console.log("Transitioned from desktop to mobile");
                 hideDesktopStuff();
+                reset_function();
             }
         }
     };
@@ -98,31 +100,21 @@
         const windowWidth = hostRect.width;
         const windowHeight = hostRect.height;
 
-        // Define the offset and centering values
-        const offset = -30;
-
-        // Get card dimensions (assuming all cards are the same size)
+        const offset = -30; //Offset between cards
         const cardWidth = windowWidth * 0.6;
         const cardHeight = cardWidth / 1.5;
-        // //console.log("cardHeight", cardHeight)
 
-        // Calculate the total block width and height
         const totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
         const totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
 
-        // Calculate the starting position (top-left of the first card) to center the block
         const startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length - 1);
         const startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length - 1);
 
         containers.forEach((container, index) => {
-            // Calculate the position for the current container based on the index
             const x = startX + index * offset;
             const y = startY + index * offset;
 
-            // Update initial positions
             initialPositions[index] = { x, y };
-
-            // Apply the position to the container
             container.style.transition = 'transform 0.3s ease-in-out';
             container.style.transformOrigin = 'top left';
             container.style.transform = `translate(${x}px, ${y}px)`;
@@ -140,8 +132,6 @@
                 container.style.backgroundColor = cardData.bgColor;
             }
         });
-
-        // Now we reset the active card to qualifying
 
         $selectedCard = "Qualifying";
 
@@ -164,12 +154,10 @@
             element.scrollTop = 0;
         });
 
-        //closeFloaters(floaters);
-
         $highestZIndex = 1;
         $isFirstReset = false;
 
-        if ($isAlterEgoMode) {
+        if (!$isAlterEgoMode) {
             setTimeout(() => {
                 switch_alterego();
             }, 450);
@@ -191,6 +179,10 @@
                 if ($isAlterEgoMode) {
                     floater.classList.remove('open');
                     floater.classList.add('closed');
+                } else {
+                    // When exiting alter ego mode, reopen the floaters
+                    floater.classList.remove('closed');
+                    floater.classList.add('open');
                 }
             });
         }
@@ -314,7 +306,6 @@
     const hideFloaters = (card) => {
         if (!floaters) return;
 
-            // Use $selectedCard directly instead of activeMarker
             floaters.forEach((floater) => {
                 if (card !== 'all' && floater.dataset.parent !== card) {
                     floater.style.display = 'none';
@@ -332,7 +323,6 @@
 
     onMount(async () => {
         const interact = (await import('interactjs')).default;
-        // Save interact reference for cleanup
         interactRef = interact;
         const simpleBar = (await import('simplebar')).default;
         const ResizeObserver = (await import('resize-observer-polyfill')).default;
@@ -694,6 +684,9 @@
         
     }); 
 
+
+    
+
     onDestroy(() => {
         if (typeof window !== 'undefined') {
             window.removeEventListener('resize', updateWindowSize);
@@ -839,15 +832,6 @@
                 switch_alterego = {switch_alterego}
             />
         {/if}
-        
-        
-
-        {#if !$isMobileDevice}
-            <ResetButton
-                reset_function = {reset_function}
-            />  
-        {/if}
-        
 
         {#if !$isMobileDevice}
             {#each Object.values(data.cardsDb) as card (card.IndexNum)}
@@ -1093,22 +1077,6 @@
     :global(*) {
         margin: 0px;
         padding: 0px;
-    }
-
-    @font-face {
-        font-family: 'Instrument Sans';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('/fonts/InstrumentSans-Regular.ttf') format('truetype');
-    }
-
-    @font-face {
-        font-family: 'Instrument Serif';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('/fonts/InstrumentSerif-Regular.ttf') format('truetype');
     }
 
     :global(:root) {

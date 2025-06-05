@@ -1,122 +1,69 @@
 <script>
     import { selectedCard, isAlterEgoMode } from '$lib/stores/globalStores';
     import { onMount } from 'svelte';
-    // This prop might not be needed if bringToFront is handled solely by drag interactions
-    export let bringToFront; 
-
-    let boxes = [];
-
-    // Called via on:transitionend after the slide animation
-    function handleTransitionEnd(event) {
-        // Ensure we only act on the transform transition ending
-        if (event.target && event.propertyName === 'transform') {
-
-            event.target.style.transition = 'none';
-        }
-    }
-
-    // Called right before changing the class to trigger the slide animation
-    function enableSlideTransition(boxElement) {
-        if (boxElement) {
-            boxElement.style.transition = 'transform var(--transition-times) var(--transition-curve)';
-        }
-    }
-
-    // This is the main logic, run whenever $isAlterEgoMode changes
-    function updateBoxVisibility(boxElement, shouldBeVisible) {
-        if (!boxElement) return;
-
-        // Reset inline transform from dragging
-        boxElement.style.transform = '';
-
-        // Reset Interact.js data attributes ONLY when sliding OUT (becoming not visible)
-        if (!shouldBeVisible) {
-            boxElement.setAttribute('data-x', '0');
-            boxElement.setAttribute('data-y', '0');
-            // console.log(`Resetting position for ${boxElement.className}`); // Optional: for debugging
-        }
-
-        // Enable the slide transition before changing the class
-        enableSlideTransition(boxElement);
-
-        // Add/remove the 'closed' class to trigger animation
-        if (shouldBeVisible) {
-            boxElement.classList.remove('closed');
-        } else {
-            boxElement.classList.add('closed');
-        }
-    }
-
-    // Reactive statement: watch for changes in alter ego mode
-    $: if (typeof $isAlterEgoMode === 'boolean') { // Ensure it's initialized
-        // Update visibility based on the current mode (visible when true)
-        boxes.forEach(box => updateBoxVisibility(box, $isAlterEgoMode));
-    }
-
-    onMount(() => {
-        boxes = document.querySelectorAll('.text-box-dx, .text-box-sx');
-    });
 
 </script>
 
 <button
     class="text-box-dx"
-    data-x="0" 
-    data-y="0" 
-    class:closed={!$isAlterEgoMode} 
-    on:transitionend={handleTransitionEnd}
-    on:click={bringToFront} 
+    class:closed={!$isAlterEgoMode}
 >
     <p class="p3">
-        "The Ecologies of LLM Practices (EL2MP) project documents the role <br>of Large Language Models (LLMs) in various professional practice(s)<br> and the consequences of their use."
+        "How does the use of LLMs insert itself <br>  into existing work practices?"
     </p>
 </button>
 
 <button
     class="text-box-sx"
-    data-x="0" 
-    data-y="0" 
     class:closed={!$isAlterEgoMode}
-    on:transitionend={handleTransitionEnd}
-    on:click={bringToFront}
 >
-    <p class="p2">
-        "How can we reframe the role <br> of LLMs in ordinary work practices?"
+    <p class="p3">
+        "What kind of interactions emerge when LLMs <br> are introduced within pre-existing workflows?"
     </p>
 </button>
 
 <style>
     .text-box-dx,
     .text-box-sx {
-        /* Base styles */
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 1px;
-        padding: var(--spacing-S);
+        background-color: transparent;
         width: fit-content;
         box-sizing: border-box;
         position: absolute; 
-        z-index: 5;
+        z-index: 1;
         user-select: none;
-        
-        /* Default visual state: open/visible */
         transform: translateX(0); 
-        /* Start with transitions disabled; JS enables for sliding */
         transition: none; 
         text-align: left; 
+        border: 0px;
+        pointer-events: none;
+        transition: all 0.6s ease-in-out;
+        visibility: visible;
+        margin: 0;
+        padding: 0;
     }
 
     .text-box-dx {
-        bottom: 7vh; 
-        right: 2vw;
+        bottom: 15px; 
+        right: 15px;
         text-align: right; 
     }
 
     .text-box-sx {
-        top: 2vw; 
-        left: 2vw; 
+        top: 15px; 
+        left: 15px; 
     }
 
+    .p3 {
+        font-size: 1rem;
+    }
+
+    :global(.text-box-sx.closed),
+    :global(.text-box-dx.closed) {
+        color: rgb(171, 171, 171);
+        transition: all 0.6s ease-in-out;
+    }
+
+    
     @media (max-width: 768px) {
         .text-box-dx,
         .text-box-sx {
@@ -124,14 +71,7 @@
         }
     }
 
-    /* State when closed (slid out) */
-    :global(.text-box-sx.closed) {
-        transform: translateX(-120%);
-    }
-
-    :global(.text-box-dx.closed) {
-        transform: translateX(120%);
-    }
+    
 
     /* Styles for when being dragged (optional, cursor handled by JS) */
     .text-box-sx:focus,
