@@ -14,7 +14,7 @@
 
     // Simplified button state and text
     let buttonText = "DOWNLOAD THE VADEMECUM!";
-    const VADEMECUM_PATH = 'Vademecum.pdf'; // <<< --- CONFIRM THIS PATH
+    const VADEMECUM_PATH = '/ArtificialInquiries_Vademecum.pdf';
 
     const downloadFile = (e) => {
         // Skip if already in downloaded state or if we're dragging
@@ -42,7 +42,7 @@
         
         const link = document.createElement('a');
         link.href = VADEMECUM_PATH;
-        link.download = VADEMECUM_PATH.split('/').pop() || 'vademecum.pdf'; // Suggest filename
+        link.download = VADEMECUM_PATH.split('/').pop() || 'ArtificialInquiries_Vademecum.pdf'; // Suggest filename
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

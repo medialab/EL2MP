@@ -9,7 +9,7 @@
     class:closed={!$isAlterEgoMode}
 >
     <p class="p3">
-        "How does the use of LLMs insert itself <br>  into existing work practices?"
+        "How does the use of LLMs hinge itself <br> onto existing work practices?"
     </p>
 </button>
 
@@ -18,7 +18,7 @@
     class:closed={!$isAlterEgoMode}
 >
     <p class="p3">
-        "What kind of interactions emerge when LLMs <br> are introduced within pre-existing workflows?"
+        "What kind of interactions emerge when LLMs <br> are crossed with pre-existing workflows?"
     </p>
 </button>
 
