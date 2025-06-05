@@ -19,7 +19,7 @@
     const downloadFile = (e) => {
         // Skip if already in downloaded state or if we're dragging
         if (isDownloaded || isDragging) return;
-        
+            
         // Stop event propagation to prevent triggering drag
         if (e) {
             e.stopPropagation();

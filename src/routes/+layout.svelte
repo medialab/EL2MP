@@ -2,7 +2,7 @@
 
 <svelte:head>
   <!-- Essential Metadata -->
-  <title>Ecologies of LLM Practices | EL2MP | Sciences Po medialab</title>
+  <title>Ecologies of LLM Practices | EL2MP</title>
   <link rel="canonical" href="https://ecologiesofllm.medialab.sciencespo.fr/" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -15,7 +15,7 @@
   
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="How can we reframe the role of LLMs in ordinary work practices? | Ecologies of LLM (EL2MP)" />
+  <meta property="og:title" content="Ecologies of LLM Practices | EL2MP" />
   <meta property="og:description" content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. A Sciences Po medialab research initiative exploring AI integration in workplaces." />
   <meta property="og:url" content="https://ecologiesofllm.medialab.sciencespo.fr/" />
   <meta property="og:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
@@ -36,7 +36,7 @@
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ecologies of LLM Practices | EL2MP | Sciences Po medialab" />
+  <meta name="twitter:title" content="Ecologies of LLM Practices | EL2MP" />
   <meta name="twitter:description" content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. Discover research from Sciences Po medialab." />
   <meta name="twitter:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta name="twitter:image:alt" content="EL2MP Logo - Ecologies of LLM Practices" />
@@ -54,7 +54,7 @@
           "logo": "https://medialab.sciencespo.fr/img/cover-fb.png",
           "parentOrganization": {
             "@type": "Organization",
-            "name": "Sciences Po"
+            "name": "Ecologies of LLM Practices"
           }
         },
         {
