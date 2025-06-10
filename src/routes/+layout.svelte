@@ -9,14 +9,14 @@
   <meta name="google-site-verification" content="aCBTb2lNIupPesJ45f0x0AFWx8Wy9VpvWxFBNJnZ4e8" />
   
   <!-- SEO Description and Keywords -->
-  <meta name="description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, \"Artificial Inquiries\", is open to replication and appropriation by professionals and researchers alike." />
+  <meta name="description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, 'Artificial Inquiries', is open to replication and appropriation by professionals and researchers alike." />
   <meta name="keywords" content="Large Language Models, Artificial Intelligence, Work, Professionals, Practices, Sociology, Science and Technology Studies, Research, Design, Qualitative Research, ChatGPT" />
   <meta name="author" content="Gabriel Alcaras, Donato Ricci, Tommaso Prinetti" />
   
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Ecologies of LLM Practices - Artificial Inquiries" />
-  <meta property="og:description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, \"Artificial Inquiries\", is open to replication and appropriation by professionals and researchers alike." />
+  <meta property="og:description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, 'Artificial Inquiries', is open to replication and appropriation by professionals and researchers alike." />
   <meta property="og:url" content="https://ecologiesofllm.medialab.sciencespo.fr/" />
   <meta property="og:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta property="og:image:alt" content="EL2MP Logo - Ecologies des Pratiques LLMs" />
@@ -35,7 +35,7 @@
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Ecologies of LLM Practices - Artificial Inquiries" />
-  <meta name="twitter:description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, \"Artificial Inquiries\", is open to replication and appropriation by professionals and researchers alike." />
+  <meta name="twitter:description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, 'Artificial Inquiries', is open to replication and appropriation by professionals and researchers alike." />
   <meta name="twitter:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta name="twitter:image:alt" content="EL2MP Logo - Ecologies of LLM Practices" />
 
@@ -74,7 +74,7 @@
           "@id": "https://ecologiesofllm.medialab.sciencespo.fr/",
           "name": "Ecologies of LLM Practices (EL2MP)",
           "alternateName": "Ecologies of LLM Practices",
-          "description": "A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, \"Artificial Inquiries\", is open to replication and appropriation by professionals and researchers alike.",
+          "description": "A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, 'Artificial Inquiries', is open to replication and appropriation by professionals and researchers alike.",
           "url": "https://ecologiesofllm.medialab.sciencespo.fr/",
           "logo": "https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg",
           "provider": {
