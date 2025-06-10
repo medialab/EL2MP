@@ -2,21 +2,21 @@
 
 <svelte:head>
   <!-- Essential Metadata -->
-  <title>Ecologies of LLM Practices | EL2MP</title>
+  <title>Ecologies of LLM Practices - Artificial Inquiries</title>
   <link rel="canonical" href="https://ecologiesofllm.medialab.sciencespo.fr/" />
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="google-site-verification" content="aCBTb2lNIupPesJ45f0x0AFWx8Wy9VpvWxFBNJnZ4e8" />
   
   <!-- SEO Description and Keywords -->
-  <meta name="description" content="Exploring the transformative impact of Large Language Models (LLMs) on research, creativity, and communication across various domains. The Ecologies of LLM Practices (EL2MP) project by Sciences Po medialab documents how LLMs influence professional practices." />
-  <meta name="keywords" content="Ecologies of LLM, EL2MP, Ecologies medialab, Ecologies sciencespo, Ecologies de practiques, Large Language Models, Sciences Po, medialab, AI research" />
-  <meta name="author" content="Médialab, Sciences Po" />
+  <meta name="description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, "Artificial Inquiries", is open to replication and appropriation by professionals and researchers alike." />
+  <meta name="keywords" content="Large Language Models, Artificial Intelligence, Work, Professionals, Practices, Sociology, Science and Technology Studies, Research, Design, Qualitative Research, ChatGPT" />
+  <meta name="author" content="Gabriel Alcaras, Donato Ricci, Tommaso Prinetti" />
   
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Ecologies of LLM Practices | EL2MP" />
-  <meta property="og:description" content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. A Sciences Po medialab research initiative exploring AI integration in workplaces." />
+  <meta property="og:title" content="Ecologies of LLM Practices - Artificial Inquiries" />
+  <meta property="og:description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, "Artificial Inquiries", is open to replication and appropriation by professionals and researchers alike." />
   <meta property="og:url" content="https://ecologiesofllm.medialab.sciencespo.fr/" />
   <meta property="og:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta property="og:image:alt" content="EL2MP Logo - Ecologies des Pratiques LLMs" />
@@ -26,8 +26,6 @@
   <meta property="og:locale:alternate" content="fr_FR" />
   <meta property="fb:app_id" content="123456789012345" />
 
-  
-
   <!-- IA Meta Tags -->
   <meta property="ia:markup_url" content="https://ecologiesofllm.medialab.sciencespo.fr/ia/ia-markup.json" />
   <meta property="ia:markup_url_dev" content="https://ecologiesofllm.medialab.sciencespo.fr/ia/ia-markup-dev.json" />
@@ -36,8 +34,8 @@
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Ecologies of LLM Practices | EL2MP" />
-  <meta name="twitter:description" content="The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use. Discover research from Sciences Po medialab." />
+  <meta name="twitter:title" content="Ecologies of LLM Practices - Artificial Inquiries" />
+  <meta name="twitter:description" content="A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, "Artificial Inquiries", is open to replication and appropriation by professionals and researchers alike." />
   <meta name="twitter:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta name="twitter:image:alt" content="EL2MP Logo - Ecologies of LLM Practices" />
 
@@ -49,7 +47,7 @@
         {
           "@type": "Organization",
           "@id": "https://medialab.sciencespo.fr/",
-          "name": "Medialab Sciencespo",
+          "name": "médialab, Sciences Po (Paris, France)",
           "url": "https://medialab.sciencespo.fr/",
           "logo": "https://medialab.sciencespo.fr/img/cover-fb.png",
           "parentOrganization": {
@@ -58,14 +56,14 @@
           }
         },
         {
-          "@type": "WebSite",
+          "@type": "Website",
           "name": "EL2MP Research Project Website",
           "url": "https://ecologiesofllm.medialab.sciencespo.fr/",
           "publisher": {
             "@type": "Organization",
             "@id": "https://medialab.sciencespo.fr/"
           },
-          "description": "Official website for the EL2MP Research Project by Medialab Sciencespo, documenting the integration and impact of Large Language Models in professional practices.",
+          "description": "Official website for the EL2MP research project by Sciences Po's médialab, documenting the integration and impact of Large Language Models in professional practices.",
           "mainEntity": {
             "@type": "ResearchProject",
             "@id": "https://ecologiesofllm.medialab.sciencespo.fr/"
@@ -76,7 +74,7 @@
           "@id": "https://ecologiesofllm.medialab.sciencespo.fr/",
           "name": "Ecologies of LLM Practices (EL2MP)",
           "alternateName": "Ecologies of LLM Practices",
-          "description": "The Ecologies of LLM Practices (EL2MP) project documents the role of Large Language Models (LLMs) in various professional practice(s) and the consequences of their use",
+          "description": "A team of sociologists and designers explores how Large Language Models, like ChatGPT, influence professional practices and ordinary knowledge work. Their experimental and qualitative research protocol, "Artificial Inquiries", is open to replication and appropriation by professionals and researchers alike.",
           "url": "https://ecologiesofllm.medialab.sciencespo.fr/",
           "logo": "https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg",
           "provider": {
@@ -84,11 +82,17 @@
             "@id": "https://medialab.sciencespo.fr/"
           },
           "keywords": [
-            "Ecologies of LLM",
-            "EL2MP",
-            "Ecologies medialab",
-            "Ecologies sciencespo",
-            "Ecologies de practiques"
+            "Large Language Models",
+            "Artificial Intelligence",
+            "Work",
+            "Professionals",
+            "Practices",
+            "Sociology",
+            "Science and Technology Studies",
+            "Research",
+            "Design",
+            "Qualitative Research",
+            "ChatGPT"
           ]
         }
       ]
