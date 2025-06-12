@@ -3,19 +3,16 @@
 
     import Capitols from "$lib/components/cards/capitols.svelte"; 
     import LogoButton from "$lib/components/buttons/logo_button.svelte";
-    import ResetButton from "$lib/components/buttons/reset_button.svelte";
     import Floater from "$lib/components/floaters.svelte";
     import Textbox from "$lib/components/textboxes.svelte";
     import Slider from "$lib/components/buttons/slider.svelte";
     import VademecumFloater from "$lib/components/vademecum_floater.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
-    import { writable } from "svelte/store";
 
     // Here we start to implement more stores
-    import { selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, isFirstReset, startX, startY } from '$lib/stores/globalStores';
-    import { cardsDb } from "$database/global_db.js";
-    
+    import { selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY } from '$lib/stores/globalStores';
+
     let interactRef;
     let totalBlockWidth, totalBlockHeight, x, y, topLeftCornerX, topLeftCornerY, windowWidth, windowHeight, initialsY, topYCorner, bottomYCorner, initialX;
 
@@ -267,7 +264,7 @@
 
                 } else if ($isMobileDevice) {
                     // console.log("mobile");
-                    offset = -30;
+                    offset = -45;
                     totalBlockWidth = cardWidth;
                     totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
                     $startX = ((windowWidth - totalBlockWidth) / 2);
@@ -342,6 +339,10 @@
             return;
         }
 
+        if (clickedCard.dataset.flushOrder === "1") {
+            return;
+        }
+
         isSwapping = true;
         // console.log("Starting card swap animation");
 
@@ -358,7 +359,6 @@
             container.style.touchAction = 'none';
         });
 
-        // Set initial transitions
         clickedCard.style.transition = `transform ${swapDuration}ms cubic-bezier(.29,0,.06,.99)`;
         topCard.style.transition = `transform ${swapDuration}ms cubic-bezier(.29,0,.06,.99)`;
 
@@ -371,7 +371,6 @@
             clickedCard.dataset.flushOrder = "1";
             topCard.dataset.flushOrder = clickedFlushOrder.toString();
             
-
             const currentTopZ = parseInt(topCard.style.zIndex || 0);
             const currentClickedZ = parseInt(clickedCard.style.zIndex || 0);
             
@@ -1240,7 +1239,7 @@
         font-weight: 400;
 
         @media (min-width: 1920px) {
-                font-size: 1.8vw;
+                font-size: 1.5vw;
                 margin-top: -0.14em;
         }
     }

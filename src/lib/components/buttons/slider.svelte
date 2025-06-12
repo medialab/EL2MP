@@ -1,14 +1,26 @@
 <script>
     import { selectedCard, isAlterEgoMode, currentCardColor } from '$lib/stores/globalStores';
     export let switch_alterego;
+
+    // State used to add a pressed feedback on the whole slider
+    let isPressed = false;
+
+    // Helpers to toggle the pressed state for both mouse and touch interactions
+    const handlePointerDown = () => (isPressed = true);
+    const handlePointerUp = () => (isPressed = false);
 </script>
 
-<div class="slider_container">
+<div class="slider_container {isPressed ? 'scaled' : ''}">
     <button 
         class="slider-button first {$isAlterEgoMode ? 'active' : ''}" 
         on:click={switch_alterego}
         disabled={$isAlterEgoMode}
         style="pointer-events: {$isAlterEgoMode ? 'none' : 'auto'};"
+        on:mousedown={handlePointerDown}
+        on:mouseup={handlePointerUp}
+        on:mouseleave={handlePointerUp}
+        on:touchstart={handlePointerDown}
+        on:touchend={handlePointerUp}
     >
         <p class="p3">Project</p>
     </button>
@@ -17,6 +29,11 @@
         on:click={switch_alterego}
         disabled={!$isAlterEgoMode}
         style="pointer-events: {!$isAlterEgoMode ? 'none' : 'auto'};"
+        on:mousedown={handlePointerDown}
+        on:mouseup={handlePointerUp}
+        on:mouseleave={handlePointerUp}
+        on:touchstart={handlePointerDown}
+        on:touchend={handlePointerUp}
     >
         <p class="p3" style="padding-left: 12%;">Exercises</p>
     </button>
@@ -35,7 +52,7 @@
         position: fixed;
         top: 1vh;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translateX(-50%) scale(1);
         background-color: #f0f0f0;
         border-radius: 10vw;
         padding: 0.2vw;
@@ -44,6 +61,20 @@
         border: solid 0.05vw black;    
         z-index: 500;
         user-select: none;
+
+        /* Smooth animation for the pressed feedback */
+        transition: all 0.35s ease-in-out;
+    }
+
+    /* When any button is pressed, slightly scale the whole slider */
+    .slider_container.scaled {
+        transform: translateX(-50%) scale(0.98);
+        transition: all 0.35s ease-in-out;
+    }
+
+    .slider_container:hover {
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        transition: box-shadow 0.35s ease-in-out;
     }
 
     .slider-button {
@@ -58,6 +89,12 @@
         border-radius: 10vw;
         color: #333;
         transition: color var(--transition-times) var(--transition-curve);
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .slider-button:hover > p {
+        transform: scale(1.02);
+        transition: transform 0.4s ease-in-out;
     }
 
     .first {
@@ -70,7 +107,8 @@
         font-weight: 600;
         cursor: pointer;
         border-radius: 10vw;
-        color: #333;
+        color: white;
+        mix-blend-mode: difference;
         transition: color var(--transition-times) var(--transition-curve);
     }
 
@@ -85,16 +123,6 @@
         cursor: pointer;
         border-radius: 10vw;
         color: #333;
-        transition: color var(--transition-times) var(--transition-curve);
-    }
-
-    .slider-button.first.active {
-        color: white;
-        transition: color var(--transition-times) var(--transition-curve);
-    }
-
-    .slider-button.second.active {
-        color: black;
         transition: color var(--transition-times) var(--transition-curve);
     }
 
@@ -132,30 +160,49 @@
     @media (max-width: 768px) {
 
         .slider_container {
+            padding: 4px;
+            width: 200px;
+            height: 48px;
+            border-radius: 24px;
+        }
 
-            border-radius: 5vw;
-            padding: 2vw;
-            padding-left: 3vw;
-            padding-right: 3vw;
-            width: fit-content;
+        .slider-button {
+            padding: 0;
+            width: 50%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-            border: solid 0.05vw black;    
-            z-index: 500;
-            user-select: none;
+        .first {
+            padding: 0;
+            font-size: 14px;
+        }
+
+        .second {
+            padding: 0;
+            font-size: 14px;
         }
 
         .background_slider {
-            width: 49%;
-            height: 97%;
-            border-radius: 4.3vw;
+            width: 50%;
+            height: 100%;
+            border-radius: 20px;
+        }
+
+        .background_slider.project {
+            transform: translate(-100%, -50%) scaleX(0.95) scaleY(0.9);
         }
 
         .background_slider.exercises {
-            transform: translate(-2%, -50%) scaleX(0.965) scaleY(0.9);
+            transform: translate(0%, -50%) scaleX(0.95) scaleY(0.9);
         }
 
         .p3 {
             font-size: 14px;
+            margin: 0;
+            padding: 0;
         }
     }
 </style>

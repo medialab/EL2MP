@@ -360,7 +360,7 @@ let isProjCover = data.isProjCover
         height: fit-content;
         align-items: flex-start;
         flex-direction: column;
-        gap: var(--spacing-L);
+        gap: var(--spacing-M);
 
         margin-bottom: var(--spacing-XL);
         z-index: 0;
@@ -376,7 +376,8 @@ let isProjCover = data.isProjCover
         height: fit-content;
         align-items: flex-start;
         flex-direction: column;
-        gap: var(--spacing-M);
+        margin-top: var(--spacing-S);
+        gap: var(--spacing-S);
         
     }
 
@@ -405,16 +406,6 @@ let isProjCover = data.isProjCover
     /* This should work for siblings - when card_container has a child with class "altergo_container_inner.open" */
     :global(.card_container:has(.altergo_container_inner.open)) .card_container_inner {
         transform: translateX(100%);
-    }
-
-
-    .card_corner_logo {
-        position: absolute;
-        bottom: var(--spacing-S);
-        left: var(--spacing-S);
-        width: 7%;
-        height: auto;
-        opacity: 1;
     }
 
     .article_image {
@@ -690,7 +681,8 @@ let isProjCover = data.isProjCover
 
     @media (max-width: 768px) {
         :global(.card_container){
-            height: 70vh !important;
+            height: 55% !important;
+            min-height: none !important;
             width: 90vw !important;
             border-radius: 20px;
             padding-right: 0px !important;

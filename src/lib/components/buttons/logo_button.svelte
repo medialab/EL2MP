@@ -33,7 +33,7 @@
         height: fit-content;
         fill: black;
         opacity: 1;
-        cursor: pointer;
+        cursor: none !important;
         background-color: transparent;
         position: fixed;
         border-radius: 0px 5px 0px 0px;
@@ -44,26 +44,13 @@
         transform: translate(-50%, 0%);
 
         border: 0px;
-
-        @media (max-width: 768px) {
-            bottom: 0%;
-            left: 0%;
-            transform: translate(0%, 0%);
-            border-radius: 0px;
-            width: 100%;
-            border: 0;
-            border: solid 0px black;
-            place-content: center;
-            padding-bottom: var(--spacing-M);
-            padding-top: var(--spacing-M);
-            position: fixed;
-            display: block;
-            z-index: 0;
-        }
+        pointer-events: none;
+        user-select: none;
+        
     }
 
     :global(.closing_icon:hover) {
-        background-color: transparent;
+        background-color: transparent !important;
         user-select: none;
         pointer-events: none;
     }
@@ -86,4 +73,15 @@
         background-color: #EAEAEA;
         transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
+
+    @media (max-width: 768px) {
+        :global(.closing_icon) {
+            bottom: 0%;
+            left: 0%;
+            transform: translate(0%, 0%);
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        }
 </style>
