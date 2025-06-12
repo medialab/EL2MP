@@ -46,17 +46,19 @@
         border: 0px;
 
         @media (max-width: 768px) {
-            top: 0%;
+            bottom: 0%;
             left: 0%;
             transform: translate(0%, 0%);
             border-radius: 0px;
             width: 100%;
             border: 0;
-            border-bottom: solid 1px black;
+            border: solid 0px black;
             place-content: center;
             padding-bottom: var(--spacing-M);
             padding-top: var(--spacing-M);
-            position: static;
+            position: fixed;
+            display: block;
+            z-index: 0;
         }
     }
 
@@ -74,7 +76,7 @@
 
     .closing_icon > img {
         @media (max-width: 768px) {
-            width: 70%;
+            width: 50%;
             place-self: center;
             align-self: center;
         }

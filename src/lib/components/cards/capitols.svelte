@@ -1,7 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
 import { cardsDb, alterEgosDb } from '$lib/database/global_db.js';
-import { selectedCard, isAlterEgoMode, transitionTime } from '$lib/stores/globalStores';
+import { selectedCard, isAlterEgoMode, transitionTime, isDesktop, isMobileDevice } from '$lib/stores/globalStores';
 
 import {
 	blur,
@@ -18,6 +18,7 @@ export let data
 export let alterEgoCard
 export let bringToFront
 export let simplebarContainer
+export let swapCards
 
 export let card
 export let transitionDelay
@@ -26,13 +27,6 @@ let condensed_logo = data.condensed_logo
 let condensed_logo_white = data.condensed_logo_white
 let isProjCover = data.isProjCover
 
-const splitText = (text) => {
-    const midpoint = Math.floor(text.length / 2);
-    const spaceIndex = text.indexOf(' ', midpoint);
-    const splitIndex = spaceIndex === -1 ? midpoint : spaceIndex;
-
-    return [text.slice(0, splitIndex).trim(), text.slice(splitIndex).trim()];
-};
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -41,7 +35,15 @@ const splitText = (text) => {
         <section
             class="card_container"
             draggable="true"
-            on:click={bringToFront}
+            on:click={(event) => {
+                if ($isDesktop) {
+                    bringToFront(event);
+                } else {
+                    swapCards(event.currentTarget);
+                }
+            }}
+            data-flush-order="{card.IndexNum}"
+            id="{card.IndexNum}"
             aria-label="Draggable Card"
             data-section={card.Title}
         >
@@ -50,12 +52,12 @@ const splitText = (text) => {
         class="card_container_inner"
         style="transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;">
 
-            <img data-sveltekit-preload-data
+            <!--<img data-sveltekit-preload-data
                 class="card_corner_logo"
                 src={condensed_logo}
                 style="z-index: 5;"
                 alt="EL2MP Logo"
-            >
+            >-->
 
             <div class="description_container" style="background-color: {card.bgColor}; border: 5px solid {card.bgColor};"> 
 
@@ -125,11 +127,11 @@ const splitText = (text) => {
                 </div>
             </div>
             
-            <img data-sveltekit-preload-data
+            <!-- <img data-sveltekit-preload-data
                 class="card_corner_logo"
                 src={condensed_logo}
                 alt="EL2MP Logo"
-            >
+            >-->
 
         </div>
 
@@ -140,12 +142,12 @@ const splitText = (text) => {
             style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;"
         >
 
-            <img data-sveltekit-preload-data
+            <!-- <img data-sveltekit-preload-data
                 class="card_corner_logo"
                 src={condensed_logo_white}
                 alt="EL2MP Logo"
                 style="z-index: 10;"
-            >
+            >-->
 
             <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"> 
                 <h1 class="h1" style="z-index: 7; line-height: 1;">
@@ -182,13 +184,6 @@ const splitText = (text) => {
 
                 </div>
             </div>
-            
-            <img data-sveltekit-preload-data
-                class="card_corner_logo"
-                src={condensed_logo}
-                alt="EL2MP Logo"
-            >
-
         </div>
 
     </section>
@@ -243,13 +238,10 @@ const splitText = (text) => {
 
     .card_container {
         width: 60vw;
-
+        max-width: 1100px;
         height: auto;
-
-        min-height: calc(60vw * (1 / 1.5));
-        min-width: calc(60vw * (1 / 1.5));
-
         aspect-ratio: 1.5 / 1;
+        
         display: block;
         
         /* padding-left: var(--spacing-M); */
@@ -269,13 +261,6 @@ const splitText = (text) => {
         
         border: solid 1.5px white;
         transition: border 3s ease-in-out;
-
-        @media (min-width: 1920px) {
-            width: 50vw;
-            min-height: calc(30vw * (1 / 1.5));
-            min-width: calc(30vw * (1 / 1.5));
-        }
-
         
     }
 
@@ -324,28 +309,10 @@ const splitText = (text) => {
         margin-bottom: var(--spacing-L);
     }
 
-
-
     .card_container:active {
         cursor: grabbing;
     }
 
-    @keyframes title_slide {
-        0% {
-            clip-path: inset(0 0 100% 0);
-            transform: translateY(100px);
-        }
-
-        15% {
-            clip-path: inset(0 0 100% 0);
-            transform: translateY(100px);
-        }
-
-        100% {
-            clip-path: inset(0 0 0 0);
-            transform: translateY(-40px);
-        }
-    } 
 
     .card_scrollable_container {
         display: block;
@@ -682,6 +649,9 @@ const splitText = (text) => {
         bottom: 0;
         min-height: 0;
         min-width: 10px;
+        @media (max-width: 768px) {
+            min-width: 5px !important;
+        }
         width: auto;
     }
 
@@ -696,8 +666,8 @@ const splitText = (text) => {
         position: fixed;
         opacity: 0;
         visibility: hidden;
-        height: 500px;
-        width: 500px;
+        height: 200px;
+        width: 200px;
         overflow-y: hidden;
         overflow-x: scroll;
         -ms-overflow-style: scrollbar !important;
@@ -718,11 +688,58 @@ const splitText = (text) => {
         -ms-overflow-style: none;
     }
 
-    @media only screen and (max-width: 768px) {
-        :global(.card_container ){
-            display: none;
+    @media (max-width: 768px) {
+        :global(.card_container){
+            height: 70vh !important;
+            width: 90vw !important;
+            border-radius: 20px;
+            padding-right: 0px !important;
+            transition: transform 1.6s ease-in-out;
         }
 
+        :global(.card_container.down) {
+            transition: transform 1.6s ease-in-out;
+        }
+
+        
+        .card_scrollable_container {
+            grid-column: 1 / 2;
+            grid-row: 2;
+        }
+
+        .altergo_container_inner {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .card_container_inner {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .card_scroll_flex {
+            padding-right: 15px;
+            padding-left: 15px;
+            row-gap: 10px;
+        }
+
+        .card_scroll_flex > .p1 {
+            width: 95%;
+        }
+
+        .description_container {
+            grid-column: 1 / 2;
+            grid-row: 1;
+            padding: 15px;
+        }
+
+        .double_column_text_article {
+            column-count: 1;
+            column-gap: 0px;
+
+        }
+
+        .section_container {
+            margin-top: 15px;
+        }
     }
     
 

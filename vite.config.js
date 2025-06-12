@@ -6,6 +6,10 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [enhancedImages(), sveltekit()],
+  server: {
+    port: 3000, // Change this number to your desired port
+    strictPort: true, // This will fail if the port is already in use
+  },
   build: {
     rollupOptions: {
       // Nothing to see here
