@@ -12,7 +12,8 @@ export const isMobileDevice = writable(null);
 
 export const isFirstReset = writable(true);
 
-export const transitionTime = 1.5;
+export const transitionTime = 1;
+export const transitionCurve = "ease-in-out";
 
 export const startX = writable(null);
 export const startY = writable(null);

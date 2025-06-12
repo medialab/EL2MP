@@ -11,7 +11,7 @@
     import { onMount, onDestroy, tick } from "svelte";
 
     // Here we start to implement more stores
-    import { selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY } from '$lib/stores/globalStores';
+    import { selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY, transitionTime, transitionCurve } from '$lib/stores/globalStores';
 
     let interactRef;
     let totalBlockWidth, totalBlockHeight, x, y, topLeftCornerX, topLeftCornerY, windowWidth, windowHeight, initialsY, topYCorner, bottomYCorner, initialX;
@@ -328,7 +328,7 @@
     const swapCards = (event) => {
         alignColor(event.getAttribute("data-section"));
 
-        const swapDuration = 800;
+        const swapDuration = transitionTime * 300;
         const clickedCard = event;
         const clickedFlushOrder = Number(clickedCard.dataset.flushOrder);
         const topCard = Array.from(containers).find(container => container.dataset.flushOrder === "1");
@@ -359,12 +359,12 @@
             container.style.touchAction = 'none';
         });
 
-        clickedCard.style.transition = `transform ${swapDuration}ms cubic-bezier(.29,0,.06,.99)`;
-        topCard.style.transition = `transform ${swapDuration}ms cubic-bezier(.29,0,.06,.99)`;
+        clickedCard.style.transition = `transform ${swapDuration}ms ${transitionCurve}`;
+        topCard.style.transition = `transform ${swapDuration}ms ${transitionCurve}`;
 
         // Stage 1: Move cards to top/bottom positions
-        clickedCard.style.transform = `translateX(${clickedCardX + 500}px) translateY(${topCardY}px) rotate(15deg)`;
-        topCard.style.transform = `translateX(${topCardX - 500}px) translateY(${clickedCardY}px) rotate(-15deg)`;
+        clickedCard.style.transform = `translateX(${clickedCardX + 450}px) translateY(${topCardY}px) rotate(15deg)`;
+        topCard.style.transform = `translateX(${topCardX - 450}px) translateY(${clickedCardY}px) rotate(-15deg)`;
 
         // Stage 2: After first movement, exchange flush orders
         setTimeout(() => {
@@ -895,7 +895,7 @@
             <Capitols
                 {data}
                 {card}
-                transitionDelay = {card.IndexNum * 100}
+                transitionDelay = {card.IndexNum * 10}
                 alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
                 bringToFront = {bringToFront}
                 swapCards = {swapCards}
@@ -1257,7 +1257,7 @@
     }
 
     :global(.p3) {
-        font-size: 1.5vw;
+        font-size: 1.4vw;
         line-height: 1.5;
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;

@@ -1,7 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
 import { cardsDb, alterEgosDb } from '$lib/database/global_db.js';
-import { selectedCard, isAlterEgoMode, transitionTime, isDesktop, isMobileDevice } from '$lib/stores/globalStores';
+import { selectedCard, isAlterEgoMode, transitionTime, isDesktop, isMobileDevice, transitionCurve } from '$lib/stores/globalStores';
 
 import {
 	blur,
@@ -50,7 +50,7 @@ let isProjCover = data.isProjCover
 
         <div
         class="card_container_inner"
-        style="transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;">
+        style="transition: transform {transitionTime}s {transitionCurve} {transitionDelay}ms;">
 
             <!--<img data-sveltekit-preload-data
                 class="card_corner_logo"
@@ -139,7 +139,7 @@ let isProjCover = data.isProjCover
 
         <div
             class="altergo_container_inner {$isAlterEgoMode ? 'open' : ''}"
-            style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s var(--transition-curve) {transitionDelay}ms;"
+            style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s {transitionCurve} {transitionDelay}ms;"
         >
 
             <!-- <img data-sveltekit-preload-data
@@ -190,6 +190,9 @@ let isProjCover = data.isProjCover
 
 <style>
 
+    :root {
+        --card-transition-duration: 1s;
+    }
 
     .description_container {
         width: 100%;
@@ -686,11 +689,11 @@ let isProjCover = data.isProjCover
             width: 90vw !important;
             border-radius: 20px;
             padding-right: 0px !important;
-            transition: transform 1.6s ease-in-out;
+            transition: transform var(--card-transition-duration) ease-in-out;
         }
 
         :global(.card_container.down) {
-            transition: transform 1.6s ease-in-out;
+            transition: transform var(--card-transition-duration) ease-in-out;
         }
 
         
