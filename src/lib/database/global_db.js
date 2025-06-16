@@ -7,7 +7,7 @@ const cardsDb = {
   Card1: {
     Title: "Qualifying",
     Description:
-      "The first block is about <b>adopting a reflexive posture</b> towards the use of LLMs. Participants engage in exercises that help them become more aware of their practices, attitudes, and assumptions about AI technologies.<br>This block serves as a foundational phase, akin to a practice ground, where participants start to <b>think critically</b> about their relationship with LLMs.",
+      "The first block is about <b>adopting a reflexive posture</b> regarding the use of LLMs. Participants engage in exercises that make them more aware of their practices, attitudes, and assumptions about AI technologies.<br>This block serves as a foundational phase, akin to a practice ground, where participants start to <b>think critically</b> about their relationship with LLMs.",
     Question:
       "Where do LLMs live in our professional practices, norms, and relationships?",
     IndexNum: 1,
@@ -17,7 +17,7 @@ const cardsDb = {
         title: "Exercise 1 - Draw It Like You See It",
         subtitle:
           "Participants sketch how they think an LLM works and how they view their work environment.",
-        text: "This exercise introduces participants to one another and to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through <b>spontaneous and deliberately imperfect sketches</b>, participants capture their intuitive and metaphorical understanding of LLMs.",
+        text: "This exercise introduces participants to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through <b>spontaneous and deliberately imperfect sketches</b>, participants capture their intuitive and metaphorical understanding of LLMs.",
         picture: photos.Ex_1,
       },
       {
@@ -28,10 +28,10 @@ const cardsDb = {
         picture: photos.Ex_2,
       },
       {
-        title: "Exercise 3 - Taking Stock",
+        title: "Exercise 3 - Rough Impressions",
         subtitle:
           "Participants review their ChatGPT history to identify usage patterns and what stands out.",
-        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights <b>gaps between perception and actual use</b> to further their understanding of their LLM usage rather than relying on habitual talking points or anecdotes.",
+        text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights <b>gaps between perception and actual use</b> to further their understanding of their LLM usage rather than relying on one-off talking points or anecdotes.",
         picture: photos.Ex_3,
       },
       {
@@ -64,7 +64,7 @@ const cardsDb = {
         title: "Exercise 6 - Design your AI Trial",
         subtitle:
           "Participants design a trial to test the usefulness of an LLM, choosing four tasks that are essential or enjoyable parts of their work.",
-        text: "This exercise guides participants through a <b>selection process</b>, drawing from their current work practices and the potential implementation of new tasks. <br>In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around their <b>professional experience</b>. <br>This personalized benchmark aims to assess whether the models can provide <b>practical value</b> that actually matters in a specific professional situation.",
+        text: "This exercise guides participants through a <b>selection process</b>, drawing from their current work practices and the potential implementation of new tasks. <br>In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around <b>their own professional experience</b>. <br>This personalized benchmark aims to assess whether the models can provide <b>practical value</b> that actually matters in a specific professional situation.",
         picture: photos.Ex_6,
       },
       {
@@ -104,15 +104,15 @@ const cardsDb = {
       {
         title: "Exercise 10 - The Art of the Prompt",
         subtitle:
-          "Participants read about prompting techniques, attempting to put them into practice and share their insights with the group.",
-        text: "Participants explore a <b>specific prompting technique</b> by practicing it throughout the week, and summarizing their findings in a concise presentation. The goal is to develop a <b>nuanced understanding</b> of how prompt design influences LLM responses.<br>Knowledge acquired about a prompting technique is shared among all participants through a short presentation, based on observations they kept track of in a personal diary.",
+          "Participants read about prompting techniques, attempting to put them into practice.",
+        text: "Participants explore a <b>specific prompting technique</b> by practicing it throughout the week, and summarizing their findings in a concise presentation. The goal is to develop a <b>nuanced understanding</b> of how prompt design influences LLM responses.<br>",
         picture: photos.Ex_10,
       },
       {
         title: "Exercise 11 - Tracking Shifts",
         subtitle:
           "Participants look back on their LLM practices since the experiment began, searching for shifts and continuities.",
-        text: "Participants document how their use of <b>LLMs</b> has changed since the beginning of the experiment. They write two short essays—one on how their <b>practices have evolved</b> and another on what has <b>remained stable</b>—using concrete examples from their experience.<br>Through a structured discussion game, participants also analyze their shifting perspectives on LLMs. The goal is to engage in <b>collective reflection</b> in order to challenge assumptions and reinforce insights gained through the experiment.",
+        text: "Participants document how their use of <b>LLMs</b> has changed since the beginning of the experiment. They write two short essays—one on how their <b>practices have evolved</b> and another on what has <b>remained stable</b>—using concrete examples from their experience.<br>",
         picture: photos.Ex_11,
       },
     ],
@@ -129,31 +129,31 @@ const cardsDb = {
     CoverImg: capitolsCover.coverExcel,
     Content: [
       {
-        title: "Exercise 12 - Choosing Your exemplary Work",
+        title: "Exercise 12 - Choosing an Exemplary Work",
         subtitle:
           "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
         text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
         picture: photos.Ex_12,
       },
       {
-        title: "Exercise 13 - The Imitation Game",
-        subtitle:
-          "Participants guide an LLM towards reproducing an exemplary text from their professional field, aiming to create an exact copy.",
-        text: "Participants attempt to recreate a <b>high-quality text</b> using an LLM without providing direct access to the original. This experiment tests the LLM's ability to replicate <b>style, tone, and meaning</b> while challenging participants to refine their prompting strategies.<br>Through 90-minute work sessions, screen recordings, and a logbook, participants document their process and assess the model's capacity to <b>(re)produce a text</b> it does not have access to.",
-        picture: photos.Ex_13,
-      },
-      {
-        title: "Exercise 14 - Setting Up the Example",
+        title: "Exercise 13 - Setting Up the Example",
         subtitle:
           "Participants discuss the place of their chosen work within their professional ecology and explain why it's exemplary.",
         text: "This exercise contextualizes the chosen exemplary work by examining its <b>professional significance</b>. A radar graph helps assess factors like frequency, expertise required, and error tolerance, while a structured reflection highlights what makes the work <b>exemplary</b> and worth emulating.",
         picture: photos.Ex_14,
       },
       {
+        title: "Exercise 14 - Setting Up the Example",
+        subtitle:
+          "Participants guide an LLM towards reproducing an exemplary text from their professional field, aiming to create an exact copy.",
+        text: "Participants attempt to recreate a <b>high-quality text</b> using an LLM without providing direct access to the original. This experiment tests the LLM's ability to replicate <b>style, tone, and meaning</b> while challenging participants to refine their prompting strategies.<br>Through 90-minute work sessions, screen recordings, and a logbook, participants document their process and assess the model's capacity to <b>(re)produce a text</b> it does not have access to.",
+        picture: photos.Ex_13,
+      },
+      {
         title: "Exercise 15 - Anatomy of an Exemplary Work",
         subtitle:
           "Participants break down their exemplary work into its main components and assess which elements are accessible to an LLM.",
-        text: "Participants analyze the underlying structure of their chosen text, mapping its key influences, professional constraints, and dependencies. <br>A layered dependency graph helps distinguish which elements are <b>accessible to an LLM</b> and which remain <b>beyond its reach</b>, reinforcing an understanding of AI's limitations.",
+        text: "Participants analyze the underlying structure of their chosen text, mapping its key influences, professional constraints, and dependencies. <br>A layered dependency graph helps distinguish which elements are <b>accessible to an LLM</b> and which remain <b>beyond its reach</b>, deepening our understanding of AI limitations.",
         picture: photos.Ex_15,
       },
       {
@@ -167,7 +167,7 @@ const cardsDb = {
         title: "Exercise 17 - Charting Your Path",
         subtitle:
           "Participants sketch three evolving, hand-drawn graphs depicting their learning journey.",
-        text: "By mapping progress horizontally and obstacles vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
+        text: "By mapping output fidelity horizontally and model behavior vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
         picture: photos.Ex_17,
       },
     ],
@@ -184,7 +184,7 @@ const cardsDb = {
     CoverImg: capitolsCover.coverDistilling,
     Content: [
       {
-        title: "Exercise 18 - Choosing Your exemplary Work",
+        title: "Exercise 18 - Distilling the Vademecum",
         subtitle:
           "Participants synthesize their own perspective on the entire experiment into a cohesive narrative.",
         text: "Rather than summarizing past exercises, this exercise encourages <b>the creation of a personal booklet</b> that combines selected pages from the vademecum with additional notes, sketches, and digital traces. This curated archive serves as both <b>a tangible memory and a storytelling device</b> —capturing key moments, doubts, and insights that have shaped the participant’s evolving relationship with LLMs.",
