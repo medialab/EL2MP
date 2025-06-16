@@ -42,15 +42,33 @@
     let lastDeviceType = null; 
     let isSwapping = false;
 
+    const getCardFlushOrder = (card) => {
+        if (typeof document !== 'undefined') {
+            const currentCard = document.querySelector(`[data-section="${card.Title}"]`)
+            //console.log("currentCard", currentCard)
+            if (currentCard) {
+                const currentFlushOrder = currentCard.getAttribute('data-flush-order')
+                //console.log("currentFlushOrder", currentFlushOrder)
+                return currentFlushOrder
+            }
+        }
+
+        return 0
+    }   
+
+    //console.log("data.cardsDb", data.cardsDb)
+
     const detectDeviceType = () => {
         return window.innerWidth <= 768 ? 'mobile' : 'desktop';
     };
 
-    const updateWindowSize = () => {
+    const updateWindowSize = async () => {
         width = window.innerWidth;
         height = window.innerHeight;
 
         const currentType = detectDeviceType();
+
+        await tick();
 
         if (currentType !== lastDeviceType) {
             lastDeviceType = currentType;
@@ -58,7 +76,7 @@
             $isMobileDevice = currentType === 'mobile';
             $isDesktop      = currentType === 'desktop';
 
-            placeCards(containers);
+            await placeCards(containers);
         }
     };
 
@@ -360,7 +378,7 @@
         });
 
         clickedCard.style.transition = `transform ${swapDuration}ms ${transitionCurve}`;
-        topCard.style.transition = `transform ${swapDuration}ms ${transitionCurve}`;
+        topCard.style.transition = `transform ${swapDuration}ms ${transitionCurve} 100ms`;
 
         // Stage 1: Move cards to top/bottom positions
         clickedCard.style.transform = `translateX(${clickedCardX + 450}px) translateY(${topCardY}px) rotate(15deg)`;
@@ -377,7 +395,6 @@
             clickedCard.style.zIndex = currentTopZ;
             topCard.style.zIndex = currentClickedZ;
 
-            // Stage 4: Move cards to their final positions
             setTimeout(() => {
                 clickedCard.style.transform = `translateX(${clickedCardX}px) translateY(${topCardY}px)`;
                 topCard.style.transform = `translateX(${topCardX}px) translateY(${clickedCardY}px)`;
@@ -895,7 +912,7 @@
             <Capitols
                 {data}
                 {card}
-                transitionDelay = {card.IndexNum * 10}
+                transitionDelay = {getCardFlushOrder(card) * 10}
                 alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
                 bringToFront = {bringToFront}
                 swapCards = {swapCards}

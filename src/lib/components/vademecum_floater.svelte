@@ -1,63 +1,62 @@
 <script>
     import { onMount, onDestroy } from "svelte";
-    import { highestZIndex, selectedCard } from '$lib/stores/globalStores';
+    import { highestZIndex } from '$lib/stores/globalStores';
     import interact from 'interactjs';
-    import { fade, scale, slide } from 'svelte/transition';
+    import { slide } from 'svelte/transition';
+    import vademecumImage from '$lib/media/photos/Vad_cover.png?enhanced';
 
     export let randomPosition;
 
     let floaterElement;
     let interactRef;
-    let isDownloaded = false; // Track if download has occurred
-    let downloadTimeout; // Timer reference
-    let isDragging = false; // Track if currently dragging
+    let isDownloaded = false; 
+    let downloadTimeout;
+    let isDragging = false; 
 
-    // Simplified button state and text
-    let buttonText = "DOWNLOAD THE VADEMECUM!";
+    let buttonText = "ARTIFICIAL INQUIRIES";
     const VADEMECUM_PATH = '/ArtificialInquiries_Vademecum.pdf';
 
     const downloadFile = (e) => {
-        // Skip if already in downloaded state or if we're dragging
         if (isDownloaded || isDragging) return;
-            
-        // Stop event propagation to prevent triggering drag
+
         if (e) {
             e.stopPropagation();
             e.preventDefault();
         }
-        
-        console.log("Starting download...");
-        
-        // Track download event with Google Analytics
-        if (typeof gtag === 'function') {
-            gtag('event', 'download', {
-                'event_category': 'Document',
-                'event_label': 'Vademecum',
-                'value': 1
+
+        //console.log("Starting download…");
+
+        /* ---- Extract filename for reuse ---- */
+        const filePath = VADEMECUM_PATH.split("/").pop() || "ArtificialInquiries_Vademecum.pdf";
+        const fileExt = filePath.split(".").pop().toLowerCase();
+
+        /* ---- GA4 event ---- */
+        if (typeof gtag === "function") {
+
+            gtag("event", "file_download", {          // GA4’s standard event name
+            file_name: filePath,                    // recommended parameter
+            file_extension: fileExt,                // recommended parameter
+            value: 1,                               // optional metric
+            debug_mode: true                        // remove when done testing
             });
-            
         } else {
             console.log("Google Analytics not available");
         }
-        
-        const link = document.createElement('a');
+
+        /* ---- start the actual download ---- */
+        const link = document.createElement("a");
         link.href = VADEMECUM_PATH;
-        link.download = VADEMECUM_PATH.split('/').pop() || 'ArtificialInquiries_Vademecum.pdf'; // Suggest filename
+        link.download = filePath;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-        
-        // Set download state to show green button
+
+        /* ---- UI state handling ---- */
         isDownloaded = true;
-        
-        // Clear any existing timeout
         if (downloadTimeout) clearTimeout(downloadTimeout);
-        
-        // Set timeout to revert to download state after 5 seconds
-        downloadTimeout = setTimeout(() => {
-            isDownloaded = false;
-        }, 6000);
-    };
+        downloadTimeout = setTimeout(() => { isDownloaded = false; }, 6000);
+        };
+
 
     // Simplified KeyDown Handler
     const handleKeyDown = (event) => {
@@ -105,8 +104,7 @@
                 return;
             }
 
-            // Get floater dimensions and viewport size
-            const floaterRect = floaterElement.getBoundingClientRect();
+            // Get viewport size
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
 
@@ -115,14 +113,9 @@
             const paddingBottom = 10; // Added bottom padding
             const paddingLeft = 10; // Added left padding
 
-
             // Get current transform values
             const currentX = parseFloat(floaterElement.getAttribute('data-x')) || 0;
             const currentY = parseFloat(floaterElement.getAttribute('data-y')) || 0;
-
-            // Calculate next potential position including transform and float offsets
-            const nextX = currentX + floatX;
-            const nextY = currentY + floatY;
 
             // Use getBoundingClientRect for accurate position checking relative to viewport
             const currentRect = floaterElement.getBoundingClientRect();
@@ -130,7 +123,6 @@
             const nextRight = currentRect.right + floatX;
             const nextTop = currentRect.top + floatY;
             const nextBottom = currentRect.bottom + floatY;
-
 
             // Left and right boundaries check using next calculated position
             if (nextLeft < paddingLeft || nextRight > viewportWidth - paddingRight) {
@@ -173,20 +165,16 @@
             let initialX = parseFloat(randomPosition.left) || 0;
             let initialY = parseFloat(randomPosition.top) || 0;
 
-            // Get viewport and element dimensions
+            // Get viewport dimensions
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
-            // Force redraw to get accurate dimensions if needed, though usually not necessary here
-            const floaterRect = floaterElement.getBoundingClientRect();
-            const floaterWidth = floaterRect.width;
-            const floaterHeight = floaterRect.height;
 
             // Define padding from viewport edges
             const padding = 30; // Adjust as needed
 
             // Clamp initial position
-            initialX = Math.max(padding, Math.min(initialX, viewportWidth - floaterWidth - padding));
-            initialY = Math.max(padding, Math.min(initialY, viewportHeight - floaterHeight - padding));
+            initialX = Math.max(padding, Math.min(initialX, viewportWidth - padding));
+            initialY = Math.max(padding, Math.min(initialY, viewportHeight - padding));
 
             // Apply clamped position via transform for consistency with drag/animation
             floaterElement.style.left = '0px'; // Reset direct positioning
@@ -285,17 +273,6 @@
     });
 </script>
 
-<svelte:head>
-      <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DHX3VYCYS"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-8DHX3VYCYS');
-  </script>
-</svelte:head>
 
 <button 
     class="custom-floater-container"
@@ -304,8 +281,14 @@
         left: {randomPosition.left};
         z-index: {randomPosition.zIndex || $highestZIndex};"
     on:mousedown={bringToFront}
+    on:click={(e) => downloadFile(e)}
+        on:keydown={handleKeyDown}
     aria-label="Draggable vademecum download button">
-    
+
+    <a class="vademecum-image-container">
+        <enhanced:img src={vademecumImage} alt="Vademecum cover" class="vademecum-image" />
+    </a>
+
     <a
         href="#" 
         class="custom-floater-bottom"
@@ -313,8 +296,7 @@
         aria-label={isDownloaded ? "VADEMECUM DOWNLOADED" : "DOWNLOAD VADEMECUM"}
         role="button"
         tabindex="0"
-        on:click={(e) => downloadFile(e)}
-        on:keydown={handleKeyDown}
+        
     >
         <span class="custom-floater-text" style="font-weight: 600;">
             {isDownloaded ? "VADEMECUM DOWNLOADED" : buttonText}
@@ -324,7 +306,7 @@
             {isDownloaded ? "VADEMECUM DOWNLOADED" : buttonText}
         </span>
 
-        <div class="category-icon" id="custom">
+        <div class="category-icon">
             <!-- Custom icon SVG -->
             {#if !isDownloaded}
                 <!-- Download Icon -->
@@ -370,10 +352,20 @@
         border: none;
         padding: 0;
         margin: 0;
+        max-width: 300px;
+        backdrop-filter: blur(6px);
+    }
+
+    picture {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        width: 100%;
+        height: 100%;
     }
 
     .custom-floater-bottom {
-        width: max-content;
+        width: 250px;
         height: fit-content;
         display: inline-flex;
         padding: var(--spacing-S) var(--spacing-M);
@@ -387,17 +379,47 @@
         z-index: 4;
         position: relative;
         overflow: hidden;
-        transition: transform 0.2s ease-out, background-color 0.3s ease;
+        transition: transform 1s ease-out, background-color 1s ease, filter 1s ease;
+        border-radius: 2px;
     }
+
+    .vademecum-image {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        place-content: center;
+        align-items: center;
+    }
+
+    .vademecum-image-container {
+        width: auto;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: dashed 1px white;
+        overflow: hidden;
+        border-radius: 2px;
+        max-width: 250px;
+        transition: transform 1s ease-out, background-color 1s ease, filter 1s ease;
+        transform-origin: bottom;
+    }
+
+    .custom-floater-container:active > .vademecum-image-container {
+        transform: scale(0.97);
+        transition: transform 0.1s ease-in-out;
+        filter: brightness(0.9);
+        transform-origin: bottom;
+    }
+
+    .custom-floater-container:active > .custom-floater-bottom {
+        transform: scale(0.97);
+        transition: transform 0.1s ease-in-out;
+        filter: brightness(0.9);
+        transform-origin: top;
+    }
+
 
     .custom-floater-bottom.downloaded {
         background-color: #2ecc71 !important;
-    }
-
-    .custom-floater-bottom:active {
-        filter: brightness(0.9);
-        transform: scale(0.97);
-        transition: transform 0.1s ease-in-out;
     }
 
     .category-icon {
@@ -410,7 +432,6 @@
         border: none;
         text-align: inherit;
         background-color: transparent;
-        position: static;
         padding: 0;
         flex-shrink: 0;
         z-index: 7;

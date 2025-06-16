@@ -39,6 +39,15 @@
   <meta name="twitter:image" content="https://ecologiesofllm.medialab.sciencespo.fr/og_images/opengraph.jpg" />
   <meta name="twitter:image:alt" content="EL2MP Logo - Ecologies of LLM Practices" />
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8DHX3VYCYS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-8DHX3VYCYS');
+  </script>
+
   <!-- Structured data for better SEO -->
   <script type="application/ld+json">
     {
