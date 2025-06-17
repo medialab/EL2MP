@@ -96,14 +96,19 @@
 </script>
 
     <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <div class="floater_container closed" class:alterEgo={$isAlterEgoMode}
+        <div class="floater_container"
+            class:alterEgo={$isAlterEgoMode}
+            class:closed={$isAlterEgoMode}
+            class:open={!$isAlterEgoMode}
+
             data-sveltekit-preload-data="hover"
             data-parent={data.parent}
+            data-identifier={data.parent}_{data.id}
             style="
-            top: {randomPosition.top};
+                top: {randomPosition.top};
                 left: {randomPosition.left};
                 z-index: {randomPosition.zIndex};
-                animation-delay: {randomPosition.animationDelay};" >
+                animation-delay: {randomPosition.animationDelay}s;" >
                 
 
             {#if data.media}
@@ -190,8 +195,8 @@
 <style>
     :global(.floater_container) {
         width: auto;
-        max-width: 300px;
         height: auto;
+        
 
         position: absolute;
         top: 50%;
@@ -220,7 +225,30 @@
 
     }
 
-    
+    :global(.floater_bottom) {
+        width: max-content;
+        height: fit-content;
+        display: inline-flex;
+        
+        padding-right: var(--spacing-L);
+        padding-left: var(--spacing-L);
+        padding-top: var(--spacing-S);
+        padding-bottom: var(--spacing-S);
+
+        justify-content: center;
+        align-items: center;
+        gap: 0px;
+
+        background-color: white;
+        color: black;
+        border: dashed 1px black;
+        line-height: 1.2;
+        z-index: 4;
+
+        word-wrap: none;
+        position: static;
+        transition: background-color var(--transition-times) var(--transition-curve);
+    }
   
     :global(.floater_container > .floater_bottom > p) {
         white-space: nowrap;
@@ -246,6 +274,11 @@
         padding-left: var(--spacing-S);
     }
 
+    :global(.floater_container.open) {
+        width: fit-content;
+        min-width: max-content;
+    }
+
     :global(.floater_container.open > .floater_bottom) {
         padding: var(--spacing-S);
         width: 100%;
@@ -265,13 +298,8 @@
         user-select: none;
     }
 
-    :global(.floater_container.closed > .floater_image) {
-
-        animation: showAndTranslate 1.5s ease-in-out reverse;
-    }
-
     :global(.floater_image) {
-        max-width: 300px;
+        max-width: 450px;
         max-height: none;
         aspect-ratio: 21 / 9;
         /* Fallback for browsers without aspect-ratio support */
@@ -313,30 +341,7 @@
         z-index: 1;
     }
 
-    :global(.floater_bottom) {
-        width: max-content;
-        height: fit-content;
-        display: inline-flex;
-        
-        padding-right: var(--spacing-L);
-        padding-left: var(--spacing-L);
-        padding-top: var(--spacing-S);
-        padding-bottom: var(--spacing-S);
-
-        justify-content: center;
-        align-items: center;
-        gap: 0px;
-
-        background-color: white;
-        color: black;
-        border: dashed 1px black;
-        line-height: 1.2;
-        z-index: 4;
-
-        word-wrap: none;
-
-        transition: background-color var(--transition-times) var(--transition-curve);
-    }
+    
 
 
     :global(.floater_container.alterEgo) {
@@ -414,8 +419,6 @@
 
         height: 85%;
         width: 100%;
-        max-width: none;
-        max-height: none;
 
         position: relative;
         display: block;

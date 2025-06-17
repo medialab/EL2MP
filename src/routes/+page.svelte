@@ -9,15 +9,19 @@
     import VademecumFloater from "$lib/components/vademecum_floater.svelte";
 
     import { onMount, onDestroy, tick } from "svelte";
+    import { writable } from "svelte/store";
+    import { fade } from "svelte/transition";
 
     // Here we start to implement more stores
-    import { selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY, transitionTime, transitionCurve } from '$lib/stores/globalStores';
+    import { currentHash, selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY, transitionTime, transitionCurve, currentFocus, isPageLoaded } from '$lib/stores/globalStores';
 
-    let interactRef;
+    let interact, vademecumFloater;
     let totalBlockWidth, totalBlockHeight, x, y, topLeftCornerX, topLeftCornerY, windowWidth, windowHeight, initialsY, topYCorner, bottomYCorner, initialX;
 
     let width = 0;
     let height = 0;
+
+    let contentContainer;
 
     let containers;
     let textBoxes;
@@ -42,6 +46,10 @@
     let lastDeviceType = null; 
     let isSwapping = false;
 
+    const areCardsLoaded = writable(false);
+
+    const waitForHash = writable(false);
+
     const getCardFlushOrder = (card) => {
         if (typeof document !== 'undefined') {
             const currentCard = document.querySelector(`[data-section="${card.Title}"]`)
@@ -55,8 +63,6 @@
 
         return 0
     }   
-
-    //console.log("data.cardsDb", data.cardsDb)
 
     const detectDeviceType = () => {
         return window.innerWidth <= 768 ? 'mobile' : 'desktop';
@@ -80,56 +86,12 @@
         }
     };
 
-    const hideDesktopStuff = () => {
-
-        if (containers) {
-            containers.forEach(container => {
-                container.style.display = 'none';
-            });
-        }
-
-        // Hide all containers
-        
-        if (floaters) {
-            floaters.forEach(floater => {
-            floater.style.display = 'none';
-        });
-        }
-    }
-
-    const bringToFront = (event) => {
-        const frontingTarget = event.currentTarget;
+    const bringToFront = (eventOrElement) => {
+        const frontingTarget = eventOrElement.currentTarget || eventOrElement;
         $highestZIndex += 1;
         frontingTarget.style.zIndex = $highestZIndex;
     };
 
-    
-    const switch_alterego = () => {
-
-        $isAlterEgoMode = !$isAlterEgoMode;
-        
-        if (floaters) {
-            floaters.forEach(floater => {
-                if ($isAlterEgoMode) {
-                    floater.classList.remove('open');
-                    floater.classList.add('closed');
-                } else {
-                    // When exiting alter ego mode, reopen the floaters
-                    floater.classList.remove('closed');
-                    floater.classList.add('open');
-                }
-            });
-        }
-
-        containers.forEach(card => {
-            if ($isAlterEgoMode) {
-                card.style.borderColor = 'white';
-            } else {
-                card.style.borderColor = 'black';
-                hideFloaters();
-            }
-        });
-    };
 
     const setupMouseDetection = () => {
 
@@ -137,7 +99,7 @@
             container.addEventListener("click", (event) => {
                 $selectedCard = container.getAttribute("data-section");
                 if (!$isAlterEgoMode) {
-                    openFloaters(floaters);
+                    //openFloaters(floaters);
                 } else {
                     return
                 }
@@ -148,51 +110,52 @@
             scrollContainer.addEventListener("click", (event) => {
                 $selectedCard = scrollContainer.getAttribute("data-section");
                 if (!$isAlterEgoMode) {
-                    openFloaters(floaters);
+                    //openFloaters(floaters);
                 }
             });
         });
     };
 
-    const calculateRandomPosition = (floaterWidth = 100, floaterHeight = 50) => {
+    const calculateRandomPosition = (floater) => {
         if (typeof window === 'undefined') {
-            return { top: "0px", left: "0px", zIndex: 0 };
+            return {
+                top: '0px',
+                left: '0px',
+                zIndex: 0,
+            };
         }
 
-        // Define safety insets
         const safetyInset = 20;
 
-        // Calculate grid rows and columns based on viewport size
-        const columns = Math.floor((window.innerWidth - safetyInset * 2) / floaterWidth); // Number of columns
-        const rows = Math.floor((window.innerHeight - safetyInset * 2) / floaterHeight); // Number of rows
+        //This fallback is primarly for the vademecum floater
+        let estimatedWidth  = 250;
+        let estimatedHeight = 150;
 
-        // Exclude the bottom row (don't place floaters in the last row)
-        const validRows = rows - 1;
+        if (floater) {
+            const selector = `[data-identifier="${floater.parent}_${floater.id}"]`;
+            const maybeElem = document.querySelector(selector);
+            
+            
+            if (maybeElem) {
+                const rect = maybeElem.getBoundingClientRect();
+                if (rect.width && rect.height) {
+                    estimatedWidth  = rect.width;
+                    estimatedHeight = rect.height;
+                }
+            }
+        }
 
-        // Calculate the available space for grid placement
-        const gridWidth = window.innerWidth - safetyInset * 2;
-        const gridHeight = window.innerHeight - safetyInset * 2;
+        const maxLeft = Math.max(window.innerWidth  - estimatedWidth  - safetyInset, safetyInset);
+        const maxTop  = Math.max(window.innerHeight - estimatedHeight - safetyInset, safetyInset);
 
-        // Calculate the cell size based on the number of rows and columns
-        const cellWidth = gridWidth / columns;
-        const cellHeight = gridHeight / validRows;
-
-        // Generate a random index for placement within valid rows and columns
-        const row = Math.floor(Math.random() * validRows);
-        const col = Math.floor(Math.random() * columns);
-
-        // Calculate the top-left position based on the grid position
-        const topPosition = safetyInset + row * cellHeight + (cellHeight - floaterHeight) / 2;
-        const leftPosition = safetyInset + col * cellWidth + (cellWidth - floaterWidth) / 2;
-
-        // Ensure floaters are within the viewport bounds (especially near the bottom)
-        const validTopPosition = Math.min(topPosition, window.innerHeight - floaterHeight - safetyInset);
-        const validLeftPosition = Math.min(leftPosition, window.innerWidth - floaterWidth - safetyInset);
+        const left = Math.random() * (maxLeft - safetyInset) + safetyInset;
+        const top  = Math.random() * (maxTop  - safetyInset) + safetyInset;
 
         return {
-            top: `${Math.round(validTopPosition)}px`,
-            left: `${Math.round(validLeftPosition)}px`,
-            zIndex: Math.floor(Math.random() * 1000), // Randomize zIndex
+            top: `${Math.round(top)}px`,
+            left: `${Math.round(left)}px`,
+            zIndex: Math.floor(Math.random() * 1000),
+            animationDelay: Number(Math.random().toFixed(2)),
         };
     };
 
@@ -216,9 +179,10 @@
     };
 
     const openFloaters = (floaters) => {
-        if ($isAlterEgoMode) return;
-
-        else {
+        if ($isAlterEgoMode) {
+            return;
+        } else {
+            //console.log("openFloaters");
             floaters.forEach(floater => {
             if (floater.classList.contains('closed')) {
                 floater.classList.remove('closed');
@@ -237,23 +201,31 @@
         });
     };
 
-    const hideFloaters = (card) => {
+    const hideFloaters = () => {
         if (!floaters) return;
-
+        console.log("hideFloaters");
+        
             floaters.forEach((floater) => {
-                if (card !== 'all' && floater.dataset.parent !== card) {
-                    floater.style.display = 'none';
-                } else {
-                    floater.style.display = '';
-                }
-                
-            floater.classList.remove('clicked');
-            floater.classList.add('open');
-        });
+                floater.classList.remove('clicked');
+                floater.classList.add('open');
+            });
     };
 
     $: if ($isAlterEgoMode !== undefined) alignColor($selectedCard);
-    $: if (!$isAlterEgoMode) hideFloaters($selectedCard);
+    $: if (!$isAlterEgoMode) hideFloaters();
+    
+    //Floaters filtering
+    $: if (!$isAlterEgoMode && $selectedCard && floaters) {
+        console.log("Filtering floaters for card", $selectedCard);
+
+        floaters.forEach((floater) => {
+            if ($selectedCard !== 'all' && floater.dataset.parent !== $selectedCard) {
+                floater.style.display = 'none';
+            } else if (floater.dataset.parent === $selectedCard) {
+                floater.style.display = 'flex';
+            }
+        });
+    }
     
     const placeCards = async (containers) => {
 
@@ -263,17 +235,19 @@
         if (containers) {
 
             const firstCard = containers[0];
+
+            containers.forEach(container => {
+                container.style.height = '65%';
+            });
+
             cardWidth = firstCard.getBoundingClientRect().width;
             cardHeight = firstCard.getBoundingClientRect().height;
             const opticalCorrection = -50;
 
             if ($isDesktop) {
-                    // console.log("desktop");
+
                     offset = -30;
-                    
-                    // Get the actual rendered size of the first card container
-                    
-                    
+
                     totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
                     totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
 
@@ -282,19 +256,12 @@
 
 
                 } else if ($isMobileDevice) {
-                    // console.log("mobile");
                     offset = -45;
                     totalBlockWidth = cardWidth;
                     totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
                     $startX = ((windowWidth - totalBlockWidth) / 2);
                     $startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length -1 );
                 }
-
-                // console.log("containers.length", containers.length);
-                // console.log("windowWidth", windowWidth);
-                // console.log("windowHeight", windowHeight);
-                // console.log("totalBlockWidth", totalBlockWidth);
-                // console.log("totalBlockHeight", totalBlockHeight);
 
             containers.forEach(async (container, index) => {
 
@@ -306,11 +273,7 @@
                     y = $startY + index * offset;
                 }
 
-                // console.log(`startX of Card ${index}`, x);
-                // console.log(`startY of Card ${index}`, y);
-
                 initialPositions[index] = { x, y };
-
                 container.style.transition = 'transform 0.3s ease-in-out';
                 container.style.transformOrigin = 'top left';
                 container.style.transform = `translateX(${x}px) translateY(${y}px)`;
@@ -324,21 +287,34 @@
                 if (cardData && cardData.bgColor) {
                     container.style.backgroundColor = cardData.bgColor;
                 }
-
-                container.style.opacity = '0';
-
+                
                 setTimeout(() => {
                     container.style.transition = '';
                 }, 300);
 
-                setTimeout(() => {
+            
+                if ($waitForHash) {
+                    //If we arrive with a hash value, so a sharing link, we need to focus the correct card
                     setTimeout(() => {
-                        // container.style.display = 'block';
-                        container.style.opacity = '1';
-                    }, index * 125);
-                }, 500);
+                        setTimeout(() => {
+                            container.style.opacity = '1';
+                        }, index * 125);
+                        areCardsLoaded.set(true);
+                    }, 1000);
+                } else {
+                    //If not the functioning is normal
+                    setTimeout(() => {
+                        setTimeout(() => {
+                            container.style.opacity = '1';
+                        }, index * 125);
+                        areCardsLoaded.set(true);
+                    }, 500);
+                }
                 });
+
+                $isPageLoaded = true;
         }
+
         
     }
 
@@ -363,9 +339,7 @@
         }
 
         isSwapping = true;
-        // console.log("Starting card swap animation");
 
-        // Get initial positions
         const clickedCardY = Number(clickedCard.dataset.y);
         const clickedCardX = Number(clickedCard.dataset.x);
         
@@ -418,17 +392,55 @@
         }, swapDuration);
     };
 
+    const navigateToExercise = (exercise) => {
+        $currentHash = window.location.hash;
+        //console.log("currentHash:", $currentHash);
+
+        if ($currentHash) {
+            $waitForHash = true;
+
+            $isAlterEgoMode = false;
+            const hashContainer = $currentHash ? $currentHash.split('_')[0].replace('#', '') : '';
+            const definedContainer = document.querySelector(`[data-section="${hashContainer}"]`);
+
+            const hashSection = $currentHash ? $currentHash.split('_').slice(1).join('_').replace('#', '') : '';
+            const definedSection = document.querySelector(`[data-section="${hashSection}"]`);
+            
+            $selectedCard = definedContainer.dataset.section;
+
+            if (definedContainer && definedSection) {
+                setTimeout(() => {
+
+                    if ($isMobileDevice && $areCardsLoaded) {
+                        swapCards(definedContainer);
+                    } else if (!$isMobileDevice && $areCardsLoaded) {
+                        definedContainer.style.zIndex = $highestZIndex + 1;
+                        $highestZIndex = $highestZIndex + 1;
+                    }
+                    
+                    definedSection.scrollIntoView({ 
+                        behavior: 'smooth',
+                        //block: 'start',
+                        //inline: 'nearest'
+                    });
+                }, 1100);
+            }  
+
+        } else {
+            $waitForHash = false;
+            return;
+        } 
+
+    }
+
     onMount(async () => {
         updateWindowSize();
-        await tick();
-        const interact = (await import('interactjs')).default;
-        interactRef = interact;
-        const simpleBar = (await import('simplebar')).default;
-        const ResizeObserver = (await import('resize-observer-polyfill')).default;
+        await navigateToExercise();
 
-        // Initialize the size
+        const interact = (await import('interactjs')).default;
+        const simpleBar = (await import('simplebar')).default;
         
-        window.addEventListener('resize', updateWindowSize);
+        //window.addEventListener('resize', updateWindowSize);
 
         if (simplebarContainer) {
             new SimpleBar(simplebarContainer, {
@@ -449,84 +461,234 @@
         
         windowWidth = window.innerWidth;
         windowHeight = window.innerHeight; 
-        // console.log(windowWidth, windowHeight);
+    
+        placeCards(containers);
 
-        if ($isDesktop || $isMobileDevice) {
+        if ($isMobileDevice) {
+            await containers;
+
+            const containerYCorners = new Map();
+            const containersIds = new Map();
+
+            containers.forEach((container, index) => {
+                initialsY = Number(container.dataset.y);
+                containerYCorners.set(container, initialsY);
+                containersIds.set(container, container.id);
+
+                if (!container.dataset.flushOrder) {
+                    container.dataset.flushOrder = (index + 1).toString();
+                }
+            });
             
-            placeCards(containers);
+            bottomYCorner = Number(containers[0].dataset.y);
+          
+            topYCorner = Number(containers[containers.length - 1].dataset.y);
 
-            if ($isMobileDevice) {
-                await containers;
+        }
 
-                const containerYCorners = new Map();
-                const containersIds = new Map();
+        if (!$isMobileDevice) {
+            containers.forEach(container => {
+            container.classList.add('grab');
+            container.style.touchAction = 'none';
 
-                containers.forEach((container, index) => {
-                    initialsY = Number(container.dataset.y);
-                    containerYCorners.set(container, initialsY);
-                    containersIds.set(container, container.id);
+            interact(container).draggable({
 
-                    if (!container.dataset.flushOrder) {
-                        container.dataset.flushOrder = (index + 1).toString();
-                    }
-                });
-                
-                bottomYCorner = Number(containers[0].dataset.y);
-                // console.log("bottomYCorner", bottomYCorner);
-                topYCorner = Number(containers[containers.length - 1].dataset.y);
-                // console.log("topYCorner", topYCorner);
-            }
+                inertia: {
+                    resistance: 15,
+                    minSpeed: 100,
+                    endSpeed: 20,
+                    smoothEndDuration: 500,
+                },
 
-            if (!$isMobileDevice) {
-                containers.forEach(container => {
-                container.classList.add('grab');
-                container.style.touchAction = 'none';
+                listeners: {
+                    start(event) {
+                        bringToFront(event);
 
-                interact(container).draggable({
+                        const index = event.target.getAttribute('data-index');
 
-                    inertia: {
-                        resistance: 15,
-                        minSpeed: 100,
-                        endSpeed: 20,
-                        smoothEndDuration: 500,
+                        const cardData = Object.values(data.cardsDb)[index];
+
+                        if (cardData && cardData.Title) {
+                            $selectedCard = cardData.Title;
+                            if (!$isAlterEgoMode) {
+                                //openFloaters(floaters);
+                            }
+                        }
+
+                        event.target.classList.remove('grab');
+                        event.target.classList.add('grabbing');
+                        event.target.style.cursor = 'grabbing';
+                        
                     },
 
+                    move(event) {
+                        const x = (parseFloat(container.getAttribute('data-x')) || 0) + event.dx;
+                        const y = (parseFloat(container.getAttribute('data-y')) || 0) + event.dy;
+
+                        container.style.transform = `translate(${x}px, ${y}px)`;
+                        container.setAttribute('data-x', x);
+                        container.setAttribute('data-y', y);
+                        
+                    },
+
+                    end(event) {
+
+                        event.target.classList.remove('grabbing');
+                        event.target.classList.add('grab');
+                        event.target.style.cursor = 'grab';
+                    },
+                },
+                modifiers: [
+                    interact.modifiers.restrict({
+                        restriction: hostElement,
+                        endOnly: true,
+                    }),
+                ],
+                inertia: true,
+            });
+        });
+        } else {return}
+
+        if (!$isMobileDevice) {
+            floaters.forEach((floater, index) => {
+                floater.classList.add('grab');
+                floater.style.touchAction = 'none';
+                floater.style.transition = 'opacity 0s linear';
+
+                setTimeout(() => {
+                    floater.style.opacity = '1';
+                }, 1650 + index * 50); 
+
+                floater.style.transformOrigin = 'bottom left';
+
+                // Initialize floating animation variables
+                const floatingSpeedBase = 0.0000001 + Math.random() * 0.0001;
+                const oscillationFrequency = 0.001;
+                const sineOffset = Math.random() * 2 * Math.PI; 
+                let floatX = 0;
+                let floatY = 0;
+                let directionX = Math.random() > 0.5 ? 1 : -1;
+                let directionY = Math.random() > 0.5 ? 1 : -1;
+
+                // Start floating animation
+                const animateFloating = () => {
+                    const time = Date.now();
+
+                    // Calculate oscillating speed
+                    const floatingSpeed = floatingSpeedBase * (1 + Math.sin(time * oscillationFrequency + sineOffset));
+
+                    const directionalOscillationX = Math.sin(time * 0.0001);
+                    const directionalOscillationY = Math.cos(time * 0.0001);
+
+                    // Update floating positions
+                    floatX += directionX * floatingSpeed * directionalOscillationX;
+                    floatY += directionY * floatingSpeed * directionalOscillationY;
+
+                    // Get floater dimensions and viewport size
+                    const floaterRect = floater.getBoundingClientRect();
+                    const viewportWidth = windowWidth;
+                    const viewportHeight = windowHeight;
+
+                    const floaterBottom = floaterRect.bottom;
+                    const floaterLeft = floaterRect.left; 
+
+                    const paddingTop = 0; // Padding for the top boundary
+                    const paddingRight = 30; // Padding for the right boundary
+
+                    // Calculate corners
+                    const floaterBottomLeftX = floaterRect.left + floatX;
+                    const floaterBottomLeftY = floaterRect.bottom - floatY;
+
+                    const floaterBottomRightX = floaterRect.right + floatX;
+                    const floaterBottomRightY = floaterRect.bottom - floatY;
+
+                    const floaterTopLeftX = floaterRect.left + floatX;
+                    const floaterTopLeftY = floaterRect.top - floatY;
+
+                    const floaterTopRightX = floaterRect.right + floatX;
+                    const floaterTopRightY = floaterRect.top - floatY;
+
+
+                    // Left and right boundaries
+                    if (floaterBottomLeftX < 0 || floaterBottomRightX > viewportWidth - paddingRight) {
+                        directionX *= -1;
+                        floatX = 0; // Reset to prevent overshooting
+                    }
+
+                    // Top and bottom boundaries
+                    if (floaterTopLeftY < paddingTop || floaterBottomLeftY > viewportHeight) {
+                        directionY *= -1;
+                        floatY = 0; // Reset to prevent overshooting
+                    }
+
+                    // Apply floating transform
+                    const currentX = parseFloat(floater.getAttribute('data-x')) || 0;
+                    const currentY = parseFloat(floater.getAttribute('data-y')) || 0;
+                    floater.style.transform = `translate(${currentX + floatX}px, ${currentY + floatY}px)`;
+
+                    // Store updated coordinates
+                    floater.setAttribute('data-x', currentX + floatX);
+                    floater.setAttribute('data-y', currentY + floatY);
+
+                    requestAnimationFrame(animateFloating);
+                };
+
+                requestAnimationFrame(animateFloating);
+
+                interact(floater).draggable({
+                    inertia: {
+                        resistance: 20,
+                        minSpeed: 80,
+                        endSpeed: 10,
+                        smoothEndDuration: 400,
+                    },
                     listeners: {
                         start(event) {
-                            bringToFront(event);
+                            // Bring the floater to the front
+                            floater.style.zIndex = parseInt(floater.style.zIndex || 1) + 1;
 
-                            const index = event.target.getAttribute('data-index');
+                            // Get current transform values and calculate actual position
+                            const computedStyle = window.getComputedStyle(floater);
+                            const transform = computedStyle.transform;
 
-                            const cardData = Object.values(data.cardsDb)[index];
+                            if (transform && transform !== "none") {
+                                const matrix = new DOMMatrix(transform);
+                                const currentX = matrix.m41; // Translate X value
+                                const currentY = matrix.m42; // Translate Y value
 
-                            if (cardData && cardData.Title) {
-                               $selectedCard = cardData.Title;
-                                if (!$isAlterEgoMode) {
-                                    openFloaters(floaters);
-                                }
+                                // Set data attributes for accurate dragging
+                                floater.setAttribute("data-x", currentX);
+                                floater.setAttribute("data-y", currentY);
+                            } else {
+                                // If no transform is applied, set to default (0, 0)
+                                floater.setAttribute("data-x", 0);
+                                floater.setAttribute("data-y", 0);
                             }
 
-                            event.target.classList.remove('grab');
-                            event.target.classList.add('grabbing');
-                            event.target.style.cursor = 'grabbing';
-                            
+                            event.target.classList.remove("grab");
+                            event.target.style.cursor = "grabbing";
                         },
 
                         move(event) {
-                            const x = (parseFloat(container.getAttribute('data-x')) || 0) + event.dx;
-                            const y = (parseFloat(container.getAttribute('data-y')) || 0) + event.dy;
+                            // Calculate new position during dragging
+                            const x = (parseFloat(floater.getAttribute("data-x")) || 0) + event.dx;
+                            const y = (parseFloat(floater.getAttribute("data-y")) || 0) + event.dy;
 
-                            container.style.transform = `translate(${x}px, ${y}px)`;
-                            container.setAttribute('data-x', x);
-                            container.setAttribute('data-y', y);
-                            
+                            // Reset floating offsets during drag
+                            floatX = 0;
+                            floatY = 0;
+
+                            // Apply the transformation and update attributes
+                            floater.style.transform = `translate(${x}px, ${y}px)`;
+                            floater.setAttribute("data-x", x);
+                            floater.setAttribute("data-y", y);
+
+                            floaterPositions[index] = { x, y };
                         },
-
                         end(event) {
-
-                            event.target.classList.remove('grabbing');
-                            event.target.classList.add('grab');
-                            event.target.style.cursor = 'grab';
+                            // Reset cursor after drag ends
+                            event.target.classList.remove("grabbing");
+                            event.target.style.cursor = "grab";
                         },
                     },
                     modifiers: [
@@ -538,223 +700,63 @@
                     inertia: true,
                 });
             });
-            } else {return}
+        } else {return}
 
-            if (!$isMobileDevice) {
-                floaters.forEach((floater, index) => {
-                    floater.classList.add('grab');
-                    floater.style.touchAction = 'none';
-                    floater.style.transition = 'opacity 0s linear';
+        if (!$isMobileDevice) {
+            textBoxes.forEach((textBox) => {
+                textBox.classList.add('grab');
+                textBox.style.touchAction = 'none';
+                
+                // Initialize position attributes if not already set
+                if (!textBox.hasAttribute('data-x')) {
+                    textBox.setAttribute('data-x', 0);
+                }
+                if (!textBox.hasAttribute('data-y')) {
+                    textBox.setAttribute('data-y', 0);
+                }
 
-                    setTimeout(() => {
-                        floater.style.opacity = '1';
-                    }, 1650 + index * 50); 
-
-                    floater.style.transformOrigin = 'bottom left';
-
-                    // Initialize floating animation variables
-                    const floatingSpeedBase = 0.0000001 + Math.random() * 0.0001;
-                    const oscillationFrequency = 0.001;
-                    const sineOffset = Math.random() * 2 * Math.PI; 
-                    let floatX = 0;
-                    let floatY = 0;
-                    let directionX = Math.random() > 0.5 ? 1 : -1;
-                    let directionY = Math.random() > 0.5 ? 1 : -1;
-
-                    // Start floating animation
-                    const animateFloating = () => {
-                        const time = Date.now();
-
-                        // Calculate oscillating speed
-                        const floatingSpeed = floatingSpeedBase * (1 + Math.sin(time * oscillationFrequency + sineOffset));
-
-                        const directionalOscillationX = Math.sin(time * 0.0001);
-                        const directionalOscillationY = Math.cos(time * 0.0001);
-
-                        // Update floating positions
-                        floatX += directionX * floatingSpeed * directionalOscillationX;
-                        floatY += directionY * floatingSpeed * directionalOscillationY;
-
-                        // Get floater dimensions and viewport size
-                        const floaterRect = floater.getBoundingClientRect();
-                        const viewportWidth = windowWidth;
-                        const viewportHeight = windowHeight;
-
-                        const floaterBottom = floaterRect.bottom;
-                        const floaterLeft = floaterRect.left; 
-
-                        const paddingTop = 0; // Padding for the top boundary
-                        const paddingRight = 30; // Padding for the right boundary
-
-                        // Calculate corners
-                        const floaterBottomLeftX = floaterRect.left + floatX;
-                        const floaterBottomLeftY = floaterRect.bottom - floatY;
-
-                        const floaterBottomRightX = floaterRect.right + floatX;
-                        const floaterBottomRightY = floaterRect.bottom - floatY;
-
-                        const floaterTopLeftX = floaterRect.left + floatX;
-                        const floaterTopLeftY = floaterRect.top - floatY;
-
-                        const floaterTopRightX = floaterRect.right + floatX;
-                        const floaterTopRightY = floaterRect.top - floatY;
-
-
-                        // Left and right boundaries
-                        if (floaterBottomLeftX < 0 || floaterBottomRightX > viewportWidth - paddingRight) {
-                            directionX *= -1;
-                            floatX = 0; // Reset to prevent overshooting
-                        }
-
-                        // Top and bottom boundaries
-                        if (floaterTopLeftY < paddingTop || floaterBottomLeftY > viewportHeight) {
-                            directionY *= -1;
-                            floatY = 0; // Reset to prevent overshooting
-                        }
-
-                        // Apply floating transform
-                        const currentX = parseFloat(floater.getAttribute('data-x')) || 0;
-                        const currentY = parseFloat(floater.getAttribute('data-y')) || 0;
-                        floater.style.transform = `translate(${currentX + floatX}px, ${currentY + floatY}px)`;
-
-                        // Store updated coordinates
-                        floater.setAttribute('data-x', currentX + floatX);
-                        floater.setAttribute('data-y', currentY + floatY);
-
-                        requestAnimationFrame(animateFloating);
-                    };
-
-                    requestAnimationFrame(animateFloating);
-
-                    interact(floater).draggable({
-                        inertia: {
-                            resistance: 20,
-                            minSpeed: 80,
-                            endSpeed: 10,
-                            smoothEndDuration: 400,
+                interact(textBox).draggable({
+                    inertia: {
+                        resistance: 15,
+                        minSpeed: 100,
+                        endSpeed: 20,
+                        smoothEndDuration: 500,
+                    },
+                    listeners: {
+                        start(event) {
+                            bringToFront(event);
+                            event.target.classList.remove("grab");
+                            event.target.style.cursor = "grabbing";
+                            // Remove transition during drag
+                            event.target.style.transition = 'none';
                         },
-                        listeners: {
-                            start(event) {
-                                // Bring the floater to the front
-                                floater.style.zIndex = parseInt(floater.style.zIndex || 1) + 1;
+                        move(event) {
+                            const x = (parseFloat(textBox.getAttribute('data-x')) || 0) + event.dx;
+                            const y = (parseFloat(textBox.getAttribute('data-y')) || 0) + event.dy;
 
-                                // Get current transform values and calculate actual position
-                                const computedStyle = window.getComputedStyle(floater);
-                                const transform = computedStyle.transform;
-
-                                if (transform && transform !== "none") {
-                                    const matrix = new DOMMatrix(transform);
-                                    const currentX = matrix.m41; // Translate X value
-                                    const currentY = matrix.m42; // Translate Y value
-
-                                    // Set data attributes for accurate dragging
-                                    floater.setAttribute("data-x", currentX);
-                                    floater.setAttribute("data-y", currentY);
-                                } else {
-                                    // If no transform is applied, set to default (0, 0)
-                                    floater.setAttribute("data-x", 0);
-                                    floater.setAttribute("data-y", 0);
-                                }
-
-                                event.target.classList.remove("grab");
-                                event.target.style.cursor = "grabbing";
-                            },
-
-                            move(event) {
-                                // Calculate new position during dragging
-                                const x = (parseFloat(floater.getAttribute("data-x")) || 0) + event.dx;
-                                const y = (parseFloat(floater.getAttribute("data-y")) || 0) + event.dy;
-
-                                // Reset floating offsets during drag
-                                floatX = 0;
-                                floatY = 0;
-
-                                // Apply the transformation and update attributes
-                                floater.style.transform = `translate(${x}px, ${y}px)`;
-                                floater.setAttribute("data-x", x);
-                                floater.setAttribute("data-y", y);
-
-                                floaterPositions[index] = { x, y };
-                            },
-                            end(event) {
-                                // Reset cursor after drag ends
-                                event.target.classList.remove("grabbing");
-                                event.target.style.cursor = "grab";
-                            },
+                            textBox.style.transform = `translate(${x}px, ${y}px)`;
+                            textBox.setAttribute('data-x', x);
+                            textBox.setAttribute('data-y', y);
                         },
-                        modifiers: [
-                            interact.modifiers.restrict({
-                                restriction: hostElement,
-                                endOnly: true,
-                            }),
-                        ],
-                        inertia: true,
-                    });
+                        end(event) {
+                            event.target.classList.remove("grabbing");
+                            event.target.style.cursor = "grab";
+                            // Re-enable transition after drag
+                            event.target.style.transition = 'transform var(--transition-times) var(--transition-curve)';
+                        }
+                    },
+                    modifiers: [
+                        interact.modifiers.restrict({
+                            restriction: hostElement,
+                            endOnly: true,
+                        }),
+                    ],
+                    inertia: true,
                 });
-            } else {return}
+        });
+        } else {return}
 
-            if (!$isMobileDevice) {
-                textBoxes.forEach((textBox) => {
-                    textBox.classList.add('grab');
-                    textBox.style.touchAction = 'none';
-                    
-                    // Initialize position attributes if not already set
-                    if (!textBox.hasAttribute('data-x')) {
-                        textBox.setAttribute('data-x', 0);
-                    }
-                    if (!textBox.hasAttribute('data-y')) {
-                        textBox.setAttribute('data-y', 0);
-                    }
-
-                    interact(textBox).draggable({
-                        inertia: {
-                            resistance: 15,
-                            minSpeed: 100,
-                            endSpeed: 20,
-                            smoothEndDuration: 500,
-                        },
-                        listeners: {
-                            start(event) {
-                                bringToFront(event);
-                                event.target.classList.remove("grab");
-                                event.target.style.cursor = "grabbing";
-                                // Remove transition during drag
-                                event.target.style.transition = 'none';
-                            },
-                            move(event) {
-                                const x = (parseFloat(textBox.getAttribute('data-x')) || 0) + event.dx;
-                                const y = (parseFloat(textBox.getAttribute('data-y')) || 0) + event.dy;
-
-                                textBox.style.transform = `translate(${x}px, ${y}px)`;
-                                textBox.setAttribute('data-x', x);
-                                textBox.setAttribute('data-y', y);
-                            },
-                            end(event) {
-                                event.target.classList.remove("grabbing");
-                                event.target.style.cursor = "grab";
-                                // Re-enable transition after drag
-                                event.target.style.transition = 'transform var(--transition-times) var(--transition-curve)';
-                            }
-                        },
-                        modifiers: [
-                            interact.modifiers.restrict({
-                                restriction: hostElement,
-                                endOnly: true,
-                            }),
-                        ],
-                        inertia: true,
-                    });
-            });
-            } else {return}
-
-            setupMouseDetection();
-
-            tick();
-
-            await tick();
-        }
-
-        
+        setupMouseDetection();
 
         return () => {
             if (typeof window !== 'undefined') {
@@ -777,12 +779,12 @@
         
         // Clean up interact.js event handlers
         const cleanupInteract = () => {
-            if (interactRef) {
+            if (interact) {
                 // Clean up containers
                 if (containers) {
                     containers.forEach(container => {
                         try {
-                            interactRef(container).unset();
+                            interact(container).unset();
                         } catch (e) {
                             // console.log("Could not cleanup container interact handlers");
                         }
@@ -793,7 +795,7 @@
                 if (floaters) {
                     floaters.forEach(floater => {
                         try {
-                            interactRef(floater).unset();
+                            interact(floater).unset();
                         } catch (e) {
                             // console.log("Could not cleanup floater interact handlers");
                         }
@@ -810,7 +812,7 @@
                 if (textBoxes) {
                     textBoxes.forEach(textBox => {
                         try {
-                            interactRef(textBox).unset();
+                            interact(textBox).unset();
                         } catch (e) {
                             // console.log("Could not cleanup textBox interact handlers");
                         }
@@ -882,7 +884,7 @@
             floaterPositions = [];
             
             // Clear interact reference
-            interactRef = null;
+            interact = null;
         };
         
         // Execute all cleanup functions
@@ -896,8 +898,15 @@
 
 </script>
 
+{#if !$isPageLoaded}
+    <div class="loading_text"
+        out:fade={{ duration: 300 }}
+    >
+        <p class="p3">Loading...</p>
+    </div>
+{/if}
 
-<div class="content_container">
+<div class="content_container" bind:this={contentContainer}>
 
     <section class="host" bind:this={hostElement}>
 
@@ -906,9 +915,7 @@
         {/if}
 
         
-        <Slider
-            switch_alterego = {switch_alterego}
-        />
+        <Slider />
 
 
         {#each Object.values(data.cardsDb) as card (card.IndexNum)}
@@ -924,10 +931,10 @@
         {/each}   
 
         {#if !$isMobileDevice}
-            {#each Object.values(data.floatersDb) as singleFloater (singleFloater.id)}
+            {#each Object.values(data.floatersDb) as singleFloater, index (singleFloater.id)}
                 <Floater
                     data={singleFloater}
-                    randomPosition = {calculateRandomPosition()}
+                    randomPosition={calculateRandomPosition(singleFloater)}
                 />
             {/each}
 
@@ -935,8 +942,9 @@
         {/if}
 
         <VademecumFloater 
-                randomPosition={calculateRandomPosition()}
-            />
+            bind:this={vademecumFloater}
+            randomPosition={calculateRandomPosition(vademecumFloater)}
+        />
 
         <LogoButton
             logoImage = {data.logoImage}
@@ -1276,6 +1284,16 @@
         text-transform: uppercase;
     }
 
+    .loading_text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-family: var(--sans-font-family), var(--fallback-sans-font);
+        font-weight: 400;
+    }
+    
+
 
     @media only screen and (max-width: 768px) {
 
@@ -1299,85 +1317,9 @@
             font-size: 14px;
         }
 
-        .mobile_desc_container {
+        .loading_text {
             display: none;
-            position: static;
-            flex-direction: column;
-            padding: var(--spacing-L);
-            height: 100%; /* Fill the grid row completely */
-            min-height: 0; /* Allow shrinking if needed */
-            overflow-y: auto; /* Allow scrolling if content overflows */
-            row-gap: 10px;
         }
-
-        .mobile_description {
-            display: flex;
-            position: static;
-            border: solid 1px black;
-            border-radius: 10px 10px 10px 10px;
-            width: 100%;
-            padding: var(--spacing-S);
-            overflow-y: scroll;
-            scrollbar-width: 0px;
-            background-color: white;
-            height: 100%;
-            padding-bottom: var(--spacing-L);
-        }
-
-
-        .mobile_description.tip {
-            height: fit-content;
-            min-height: 40px;
-            overflow: hidden;
-            padding: var(--spacing-XS);
-            margin-bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            vertical-align: middle;
-        }
-
-        .mobile_description > .p2 {
-            font-size: 1.1rem;
-            text-align: justify;
-            text-rendering: optimizeLegibility;
-            hyphens: auto;
-            -webkit-hyphens: auto;
-            -ms-hyphens: auto;
-            overflow-wrap: break-word;
-        }
-
-
-        .mobile_description::-webkit-scrollbar {
-            width: 12px; /* Width of the scrollbar */
-            height: 90px;
-            overflow: hidden;
-            border-radius: 10px;
-            
-        }
-
-        .mobile_description::-webkit-scrollbar-track {
-            background: transparent; /* Background of the scrollbar track */
-            overflow: hidden;
-            border-radius: 10px;
-            
-        }
-
-        .mobile_description::-webkit-scrollbar-thumb {
-            background-color: white; /* Color of the scrollbar thumb */
-            border: 1px solid black; /* Adds space around thumb */
-            overflow: hidden;
-            border-radius: 5px;
-        }
-  
-        /*
-        .mobile_description::-webkit-scrollbar-thumb:hover {
-            background-color: transparent;
-            overflow: hidden;
-            border-radius: 10px;
-        } */
-
     }
 
 

@@ -1,7 +1,7 @@
 <script>
 import { onMount, setContext } from 'svelte';
 import { cardsDb, alterEgosDb } from '$lib/database/global_db.js';
-import { selectedCard, isAlterEgoMode, transitionTime, isDesktop, isMobileDevice, transitionCurve } from '$lib/stores/globalStores';
+import { selectedCard, isAlterEgoMode, transitionTime, isDesktop, isMobileDevice, transitionCurve, currentFocus } from '$lib/stores/globalStores';
 
 import {
 	blur,
@@ -13,7 +13,6 @@ import {
 	slide
 } from 'svelte/transition';
 
-// Instead, use a simple boolean
 export let data
 export let alterEgoCard
 export let bringToFront
@@ -23,41 +22,453 @@ export let swapCards
 export let card
 export let transitionDelay
 
+import sharingTemplate from '$lib/media/template.svg'
+
 let condensed_logo = data.condensed_logo
 let condensed_logo_white = data.condensed_logo_white
 let isProjCover = data.isProjCover
 
-</script>
-
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
+const shareContent = async (sharingTemplate, customData = {}) => {
+    console.log("=== SHARE CONTENT START ===");
+    console.log("Template:", sharingTemplate);
+    console.log("Custom Data:", customData);
     
-        <section
+    try {
+        // Step 1: Load fonts and convert to base64
+        const loadFontAsBase64 = async (fontPath) => {
+            const response = await fetch(fontPath);
+            const buffer = await response.arrayBuffer();
+            const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+            return `data:font/truetype;base64,${base64}`;
+        };
+
+        console.log("Loading fonts...");
+        const [instrumentSerifBase64, instrumentSansBase64] = await Promise.all([
+            loadFontAsBase64('/fonts/InstrumentSerif-Regular.ttf'),
+            loadFontAsBase64('/fonts/InstrumentSans-Regular.ttf')
+        ]);
+        console.log("Fonts loaded successfully");
+
+        // Step 2: Take SVG as template
+        const response = await fetch(sharingTemplate);
+        const svgText = await response.text();
+        console.log("Original SVG loaded");
+        
+        // Step 3: Inject data into SVG
+        const parser = new DOMParser();
+        const svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+        
+        // Step 4: Add font definitions to SVG
+        const defs = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        const style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
+        style.textContent = `
+            @font-face {
+                font-family: 'Instrument Serif';
+                src: url('${instrumentSerifBase64}') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Instrument Sans';
+                src: url('${instrumentSansBase64}') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+        `;
+        defs.appendChild(style);
+        
+        // Insert defs as first child of SVG
+        const svgRoot = svgDoc.documentElement;
+        svgRoot.insertBefore(defs, svgRoot.firstChild);
+        console.log("Font definitions added to SVG");
+        
+        // DEEP DEBUG: SVG structure analysis
+        console.log("=== SVG STRUCTURE ANALYSIS ===");
+        console.log("SVG Root attributes:", {
+            width: svgRoot.getAttribute('width'),
+            height: svgRoot.getAttribute('height'),
+            viewBox: svgRoot.getAttribute('viewBox'),
+            xmlns: svgRoot.getAttribute('xmlns'),
+            transform: svgRoot.getAttribute('transform')
+        });
+        
+        // Check all direct children of SVG
+        const directChildren = Array.from(svgRoot.children);
+        console.log("SVG Direct Children:", directChildren.map(child => ({
+            tagName: child.tagName,
+            id: child.id,
+            transform: child.getAttribute('transform'),
+            x: child.getAttribute('x'),
+            y: child.getAttribute('y')
+        })));
+        
+        console.log("Injecting data into SVG elements:");
+        
+        if (customData.title) {
+            const titleElement = svgDoc.querySelector('#Title');
+            if (titleElement) {
+                console.log(`- Title: "${customData.title}" → #Title`);
+                
+                // DEEP DEBUG: Element hierarchy and positioning
+                console.log("TITLE DEEP DEBUG:");
+                console.log("- Parent element:", titleElement.parentElement?.tagName, titleElement.parentElement?.id);
+                console.log("- Parent transform:", titleElement.parentElement?.getAttribute('transform'));
+                console.log("- Element transform:", titleElement.getAttribute('transform'));
+                console.log("- Element x,y:", titleElement.getAttribute('x'), titleElement.getAttribute('y'));
+                
+                console.log("BEFORE - Title element:", {
+                    fontFamily: titleElement.getAttribute('font-family'),
+                    fontSize: titleElement.getAttribute('font-size'),
+                    fill: titleElement.getAttribute('fill'),
+                    style: titleElement.getAttribute('style'),
+                    transform: titleElement.getAttribute('transform'),
+                    x: titleElement.getAttribute('x'),
+                    y: titleElement.getAttribute('y'),
+                    outerHTML: titleElement.outerHTML
+                });
+                
+                // Clear all existing tspans and create a new one
+                const firstTspan = titleElement.querySelector('tspan');
+                if (firstTspan) {
+                    console.log("BEFORE - First tspan:", {
+                        x: firstTspan.getAttribute('x'),
+                        y: firstTspan.getAttribute('y'),
+                        dx: firstTspan.getAttribute('dx'),
+                        dy: firstTspan.getAttribute('dy'),
+                        transform: firstTspan.getAttribute('transform'),
+                        textContent: firstTspan.textContent,
+                        outerHTML: firstTspan.outerHTML
+                    });
+                    
+                    // Preserve ALL positioning attributes from the first tspan
+                    const x = firstTspan.getAttribute('x');
+                    const y = firstTspan.getAttribute('y');
+                    const dx = firstTspan.getAttribute('dx');
+                    const dy = firstTspan.getAttribute('dy');
+                    const transform = firstTspan.getAttribute('transform');
+                    
+                    // Clear all tspans
+                    titleElement.innerHTML = '';
+                    
+                    // Create new tspan with ALL preserved attributes
+                    const newTspan = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) newTspan.setAttribute('x', x);
+                    if (y) newTspan.setAttribute('y', y);
+                    if (dx) newTspan.setAttribute('dx', dx);
+                    if (dy) newTspan.setAttribute('dy', dy);
+                    if (transform) newTspan.setAttribute('transform', transform);
+                    newTspan.textContent = customData.title;
+                    titleElement.appendChild(newTspan);
+                } else {
+                    titleElement.textContent = customData.title;
+                }
+                
+                console.log("AFTER - Title element:", {
+                    fontFamily: titleElement.getAttribute('font-family'),
+                    fontSize: titleElement.getAttribute('font-size'),
+                    fill: titleElement.getAttribute('fill'),
+                    style: titleElement.getAttribute('style'),
+                    transform: titleElement.getAttribute('transform'),
+                    x: titleElement.getAttribute('x'),
+                    y: titleElement.getAttribute('y'),
+                    outerHTML: titleElement.outerHTML
+                });
+            }
+        }
+        
+        if (customData.exTitle) {
+            const exTitleElement = svgDoc.querySelector('#Ex_Title');
+            if (exTitleElement) {
+                console.log(`- Exercise Title: "${customData.exTitle}" → #Ex_Title`);
+                console.log("EX_TITLE DEEP DEBUG:");
+                console.log("- Parent element:", exTitleElement.parentElement?.tagName, exTitleElement.parentElement?.id);
+                console.log("- Parent transform:", exTitleElement.parentElement?.getAttribute('transform'));
+                console.log("- Element transform:", exTitleElement.getAttribute('transform'));
+                
+                console.log("BEFORE - Ex Title element:", {
+                    fontFamily: exTitleElement.getAttribute('font-family'),
+                    fontSize: exTitleElement.getAttribute('font-size'),
+                    fill: exTitleElement.getAttribute('fill'),
+                    style: exTitleElement.getAttribute('style'),
+                    transform: exTitleElement.getAttribute('transform'),
+                    outerHTML: exTitleElement.outerHTML
+                });
+                
+                const firstTspan = exTitleElement.querySelector('tspan');
+                if (firstTspan) {
+                    console.log("BEFORE - Ex Title first tspan:", {
+                        x: firstTspan.getAttribute('x'),
+                        y: firstTspan.getAttribute('y'),
+                        dx: firstTspan.getAttribute('dx'),
+                        dy: firstTspan.getAttribute('dy'),
+                        transform: firstTspan.getAttribute('transform'),
+                        textContent: firstTspan.textContent
+                    });
+                    
+                    const x = firstTspan.getAttribute('x');
+                    const y = firstTspan.getAttribute('y');
+                    const dx = firstTspan.getAttribute('dx');
+                    const dy = firstTspan.getAttribute('dy');
+                    const transform = firstTspan.getAttribute('transform');
+                    
+                    exTitleElement.innerHTML = '';
+                    
+                    const newTspan = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) newTspan.setAttribute('x', x);
+                    if (y) newTspan.setAttribute('y', y);
+                    if (dx) newTspan.setAttribute('dx', dx);
+                    if (dy) newTspan.setAttribute('dy', dy);
+                    if (transform) newTspan.setAttribute('transform', transform);
+                    newTspan.textContent = customData.exTitle;
+                    exTitleElement.appendChild(newTspan);
+                } else {
+                    exTitleElement.textContent = customData.exTitle;
+                }
+                
+                console.log("AFTER - Ex Title element:", {
+                    fontFamily: exTitleElement.getAttribute('font-family'),
+                    fontSize: exTitleElement.getAttribute('font-size'),
+                    fill: exTitleElement.getAttribute('fill'),
+                    style: exTitleElement.getAttribute('style'),
+                    transform: exTitleElement.getAttribute('transform'),
+                    outerHTML: exTitleElement.outerHTML
+                });
+            }
+        }
+        
+        if (customData.exDescription) {
+            const exDescElement = svgDoc.querySelector('#Ex_description');
+            if (exDescElement) {
+                console.log(`- Exercise Description: "${customData.exDescription}" → #Ex_description`);
+                console.log("EX_DESCRIPTION DEEP DEBUG:");
+                console.log("- Parent element:", exDescElement.parentElement?.tagName, exDescElement.parentElement?.id);
+                console.log("- Parent transform:", exDescElement.parentElement?.getAttribute('transform'));
+                
+                console.log("BEFORE - Ex Description element:", {
+                    fontFamily: exDescElement.getAttribute('font-family'),
+                    fontSize: exDescElement.getAttribute('font-size'),
+                    fill: exDescElement.getAttribute('fill'),
+                    style: exDescElement.getAttribute('style'),
+                    transform: exDescElement.getAttribute('transform'),
+                    tspanCount: exDescElement.querySelectorAll('tspan').length,
+                    outerHTML: exDescElement.outerHTML
+                });
+                
+                const firstTspan = exDescElement.querySelector('tspan');
+                if (firstTspan) {
+                    console.log("BEFORE - Ex Description first tspan:", {
+                        x: firstTspan.getAttribute('x'),
+                        y: firstTspan.getAttribute('y'),
+                        dx: firstTspan.getAttribute('dx'),
+                        dy: firstTspan.getAttribute('dy'),
+                        transform: firstTspan.getAttribute('transform'),
+                        textContent: firstTspan.textContent
+                    });
+                    
+                    const x = firstTspan.getAttribute('x');
+                    const y = firstTspan.getAttribute('y');
+                    const dx = firstTspan.getAttribute('dx');
+                    const dy = firstTspan.getAttribute('dy');
+                    const transform = firstTspan.getAttribute('transform');
+                    
+                    exDescElement.innerHTML = '';
+                    
+                    const newTspan = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) newTspan.setAttribute('x', x);
+                    if (y) newTspan.setAttribute('y', y);
+                    if (dx) newTspan.setAttribute('dx', dx);
+                    if (dy) newTspan.setAttribute('dy', dy);
+                    if (transform) newTspan.setAttribute('transform', transform);
+                    newTspan.textContent = customData.exDescription;
+                    exDescElement.appendChild(newTspan);
+                } else {
+                    exDescElement.textContent = customData.exDescription;
+                }
+                
+                console.log("AFTER - Ex Description element:", {
+                    fontFamily: exDescElement.getAttribute('font-family'),
+                    fontSize: exDescElement.getAttribute('font-size'),
+                    fill: exDescElement.getAttribute('fill'),
+                    style: exDescElement.getAttribute('style'),
+                    transform: exDescElement.getAttribute('transform'),
+                    tspanCount: exDescElement.querySelectorAll('tspan').length,
+                    outerHTML: exDescElement.outerHTML
+                });
+            }
+        }
+        
+        if (customData.imageUrl) {
+            const imageElement = svgDoc.querySelector('#image0_761_18054');
+            if (imageElement) {
+                console.log(`- Image URL: "${customData.imageUrl}" → #image0_761_18054`);
+                imageElement.setAttribute('href', customData.imageUrl);
+            }
+        }
+        
+        // Step 6: Apply card background color tinting
+        if (customData.bgColor) {
+            console.log(`- Applying background color: "${customData.bgColor}"`);
+            
+            // Main background (full canvas)
+            const mainBackground = svgDoc.querySelector('rect[width="1512"][height="982"]');
+            if (mainBackground) {
+                mainBackground.setAttribute('fill', customData.bgColor);
+                console.log('  ✓ Main background tinted');
+            }
+            
+            // Card background 
+            const cardBackground = svgDoc.querySelector('rect[x="415.882"][y="234.438"]');
+            if (cardBackground) {
+                cardBackground.setAttribute('fill', customData.bgColor);
+                console.log('  ✓ Card background tinted');
+            }
+            
+            // Alternative selector for card background if the first doesn't work
+            const cardBgAlt = svgDoc.querySelector('#BECHMARK rect[rx="2.49898"]');
+            if (cardBgAlt) {
+                cardBgAlt.setAttribute('fill', customData.bgColor);
+                console.log('  ✓ Alternative card background tinted');
+            }
+        }
+        
+        // Step 5: Convert SVG to PNG
+        const modifiedSvg = new XMLSerializer().serializeToString(svgDoc.documentElement);
+        console.log("Modified SVG created with embedded fonts");
+        console.log("=== CONVERTING SVG TO PNG ===");
+        
+        // Create a canvas element
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Get SVG dimensions
+        const svgWidth = parseFloat(svgRoot.getAttribute('width')) || 680;
+        const svgHeight = parseFloat(svgRoot.getAttribute('height')) || 474;
+        
+        // Set canvas dimensions (you can scale up for higher quality)
+        const scale = 2; // 2x scale for better quality
+        canvas.width = svgWidth * scale;
+        canvas.height = svgHeight * scale;
+        
+        console.log(`Canvas dimensions: ${canvas.width}x${canvas.height} (${scale}x scale)`);
+        
+        // Create image from SVG
+        const img = new Image();
+        
+        // Convert SVG to data URL (this bypasses CSP blob restrictions)
+        const svgDataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(modifiedSvg)));
+        console.log("SVG converted to data URL");
+        
+        // Promise to handle image loading
+        const convertToPng = new Promise((resolve, reject) => {
+            img.onload = () => {
+                try {
+                    console.log("SVG image loaded successfully");
+                    
+                    // Set white background
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Scale context for higher quality
+                    ctx.scale(scale, scale);
+                    
+                    // Draw the SVG image onto canvas
+                    ctx.drawImage(img, 0, 0, svgWidth, svgHeight);
+                    
+                    console.log("SVG drawn to canvas");
+                    
+                    // Convert canvas to PNG blob
+                    canvas.toBlob((blob) => {
+                        if (blob) {
+                            console.log("PNG conversion successful");
+                            resolve(blob);
+                        } else {
+                            reject(new Error("Failed to create PNG blob"));
+                        }
+                    }, 'image/png', 1.0); // Maximum quality
+                    
+                } catch (error) {
+                    console.error("Error during canvas operations:", error);
+                    reject(error);
+                }
+            };
+            
+            img.onerror = (error) => {
+                console.error("Failed to load SVG image:", error);
+                reject(new Error("Failed to load SVG image"));
+            };
+            
+            // Add timeout to prevent hanging
+            setTimeout(() => {
+                reject(new Error("Image loading timeout"));
+            }, 10000); // 10 second timeout
+        });
+        
+        // Set image source to trigger loading (using data URL instead of blob)
+        img.src = svgDataUrl;
+        
+        // Wait for conversion and download
+        const pngBlob = await convertToPng;
+        const pngUrl = URL.createObjectURL(pngBlob);
+        
+        const filename = `${customData.title || 'shared'}_${customData.exTitle || 'content'}.png`;
+        console.log(`Saving PNG as: ${filename}`);
+        
+        const downloadLink = document.createElement('a');
+        downloadLink.href = pngUrl;
+        downloadLink.download = filename;
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        setTimeout(() => URL.revokeObjectURL(pngUrl), 1000);
+        
+        console.log("=== SHARE CONTENT COMPLETE ===");
+        return modifiedSvg;
+        
+    } catch (error) {
+        console.error("Error in shareContent:", error);
+    }
+};
+
+</script>
+<!--
+<div style="position:absolute; top: 250px; left: 250px; width: max-content; height: fit-content; background-color: black; color: white;">
+    <p class="p2">Current focus: {$currentFocus}</p>
+</div>
+-->
+
+        <div
             class="card_container"
             draggable="true"
-            on:click={(event) => {
+            onclick={(event) => {
                 if ($isDesktop) {
                     bringToFront(event);
                 } else {
                     swapCards(event.currentTarget);
                 }
             }}
+            onkeydown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    if ($isDesktop) {
+                        bringToFront(event);
+                    } else {
+                        swapCards(event.currentTarget);
+                    }
+                }
+            }}
+            tabindex="0"
+            role="button"
             data-flush-order="{card.IndexNum}"
             id="{card.IndexNum}"
             aria-label="Draggable Card"
             data-section={card.Title}
+            
         >
 
         <div
         class="card_container_inner"
         style="transition: transform {transitionTime}s {transitionCurve} {transitionDelay}ms;">
-
-            <!--<img data-sveltekit-preload-data
-                class="card_corner_logo"
-                src={condensed_logo}
-                style="z-index: 5;"
-                alt="EL2MP Logo"
-            >-->
 
             <div class="description_container" style="background-color: {card.bgColor}; border: 5px solid {card.bgColor};"> 
 
@@ -94,13 +505,46 @@ let isProjCover = data.isProjCover
                             />
                         </div>  
                     {/if}
+
+                    
                     
                     <!-- Programmatic creation of sections -->
                     {#each card.Content ?? [] as section, index}
                         <!-- We assing a programmatic name for the each block sections -->
-                        <div class="section_container" data-sveltekit-preload-data data-section={`Ex ${index+1}`}> 
+                        <div
+                        role="region"
+                        class="section_container"
+                        data-sveltekit-preload-data
+                        data-section={`Ex_${section.exNum}`}
+                        onmouseenter={() => {
+                            $currentFocus = `${card.Title}_Ex_${section.exNum}`
+                            console.log($currentFocus)
+                        }}> 
                             {#if section.title}
-                                <h2>{@html section.title}</h2>
+                                <div class="flex_header">
+                                    <h2>{@html section.title}</h2>
+
+                                    <a
+                                    onclick={(event) => shareContent(sharingTemplate, { 
+                                        title: card.Title,
+                                        exTitle: section.title,
+                                        exDescription: section.subtitle,
+                                        bgColor: card.bgColor
+                                    })}
+                                    onkeydown={(event) => {
+                                        if (event.key === 'Enter' || event.key === ' ') {
+                                            event.preventDefault();
+                                            shareContent(`${card.Title}_Ex_${section.exNum}`, { exTitle: section.title });
+                                        }
+                                    }}
+                                    tabindex="0"
+                                    role="button"
+                                    aria-label="Share content">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M240-40q-33 0-56.5-23.5T160-120v-440q0-33 23.5-56.5T240-640h120v80H240v440h480v-440H600v-80h120q33 0 56.5 23.5T800-560v440q0 33-23.5 56.5T720-40H240Zm200-280v-447l-64 64-56-57 160-160 160 160-56 57-64-64v447h-80Z"/></svg>
+                                    </a>
+                                    
+                                    
+                                </div>
                             {/if}
                             
                             {#if section.subtitle }
@@ -126,12 +570,6 @@ let isProjCover = data.isProjCover
                     {/each}
                 </div>
             </div>
-            
-            <!-- <img data-sveltekit-preload-data
-                class="card_corner_logo"
-                src={condensed_logo}
-                alt="EL2MP Logo"
-            >-->
 
         </div>
 
@@ -142,12 +580,6 @@ let isProjCover = data.isProjCover
             style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s {transitionCurve} {transitionDelay}ms;"
         >
 
-            <!-- <img data-sveltekit-preload-data
-                class="card_corner_logo"
-                src={condensed_logo_white}
-                alt="EL2MP Logo"
-                style="z-index: 10;"
-            >-->
 
             <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"> 
                 <h1 class="h1" style="z-index: 7; line-height: 1;">
@@ -186,7 +618,7 @@ let isProjCover = data.isProjCover
             </div>
         </div>
 
-    </section>
+    </div>
 
 <style>
 
@@ -241,8 +673,7 @@ let isProjCover = data.isProjCover
 
     .card_container {
         width: 60vw;
-        max-width: 1100px;
-        height: auto;
+        max-width: 1100px; 
         aspect-ratio: 1.5 / 1;
         
         display: block;
@@ -262,8 +693,8 @@ let isProjCover = data.isProjCover
         overflow: hidden;
         opacity: 0;
         
-        border: solid 1.5px white;
         transition: border 3s ease-in-out;
+        border: 1.5px solid white;
         
     }
 
@@ -367,6 +798,36 @@ let isProjCover = data.isProjCover
 
         margin-bottom: var(--spacing-XL);
         z-index: 0;
+    }
+
+    .flex_header {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: var(--spacing-M);
+    }
+
+    .flex_header > a > svg {
+        height: 100%;
+        width: 100%;
+        fill: #1f1f1f;
+        opacity: 0.5;
+    }
+
+    .flex_header > a {
+        width: 30px;
+        height: 30px;
+        background-color: transparent;
+        transform: scale(1) rotate(0deg);
+        transition: transform 0.1s ease-in-out;
+    }
+
+    .flex_header > a:active {
+        width: 30px;
+        height: 30px;
+        transform: scale(0.9) rotate(5deg);
+        transition: transform 0.1s ease-in-out;
     }
 
     .card_scroll_flex > .p3 {
@@ -684,9 +1145,8 @@ let isProjCover = data.isProjCover
 
     @media (max-width: 768px) {
         :global(.card_container){
-            height: 65% !important;
-            min-height: none !important;
             width: 90vw !important;
+            max-height: none;
             border-radius: 20px;
             padding-right: 0px !important;
             transition: transform var(--card-transition-duration) ease-in-out;
@@ -734,6 +1194,26 @@ let isProjCover = data.isProjCover
 
         .section_container {
             margin-top: 15px;
+        }
+
+        .flex_header {
+            gap: var(--spacing-S)
+        }
+
+        .flex_header > a > svg {
+
+        }
+
+        .flex_header > h2 {
+            width: 80%;
+        }
+
+        .flex_header > a {
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            transform: scale(1) rotate(0deg);
+            transition: transform 0.1s ease-in-out;
         }
     }
     

@@ -2,7 +2,7 @@
     export let logoImage
 </script>
 
-<button class="closing_icon">
+<button class="closing_icon" href="/">
     <img src={logoImage} alt="EL2MP Logo">
 </button>
 
@@ -41,12 +41,10 @@
 
         bottom: 1%;
         left: 50%;
-        transform: translate(-50%, 0%);
-
+        transform: scale(1) translate(-50%, 0%);
+        transform-origin: center left;
         border: 0px;
-        pointer-events: none;
-        user-select: none;
-        
+        transition: transform 0.1s ease-in-out;
     }
 
     :global(.closing_icon:hover) {
@@ -56,9 +54,10 @@
     }
 
     :global(.closing_icon:active) {
+        
         background-color: transparent;
-        user-select: none;
-        pointer-events: none;
+        transform: scale(0.9) translate(-50%, 0%);
+        transition: transform 0.1s ease-in-out;
     }
 
     .closing_icon > img {

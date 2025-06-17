@@ -17,3 +17,10 @@ export const transitionCurve = "ease-in-out";
 
 export const startX = writable(null);
 export const startY = writable(null);
+
+export const currentFocus = writable(null);
+export const currentHash = writable(null);
+
+// Page load tracking stores
+
+export const isPageLoaded = writable(false);

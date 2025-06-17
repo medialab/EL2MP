@@ -1,39 +1,21 @@
 <script>
     import { selectedCard, isAlterEgoMode, currentCardColor } from '$lib/stores/globalStores';
-    export let switch_alterego;
-
-    // State used to add a pressed feedback on the whole slider
-    let isPressed = false;
-
-    // Helpers to toggle the pressed state for both mouse and touch interactions
-    const handlePointerDown = () => (isPressed = true);
-    const handlePointerUp = () => (isPressed = false);
 </script>
 
-<div class="slider_container {isPressed ? 'scaled' : ''}">
+<div class="slider_container">
     <button 
         class="slider-button first {$isAlterEgoMode ? 'active' : ''}" 
-        on:click={switch_alterego}
+        on:click={() => $isAlterEgoMode = true}
         disabled={$isAlterEgoMode}
         style="pointer-events: {$isAlterEgoMode ? 'none' : 'auto'};"
-        on:mousedown={handlePointerDown}
-        on:mouseup={handlePointerUp}
-        on:mouseleave={handlePointerUp}
-        on:touchstart={handlePointerDown}
-        on:touchend={handlePointerUp}
     >
         <p class="p3">Project</p>
     </button>
     <button 
         class="slider-button second {!$isAlterEgoMode ? 'active' : ''}" 
-        on:click={switch_alterego}
+        on:click={() => $isAlterEgoMode = false}
         disabled={!$isAlterEgoMode}
         style="pointer-events: {!$isAlterEgoMode ? 'none' : 'auto'};"
-        on:mousedown={handlePointerDown}
-        on:mouseup={handlePointerUp}
-        on:mouseleave={handlePointerUp}
-        on:touchstart={handlePointerDown}
-        on:touchend={handlePointerUp}
     >
         <p class="p3">Exercises</p>
     </button>
@@ -164,9 +146,9 @@
         border: solid 1px black;
         margin: 0px;
         
-        -webkit-transition: all calc(var(--transition-times) * 1.5) var(--transition-curve);
-        -moz-transition: all calc(var(--transition-times) * 1.5) var(--transition-curve);
-        transition: all calc(var(--transition-times) * 1.5) var(--transition-curve);
+        -webkit-transition: all calc(var(--transition-times)) var(--transition-curve);
+        -moz-transition: all calc(var(--transition-times)) var(--transition-curve);
+        transition: all calc(var(--transition-times)) var(--transition-curve);
     }
 
     .background_slider.project {

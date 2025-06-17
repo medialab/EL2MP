@@ -1,5 +1,6 @@
 <slot />
 
+
 <svelte:head>
   <!-- Essential Metadata -->
   <title>Ecologies of LLM Practices - Artificial Inquiries</title>
@@ -117,6 +118,51 @@
     gtag('config', 'G-8DHX3VYCYS');
   </script>
 </svelte:head>
+
+<script>
+  import { currentFocus } from "$lib/stores/globalStores";
+  import { onMount } from "svelte";
+  import { replaceState, beforeNavigate } from "$app/navigation";
+
+  $: if ($currentFocus !== null) {
+    if (typeof window !== 'undefined') {
+      window.location.hash = $currentFocus;
+    }
+  }
+
+  onMount(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      if (hash && hash !== $currentFocus) {
+        currentFocus.set(hash);
+      }
+    };
+
+    if (window.location.hash) {
+      const initialHash = window.location.hash.slice(1);
+      currentFocus.set(initialHash);
+    }
+
+    window.addEventListener('hashchange', handleHashChange);
+
+    window.addEventListener('beforeunload', () => {
+      if (window.location.pathname !== '/') {
+        window.history.replaceState(null, '', '/');
+      }
+    });
+
+    beforeNavigate(() => {
+      if (window.location.hash) {
+          currentFocus.set(null); 
+      }
+  });
+
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  });
+
+</script>
 
 
 <style>

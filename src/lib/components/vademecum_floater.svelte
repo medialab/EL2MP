@@ -417,7 +417,7 @@
     .custom-floater-bottom {
         width: 250px;
         height: fit-content;
-        display: inline-flex;
+        display: flex;
         padding: var(--spacing-S) var(--spacing-M);
         justify-content: center;
         align-items: center;
@@ -486,6 +486,10 @@
         flex-shrink: 0;
         z-index: 7;
         position: relative;
+    }
+
+    .category-icon > svg {
+        display: block;
     }
 
     .custom-floater-text {
@@ -566,6 +570,7 @@
             transform: scale(0.95) translateX(-50%) !important;
             transition: transform 0.135s ease-in-out, background-color 0.135s ease-out;
             transform-origin: left center !important;
+            background-color: #79e3a5 !important;
         }
     }
 </style> 
