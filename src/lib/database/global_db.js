@@ -104,8 +104,8 @@ const cardsDb = {
       {
         title: "Exercise 10 - The Art of the Prompt",
         subtitle:
-          "Participants read about prompting techniques, attempting to put them into practice.",
-        text: "Participants explore a <b>specific prompting technique</b> by practicing it throughout the week, and summarizing their findings in a concise presentation. The goal is to develop a <b>nuanced understanding</b> of how prompt design influences LLM responses.<br>",
+          "Participants explore and refine the way they prompt by experimenting with and reflecting on their interactions with LLMs.",
+        text: "By approaching prompting not as a one-size-fits-all formula, but as a <b>practice of inquiry and iteration,</b>  the series of tasks in this exercise sharpen participants’ prompting skills, and deepen their awareness of their assumptions and expectations. The goal is not just to make the LLM work better, but <b>to understand what “better” really means</b> in the context of one’s own practices.<br>",
         picture: photos.Ex_10,
       },
       {
