@@ -62,13 +62,13 @@
         return window.innerWidth <= 768 ? 'mobile' : 'desktop';
     };
 
-    const updateWindowSize = async () => {
+    const updateWindowSize = () => {
         width = window.innerWidth;
         height = window.innerHeight;
 
         const currentType = detectDeviceType();
 
-        await tick();
+        tick();
 
         if (currentType !== lastDeviceType) {
             lastDeviceType = currentType;
@@ -76,7 +76,7 @@
             $isMobileDevice = currentType === 'mobile';
             $isDesktop      = currentType === 'desktop';
 
-            await placeCards(containers);
+            placeCards(containers);
         }
     };
 
@@ -258,6 +258,7 @@
     const placeCards = async (containers) => {
 
         updateWindowSize();
+        
         await containers;
         if (containers) {
 
@@ -418,13 +419,15 @@
     };
 
     onMount(async () => {
+        updateWindowSize();
+        await tick();
         const interact = (await import('interactjs')).default;
         interactRef = interact;
         const simpleBar = (await import('simplebar')).default;
         const ResizeObserver = (await import('resize-observer-polyfill')).default;
 
         // Initialize the size
-        updateWindowSize();
+        
         window.addEventListener('resize', updateWindowSize);
 
         if (simplebarContainer) {
@@ -504,6 +507,7 @@
                             }
 
                             event.target.classList.remove('grab');
+                            event.target.classList.add('grabbing');
                             event.target.style.cursor = 'grabbing';
                             
                         },
@@ -521,6 +525,7 @@
                         end(event) {
 
                             event.target.classList.remove('grabbing');
+                            event.target.classList.add('grab');
                             event.target.style.cursor = 'grab';
                         },
                     },
@@ -926,37 +931,16 @@
                 />
             {/each}
 
-            <!-- Custom always-open red floater -->
-            <VademecumFloater 
+            
+        {/if}
+
+        <VademecumFloater 
                 randomPosition={calculateRandomPosition()}
             />
-        {/if}
 
         <LogoButton
             logoImage = {data.logoImage}
         />
-
-        <div class="mobile_desc_container">
-
-            <div class="mobile_description tip">
-                <p class="h4" style="text-align: center;">
-                    What is this project about?
-                </p>
-            </div>
-
-            <div class="mobile_description">
-                <p class="p2">
-                    {@html data.alterEgosDb.Card1.Description}
-                </p>
-            </div>
-
-            <div class="mobile_description tip">
-                <p class="h4" style="text-align: center;">
-                    Try this website on a  💻  device.
-                </p>
-            </div>
-
-        </div>
 
     </section>
    
@@ -1005,8 +989,9 @@
 
     :global(.grab) {
         cursor: grab !important;
+        
     }
-
+    /* Further on if we need to customize the grabbing state, we can add a class to the grabbing state */
     :global(.grabbing) {
         cursor: grabbing !important;
     }
@@ -1292,14 +1277,6 @@
     }
 
 
-    .mobile_description {
-        display: none;
-    }
-
-    .mobile_desc_container {
-        display: none;
-    }
-
     @media only screen and (max-width: 768px) {
 
         :global(h1) {
@@ -1393,12 +1370,13 @@
             overflow: hidden;
             border-radius: 5px;
         }
-
+  
+        /*
         .mobile_description::-webkit-scrollbar-thumb:hover {
-            background-color: transparent; /* Darker color when hovered */
+            background-color: transparent;
             overflow: hidden;
             border-radius: 10px;
-        }
+        } */
 
     }
 

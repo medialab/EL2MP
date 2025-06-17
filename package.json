@@ -14,7 +14,11 @@
     "@sveltejs/enhanced-img": "^0.4.4",
     "@sveltejs/kit": "^2.16.1",
     "@sveltejs/vite-plugin-svelte": "^4.0.0",
+    "autoprefixer": "^10.4.16",
+    "browserslist": "^4.22.2",
     "gh-pages": "^6.3.0",
+    "postcss": "^8.4.32",
+    "postcss-preset-env": "^9.3.0",
     "svelte": "^5.19.2",
     "vite": "^5.4.14"
   },

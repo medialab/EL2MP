@@ -76,6 +76,7 @@
 
     @media (max-width: 768px) {
         :global(.closing_icon) {
+            display: none;
             bottom: 0%;
             left: 0%;
             transform: translate(0%, 0%);

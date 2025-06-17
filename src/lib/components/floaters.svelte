@@ -131,8 +131,8 @@
                 {/if}
             {/if}
             
-            <a
-                href="#" 
+            <button
+                type="button"
                 class="floater_bottom"
                 style="background-color: {$currentCardColor}"
                 aria-label="Close"
@@ -184,7 +184,7 @@
                     </p>
                 {/if}
                 
-            </a>
+            </button>
         </div>
 
 <style>
@@ -274,6 +274,10 @@
         max-width: 300px;
         max-height: none;
         aspect-ratio: 21 / 9;
+        /* Fallback for browsers without aspect-ratio support */
+        @supports not (aspect-ratio: 1) {
+            height: calc(100vw / 21 * 9);
+        }
         width: 300px;
         height: 0px;
         overflow: hidden;
