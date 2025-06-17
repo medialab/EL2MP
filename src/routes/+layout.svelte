@@ -172,14 +172,6 @@
     }
 
     @font-face {
-        font-family: 'Delicious Handrawn';
-        font-style: normal;
-        font-weight: 400;
-        font-display: swap;
-        src: url('/fonts/DeliciousHandrawn-Regular.ttf') format('truetype');
-    }
-
-    @font-face {
         font-family: 'Instrument Serif';
         font-style: normal;
         font-weight: 400;

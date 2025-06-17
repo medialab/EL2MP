@@ -547,7 +547,7 @@
             transform: translateX(-50%);
             z-index: 999;
             position: fixed;
-            width: 90%;
+            width: 100%;
             max-width: 300px;
             height: auto;
             pointer-events:visible;
@@ -556,9 +556,15 @@
             transition: transform 0.335s ease-in-out, background-color 0.835s ease-in;
         } 
 
+        .mobile_vd_container > .p2 {
+            text-rendering: optimizeLegibility;
+            hyphens: none;
+            overflow: hidden;
+        }
+
         :global(.mobile_vd_container:active) {
             transform: scale(0.95) translateX(-50%) !important;
-            transition: transform 0.335s ease-in-out, background-color 0.835s ease-out;
+            transition: transform 0.335s ease-in-out, background-color 0.335s ease-out;
             transform-origin: left center !important;
         }
     }
