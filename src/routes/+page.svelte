@@ -496,7 +496,6 @@
 
                             const cardData = Object.values(data.cardsDb)[index];
 
-                            // If the cardData exists, update selectedCard with the Title
                             if (cardData && cardData.Title) {
                                $selectedCard = cardData.Title;
                                 if (!$isAlterEgoMode) {
@@ -524,14 +523,14 @@
                             event.target.classList.remove('grabbing');
                             event.target.style.cursor = 'grab';
                         },
-                        modifiers: [
-                            interact.modifiers.restrict({
-                                restriction: 'parent', // Prevents dragging outside the container's parent
-                                endOnly: true,
-                            }),
-                        ],
-                        inertia: true,
                     },
+                    modifiers: [
+                        interact.modifiers.restrict({
+                            restriction: hostElement,
+                            endOnly: true,
+                        }),
+                    ],
+                    inertia: true,
                 });
             });
             } else {return}
@@ -622,7 +621,6 @@
 
                     requestAnimationFrame(animateFloating);
 
-                    // Initialize draggable functionality using interact.js
                     interact(floater).draggable({
                         inertia: {
                             resistance: 20,
@@ -681,7 +679,7 @@
                         },
                         modifiers: [
                             interact.modifiers.restrict({
-                                restriction: "parent",
+                                restriction: hostElement,
                                 endOnly: true,
                             }),
                         ],
@@ -735,7 +733,7 @@
                         },
                         modifiers: [
                             interact.modifiers.restrict({
-                                restriction: 'parent',
+                                restriction: hostElement,
                                 endOnly: true,
                             }),
                         ],
