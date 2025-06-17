@@ -185,9 +185,14 @@
         .slider_container {
             padding: 0px;
             width: 200px;
-            height: 48px;
+            height: 36px;
             border-radius: var(--slider-radius);
-            --slider-radius: 4vw;
+            --slider-radius: 3.5vw;
+        }
+
+        .slider_container:hover {
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
 
         .slider-button {
@@ -212,7 +217,7 @@
         .background_slider {
             width: 50%;
             height: 100%;
-            border-radius: calc(var(--slider-radius) - 3px);
+            border-radius: calc(var(--slider-radius) * 0.9);
         }
 
         .background_slider.project {

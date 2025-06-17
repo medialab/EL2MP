@@ -684,7 +684,7 @@ let isProjCover = data.isProjCover
 
     @media (max-width: 768px) {
         :global(.card_container){
-            height: 55% !important;
+            height: 65% !important;
             min-height: none !important;
             width: 90vw !important;
             border-radius: 20px;

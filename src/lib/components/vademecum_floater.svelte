@@ -349,7 +349,7 @@
     on:keydown={handleKeyDown}
     aria-label="Mobile vademecum download button"
     style="{!$isDownloaded ? 'background-color: #f0f0f0;' : 'background-color: #2ecc71 !important;'}">
-    <p class="p2" style="font-weight: 700;">GET THE ARTIFICIAL INQUIRIES PDF</p>
+    <p class="p3" style="font-weight: 700;">GET THE ARTIFICIAL INQUIRIES PDF</p>
     <div class="category-icon">
         <!-- Custom icon SVG -->
         {#if !$isDownloaded}
@@ -547,16 +547,16 @@
             transform: translateX(-50%);
             z-index: 999;
             position: fixed;
-            width: 100%;
-            max-width: 300px;
+            width: max-content;
             height: auto;
             pointer-events:visible;
             user-select: none;
             touch-action: none;
-            transition: transform 0.335s ease-in-out, background-color 0.835s ease-in;
+            transition: transform 0.135s ease-in-out, background-color 0.835s ease-in;
+            transform-origin: left center !important;
         } 
 
-        .mobile_vd_container > .p2 {
+        .mobile_vd_container > .p3 {
             text-rendering: optimizeLegibility;
             hyphens: none;
             overflow: hidden;
@@ -564,7 +564,7 @@
 
         :global(.mobile_vd_container:active) {
             transform: scale(0.95) translateX(-50%) !important;
-            transition: transform 0.335s ease-in-out, background-color 0.335s ease-out;
+            transition: transform 0.135s ease-in-out, background-color 0.135s ease-out;
             transform-origin: left center !important;
         }
     }
