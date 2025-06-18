@@ -50,6 +50,9 @@
 
     const waitForHash = writable(false);
 
+    // Flag that becomes true once updateWindowSize has populated viewport dimensions
+    const windowSizeReady = writable(false);
+
     const getCardFlushOrder = (card) => {
         if (typeof document !== 'undefined') {
             const currentCard = document.querySelector(`[data-section="${card.Title}"]`)
@@ -64,26 +67,16 @@
         return 0
     }   
 
-    const detectDeviceType = () => {
-        return window.innerWidth <= 768 ? 'mobile' : 'desktop';
-    };
-
     const updateWindowSize = () => {
-        width = window.innerWidth;
-        height = window.innerHeight;
+        windowWidth  = window.innerWidth;
+        windowHeight = window.innerHeight;
+       
+        isMobileDevice.set(windowWidth <= 768);
+        isDesktop.set(windowWidth > 768);
+        console.log("updateWindowSize", windowWidth, windowHeight);
 
-        const currentType = detectDeviceType();
-
-        tick();
-
-        if (currentType !== lastDeviceType) {
-            lastDeviceType = currentType;
-
-            $isMobileDevice = currentType === 'mobile';
-            $isDesktop      = currentType === 'desktop';
-
-            placeCards(containers);
-        }
+        // Notify that viewport dimensions are now known
+        windowSizeReady.set(true);
     };
 
     const bringToFront = (eventOrElement) => {
@@ -228,97 +221,98 @@
     }
     
     const placeCards = async (containers) => {
-
-        updateWindowSize();
         
-        await containers;
-        if (containers) {
+        setTimeout(async () => {
+            await containers;
 
-            const firstCard = containers[0];
+            if (containers) {
 
-            containers.forEach(container => {
-                container.style.height = '65%';
-            });
+                const firstCard = containers[0];
 
-            cardWidth = firstCard.getBoundingClientRect().width;
-            cardHeight = firstCard.getBoundingClientRect().height;
-            const opticalCorrection = -50;
-
-            if ($isDesktop) {
-
-                    offset = -30;
-
-                    totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
-                    totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
-
-                    $startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length) + opticalCorrection;
-                    $startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length) + opticalCorrection;
-
-
-                } else if ($isMobileDevice) {
-                    offset = -45;
-                    totalBlockWidth = cardWidth;
-                    totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
-                    $startX = ((windowWidth - totalBlockWidth) / 2);
-                    $startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length -1 );
+                if ($isMobileDevice) {
+                    containers.forEach(container => {
+                        container.style.height = '65%';
+                    });
                 }
 
-            containers.forEach(async (container, index) => {
+                cardWidth = firstCard.getBoundingClientRect().width;
+                cardHeight = firstCard.getBoundingClientRect().height;
+                const opticalCorrection = -50;
 
                 if ($isDesktop) {
-                    x = $startX + index * offset;
-                    y = $startY + index * offset;
-                } else if ($isMobileDevice) {
-                    x = $startX;
-                    y = $startY + index * offset;
-                }
 
-                initialPositions[index] = { x, y };
-                container.style.transition = 'transform 0.3s ease-in-out';
-                container.style.transformOrigin = 'top left';
-                container.style.transform = `translateX(${x}px) translateY(${y}px)`;
-                container.setAttribute('data-x', x);
-                container.setAttribute('data-y', y);
-                container.style.zIndex = -index + 4;
+                        offset = -30;
 
-                container.setAttribute('data-index', index);
+                        totalBlockWidth = cardWidth + ((containers.length - 1) * Math.abs(offset));
+                        totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
 
-                const cardData = Object.values(data.cardsDb)[index];
-                if (cardData && cardData.bgColor) {
-                    container.style.backgroundColor = cardData.bgColor;
-                }
+                        $startX = ((windowWidth - totalBlockWidth) / 2) - offset * (containers.length) + opticalCorrection;
+                        $startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length) + opticalCorrection;
+
+
+                    } else if ($isMobileDevice) {
+                        offset = -45;
+                        totalBlockWidth = cardWidth;
+                        totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
+                        $startX = ((windowWidth - totalBlockWidth) / 2);
+                        $startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length -1 );
+                    }
+
+                containers.forEach(async (container, index) => {
+
+                    if ($isDesktop) {
+                        x = $startX + index * offset;
+                        y = $startY + index * offset;
+                    } else if ($isMobileDevice) {
+                        x = $startX;
+                        y = $startY + index * offset;
+                    }
+
+                    initialPositions[index] = { x, y };
+                    container.style.transition = 'transform 0.3s ease-in-out';
+                    container.style.transformOrigin = 'top left';
+                    container.style.transform = `translateX(${x}px) translateY(${y}px)`;
+                    container.setAttribute('data-x', x);
+                    container.setAttribute('data-y', y);
+                    container.style.zIndex = -index + 4;
+
+                    container.setAttribute('data-index', index);
+
+                    const cardData = Object.values(data.cardsDb)[index];
+                    if (cardData && cardData.bgColor) {
+                        container.style.backgroundColor = cardData.bgColor;
+                    }
+                    
+                    setTimeout(() => {
+                        container.style.transition = '';
+                    }, 300);
+
                 
-                setTimeout(() => {
-                    container.style.transition = '';
-                }, 300);
+                    if ($waitForHash) {
+                        //If we arrive with a hash value, so a sharing link, we need to focus the correct card
+                        setTimeout(() => {
+                            setTimeout(() => {
+                                container.style.opacity = '1';
+                            }, index * 125);
+                            areCardsLoaded.set(true);
+                        }, 1000);
+                    } else {
+                        //If not the functioning is normal
+                        setTimeout(() => {
+                            setTimeout(() => {
+                                container.style.opacity = '1';
+                            }, index * 125);
+                            areCardsLoaded.set(true);
+                        }, 500);
+                    }
+                    });
 
-            
-                if ($waitForHash) {
-                    //If we arrive with a hash value, so a sharing link, we need to focus the correct card
-                    setTimeout(() => {
-                        setTimeout(() => {
-                            container.style.opacity = '1';
-                        }, index * 125);
-                        areCardsLoaded.set(true);
-                    }, 1000);
-                } else {
-                    //If not the functioning is normal
-                    setTimeout(() => {
-                        setTimeout(() => {
-                            container.style.opacity = '1';
-                        }, index * 125);
-                        areCardsLoaded.set(true);
-                    }, 500);
+                    $isPageLoaded = true;
                 }
-                });
 
-                $isPageLoaded = true;
-        }
-
+        }, 10);
         
     }
-
-    
 
     const swapCards = (event) => {
         alignColor(event.getAttribute("data-section"));
@@ -394,7 +388,6 @@
 
     const navigateToExercise = (exercise) => {
         $currentHash = window.location.hash;
-        //console.log("currentHash:", $currentHash);
 
         if ($currentHash) {
             $waitForHash = true;
@@ -434,13 +427,10 @@
     }
 
     onMount(async () => {
-        updateWindowSize();
-        await navigateToExercise();
-
         const interact = (await import('interactjs')).default;
         const simpleBar = (await import('simplebar')).default;
+
         
-        //window.addEventListener('resize', updateWindowSize);
 
         if (simplebarContainer) {
             new SimpleBar(simplebarContainer, {
@@ -449,6 +439,12 @@
             });
         }
 
+        await tick();
+
+        updateWindowSize();
+
+        await tick();
+
         containers = document.querySelectorAll('.card_container')
         floaters = document.querySelectorAll('.floater_container')
         scrollContainers = document.querySelectorAll('.card_scrollable_container')
@@ -456,14 +452,9 @@
         scrollableElements = document.querySelectorAll('.card_scrollable_container')
         sections = document.querySelectorAll('.section_container');
 
-        await window.innerWidth;
-        await window.innerHeight;
-        
-        windowWidth = window.innerWidth;
-        windowHeight = window.innerHeight; 
-    
         placeCards(containers);
-
+        navigateToExercise();
+        
         if ($isMobileDevice) {
             await containers;
 
@@ -757,20 +748,10 @@
         } else {return}
 
         setupMouseDetection();
-
-        return () => {
-            if (typeof window !== 'undefined') {
-                window.removeEventListener('resize', updateWindowSize);
-                clearInterval(interval);
-            }
-        };
         
     }); 
 
     onDestroy(() => {
-        if (typeof window !== 'undefined') {
-            window.removeEventListener('resize', updateWindowSize);
-        }
         
         // Cancel any animation frames or timeouts
         if (typeof holdTimeout !== 'undefined' && holdTimeout) {
@@ -915,40 +896,41 @@
         {/if}
 
         
-        <Slider />
+        {#if $windowSizeReady}
 
+            <Slider />
 
-        {#each Object.values(data.cardsDb) as card (card.IndexNum)}
-            <Capitols
-                {data}
-                {card}
-                transitionDelay = {getCardFlushOrder(card) * 10}
-                alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
-                bringToFront = {bringToFront}
-                swapCards = {swapCards}
-                simplebarContainer = {simplebarContainer}
-            />
-        {/each}   
-
-        {#if !$isMobileDevice}
-            {#each Object.values(data.floatersDb) as singleFloater, index (singleFloater.id)}
-                <Floater
-                    data={singleFloater}
-                    randomPosition={calculateRandomPosition(singleFloater)}
+            {#each Object.values(data.cardsDb) as card (card.IndexNum)}
+                <Capitols
+                    {data}
+                    {card}
+                    transitionDelay = {getCardFlushOrder(card) * 10}
+                    alterEgoCard={data.alterEgosDb[`Card${card.IndexNum}`]}
+                    bringToFront = {bringToFront}
+                    swapCards = {swapCards}
+                    simplebarContainer = {simplebarContainer}
                 />
             {/each}
 
-            
+            {#if !$isMobileDevice}
+                {#each Object.values(data.floatersDb) as singleFloater, index (singleFloater.id)}
+                    <Floater
+                        data={singleFloater}
+                        randomPosition={calculateRandomPosition(singleFloater)}
+                    />
+                {/each}
+            {/if}
+
+            <VademecumFloater 
+                bind:this={vademecumFloater}
+                randomPosition={calculateRandomPosition(vademecumFloater)}
+            />
+
+            <LogoButton
+                logoImage = {data.logoImage}
+            />
+
         {/if}
-
-        <VademecumFloater 
-            bind:this={vademecumFloater}
-            randomPosition={calculateRandomPosition(vademecumFloater)}
-        />
-
-        <LogoButton
-            logoImage = {data.logoImage}
-        />
 
     </section>
    
@@ -965,10 +947,10 @@
         background-color: transparent;
 
         @media (max-width: 768px) {
-            height: 100vh;
-            height: 100dvh; /* Dynamic viewport height for mobile */
-            height: 100svh; /* Small viewport height as fallback */
+            height: 100%;
             width: 100%;
+            max-height: 100vh;
+            max-width: 100vw;
             display: block;
             justify-content: start;
             margin: 0;
@@ -979,6 +961,8 @@
 
     :global(.host) {
         width: 100%;
+        max-width: 100vw;
+        max-height: 100vh;
         height: 100%;
         overflow: hidden;
         position: relative;
@@ -1019,6 +1003,8 @@
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;
+        max-width: 100vw;
+        max-height: 100vh;
     }
 
     :global(.major_div) {
@@ -1318,7 +1304,7 @@
         }
 
         .loading_text {
-            display: none;
+            display: block;
         }
     }
 

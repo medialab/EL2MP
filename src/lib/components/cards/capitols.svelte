@@ -82,7 +82,7 @@ const generateShareContent = async (shareData) => {
         const svgRoot = svgDoc.documentElement;
         svgRoot.insertBefore(defs, svgRoot.firstChild);
         
-        const maxCharsPerLine = $isMobileDevice ? 50 : 75;
+        const maxCharsPerLine = $isMobileDevice ? 55 : 75;
         const lineHeightConfig = {
             exTitle: 1.1,
             exDescription: 1.3,
@@ -576,8 +576,8 @@ const generateShareContent = async (shareData) => {
                                 <div class="flex_header">
                                     <h2>{@html section.title}</h2>
 
-                                    <a id="share_button"
-                                    href="#"
+                                    <button id="share_button"
+                                    
                                     onclick={async (event) => {
                                         event.preventDefault();
                                         
@@ -603,7 +603,7 @@ const generateShareContent = async (shareData) => {
                                     role="button"
                                     aria-label="Share content">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M264.62-80Q237-80 218.5-98.5 200-117 200-144.62v-390.76q0-27.62 18.5-46.12Q237-600 264.62-600h84.61v40h-84.61q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v390.76q0 9.24 7.69 16.93 7.69 7.69 7.69 16.93h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-390.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69h-84.61v-40h84.61q27.62 0 46.12 18.5Q760-563 760-535.38v390.76q0 27.62-18.5 46.12Q723-80 695.38-80H264.62ZM460-340v-435.46l-84 84L347.69-720 480-852.31 612.31-720 584-691.46l-84-84V-340h-40Z"/></svg>
-                                    </a>
+                                    </button>
                                     
                                     
                                 </div>
@@ -890,22 +890,33 @@ const generateShareContent = async (shareData) => {
         gap: var(--spacing-M);
     }
 
-    .flex_header > a > svg {
+    .flex_header > button > svg {
         height: 100%;
         width: 100%;
         fill: #1f1f1f;
         opacity: 0.5;
     }
 
-    .flex_header > a {
+    .flex_header > button {
         width: 30px;
         height: 30px;
         background-color: transparent;
         transform: scale(1) rotate(0deg);
         transition: transform 0.1s ease-in-out;
+        background-color: transparent;
+        border: none;
+        transform: scale(1) rotate(0deg);
+        transition: transform 0.1s ease-in-out;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border-radius: 0%;
+        padding: 0;
     }
 
-    .flex_header > a:active {
+    .flex_header > button:active {
         width: 30px;
         height: 30px;
         transform: scale(0.9) rotate(5deg);
@@ -1285,24 +1296,29 @@ const generateShareContent = async (shareData) => {
         .flex_header > h2 {
             width: fit-content ;
         }
+        
 
-        .flex_header > a > svg {
+        .flex_header > button > svg {
             height: 80%;
             width: 80%;
             place-self: center;
             align-self: center;
         }
 
-        .flex_header > a {
+        .flex_header > button {
             width: 30px;
             height: 30px;
             background-color: transparent;
+            border: none;
             transform: scale(1) rotate(0deg);
             transition: transform 0.1s ease-in-out;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
+            position: relative;
+            border-radius: 0%;
+            padding: 0;
         }
 
         .block_num > p {
