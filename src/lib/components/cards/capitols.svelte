@@ -351,7 +351,7 @@ const generateShareContent = async (shareData) => {
         
         const svgWidth = parseFloat(svgRoot.getAttribute('width')) || 680;
         const svgHeight = parseFloat(svgRoot.getAttribute('height')) || 474;
-        const scale = 1;
+        const scale = 2;
         
         canvas.width = svgWidth * scale;
         canvas.height = svgHeight * scale;
@@ -423,7 +423,16 @@ const generateShareContent = async (shareData) => {
         
         const exLabel = shareData.exTitle ? shareData.exTitle.replace(/<[^>]+>/g, '') : 'Exercise';
         const blockLabel = shareData.title ? shareData.title.replace(/<[^>]+>/g, '') : 'Block';
-        const desc = shareData.text ? stripHTML(shareData.text) : '';
+        
+        const MAX_DESC_LENGTH = 200;
+        let desc = '';
+        
+        if (shareData.text) {
+            const cleanText = stripHTML(shareData.text).replace(/\s+/g, ' ').trim();
+            desc = cleanText.length > MAX_DESC_LENGTH
+                ? cleanText.slice(0, MAX_DESC_LENGTH).trimEnd() + '…'
+                : cleanText;
+        }
         const link = shareData.url || window.location.href;
         const socialMessage =
           `\n*Exercise ${exLabel} of block ${blockLabel}*\n\n` +
