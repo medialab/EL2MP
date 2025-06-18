@@ -216,7 +216,7 @@
     
     //Floaters filtering
     $: if (!$isAlterEgoMode && $selectedCard && floaters) {
-        console.log("Filtering floaters for card", $selectedCard);
+        //console.log("Filtering floaters for card", $selectedCard);
 
         floaters.forEach((floater) => {
             if ($selectedCard !== 'all' && floater.dataset.parent !== $selectedCard) {
@@ -1302,7 +1302,7 @@
         }
 
         :global(h2) {
-            font-size: 28px;
+            font-size: 24px;
         }
 
         :global(.p1) {

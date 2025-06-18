@@ -259,7 +259,7 @@
         }
 
         await $isMobileDevice;
-        console.log($isMobileDevice)
+        //console.log($isMobileDevice)
 
         if ($isMobileDevice) {
             $svgFill = "#000000";
@@ -267,7 +267,7 @@
             $svgFill = "#FFFFFF";
         }
 
-        console.log($svgFill)
+        //console.log($svgFill)
     });
 
     onDestroy(() => {

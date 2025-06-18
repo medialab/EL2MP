@@ -14,7 +14,7 @@ const cardsDb = {
     CoverImg: capitolsCover.coverQualifying,
     Content: [
       {
-        title: "Exercise 1 - Draw It Like You See It",
+        title: "Ex 1 - Draw It Like You See It",
         subtitle:
           "Participants sketch how they think an LLM works and how they view their work environment.",
         text: "This exercise introduces participants to the project's exploration of the social and material contexts in which professionals interact with LLMs. Through <b>spontaneous and deliberately imperfect sketches</b>, participants capture their intuitive and metaphorical understanding of LLMs.",
@@ -22,7 +22,7 @@ const cardsDb = {
         exNum: 1,
       },
       {
-        title: "Exercise 2 - Harvesting Tasks",
+        title: "Ex 2 - Harvesting Tasks",
         subtitle:
           "Participants account for the tasks they perform in their work and how LLMs could assist them.",
         text: "This exercise helps participants <b>reflect on their existing work</b>, revealing overlooked or underappreciated tasks.<br>They also explore what other work they could do with the assistance of an LLM, generating material for future exercises.",
@@ -30,7 +30,7 @@ const cardsDb = {
         exNum: 2,
       },
       {
-        title: "Exercise 3 - Rough Impressions",
+        title: "Ex 3 - Rough Impressions",
         subtitle:
           "Participants review their ChatGPT history to identify usage patterns and what stands out.",
         text: "This exercise prompts participants to <b>critically assess</b> their LLM interactions through self-evaluation and a structured review of their conversation history.<br>It highlights <b>gaps between perception and actual use</b> to further their understanding of their LLM usage rather than relying on one-off talking points or anecdotes.",
@@ -38,7 +38,7 @@ const cardsDb = {
         exNum: 3,
       },
       {
-        title: "Exercise 4 - Memorable Conversations",
+        title: "Ex 4 - Memorable Conversations",
         subtitle:
           "Participants identify what made some conversations with ChatGPT remarkable.",
         text: "Participants <b>analyze past LLM interactions</b> that stood out due to emotional impact, moral hesitation, or significant outcomes.<br>They rate the model's performance and explore why it performed as it did, fostering awareness about LLM capabilities and professional expectations.",
@@ -46,7 +46,7 @@ const cardsDb = {
         exNum: 4,
       },
       {
-        title: "Exercise 5 - Subtracting the Machine",
+        title: "Ex 5 - Subtracting the Machine",
         subtitle:
           "Participants describe memorable interactions with ChatGPT without using terms like 'LLM' or 'ChatGPT'.",
         text: "This thought experiment creates <b>artificial constraints</b> on how participants talk about their use of LLMs.<br>Because they cannot rely on ready-made categories (e.g., 'ChatGPT', 'machine', or 'assistant'), participants need to <b>reconsider their interactions</b> with the models, playing with different metaphors and analogies drawn from their social and professional environments.",
@@ -66,7 +66,7 @@ const cardsDb = {
     CoverImg: capitolsCover.coverBenchmarking,
     Content: [
       {
-        title: "Exercise 6 - Design your AI Trial",
+        title: "Ex 6 - Design your AI Trial",
         subtitle:
           "Participants design a trial to test the usefulness of an LLM, choosing four tasks that are essential or enjoyable parts of their work.",
         text: "This exercise guides participants through a <b>selection process</b>, drawing from their current work practices and the potential implementation of new tasks. <br>In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around <b>their own professional experience</b>. <br>This personalized benchmark aims to assess whether the models can provide <b>practical value</b> that actually matters in a specific professional situation.",
@@ -74,7 +74,7 @@ const cardsDb = {
         exNum: 6,
       },
       {
-        title: "Exercise 7 - Preparing for the Trial",
+        title: "Ex 7 - Preparing for the Trial",
         subtitle:
           "Participants write detailed instructions for their tasks and choose four LLMs they wish to test.",
         text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM towards accomplishing a simple or complex task. They are led to reflect on the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
@@ -82,7 +82,7 @@ const cardsDb = {
         exNum: 7,
       },
       {
-        title: "Exercise 8 - Gathering Evidence",
+        title: "Ex 8 - Gathering Evidence",
         subtitle:
           "Participants ask an acquaintance to collect answers from LLMs and anonymize results to avoid bias.",
         text: "In this exercise, participants <b>enlist the help</b> of a fellow co-inquirer, a good friend, or a colleague. <br>In addition to anonymizing results and ensuring fairness in the upcoming trial, this exercise allows participants to <b>concretely experience</b> the collaborative nature of LLM performance evaluation.",
@@ -90,7 +90,7 @@ const cardsDb = {
         exNum: 8,
       },
       {
-        title: "Exercise 9 - Judgment Day",
+        title: "Ex 9 - Judgment Day",
         subtitle:
           "Participants assess the blind results of their AI trial: they rank them, explain on what ground they assessed each performance, and reflect on the trial process.",
         text: "Participants <b>rank anonymized LLM responses</b> for each task, determine the best-performing model, and <b>critically review</b> the trial's fairness and relevance.<br>This evaluation encourages participants to reflect on what matters in assessing the <b>situated value</b> of LLMs.",
@@ -111,7 +111,7 @@ const cardsDb = {
     CoverImg: capitolsCover.coverPrompting,
     Content: [
       {
-        title: "Exercise 10 - The Art of the Prompt",
+        title: "Ex 10 - The Art of the Prompt",
         subtitle:
           "Participants explore and refine the way they prompt by experimenting with and reflecting on their interactions with LLMs.",
         text: "By approaching prompting not as a one-size-fits-all formula, but as a <b>practice of inquiry and iteration,</b>  the series of tasks in this exercise sharpen participants’ prompting skills, and deepen their awareness of their assumptions and expectations. The goal is not just to make the LLM work better, but <b>to understand what “better” really means</b> in the context of one’s own practices.<br>",
@@ -119,7 +119,7 @@ const cardsDb = {
         exNum: 10,
       },
       {
-        title: "Exercise 11 - Tracking Shifts",
+        title: "Ex 11 - Tracking Shifts",
         subtitle:
           "Participants look back on their LLM practices since the experiment began, searching for shifts and continuities.",
         text: "Participants document how their use of <b>LLMs</b> has changed since the beginning of the experiment. Using concrete examples from their experience, they write two short essays on how their <b>practices have evolved</b> and on what has <b>remained stable</b>.<br>",
@@ -140,7 +140,7 @@ const cardsDb = {
     CoverImg: capitolsCover.coverExcel,
     Content: [
       {
-        title: "Exercise 12 - Choosing an Exemplary Work",
+        title: "Ex 12 - Choosing an Exemplary Work",
         subtitle:
           "Participants identify and reflect on written texts that set a benchmark in their field.",
         text: "An exemplary work is not necessarily a prestigious publication but may be a <b>modest, everyday writing</b> that embodies clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
@@ -148,7 +148,7 @@ const cardsDb = {
         exNum: 12,
       },
       {
-        title: "Exercise 13 - Setting Up the Example",
+        title: "Ex 13 - Setting Up the Example",
         subtitle:
           "Participants discuss the place of their chosen work within their professional ecology and explain why it is exemplary.",
         text: "This exercise contextualizes the chosen exemplary work by examining its <b>professional significance</b>. A radar graph helps assess factors like frequency, expertise required, and error tolerance, while a structured reflection highlights what makes the work <b>exemplary</b> and worth emulating.",
@@ -156,15 +156,15 @@ const cardsDb = {
         exNum: 13,
       },
       {
-        title: "Exercise 14 - Setting Up the Example",
+        title: "Ex 14 - Setting Up the Example",
         subtitle:
           "Participants guide an LLM towards reproducing an exemplary text from their professional field.",
         text: "Participants attempt to recreate a <b>high-quality text</b> using an LLM without providing direct access to the original. This experiment tests the LLM's ability to replicate <b>style, tone, and meaning</b> while challenging participants to refine their prompting strategies.<br>Through 90-minute work sessions interspersed between Exercises 15 and 17, participants document their process and assess the model's capacity to come as close as possible to <b>an exact copy</b> of an exemplary work.",
-        picture: photos.Ex_13,
+        picture: photos.Ex_14,
         exNum: 14,
       },
       {
-        title: "Exercise 15 - Anatomy of an Exemplary Work",
+        title: "Ex 15 - Anatomy of an Exemplary Work",
         subtitle:
           "Participants break down their exemplary work into its main components and assess which elements are accessible to an LLM.",
         text: "Participants map key influences, professional constraints, and dependencies of their chosen text's underlying structure. <br>A layered dependency graph helps distinguish which elements are <b>accessible to an LLM</b> and which remain <b>beyond its reach</b>.",
@@ -172,7 +172,7 @@ const cardsDb = {
         exNum: 15,
       },
       {
-        title: "Exercise 16 - Obstacles, Dead Ends, Highways",
+        title: "Ex 16 - Obstacles, Dead Ends, Highways",
         subtitle:
           "Participants examine key moments in navigating the LLM: obstacles, dead ends, and highways.",
         text: "By identifying <b>challenges that can be overcome</b> through iteration or adapting a prompt, <b>situations where the LLM fails</b> to generate meaningful progress despite repeated attempts, and <b>effortless response generation</b>, participants discover patterns in their experiences and develop a clearer sense of when to persist, pivot, or abandon a strategy.<br>",
@@ -180,7 +180,7 @@ const cardsDb = {
         exNum: 16,
       },
       {
-        title: "Exercise 17 - Charting Your Path",
+        title: "Ex 17 - Charting Your Path",
         subtitle:
           "Participants sketch three evolving, hand-drawn graphs depicting their learning journey.",
         text: "By mapping output fidelity horizontally and model behavior vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. Detours or derailments become fully visible, thus demonstrating that achieving success with an LLM is far from linear or effortless.",
@@ -201,7 +201,7 @@ const cardsDb = {
     CoverImg: capitolsCover.coverDistilling,
     Content: [
       {
-        title: "Exercise 18 - Distilling the Vademecum",
+        title: "Ex 18 - Distilling the Vademecum",
         subtitle:
           "Participants synthesize their own perspective on the entire experiment into a cohesive narrative.",
         text: "This exercise encourages <b>the creation of a personal booklet</b> that combines selected pages from the vademecum with additional notes, sketches, and digital traces. This curated archive serves as <b>a storytelling device</b> capturing key moments, doubts, and insights that have shaped the participant’s evolving relationship with LLMs.",
@@ -232,7 +232,7 @@ const alterEgosDb = {
     Description:
       'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation - </b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort - </b> What new kinds of work do LLMs require from their users?<br><br><b>Perception - </b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
     IndexNum: 2,
-    bgColor: "#000000",
+    bgColor: "#1F1F1F",
   },
   Card3: {
     Title: "Methodology",
@@ -241,15 +241,15 @@ const alterEgosDb = {
     Description:
       "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation - </b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices - </b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum) - </b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
     IndexNum: 3,
-    bgColor: "#000000",
+    bgColor: "#2C2C2C",
   },
   Card4: {
     Title: "Contact",
     Question: "Our Team",
     Description:
-      '<b>Donato Ricci</b>: <a href="https://medialab.sciencespo.fr/equipe/donato-ricci/" target="_blank" style="text-decoration: underline;">Principal Investigator, Designer</a> <br> <b>Contact</b>: <a href="mailto:donato.ricci@sciencespo.fr" target="_blank" style="text-decoration: underline;">donato.ricci@sciencespo.fr</a><br><br><b>Gabriel Alcaras</b>: <a href="https://medialab.sciencespo.fr/equipe/gabriel-alcaras/" target="_blank" style="text-decoration: underline;">Postdoctoral researcher, Sociologist</a> <br> <b>Contact</b>: <a href="mailto:gabriel.alcaras@sciencespo.fr" target="_blank" style="text-decoration: underline;">gabriel.alcaras@sciencespo.fr</a><br><br><b>Tommaso Prinetti</b>: <a href="https://medialab.sciencespo.fr/equipe/tommaso-prinetti/" target="_blank" style="text-decoration: underline;">Research Assistant, Designer</a> <br> <b>Contact</b>: <a href="mailto:tommaso.prinetti@sciencespo.fr" target="_blank" style="text-decoration: underline;">tommaso.prinetti@sciencespo.fr</a><br><br><b>Zoé de Vries</b>: <a href="https://medialab.sciencespo.fr/equipe/zoe-de-vries/" target="_blank" style="text-decoration: underline;">Research Assistant, Linguist</a> <br> <b>Contact</b>: <a href="mailto:zoe.devries@sciencespo.fr" target="_blank" style="text-decoration: underline;">zoe.devries@sciencespo.fr</a><br><br>',
+      '<b>Donato Ricci</b>: <a href="https://medialab.sciencespo.fr/en/people/donato-ricci/" target="_blank" style="text-decoration: underline;">Principal Investigator, Designer</a> <br> <b>Contact</b>: <a href="mailto:donato.ricci@sciencespo.fr" target="_blank" style="text-decoration: underline;">donato.ricci@sciencespo.fr</a><br><br><b>Gabriel Alcaras</b>: <a href="https://medialab.sciencespo.fr/equipe/gabriel-alcaras/" target="_blank" style="text-decoration: underline;">Postdoctoral researcher, Sociologist</a> <br> <b>Contact</b>: <a href="mailto:gabriel.alcaras@sciencespo.fr" target="_blank" style="text-decoration: underline;">gabriel.alcaras@sciencespo.fr</a><br><br><b>Tommaso Prinetti</b>: <a href="https://medialab.sciencespo.fr/equipe/tommaso-prinetti/" target="_blank" style="text-decoration: underline;">Research Assistant, Designer</a> <br> <b>Contact</b>: <a href="mailto:tommaso.prinetti@sciencespo.fr" target="_blank" style="text-decoration: underline;">tommaso.prinetti@sciencespo.fr</a><br><br><b>Zoé de Vries</b>: <a href="https://medialab.sciencespo.fr/equipe/zoe-de-vries/" target="_blank" style="text-decoration: underline;">Research Assistant, Linguist</a> <br> <b>Contact</b>: <a href="mailto:zoe.devries@sciencespo.fr" target="_blank" style="text-decoration: underline;">zoe.devries@sciencespo.fr</a><br><br>',
     IndexNum: 4,
-    bgColor: "#000000",
+    bgColor: "#3A3A3A",
   },
 
   Card5: {
@@ -259,7 +259,7 @@ const alterEgosDb = {
     Description:
       "Clara Demarty-Coadic<br>François Lambert<br>Josephine Preißler<br>Léa Stephan<br>Lukas Brand<br>Mathilde Blanchon<br>Thérèse d'Orléans<br>Yajing Hu",
     IndexNum: 5,
-    bgColor: "#000000",
+    bgColor: "#444444",
   },
 };
 
