@@ -75,9 +75,10 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 # Images (if you want to ignore them as well)
-*.jpg
-*.png
-*.svg
+#*.jpg
+#*.png
+#*.svg
+*.pdf
 .env
 *.pem
 *.sqlite
