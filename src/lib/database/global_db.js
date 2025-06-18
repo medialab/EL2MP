@@ -77,7 +77,7 @@ const cardsDb = {
         title: "Exercise 7 - Preparing for the Trial",
         subtitle:
           "Participants write detailed instructions for their tasks and choose four LLMs they wish to test.",
-        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM toward accomplishing a simple or complex task. They are led to reflect on the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
+        text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM towards accomplishing a simple or complex task. They are led to reflect on the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
         picture: photos.Ex_7,
         exNum: 7,
       },
@@ -113,8 +113,8 @@ const cardsDb = {
       {
         title: "Exercise 10 - The Art of the Prompt",
         subtitle:
-          "Participants read about prompting techniques, attempting to put them into practice.",
-        text: "Participants explore a <b>specific prompting technique</b> by practicing it throughout the week, and summarizing their findings in a concise presentation. The goal is to develop a <b>nuanced understanding</b> of how prompt design influences LLM responses.<br>",
+          "Participants explore and refine the way they prompt by experimenting with and reflecting on their interactions with LLMs.",
+        text: "By approaching prompting not as a one-size-fits-all formula, but as a <b>practice of inquiry and iteration,</b>  the series of tasks in this exercise sharpen participants’ prompting skills, and deepen their awareness of their assumptions and expectations. The goal is not just to make the LLM work better, but <b>to understand what “better” really means</b> in the context of one’s own practices.<br>",
         picture: photos.Ex_10,
         exNum: 10,
       },
@@ -122,7 +122,7 @@ const cardsDb = {
         title: "Exercise 11 - Tracking Shifts",
         subtitle:
           "Participants look back on their LLM practices since the experiment began, searching for shifts and continuities.",
-        text: "Participants document how their use of <b>LLMs</b> has changed since the beginning of the experiment. They write two short essays—one on how their <b>practices have evolved</b> and another on what has <b>remained stable</b>—using concrete examples from their experience.<br>",
+        text: "Participants document how their use of <b>LLMs</b> has changed since the beginning of the experiment. Using concrete examples from their experience, they write two short essays on how their <b>practices have evolved</b> and on what has <b>remained stable</b>.<br>",
         picture: photos.Ex_11,
         exNum: 11,
       },
@@ -134,7 +134,7 @@ const cardsDb = {
   Card4: {
     Title: "Excelling",
     Description:
-      "In this block, participants use their chosen LLM to produce <b>the highest quality work possible</b>, attempting to recreate a masterpiece from their field. The goal is <b>to push the model's capabilities to the fullest</b>, testing its ability to reach the gold standard in a specialized field.",
+      "In this block, participants use their chosen LLM to produce <b>the highest quality work possible</b>. The goal is <b>to push the model's capabilities to the fullest</b>, testing its ability to reach the gold standard in a specialized field.",
     Question: "How closely can an LLM approach human excellence?",
     IndexNum: 4,
     CoverImg: capitolsCover.coverExcel,
@@ -142,15 +142,15 @@ const cardsDb = {
       {
         title: "Exercise 12 - Choosing an Exemplary Work",
         subtitle:
-          "Participants identify and reflect on written texts that set a benchmark in their field—models worth emulating.",
-        text: "An exemplary work is not necessarily a prestigious publication but also <b>modest, everyday writings</b> that embody clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
+          "Participants identify and reflect on written texts that set a benchmark in their field.",
+        text: "An exemplary work is not necessarily a prestigious publication but may be a <b>modest, everyday writing</b> that embodies clarity, precision, or impact within a professional context. By selecting both renowned and less conspicuous examples, the goal is to <b>sharpen awareness of what good writing looks like</b> across different formats and purposes.",
         picture: photos.Ex_12,
         exNum: 12,
       },
       {
         title: "Exercise 13 - Setting Up the Example",
         subtitle:
-          "Participants discuss the place of their chosen work within their professional ecology and explain why it's exemplary.",
+          "Participants discuss the place of their chosen work within their professional ecology and explain why it is exemplary.",
         text: "This exercise contextualizes the chosen exemplary work by examining its <b>professional significance</b>. A radar graph helps assess factors like frequency, expertise required, and error tolerance, while a structured reflection highlights what makes the work <b>exemplary</b> and worth emulating.",
         picture: photos.Ex_13,
         exNum: 13,
@@ -158,23 +158,23 @@ const cardsDb = {
       {
         title: "Exercise 14 - Setting Up the Example",
         subtitle:
-          "Participants guide an LLM towards reproducing an exemplary text from their professional field, aiming to create an exact copy.",
-        text: "Participants attempt to recreate a <b>high-quality text</b> using an LLM without providing direct access to the original. This experiment tests the LLM's ability to replicate <b>style, tone, and meaning</b> while challenging participants to refine their prompting strategies.<br>Through 90-minute work sessions, screen recordings, and a logbook, participants document their process and assess the model's capacity to <b>(re)produce a text</b> it does not have access to.",
-        picture: photos.Ex_14,
+          "Participants guide an LLM towards reproducing an exemplary text from their professional field.",
+        text: "Participants attempt to recreate a <b>high-quality text</b> using an LLM without providing direct access to the original. This experiment tests the LLM's ability to replicate <b>style, tone, and meaning</b> while challenging participants to refine their prompting strategies.<br>Through 90-minute work sessions interspersed between Exercises 15 and 17, participants document their process and assess the model's capacity to come as close as possible to <b>an exact copy</b> of an exemplary work.",
+        picture: photos.Ex_13,
         exNum: 14,
       },
       {
         title: "Exercise 15 - Anatomy of an Exemplary Work",
         subtitle:
           "Participants break down their exemplary work into its main components and assess which elements are accessible to an LLM.",
-        text: "Participants analyze the underlying structure of their chosen text, mapping its key influences, professional constraints, and dependencies. <br>A layered dependency graph helps distinguish which elements are <b>accessible to an LLM</b> and which remain <b>beyond its reach</b>, deepening our understanding of AI limitations.",
+        text: "Participants map key influences, professional constraints, and dependencies of their chosen text's underlying structure. <br>A layered dependency graph helps distinguish which elements are <b>accessible to an LLM</b> and which remain <b>beyond its reach</b>.",
         picture: photos.Ex_15,
         exNum: 15,
       },
       {
         title: "Exercise 16 - Obstacles, Dead Ends, Highways",
         subtitle:
-          "Participants examine key moments in navigating the LLM—obstacles, dead ends, and highways.",
+          "Participants examine key moments in navigating the LLM: obstacles, dead ends, and highways.",
         text: "By identifying <b>challenges that can be overcome</b> through iteration or adapting a prompt, <b>situations where the LLM fails</b> to generate meaningful progress despite repeated attempts, and <b>effortless response generation</b>, participants discover patterns in their experiences and develop a clearer sense of when to persist, pivot, or abandon a strategy.<br>",
         picture: photos.Ex_16,
         exNum: 16,
@@ -183,7 +183,7 @@ const cardsDb = {
         title: "Exercise 17 - Charting Your Path",
         subtitle:
           "Participants sketch three evolving, hand-drawn graphs depicting their learning journey.",
-        text: "By mapping output fidelity horizontally and model behavior vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. It encourages an <b>intuitive, embodied reflection on learning</b> —where success isn’t linear, and detours or derailments become part of the story.",
+        text: "By mapping output fidelity horizontally and model behavior vertically, the drawing becomes <b>a living diagram</b> of how one navigates challenges, setbacks, and breakthroughs while learning a new skill with the help of an LLM. Detours or derailments become fully visible, thus demonstrating that achieving success with an LLM is far from linear or effortless.",
         picture: photos.Ex_17,
         exNum: 17,
       },
@@ -204,7 +204,7 @@ const cardsDb = {
         title: "Exercise 18 - Distilling the Vademecum",
         subtitle:
           "Participants synthesize their own perspective on the entire experiment into a cohesive narrative.",
-        text: "Rather than summarizing past exercises, this exercise encourages <b>the creation of a personal booklet</b> that combines selected pages from the vademecum with additional notes, sketches, and digital traces. This curated archive serves as both <b>a tangible memory and a storytelling device</b> —capturing key moments, doubts, and insights that have shaped the participant’s evolving relationship with LLMs.",
+        text: "This exercise encourages <b>the creation of a personal booklet</b> that combines selected pages from the vademecum with additional notes, sketches, and digital traces. This curated archive serves as <b>a storytelling device</b> capturing key moments, doubts, and insights that have shaped the participant’s evolving relationship with LLMs.",
         picture: photos.Ex_18,
         exNum: 18,
       },
@@ -230,7 +230,7 @@ const alterEgosDb = {
     Question:
       "How do professionals evaluate, adapt to, and perceive LLMs in their work?",
     Description:
-      'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation:</b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort:</b> What new kinds of work do LLMs require from their users?<br><br><b>Perception:</b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
+      'To answer these questions, the Ecologies of LLM Practices (EL2MP) project creates research areas dedicated to workers for them to document and reflect on their use of LLMs. Our investigation aims to highlight the "savoir-faire", expertise, and values of workers rather than those of AI designers or economic decision-makers. The project aims to scrupulously examine how LLMs fit into various professional practices. EL2MP will investigate how users relate to LLMs in terms of:<br><br><b>Evaluation - </b> How do professionals assess the value LLMs add or remove?<br><br><b>Effort - </b> What new kinds of work do LLMs require from their users?<br><br><b>Perception - </b> How do workers evaluate and perceive LLMs over time as they continue working with them?',
     IndexNum: 2,
     bgColor: "#000000",
   },
@@ -239,7 +239,7 @@ const alterEgosDb = {
     CoverImg: general.logoImage_white,
     Question: "A necessary project in today's research landscape on LLMs",
     Description:
-      "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation:</b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices:</b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum):</b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
+      "To carry out the project, we developed an <b>experimental research protocol</b> based on the <b>active involvement</b> of participants. The fruit of a <b>collaboration</b> between sociologists, science and technology researchers (STS), and designers, this protocol aims to create:<br><br><b>Room for hesitation - </b> Through a series of exercises, the protocol provides participants with various means of <b>documenting and reflecting</b> on their use of LLMs. We aim to establish a framework where <b>doubt and hesitation</b> are not only accepted but encouraged. Some exercises introduce <b>deliberate pauses</b> in professional routines, causing participants to take a <b>step back</b> from their own practices: during these pauses, judgment is suspended, giving users enough room to <b>question</b> their instinctive habits and feel unsure about what they once thought was certain. Other exercises aim to <b>intensify the use of LLMs</b> to shed light on what would otherwise remain too subtle to be perceived.<br><br><b>An ecological archive of practices - </b> The digital traces from LLM use serve as the <b>starting point</b> for the exercises we designed. They are <b>analysed, contextualised, and discussed</b> individually and collectively. Through this process, participants progressively build a <b>multimodal archive</b> (audio, photos, videos, drawings, and logbooks) that tangibly reflects their LLMs experience and how they are incorporated into various <b>professional norms</b> and material configurations.<br><br><b>A workbook (vademecum) - </b> The workbook collects all the exercises and their instructions, organized into <b>thematic blocks</b>. Designed as a <b>modular object</b>, where pages can be added or removed as needed, it accompanies each participant throughout the protocol. The vademecum serves as both the <b>material support</b> for the protocol and the project's means of <b>dissemination</b>, as it can be reproduced and adapted in various academic and professional contexts.",
     IndexNum: 3,
     bgColor: "#000000",
   },
