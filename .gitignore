@@ -90,3 +90,6 @@ vite.config.ts.timestamp-*
 
 # Ignore any other files or folders that don't need to be tracked
 .lightouse/lighthousereview.json
+
+# Local development TLS certificates
+localhost+*.pem
