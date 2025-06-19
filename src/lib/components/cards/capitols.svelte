@@ -277,11 +277,13 @@ const generateShareContent = async (shareData) => {
             console.log("=== PROCESSING SECTION IMAGE ===");
             let imageUrl = null;
             if (shareData.exImage.img?.src) {
-                console.time('imageEmbed'); // Image embedding timer
+                console.time('imageEmbed');
                 imageUrl = new URL(shareData.exImage.img.src, window.location.origin).href;
                 console.log("Image URL:", imageUrl);
+
+                console.log("Images", svgDoc)
                 
-                const targetImageId = $isMobileDevice ? '#image1_769_3387' : '#image1_768_3315';
+                const targetImageId = $isMobileDevice ? '#image1_776_3410' : '#image1_768_3315';
                 const targetImage = svgDoc.querySelector(targetImageId);
                 
                 if (targetImage) {
@@ -415,7 +417,6 @@ const generateShareContent = async (shareData) => {
             img.onerror = () => reject(new Error('Failed to load SVG'));
             setTimeout(() => reject(new Error('Timeout')), 150000);
 
-            // Kick-off decoding
             img.src = svgDataUrl;
         });
         
