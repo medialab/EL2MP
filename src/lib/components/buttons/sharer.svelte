@@ -23,8 +23,9 @@ const shareContent = () => {
 
         if (window.isSecureContext && navigator.share && $sharerVisibility) {
 
-            setTimeout(() => {
                 const canShareFiles = navigator.canShare &&
+                                    $finalShareData && 
+                                    $finalShareData.files &&
                                     navigator.canShare({ files: $finalShareData.files });
                 console.log("canShareFiles", canShareFiles)
 
@@ -126,7 +127,7 @@ const shareContent = () => {
                         
                         $showSharer = false;
                     }
-            } }, 1500);
+            }
 
         } else {
             console.warn('⚠ Web Share API not supported or insecure context');
@@ -172,11 +173,25 @@ const shareOnBluesky = () => {
     openWindow(`https://bsky.app/compose/post?text=${content}`);
 };
 
-const shareViaEmail = () => {
-    const subject = encodeURIComponent(`${$shareInfo.title} – ${$shareInfo.exTitle}`);
-    const body = encodeURIComponent(`${$shareInfo.text}\n\n${$shareInfo.url || `https://ecologiesofllm.medialab.sciencespo.fr/${$currentHash}`}`);
-    // We cannot use openWindow because mailto should be handled by the browser
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
+const downloadImage = () => {
+    if ($finalShareData && $finalShareData.files && $finalShareData.files[0]) {
+        const imageFile = $finalShareData.files[0];
+        const url = URL.createObjectURL(imageFile);
+        
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = imageFile.name;
+        document.body.appendChild(link);
+        link.click();
+        
+        // Cleanup
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+        
+        console.log('✅ Image downloaded:', imageFile.name);
+    } else {
+        console.warn('⚠ No image available for download');
+    }
     closeSharer();
 };
 
@@ -237,8 +252,8 @@ const shareOnReddit = () => {
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M140 0C217.327 0 280 62.6733 280 140C280 217.327 217.327 280 140 280H20.2769C18.6149 280.002 16.9892 279.51 15.6065 278.588C14.2243 277.666 13.1468 276.354 12.5099 274.82C11.8729 273.285 11.7051 271.595 12.0286 269.965C12.3521 268.335 13.1521 266.838 14.3269 265.662L41.0089 238.991C27.9899 226.005 17.6647 210.575 10.6272 193.587C3.58988 176.599 -0.0219603 158.388 0.000100451 140C0.000100451 62.6734 62.6735 0.000105513 140 0ZM198.609 42.1066C194.459 40.7071 189.998 40.5127 185.742 41.5447C181.487 42.5768 177.611 44.7932 174.564 47.9377C171.517 51.0824 169.423 55.0268 168.525 59.3127C159.241 60.275 150.644 64.6492 144.4 71.5873C138.156 78.5253 134.709 87.534 134.727 96.868C114.229 97.7313 95.4919 103.565 80.6286 112.793C76.9907 109.995 72.804 107.994 68.3417 106.921C63.8793 105.848 59.2411 105.726 54.7286 106.564C50.2161 107.402 45.93 109.181 42.1505 111.785C38.3713 114.389 35.1826 117.759 32.7921 121.677C30.4015 125.595 28.8631 129.972 28.2763 134.524C27.6894 139.076 28.0677 143.702 29.3864 148.098C30.7052 152.494 32.9344 156.563 35.9298 160.04C38.9252 163.517 42.6193 166.325 46.7716 168.28C47.8568 206.232 89.2155 236.752 140.082 236.752C190.984 236.752 232.365 206.185 233.391 168.198C237.522 166.225 241.194 163.406 244.166 159.924C247.138 156.442 249.346 152.374 250.647 147.984C251.947 143.595 252.309 138.98 251.713 134.441C251.116 129.902 249.573 125.539 247.183 121.635C244.793 117.73 241.61 114.37 237.839 111.774C234.068 109.178 229.793 107.403 225.292 106.564C220.791 105.725 216.165 105.842 211.712 106.904C207.259 107.967 203.078 109.954 199.441 112.736C184.438 103.449 165.491 97.6038 144.772 96.8338V96.7518C144.772 82.7984 155.19 71.2245 168.654 69.4162C169.859 74.4904 172.741 79.0102 176.833 82.2432C180.926 85.4761 185.99 87.2341 191.205 87.232C195.584 87.2317 199.873 85.9897 203.576 83.6514C207.278 81.313 210.243 77.9736 212.125 74.0195C214.007 70.0657 214.729 65.6594 214.21 61.3115C213.69 56.9634 211.948 52.8514 209.187 49.4525C206.425 46.0537 202.758 43.5062 198.609 42.1066Z" />
                     </svg>
             </button>
-            <button id="email_sharer" onclick={shareViaEmail} aria-label="Share via email">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m440.72-509.72-317.13-200v386.85h392.82v91H123.59q-37.79 0-64.39-26.61-26.61-26.61-26.61-64.39v-474.26q0-37.78 26.61-64.39 26.6-26.61 64.39-26.61h634.26q37.78 0 64.39 26.61t26.61 64.39v200h-91v-112.59l-317.13 200Zm0-87.41 317.13-200H123.59l317.13 200ZM761.91-69.48q-68.39 0-116.94-48.55-48.56-48.56-48.56-116.95v-180q0-43.5 30.03-73.54 30.02-30.05 73.51-30.05 43.48 0 73.56 30.05 30.08 30.04 30.08 73.54v180H720v-180q0-8-6-14t-14-6q-8 0-14 6t-6 14v180q0 33.96 23.98 57.94 23.98 23.97 57.93 23.97 33.96 0 57.82-23.97 23.86-23.98 23.86-57.94v-161.67h83.82v161.67q0 68.39-48.55 116.95-48.56 48.55-116.95 48.55ZM123.59-709.72v-87.41 474.26-386.85Z"/></svg>
+                  <button id="download_sharer" onclick={downloadImage} aria-label="Download image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="m481.07-394.98-57.59 57.59 60.3 60.3 161-161-161-161-60.3 60.31 57.59 57.58H317.13v86.22h163.94Zm-318.2 243.11q-37.78 0-64.39-26.61t-26.61-64.39v-474.26q0-37.78 26.61-64.39t64.39-26.61h233.54L480-724.54h317.13q37.78 0 64.39 26.61 26.61 26.6 26.61 64.39v390.67q0 37.78-26.61 64.39t-64.39 26.61H162.87Zm0-91h634.26v-390.67H442.46l-83.59-83.59h-196v474.26Zm0 0v-474.26 474.26Z"/></svg>
             </button>
             <button id="bluesky_sharer" onclick={shareOnBluesky} aria-label="Share on Bluesky">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 318 280">
@@ -381,7 +396,7 @@ const shareOnReddit = () => {
 .sharer_header > p {
     font-size: 16px;
     min-width: 180px;
-    text-align: center;
+    text-align: left;
     overflow: hidden;
 }
 

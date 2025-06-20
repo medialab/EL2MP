@@ -28,6 +28,7 @@ export const showSharer = writable(false);
 export const finalShareData = writable(null);
 export const sharerVisibility = writable(false);
 export const sharingTextMobile = writable("We're preparing your image...");
+export const shareData = writable(null);
 
 export const shareInfo = writable({
   title: "", // Block title

@@ -11,9 +11,11 @@
     import { onMount, onDestroy, tick } from "svelte";
     import { writable } from "svelte/store";
     import { fade } from "svelte/transition";
+    import templateMobileSvg from '$lib/media/template_mobile.svg?raw';
+    import templateDesktopSvg from '$lib/media/template_desktop.svg?raw';
 
     // Here we start to implement more stores
-    import { currentHash, selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY, transitionTime, transitionCurve, currentFocus, isPageLoaded } from '$lib/stores/globalStores';
+    import { currentHash, selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY, transitionTime, transitionCurve, currentFocus, isPageLoaded, showSharer, shareInfo, sharingTextMobile, sharerVisibility, finalShareData, shareData } from '$lib/stores/globalStores';
 
     let interact, vademecumFloater;
     let totalBlockWidth, totalBlockHeight, x, y, topLeftCornerX, topLeftCornerY, windowWidth, windowHeight, initialsY, topYCorner, bottomYCorner, initialX;
@@ -45,6 +47,7 @@
 
     let lastDeviceType = null; 
     let isSwapping = false;
+    
 
     const areCardsLoaded = writable(false);
 
@@ -99,30 +102,6 @@
             }
         }
     };
-
-
-    /*const setupMouseDetection = () => {
-
-        containers.forEach((container) => {
-            container.addEventListener("click", (event) => {
-                $selectedCard = container.getAttribute("data-section");
-                if (!$isAlterEgoMode) {
-                    //openFloaters(floaters);
-                } else {
-                    return
-                }
-            });
-        });
-
-        scrollContainers.forEach((scrollContainer) => {
-            scrollContainer.addEventListener("click", (event) => {
-                $selectedCard = scrollContainer.getAttribute("data-section");
-                if (!$isAlterEgoMode) {
-                    //openFloaters(floaters);
-                }
-            });
-        });
-    }; */
 
     const calculateRandomPosition = (floater) => {
         if (typeof window === 'undefined') {
@@ -223,6 +202,7 @@
     $: if (!$isAlterEgoMode) hideFloaters();
     $: if ($isAlterEgoMode) {$currentHash = ''};
     $: console.log("Current hash is",$currentHash)
+    $: if ($shareData && $shareData.title && svgDoc) generateShareContent();
     
     //Floaters filtering
     $: if (!$isAlterEgoMode && $selectedCard && floaters) {
@@ -478,6 +458,475 @@
         }
     };
 
+    let svgDoc = null;
+    let svgText = null;
+    let svgRoot = null;
+
+    let instrumentSerifBase64;
+    let instrumentSansBase64;
+    let maxCharsPerLine;
+    let lineHeightConfig;
+    let defs;
+    let style;
+    let fontCache = {};
+    let canvas;
+    let ctx;
+    let svgWidth; 
+    let svgHeight;
+    let svgScale = 1;
+    let modifiedSvg;
+
+
+    const loadFontAsBase64Cached = async (fontPath) => {
+        if (fontCache[fontPath]) return fontCache[fontPath];
+
+        const response = await fetch(fontPath);
+        const buffer   = await response.arrayBuffer();
+        const base64   = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+        const dataUrl  = `data:font/truetype;base64,${base64}`;
+
+        fontCache[fontPath] = dataUrl;
+        return dataUrl;
+    };
+
+    const preloadFonts = Promise.all([
+        loadFontAsBase64Cached('/fonts/InstrumentSerif-Regular.ttf'),
+        loadFontAsBase64Cached('/fonts/InstrumentSans-Regular.ttf')
+    ]).catch((e) => console.warn('Font pre-load failed:', e));
+
+    
+    const prepareSVG = async () => {
+        await preloadFonts;
+        svgText = $isMobileDevice ? templateMobileSvg : templateDesktopSvg;
+
+        instrumentSerifBase64 = fontCache['/fonts/InstrumentSerif-Regular.ttf'];
+        instrumentSansBase64  = fontCache['/fonts/InstrumentSans-Regular.ttf'];
+            
+        const parser = new DOMParser();
+        svgDoc = parser.parseFromString(svgText, 'image/svg+xml');
+
+        defs = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+        style = svgDoc.createElementNS('http://www.w3.org/2000/svg', 'style');
+        style.textContent = `
+            @font-face {
+                font-family: 'Instrument Serif';
+                src: url('${instrumentSerifBase64}') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+            @font-face {
+                font-family: 'Instrument Sans';
+                src: url('${instrumentSansBase64}') format('truetype');
+                font-weight: normal;
+                font-style: normal;
+            }
+        `;
+        defs.appendChild(style);
+
+        svgRoot = svgDoc.documentElement;
+        svgRoot.insertBefore(defs, svgRoot.firstChild);
+
+        maxCharsPerLine = $isMobileDevice ? 50 : 75;
+        lineHeightConfig = {
+            exTitle: 1.1,
+            exDescription: 1.3,
+            exText: 1.4
+        };
+
+        modifiedSvg = new XMLSerializer().serializeToString(svgDoc.documentElement);
+            
+        canvas = document.createElement('canvas');
+        ctx = canvas.getContext('2d');
+        
+        svgWidth = parseFloat(svgRoot.getAttribute('width')) || 680;
+        svgHeight = parseFloat(svgRoot.getAttribute('height')) || 474;
+        
+        canvas.width = svgWidth * svgScale;
+        canvas.height = svgHeight * svgScale;
+        console.log("SVG preloaded");
+        }
+
+        const stripHTML = (html) => {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = html;
+        return tempDiv.textContent || tempDiv.innerText || '';
+    };
+
+    const wrapText = (textToWrap, customMaxChars = maxCharsPerLine) => {
+        
+        const words = textToWrap.split(' ');
+        const lines = [];
+        let word = '';
+        let currentLine = '';
+
+        for (word of words) {
+
+            const testLine = currentLine ? `${currentLine} ${word}` : word;
+
+
+            if (testLine.length <= customMaxChars) {
+                currentLine = testLine;
+                
+            } else {
+                
+                if (currentLine) {
+                    lines.push(currentLine);
+                    currentLine = word;
+                } else {
+                    lines.push(word);
+                }
+            }
+        }
+
+        if (currentLine) {
+            lines.push(currentLine);
+            console.log("currentLine", currentLine)
+        }
+        
+        return lines;
+    };
+
+const generateShareContent = async () => {
+    $showSharer = true;
+        
+        setTimeout(() => {
+            $sharingTextMobile = "Click here to share...";
+            $sharerVisibility = true;
+            console.log("sharerVisibility", $sharerVisibility)
+        }, 800);
+
+    // Create a working copy of the prepared SVG document
+    const workingSvgDoc = svgDoc.cloneNode(true);
+
+    if ($shareData.title) {
+        const titleElement = workingSvgDoc.querySelector('#Title');
+        if (titleElement) {
+            const firstTspan = titleElement.querySelector('tspan');
+            if (firstTspan) {
+                const x = firstTspan.getAttribute('x');
+                const y = firstTspan.getAttribute('y');
+                const dx = firstTspan.getAttribute('dx');
+                const dy = firstTspan.getAttribute('dy');
+                const transform = firstTspan.getAttribute('transform');
+
+                titleElement.innerHTML = '';
+                const newTspan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                if (x) newTspan.setAttribute('x', x);
+                if (y) newTspan.setAttribute('y', y);
+                if (dx) newTspan.setAttribute('dx', dx);
+                if (dy) newTspan.setAttribute('dy', dy);
+                if (transform) newTspan.setAttribute('transform', transform);
+                newTspan.textContent = stripHTML($shareData.title);
+                titleElement.appendChild(newTspan);
+            } else {
+                titleElement.textContent = stripHTML($shareData.title);
+            }
+        }
+    }
+        
+    if ($shareData.exTitle) {
+        const exTitleElement = workingSvgDoc.querySelector('#Ex_Title');
+        if (exTitleElement) {
+            const firstTspan = exTitleElement.querySelector('tspan');
+            if (firstTspan) {
+                const x = firstTspan.getAttribute('x');
+                const y = firstTspan.getAttribute('y');
+                const dx = firstTspan.getAttribute('dx');
+                const dy = firstTspan.getAttribute('dy');
+                const transform = firstTspan.getAttribute('transform');
+
+                exTitleElement.innerHTML = '';
+
+                // Split title on mobile using dash separator
+                if ($isMobileDevice && $shareData.exTitle.includes('-')) {
+                    const parts = $shareData.exTitle.split('-');
+                    const firstPart = parts[0].trim();
+                    const secondPart = parts.slice(1).join('-').trim();
+
+                    const fontSize = parseFloat(exTitleElement.getAttribute('font-size')) || 24;
+                    const lineHeight = fontSize * lineHeightConfig.exTitle;
+
+                    const firstSpan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) firstSpan.setAttribute('x', x);
+                    if (y) firstSpan.setAttribute('y', y);
+                    if (dx) firstSpan.setAttribute('dx', dx);
+                    if (dy) firstSpan.setAttribute('dy', dy);
+                    if (transform) firstSpan.setAttribute('transform', transform);
+                    firstSpan.textContent = stripHTML(firstPart);
+                    exTitleElement.appendChild(firstSpan);
+
+                    const secondSpan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) secondSpan.setAttribute('x', x);
+                    if (y) {
+                        const yPos = parseFloat(y) + lineHeight;
+                        secondSpan.setAttribute('y', yPos.toString());
+                    }
+                    if (transform) secondSpan.setAttribute('transform', transform);
+                    secondSpan.textContent = stripHTML(secondPart);
+                    exTitleElement.appendChild(secondSpan);
+                } else {
+                    const newTspan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) newTspan.setAttribute('x', x);
+                    if (y) newTspan.setAttribute('y', y);
+                    if (dx) newTspan.setAttribute('dx', dx);
+                    if (dy) newTspan.setAttribute('dy', dy);
+                    if (transform) newTspan.setAttribute('transform', transform);
+                    newTspan.textContent = stripHTML($shareData.exTitle);
+                    exTitleElement.appendChild(newTspan);
+                }
+            }
+        }
+    }
+        
+    if ($shareData.exText && $shareData.exDescription) {
+        const completeText = `${$shareData.exDescription} § ${$shareData.exText}`;
+        //console.log("completeText:", completeText)
+        const exDescElement = workingSvgDoc.querySelector('#Ex_description');
+        const firstTspan = exDescElement.querySelector('tspan');
+        //console.log("exDescElement:", exDescElement)
+
+        if (exDescElement) {
+            const x = firstTspan.getAttribute('x');
+            const y = firstTspan.getAttribute('y');
+            const dx = firstTspan.getAttribute('dx');
+            const dy = firstTspan.getAttribute('dy');
+            const transform = firstTspan.getAttribute('transform');
+            
+            const fontSize = parseFloat(exDescElement.getAttribute('font-size')) || 16;
+            const lineHeight = fontSize * lineHeightConfig.exDescription;
+            
+            exDescElement.innerHTML = '';
+
+            const strippedText = stripHTML(completeText)
+
+            const paragraphs = [$shareData.exDescription, $shareData.exText]
+                .filter(Boolean)                     // keep only defined strings
+                .map(p => stripHTML(p));
+
+            let currentY = parseFloat(y);            // absolute y-coordinate we are at
+
+            paragraphs.forEach((para, pIdx) => {
+                const lines = wrapText(para);
+
+                lines.forEach((line) => {
+                    const tspan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    tspan.setAttribute('x', x);
+                    tspan.setAttribute('y', currentY.toString());
+                    if (transform) tspan.setAttribute('transform', transform);
+                    tspan.textContent = line;
+                    exDescElement.appendChild(tspan);
+
+                    currentY += lineHeight;          // advance for next line
+                });
+
+                // add a blank line *between* paragraphs (not after the last one)
+                if (pIdx < paragraphs.length - 1) {
+                    currentY += lineHeight;
+                }
+            });
+        }
+    }
+        
+    if ($shareData.exImage) {
+        let imageUrl = null;
+        if ($shareData.exImage.img?.src) {
+            imageUrl = new URL($shareData.exImage.img.src, window.location.origin).href;
+
+            const legacyId   = $isMobileDevice ? '#image1_776_3410' : '#image1_798_3654';
+            let targetImage = workingSvgDoc.querySelector(legacyId);
+            console.log("Looking for image with ID:", legacyId);
+            console.log("targetImage found:", !!targetImage);
+            
+            if (targetImage) {
+                try {
+                    console.log("Processing image:", imageUrl);
+                    console.log("Original image element:", {
+                        id: targetImage.getAttribute('id'),
+                        href: targetImage.getAttribute('href'),
+                        xlinkHref: targetImage.getAttributeNS('http://www.w3.org/1999/xlink', 'href')
+                    });
+                    
+                    const imageResponse = await fetch(imageUrl);
+                    console.log("Image fetch response:", imageResponse.status, imageResponse.ok);
+                    if (imageResponse.ok) {
+                        const imageBlob = await imageResponse.blob();
+                        const base64Promise = new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = () => resolve(reader.result);
+                            reader.onerror = reject;
+                            reader.readAsDataURL(imageBlob);
+                        });
+                        
+                        const imageDataUrl = await base64Promise;
+                        console.log("Base64 data URL length:", imageDataUrl.length);
+                        console.log("Base64 starts with:", imageDataUrl.substring(0, 50));
+
+                        targetImage.setAttribute('href', imageDataUrl);
+                        targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageDataUrl);
+                        targetImage.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+                        
+                        console.log("✅ Image successfully embedded in SVG");
+                        console.log("Updated image element:", {
+                            id: targetImage.getAttribute('id'),
+                            href: targetImage.getAttribute('href') ? targetImage.getAttribute('href').substring(0, 50) + '...' : null,
+                            xlinkHref: targetImage.getAttributeNS('http://www.w3.org/1999/xlink', 'href') ? targetImage.getAttributeNS('http://www.w3.org/1999/xlink', 'href').substring(0, 50) + '...' : null
+                        });
+
+                        let defs = workingSvgDoc.querySelector('defs');
+
+                        if (!defs) {
+                            defs = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                            workingSvgDoc.documentElement.appendChild(defs);
+                        }
+                        
+                        const filter = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'filter');
+                        filter.setAttribute('id', 'grayscale');
+                        const colorMatrix = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
+                        colorMatrix.setAttribute('type', 'saturate');
+                        colorMatrix.setAttribute('values', '0');
+                        filter.appendChild(colorMatrix);
+                        defs.appendChild(filter);
+                        targetImage.setAttribute('filter', 'url(#grayscale)');
+                        
+                    }
+                } catch (error) {
+                    console.error("Error processing image:", error);
+                    console.error("Error details:", {
+                        name: error.name,
+                        message: error.message,
+                        stack: error.stack
+                    });
+                    
+                    // Try a simpler approach for mobile - just set the original URL
+                    if ($isMobileDevice) {
+                        console.log("Trying fallback for mobile...");
+                        targetImage.setAttribute('href', imageUrl);
+                        targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageUrl);
+                        console.log("Applied fallback image URL");
+                    }
+                }
+            }
+        }
+    }
+        
+    if ($shareData.bgColor) {
+        const targetColor = '#FBC797'; //replacing bg color
+        const allElements = workingSvgDoc.querySelectorAll('*');
+        
+        allElements.forEach(element => {
+            const fillColor = element.getAttribute('fill');
+            if (fillColor && (fillColor.toUpperCase() === targetColor.toUpperCase() || fillColor.toUpperCase() === 'FBC797')) {
+                element.setAttribute('fill', $shareData.bgColor);
+            }
+        });
+    }
+        
+        
+    const slug = (str) => (str || '')
+        .toString()
+        .replace(/<[^>]+>/g, '') // strip HTML
+        .replace(/[^a-z0-9]+/gi, '_')
+        .replace(/^_+|_+$/g, '')
+        .substring(0, 25);
+
+    const main = slug($shareData.title) || 'EL2MP';
+    const ex = slug($shareData.exTitle) || 'Exercise';
+    const filename = `${main}_${ex}.jpg`;
+        
+        console.log("Starting SVG to JPEG conversion");
+
+        // Serialize the modified SVG document
+        modifiedSvg = new XMLSerializer().serializeToString(workingSvgDoc.documentElement);
+        console.log("SVG content length:", modifiedSvg.length);
+        console.log("SVG has title element:", modifiedSvg.includes('#Title'));
+        console.log("SVG content preview:", modifiedSvg.substring(0, 500));
+
+        const jpegFile = await new Promise((resolve, reject) => {
+            console.log('Promise created');
+
+            const img = new Image();
+            
+            const svgDataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(modifiedSvg)));
+
+            img.onload = () => {
+                try {
+                    // Reset canvas context
+                    ctx.setTransform(1, 0, 0, 1, 0, 0);
+                    
+                    ctx.fillStyle = 'white';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    ctx.scale(svgScale, svgScale);
+                    ctx.drawImage(img, 0, 0, svgWidth, svgHeight);
+                    
+
+                    
+                    canvas.toBlob((blob) => {
+                        
+                        if (blob) {
+                            const file = new File([blob], filename, {
+                                type: 'image/jpeg',
+                                lastModified: new Date().getTime()
+                            });
+                            /*console.log('✓ JPEG created:', {
+                                size: `${(blob.size / 1024).toFixed(1)}KB`,
+                                type: file.type,
+                                name: file.name
+                            });*/
+                            resolve(file);
+                            
+                        } else {
+                            reject(new Error('Failed to create JPEG'));
+                        }
+                    }, 'image/jpeg', 1);
+                } catch (error) {
+                    reject(error);
+                }
+            };
+
+            img.onerror = () => reject(new Error('Failed to load SVG'));
+
+            img.src = svgDataUrl;
+        });
+        
+        const exLabel = $shareData.exTitle ? $shareData.exTitle.replace(/<[^>]+>/g, '') : 'Exercise';
+        const blockLabel = $shareData.title ? $shareData.title.replace(/<[^>]+>/g, '') : 'Block';
+        
+        const MAX_DESC_LENGTH = 200;
+        let desc = '';
+        
+        if ($shareData.exText) {
+            const cleanText = stripHTML($shareData.exText).replace(/\s+/g, ' ').trim();
+            desc = cleanText.length > MAX_DESC_LENGTH
+                ? cleanText.slice(0, MAX_DESC_LENGTH).trimEnd() + '…'
+                : cleanText;
+        }
+        
+        const link = $shareData.url || window.location.href;
+        const socialMessage =
+          `\nExercise ${exLabel} | Block ${blockLabel}\n\n`+
+          `${desc}`;
+        
+        $finalShareData = {
+            text: socialMessage,
+            url: link,
+            files: [jpegFile]
+        };
+        
+        const textOnlyPayload = {
+            text: socialMessage,
+            url: link
+        };
+
+        $shareInfo = {
+            title: $shareData.title,
+            exTitle: $shareData.exTitle,
+            text: socialMessage,
+            url: link
+        };
+        
+        console.log('✅ Share content generated successfully');
+    };
+
     onMount(async () => {
         const interact = (await import('interactjs')).default;
         const simpleBar = (await import('simplebar')).default;
@@ -495,6 +944,8 @@
 
         await tick();
 
+        
+
         containers = document.querySelectorAll('.card_container')
         floaters = document.querySelectorAll('.floater_container')
         scrollContainers = document.querySelectorAll('.card_scrollable_container')
@@ -504,6 +955,7 @@
 
         placeCards(containers);
         navigateToExercise();
+        await prepareSVG();
         
         if ($isMobileDevice) {
             await containers;
@@ -743,6 +1195,8 @@
             });
         } else {return}
 
+        
+
         if (!$isMobileDevice) {
             textBoxes.forEach((textBox) => {
                 textBox.classList.add('grab');
@@ -797,7 +1251,6 @@
         });
         } else {return}
 
-        //setupMouseDetection();
         
     }); 
 
@@ -965,6 +1418,7 @@
                     swapCards = {swapCards}
                     simplebarContainer = {simplebarContainer}
                     logoImage = {data.logoImage}
+                    generateShareContent = {generateShareContent()}
                 />
             {/each}
 
