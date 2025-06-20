@@ -7,7 +7,7 @@
     import Textbox from "$lib/components/textboxes.svelte";
     import Slider from "$lib/components/buttons/slider.svelte";
     import VademecumFloater from "$lib/components/vademecum_floater.svelte";
-
+    import Sharer from '$lib/components/buttons/sharer.svelte';
     import { onMount, onDestroy, tick } from "svelte";
     import { writable } from "svelte/store";
     import { fade } from "svelte/transition";
@@ -86,7 +86,7 @@
     };
 
 
-    const setupMouseDetection = () => {
+    /*const setupMouseDetection = () => {
 
         containers.forEach((container) => {
             container.addEventListener("click", (event) => {
@@ -107,7 +107,7 @@
                 }
             });
         });
-    };
+    }; */
 
     const calculateRandomPosition = (floater) => {
         if (typeof window === 'undefined') {
@@ -206,6 +206,8 @@
 
     $: if ($isAlterEgoMode !== undefined) alignColor($selectedCard);
     $: if (!$isAlterEgoMode) hideFloaters();
+    $: if ($isAlterEgoMode) {$currentHash = ''};
+    $: console.log("Current hash is",$currentHash)
     
     //Floaters filtering
     $: if (!$isAlterEgoMode && $selectedCard && floaters) {
@@ -429,8 +431,6 @@
     onMount(async () => {
         const interact = (await import('interactjs')).default;
         const simpleBar = (await import('simplebar')).default;
-
-        
 
         if (simplebarContainer) {
             new SimpleBar(simplebarContainer, {
@@ -747,7 +747,7 @@
         });
         } else {return}
 
-        setupMouseDetection();
+        //setupMouseDetection();
         
     }); 
 
@@ -879,6 +879,8 @@
 
 </script>
 
+
+
 {#if !$isPageLoaded}
     <div class="loading_text"
         out:fade={{ duration: 300 }}
@@ -886,6 +888,9 @@
         <p class="p3">Loading...</p>
     </div>
 {/if}
+
+
+<Sharer />
 
 <div class="content_container" bind:this={contentContainer}>
 
@@ -909,6 +914,7 @@
                     bringToFront = {bringToFront}
                     swapCards = {swapCards}
                     simplebarContainer = {simplebarContainer}
+                    logoImage = {data.logoImage}
                 />
             {/each}
 
@@ -1288,7 +1294,7 @@
         }
 
         :global(h2) {
-            font-size: 24px;
+            font-size: 22px;
         }
 
         :global(.p1) {

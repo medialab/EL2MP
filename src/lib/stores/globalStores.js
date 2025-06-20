@@ -24,3 +24,14 @@ export const currentHash = writable(null);
 // Page load tracking stores
 
 export const isPageLoaded = writable(false);
+export const showSharer = writable(false);
+export const finalShareData = writable(null);
+export const sharerVisibility = writable(false);
+export const sharingTextMobile = writable("We're preparing your image...");
+
+export const shareInfo = writable({
+  title: "", // Block title
+  exTitle: "", // Exercise title
+  text: "", // Social message body
+  url: "", // Absolute URL to the exercise
+});

@@ -120,7 +120,7 @@
 </svelte:head>
 
 <script>
-  import { currentFocus } from "$lib/stores/globalStores";
+  import { currentFocus, isAlterEgoMode } from "$lib/stores/globalStores";
   import { onMount } from "svelte";
   import { replaceState, beforeNavigate } from "$app/navigation";
 
@@ -128,6 +128,11 @@
     if (typeof window !== 'undefined') {
       window.location.hash = $currentFocus;
     }
+  }
+
+  $: if($isAlterEgoMode) {
+    $currentFocus = ''
+    window.location.hash = $currentFocus
   }
 
   onMount(() => {
@@ -144,6 +149,7 @@
     }
 
     window.addEventListener('hashchange', handleHashChange);
+
 
     window.addEventListener('beforeunload', () => {
       if (window.location.pathname !== '/') {

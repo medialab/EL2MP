@@ -549,7 +549,7 @@
             bottom: 1vh;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 999;
+            z-index: 300;
             position: fixed;
             width: max-content;
             height: auto;
