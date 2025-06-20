@@ -131,6 +131,21 @@
   }
 
   onMount(() => {
+    /* ----------------------------------
+       Strip hash fragment if the page load
+       was triggered by a hard reload (Cmd+R, F5 …).
+    ---------------------------------- */
+    try {
+      const navEntry = performance.getEntriesByType('navigation')[0];
+      const isReload  = navEntry && navEntry.type === 'reload';
+      if (isReload && window.location.hash) {
+        // Remove the fragment without adding a new history entry
+        history.replaceState(null, '', window.location.pathname);
+      }
+    } catch (e) {
+      // Fallback for older browsers – do nothing
+    }
+
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
       if (hash && hash !== $currentFocus) {
@@ -147,7 +162,16 @@
 
 
     window.addEventListener('beforeunload', () => {
-      if (window.location.pathname !== '/') {
+      /*
+        Goal: if the user refreshes the page (Cmd + R, F5, etc.) while a
+        fragment identifier is present we strip the hash so the next load
+        starts from the clean root URL. Otherwise we fall back to the
+        previous behaviour that resets non-root paths to "/".
+      */
+      if (window.location.hash) {
+        // Remove only the fragment – keep the current pathname
+        window.history.replaceState(null, '', window.location.pathname);
+      } else if (window.location.pathname !== '/') {
         window.history.replaceState(null, '', '/');
       }
     });

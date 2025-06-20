@@ -83,6 +83,21 @@
         const frontingTarget = eventOrElement.currentTarget || eventOrElement;
         $highestZIndex += 1;
         frontingTarget.style.zIndex = $highestZIndex;
+
+        if ($isAlterEgoMode) {
+            const idxStr = frontingTarget.getAttribute('id');
+            if (idxStr) {
+                const ae = data.alterEgosDb[`Card${idxStr}`];
+                if (ae && ae.Title) {
+                    $currentFocus = ae.Title;
+                }
+            }
+        } else {
+            const blockTitle = frontingTarget.getAttribute('data-section');
+            if (blockTitle) {
+                $currentFocus = `${blockTitle}_`;
+            }
+        }
     };
 
 
@@ -391,42 +406,77 @@
     const navigateToExercise = (exercise) => {
         $currentHash = window.location.hash;
 
-        if ($currentHash) {
-            $waitForHash = true;
+        if (!$currentHash) {
+            $waitForHash = false;
+            return;
+        }
 
+        const cleanHash = $currentHash.replace('#', '');
+        const isExerciseHash = cleanHash.includes('_');
+
+        if (isExerciseHash) {
+            /* ----------------------------- EXISTING EXERCISE FLOW ----------------------------- */
+            $waitForHash = true;
             $isAlterEgoMode = false;
-            const hashContainer = $currentHash ? $currentHash.split('_')[0].replace('#', '') : '';
+
+            const hashContainer = cleanHash.split('_')[0];
             const definedContainer = document.querySelector(`[data-section="${hashContainer}"]`);
 
-            const hashSection = $currentHash ? $currentHash.split('_').slice(1).join('_').replace('#', '') : '';
+            const hashSection = cleanHash.split('_').slice(1).join('_');
             const definedSection = document.querySelector(`[data-section="${hashSection}"]`);
-            
-            $selectedCard = definedContainer.dataset.section;
 
-            if (definedContainer && definedSection) {
+            if (definedContainer) {
+                $selectedCard = definedContainer.dataset.section;
+            }
+
+            if (definedContainer) {
                 setTimeout(() => {
-
                     if ($isMobileDevice && $areCardsLoaded) {
                         swapCards(definedContainer);
                     } else if (!$isMobileDevice && $areCardsLoaded) {
                         definedContainer.style.zIndex = $highestZIndex + 1;
                         $highestZIndex = $highestZIndex + 1;
                     }
-                    
-                    definedSection.scrollIntoView({ 
-                        behavior: 'smooth',
-                        //block: 'start',
-                        //inline: 'nearest'
-                    });
+                    if (definedSection) {
+                        definedSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }, 1100);
-            }  
-
+            }
         } else {
-            $waitForHash = false;
-            return;
-        } 
+            /* ------------------------------ ALTER-EGO FLOW ------------------------------ */
+            $waitForHash = true;
+            $isAlterEgoMode = true;
 
-    }
+            const alterEgosArr = Object.values(data.alterEgosDb);
+            const cardsArr     = Object.values(data.cardsDb);
+            const aeIndex = alterEgosArr.findIndex((ae) => ae.Title === cleanHash);
+
+            if (aeIndex !== -1) {
+                const hostCardTitle = cardsArr[aeIndex]?.Title;
+                const definedContainer = document.querySelector(`[data-section="${hostCardTitle}"]`);
+                const alterSection     = document.querySelector(`[data-section="${cleanHash}"]`);
+
+                if (hostCardTitle) {
+                    $selectedCard = hostCardTitle;
+                }
+
+                if (definedContainer) {
+                    setTimeout(() => {
+                        if ($isMobileDevice && $areCardsLoaded) {
+                            swapCards(definedContainer);
+                        } else if (!$isMobileDevice && $areCardsLoaded) {
+                            definedContainer.style.zIndex = $highestZIndex + 1;
+                            $highestZIndex = $highestZIndex + 1;
+                        }
+                        // Scroll to the alter-ego content if found
+                        if (alterSection) {
+                            alterSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }, 1100);
+                }
+            }
+        }
+    };
 
     onMount(async () => {
         const interact = (await import('interactjs')).default;

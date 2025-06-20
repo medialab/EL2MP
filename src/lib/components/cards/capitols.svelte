@@ -648,17 +648,15 @@ const generateShareContent = async (shareData) => {
             </p>
         </div>
 
-            <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"> 
+            <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"
+            > 
                 <h1 class="h1" style="z-index: 7; line-height: 1;">
                     {@html alterEgoCard.Title}
                 </h1>
             </div>
 
             <div class="card_scrollable_container"
-                bind:this={simplebarContainer}
-                data-simplebar
-                data-simplebar-auto-hide="false"
-                data-section={alterEgoCard.Title}>
+                >
                 
                 <div class="card_scroll_flex" data-section={alterEgoCard.Title}> 
 

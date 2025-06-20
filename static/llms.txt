@@ -1,0 +1,50 @@
+# EL2MP — Effective Large-Language-Model Practices
+
+> An open educational resource with interactive blocks, exercises and a vademecum on AI literacy, prompt engineering, evaluation and ethics, developed by Sciences Po Médialab.
+
+We provide clean **Markdown mirrors** ( `.md` ) of key pages so language-model agents can ingest concise, script-free context. Links below point to those mirrors.
+
+## Core Content
+- [Home](https://ecologiesofllm.medialab.sciencespo.fr/): landing page & project overview
+- [Blocks](https://ecologiesofllm.medialab.sciencespo.fr/#blocks): draggable learning cards (7 thematic blocks)
+- [Exercise catalogue](https://ecologiesofllm.medialab.sciencespo.fr/#catalogue): full list with objectives & assets
+- [Vademecum](https://ecologiesofllm.medialab.sciencespo.fr/#vademecum): quick-reference best-practice sheet
+
+## Project Docs
+- [Ecologies of LLM Practices](https://ecologiesofllm.medialab.sciencespo.fr/#Ecologies%20of%20LLM%20Practices): project framing & rationale
+- [Objective](https://ecologiesofllm.medialab.sciencespo.fr/#Objective): research questions & aims
+- [Methodology](https://ecologiesofllm.medialab.sciencespo.fr/#Methodology): protocol & workflow
+- [Contact](https://ecologiesofllm.medialab.sciencespo.fr/#Contact): team directory & emails
+- [Co-Inquirers](https://ecologiesofllm.medialab.sciencespo.fr/#Co-Inquirers): participant acknowledgements
+
+## Optional
+- [Changelog](https://ecologiesofllm.medialab.sciencespo.fr/#changelog): version history & notable changes
+- [Press](https://ecologiesofllm.medialab.sciencespo.fr/#press): media coverage & external references
+- [Sitemap](https://ecologiesofllm.medialab.sciencespo.fr/sitemap.xml): full URL inventory (XML)
+
+## Blocks & Exercises
+- [Qualifying](/#Qualifying): overview of reflexive practice block
+  - [Ex 1 – Draw It Like You See It](/#Qualifying_Ex_1): sketch mental model of LLM
+  - [Ex 2 – Harvesting Tasks](/#Qualifying_Ex_2): map tasks & LLM assistance
+  - [Ex 3 – Rough Impressions](/#Qualifying_Ex_3): review ChatGPT history
+  - [Ex 4 – Memorable Conversations](/#Qualifying_Ex_4): analyse standout chats
+  - [Ex 5 – Subtracting the Machine](/#Qualifying_Ex_5): describe without AI jargon
+- [Benchmarking](/#Benchmarking): choose & test best-fit models
+  - [Ex 6 – Design Your AI Trial](/#Benchmarking_Ex_6): define tasks & metrics
+  - [Ex 7 – Preparing for the Trial](/#Benchmarking_Ex_7): draft instructions & pick LLMs
+  - [Ex 8 – Gathering Evidence](/#Benchmarking_Ex_8): run blind collection of outputs
+  - [Ex 9 – Judgement Day](/#Benchmarking_Ex_9): rank anonymised results
+- [Prompting](/#Prompting): refine communication with LLMs
+  - [Ex 10 – The Art of the Prompt](/#Prompting_Ex_10): iterate and reflect
+  - [Ex 11 – Tracking Shifts](/#Prompting_Ex_11): document practice evolution
+- [Excelling](/#Excelling): push model towards gold-standard output
+  - [Ex 12 – Choosing an Exemplary Work](/#Excelling_Ex_12): select benchmark text
+  - [Ex 13 – Setting Up the Example](/#Excelling_Ex_13): contextualise excellence
+  - [Ex 14 – Reproducing the Example](/#Excelling_Ex_14): prompt for replication
+  - [Ex 15 – Anatomy of an Exemplary Work](/#Excelling_Ex_15): map dependencies
+  - [Ex 16 – Obstacles, Dead Ends, Highways](/#Excelling_Ex_16): analyse journey
+  - [Ex 17 – Charting Your Path](/#Excelling_Ex_17): visualise learning curves
+- [Distilling](/#Distilling): synthesize insights & produce vademecum
+  - [Ex 18 – Distilling the Vademecum](/#Distilling_Ex_18): create personal booklet
+
+_Last updated: 2025-06-20 · Licence: CC BY-NC-SA 4.0_ 
