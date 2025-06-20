@@ -16,7 +16,7 @@ const closeSharer = () => {
     $showSharer = false
 }
 
-const shareContent = () => {
+const shareContent = async () => {
     if (!$isDesktop) {
 
         console.log("Starting sharer")
@@ -32,7 +32,7 @@ const shareContent = () => {
                 if (canShareFiles) {
                     
                     try {
-                        navigator.share($finalShareData);
+                        await navigator.share($finalShareData);
                         console.log('✅ Content shared successfully with image');
                         setTimeout(() => {
                             $sharingTextMobile = "Thanks for sharing!";

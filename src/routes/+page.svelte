@@ -201,7 +201,7 @@
     $: if ($isAlterEgoMode !== undefined) alignColor($selectedCard);
     $: if (!$isAlterEgoMode) hideFloaters();
     $: if ($isAlterEgoMode) {$currentHash = ''};
-    $: console.log("Current hash is",$currentHash)
+    //$: console.log("Current hash is",$currentHash)
     $: if ($shareData && $shareData.title && svgDoc) generateShareContent();
     
     //Floaters filtering
@@ -489,13 +489,16 @@
         return dataUrl;
     };
 
-    const preloadFonts = Promise.all([
-        loadFontAsBase64Cached('/fonts/InstrumentSerif-Regular.ttf'),
-        loadFontAsBase64Cached('/fonts/InstrumentSans-Regular.ttf')
-    ]).catch((e) => console.warn('Font pre-load failed:', e));
-
+    let preloadFonts;
     
     const prepareSVG = async () => {
+        // Initialize font preloading inside the function (not at module level)
+        if (!preloadFonts) {
+            preloadFonts = Promise.all([
+                loadFontAsBase64Cached('/fonts/InstrumentSerif-Regular.ttf'),
+                loadFontAsBase64Cached('/fonts/InstrumentSans-Regular.ttf')
+            ]).catch((e) => console.warn('Font pre-load failed:', e));
+        }
         await preloadFonts;
         svgText = $isMobileDevice ? templateMobileSvg : templateDesktopSvg;
 
@@ -593,9 +596,8 @@ const generateShareContent = async () => {
             $sharingTextMobile = "Click here to share...";
             $sharerVisibility = true;
             console.log("sharerVisibility", $sharerVisibility)
-        }, 800);
+        }, 1500);
 
-    // Create a working copy of the prepared SVG document
     const workingSvgDoc = svgDoc.cloneNode(true);
 
     if ($shareData.title) {
@@ -700,10 +702,10 @@ const generateShareContent = async () => {
             const strippedText = stripHTML(completeText)
 
             const paragraphs = [$shareData.exDescription, $shareData.exText]
-                .filter(Boolean)                     // keep only defined strings
+                .filter(Boolean)                 
                 .map(p => stripHTML(p));
 
-            let currentY = parseFloat(y);            // absolute y-coordinate we are at
+            let currentY = parseFloat(y);      
 
             paragraphs.forEach((para, pIdx) => {
                 const lines = wrapText(para);
@@ -716,7 +718,7 @@ const generateShareContent = async () => {
                     tspan.textContent = line;
                     exDescElement.appendChild(tspan);
 
-                    currentY += lineHeight;          // advance for next line
+                    currentY += lineHeight;   
                 });
 
                 // add a blank line *between* paragraphs (not after the last one)
@@ -729,10 +731,11 @@ const generateShareContent = async () => {
         
     if ($shareData.exImage) {
         let imageUrl = null;
+        let imageEmbedded = false;
         if ($shareData.exImage.img?.src) {
             imageUrl = new URL($shareData.exImage.img.src, window.location.origin).href;
 
-            const legacyId   = $isMobileDevice ? '#image1_776_3410' : '#image1_798_3654';
+            const legacyId   = $isMobileDevice ? '#image1_777_3516' : '#image1_798_3654';
             let targetImage = workingSvgDoc.querySelector(legacyId);
             console.log("Looking for image with ID:", legacyId);
             console.log("targetImage found:", !!targetImage);
@@ -788,6 +791,9 @@ const generateShareContent = async () => {
                         defs.appendChild(filter);
                         targetImage.setAttribute('filter', 'url(#grayscale)');
                         
+                        await new Promise(resolve => setTimeout(resolve, 100));
+                        imageEmbedded = true;
+                        
                     }
                 } catch (error) {
                     console.error("Error processing image:", error);
@@ -806,6 +812,7 @@ const generateShareContent = async () => {
                     }
                 }
             }
+            console.log("Image embedding completed:", imageEmbedded);
         }
     }
         
@@ -840,6 +847,43 @@ const generateShareContent = async () => {
         console.log("SVG content length:", modifiedSvg.length);
         console.log("SVG has title element:", modifiedSvg.includes('#Title'));
         console.log("SVG content preview:", modifiedSvg.substring(0, 500));
+        console.log("SVG contains image data:", modifiedSvg.includes('data:image'));
+        console.log("SVG has xlink:href with data:", modifiedSvg.includes('xlink:href="data:'));
+        console.log("SVG has href with data:", modifiedSvg.includes('href="data:'));
+
+        // Function to preload all images in the SVG
+        const preloadSvgImages = async (svgString) => {
+            const imageUrlMatches = svgString.match(/(?:href|xlink:href)="(data:image[^"]+)"/g) || [];
+            const imageUrls = imageUrlMatches.map(match => match.split('"')[1]);
+            
+            if (imageUrls.length === 0) {
+                console.log("No embedded images found in SVG");
+                return;
+            }
+            
+            console.log(`Found ${imageUrls.length} embedded images, preloading...`);
+            
+            const imageLoadPromises = imageUrls.map((url, index) => {
+                return new Promise((resolve, reject) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        console.log(`Image ${index + 1} preloaded successfully`);
+                        resolve();
+                    };
+                    img.onerror = () => {
+                        console.warn(`Failed to preload image ${index + 1}`);
+                        resolve();
+                    };
+                    img.src = url;
+                });
+            });
+            
+            await Promise.all(imageLoadPromises);
+            console.log("All images preloaded");
+        };
+
+        // Preload images before rendering
+        await preloadSvgImages(modifiedSvg);
 
         const jpegFile = await new Promise((resolve, reject) => {
             console.log('Promise created');
@@ -848,43 +892,57 @@ const generateShareContent = async () => {
             
             const svgDataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(modifiedSvg)));
 
+            const timeout = setTimeout(() => {
+                reject(new Error('Image loading timeout'));
+            }, 10000); // 10 second timeout
+
             img.onload = () => {
                 try {
-                    // Reset canvas context
-                    ctx.setTransform(1, 0, 0, 1, 0, 0);
-                    
-                    ctx.fillStyle = 'white';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.scale(svgScale, svgScale);
-                    ctx.drawImage(img, 0, 0, svgWidth, svgHeight);
-                    
+                    clearTimeout(timeout);
+                    console.log('SVG image loaded successfully');
 
-                    
-                    canvas.toBlob((blob) => {
-                        
-                        if (blob) {
-                            const file = new File([blob], filename, {
-                                type: 'image/jpeg',
-                                lastModified: new Date().getTime()
-                            });
-                            /*console.log('✓ JPEG created:', {
-                                size: `${(blob.size / 1024).toFixed(1)}KB`,
-                                type: file.type,
-                                name: file.name
-                            });*/
-                            resolve(file);
+                    setTimeout(() => {
+                        try {
+                            // Reset canvas context
+                            ctx.setTransform(1, 0, 0, 1, 0, 0);
                             
-                        } else {
-                            reject(new Error('Failed to create JPEG'));
+                            ctx.fillStyle = 'white';
+                            ctx.fillRect(0, 0, canvas.width, canvas.height);
+                            ctx.scale(svgScale, svgScale);
+                            ctx.drawImage(img, 0, 0, svgWidth, svgHeight);
+                            
+
+                            
+                            canvas.toBlob((blob) => {
+                                
+                                if (blob) {
+                                    const file = new File([blob], filename, {
+                                        type: 'image/jpeg',
+                                        lastModified: new Date().getTime()
+                                    });
+                                    resolve(file);
+                                    
+                                } else {
+                                    reject(new Error('Failed to create JPEG'));
+                                }
+                            }, 'image/jpeg', 0.92);
+                        } catch (error) {
+                            reject(error);
                         }
-                    }, 'image/jpeg', 1);
+                    }, 200);
                 } catch (error) {
+                    clearTimeout(timeout);
                     reject(error);
                 }
             };
 
-            img.onerror = () => reject(new Error('Failed to load SVG'));
+            img.onerror = (error) => {
+                clearTimeout(timeout);
+                console.error('SVG image failed to load:', error);
+                reject(new Error('Failed to load SVG'));
+            };
 
+            console.log('Setting image source...');
             img.src = svgDataUrl;
         });
         
