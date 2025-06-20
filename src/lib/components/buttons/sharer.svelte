@@ -1,10 +1,16 @@
 <script>
 import { currentCardColor, finalShareData, showSharer, currentHash, shareInfo, isDesktop, isMobileDevice, sharingTextMobile, sharerVisibility } from '$lib/stores/globalStores';
-import { fade, scale } from 'svelte/transition';
+import { fade, scale, fly } from 'svelte/transition';
 import { cubicOut } from 'svelte/easing';
 import { writable } from 'svelte/store';
 
 let copierAlert = null;
+
+// Utility function to truncate text with ellipsis
+const truncateText = (text, maxLength = 200) => {
+    if (!text || text.length <= maxLength) return text + '🚀🚀🚀\n';
+    return text.substring(0, maxLength - 3).trim() + '...' + '🚀🚀🚀\n';
+};
 
 const closeSharer = () => {
     $showSharer = false
@@ -27,46 +33,80 @@ const shareContent = () => {
                     try {
                         navigator.share($finalShareData);
                         console.log('✅ Content shared successfully with image');
-                        $sharingTextMobile = "Thanks for sharing!";
-                        
-                        $showSharer = false;
+                        setTimeout(() => {
+                            $sharingTextMobile = "Thanks for sharing!";
+                        }, 100);
+                        setTimeout(() => {
+                            $showSharer = false;
+                            setTimeout(() => {
+                                $sharingTextMobile = "We're preparing your image...";
+                            }, 2000);
+                        }, 1000);
                     } catch (error) {
                         if (error.name === 'AbortError') {
                             console.log('ℹ User cancelled sharing');
-                            $sharingTextMobile = "Share cancelled.";
+                            setTimeout(() => {
+                                $sharingTextMobile = "Share cancelled.";
+                            }, 100);
                             
-                            $showSharer = false;
+                            setTimeout(() => {
+                                $showSharer = false;
+                                setTimeout(() => {
+                                    $sharingTextMobile = "We're preparing your image...";
+                                }, 2000);
+                            }, 1000);
                         } else if (error.name === 'NotAllowedError') {
                             console.log('🚫 Share not allowed (permission denied)');
-                            $sharingTextMobile = "Sharing not permitted.";
+                            setTimeout(() => {
+                                $sharingTextMobile = "Sharing not permitted.";
+                            }, 100);
                             
-                            $showSharer = false;
+                            setTimeout(() => {
+                                $showSharer = false;
+                                setTimeout(() => {
+                                $sharingTextMobile = "We're preparing your image...";
+                            }, 2000);
+                            }, 1000);
                         } else {
                             console.warn('⚠ File sharing failed, trying without image');
                             try {
                                 const textOnlyPayload = {
-                                    text: $finalShareData.text,
+                                    text: truncateText($finalShareData.text, 120),
                                     url: $finalShareData.url
                                 };
                                 navigator.share(textOnlyPayload);
                                 console.log('✅ Text-only share successful');
-                                $sharingTextMobile = "Thanks for sharing!";
+                                setTimeout(() => {
+                                    $sharingTextMobile = "Thanks for sharing!";
+                                }, 100);
                                 
-                                $showSharer = false;
+                                setTimeout(() => {
+                                    $showSharer = false;
+                                    setTimeout(() => {
+                                        $sharingTextMobile = "We're preparing your image...";
+                                    }, 2000);
+                                }, 1000);
                             } catch (err2) {
                                 if (err2.name !== 'AbortError' && err2.name !== 'NotAllowedError') {
                                     console.error('❌ Text-only share failed:', err2);
                                 }
-                                $sharingTextMobile = "No sharing this time... ok";
+                                setTimeout(() => {
+                                    $sharingTextMobile = "No sharing this time... ok";
+                                }, 100);
                                 
-                                $showSharer = false;
+                                setTimeout(() => {
+                                    $showSharer = false;
+                                    setTimeout(() => {
+                                        $sharingTextMobile = "We're preparing your image...";
+                                    }, 2000);
+                                }, 1000);
                             }
                         }
                     }
                 } else {
                     try {
                         const textOnlyPayload = {
-                            text: $finalShareData.text,
+                            text: truncateText($finalShareData.text),
                             url: $finalShareData.url
                         };
                         navigator.share(textOnlyPayload);
@@ -94,8 +134,7 @@ const shareContent = () => {
             
             $showSharer = false;
         }
-
-       
+      
     }
 }
 
@@ -124,7 +163,8 @@ const openWindow = (url) => {
 };
 
 const shareOnTwitter = () => {
-    const text = encodeURIComponent(`${$shareInfo.text}\n`);
+    const truncatedText = truncateText($shareInfo.text);
+    const text = encodeURIComponent(`${truncatedText}\n`);
     const url = encodeURIComponent($shareInfo.url || `https://ecologiesofllm.medialab.sciencespo.fr/${$currentHash}`);
     openWindow(`https://twitter.com/intent/tweet?text=${text}&url=${url}`);
 };
@@ -155,19 +195,21 @@ const shareOnReddit = () => {
 
 {#if $showSharer}
     <div class="sharer_global_container"
-    in:scale={{ duration: 350, delay: 200, start: 0, opacity: 0 }}
-    out:scale={{ duration: 200, delay: 0, start: 1, opacity: 0 }}
+    in:scale={{ duration: 400, delay: 200, start: 0, opacity: 0 }}
+    out:scale={{ duration: 400, delay: 200, start: 0, opacity: 0 }}
     aria-modal="true"
     role="dialog"
     tabindex="0">
         <div class="sharer_header">
-            <p class="p3">
-                {#if $isDesktop}
-                    Share {$shareInfo.exTitle}
-                {:else}
-                    {$sharingTextMobile}
-                {/if}
-            </p>
+            {#key $sharingTextMobile}
+                <p class="p3">
+                    {#if $isDesktop}
+                        Share {$shareInfo.exTitle}
+                    {:else}
+                        {$sharingTextMobile}
+                    {/if}
+                </p>
+            {/key}
             {#if $isDesktop}
                 <button onclick={closeSharer} id="closer" aria-label="Close share dialog">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960"><path d="M256-227.69 227.69-256l224-224-224-224L256-732.31l224 224 224-224L732.31-704l-224 224 224 224L704-227.69l-224-224-224 224Z"/></svg>
@@ -219,7 +261,7 @@ const shareOnReddit = () => {
             aria-label="Copy link to clipboard">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M362.31-260Q332-260 311-281q-21-21-21-51.31v-455.38Q290-818 311-839q21-21 51.31-21h335.38Q728-860 749-839q21 21 21 51.31v455.38Q770-302 749-281q-21 21-51.31 21H362.31Zm0-60h335.38q4.62 0 8.46-3.85 3.85-3.84 3.85-8.46v-455.38q0-4.62-3.85-8.46-3.84-3.85-8.46-3.85H362.31q-4.62 0-8.46 3.85-3.85 3.84-3.85 8.46v455.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85Zm-140 200Q192-120 171-141q-21-21-21-51.31v-515.38h60v515.38q0 4.62 3.85 8.46 3.84 3.85 8.46 3.85h395.38v60H222.31ZM350-320v-480 480Z"/></svg>
             <div class="copier_alert"
-            bind:this={copierAlert}
+            bindthis={copierAlert}
             style="background-color: {$currentCardColor};">
                 <p class="p3">Link copied!</p>
             </div>
@@ -228,7 +270,12 @@ const shareOnReddit = () => {
         </div>
         
     </div>
-    <div class="sharer_background" style="background-color: {$currentCardColor};" in:fade={{    duration: 300 }} out:fade={{ duration: 600 }}>
+    <div
+    class="sharer_background"
+    style="background-color: {$currentCardColor};"
+    in:fade={{    duration: 300 }}
+    out:fade={{ duration: 1500 }}
+    onclick={closeSharer}>
     </div>
 {/if}
 
@@ -259,9 +306,9 @@ const shareOnReddit = () => {
     width: 350px;
     height: fit-content;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     z-index: 1000;
     color: black;
     fill: black;
@@ -272,7 +319,7 @@ const shareOnReddit = () => {
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    
+    transition: height 0.8s ease-in-out;
 }
 
 .sharer_logo_container {
@@ -317,8 +364,9 @@ const shareOnReddit = () => {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    height: fit-content;
+    height: 40px;
     width: 100%;
+    transition: height 0.8s ease-in-out;
 }
 
 .sharer_header > button {
@@ -332,6 +380,9 @@ const shareOnReddit = () => {
 
 .sharer_header > p {
     font-size: 16px;
+    min-width: 180px;
+    text-align: center;
+    overflow: hidden;
 }
 
 .sharer_header > button:hover {

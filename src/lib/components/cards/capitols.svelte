@@ -37,6 +37,12 @@ let lineHeightConfig;
 let defs;
 let style;
 let fontCache = {};
+let canvas;
+let ctx;
+let svgWidth; 
+let svgHeight;
+let svgScale = 2;
+let modifiedSvg;
 
 const loadFontAsBase64Cached = async (fontPath) => {
     if (fontCache[fontPath]) return fontCache[fontPath];
@@ -93,6 +99,18 @@ const prepareSVG = async () => {
         exText: 1.4
     };
 
+    modifiedSvg = new XMLSerializer().serializeToString(svgDoc.documentElement);
+        
+    canvas = document.createElement('canvas');
+    ctx = canvas.getContext('2d');
+    
+    svgWidth = parseFloat(svgRoot.getAttribute('width')) || 680;
+    svgHeight = parseFloat(svgRoot.getAttribute('height')) || 474;
+    svgScale = 2;
+    
+    canvas.width = svgWidth * svgScale;
+    canvas.height = svgHeight * svgScale;
+
 }
 
 const stripHTML = (html) => {
@@ -137,14 +155,13 @@ const wrapText = (textToWrap, customMaxChars = maxCharsPerLine) => {
 
 const generateShareContent = async (shareData) => {
     $showSharer = true;
-    
-    setTimeout(() => {
-        $sharerVisibility = true;
-        console.log("sharerVisibility", $sharerVisibility)
-    }, 800);
 
-    $sharingTextMobile = "We're preparing your image...";
-
+        
+        setTimeout(() => {
+            $sharingTextMobile = "Click here to share...";
+            $sharerVisibility = true;
+            console.log("sharerVisibility", $sharerVisibility)
+        }, 800);
 
     if (shareData.title) {
         const titleElement = svgDoc.querySelector('#Title');
@@ -328,40 +345,29 @@ const generateShareContent = async (shareData) => {
         }
     }
         
-        if (shareData.bgColor) {
-            const targetColor = '#FBC797'; //replacing bg color
-            const allElements = svgDoc.querySelectorAll('*');
-            
-            allElements.forEach(element => {
-                const fillColor = element.getAttribute('fill');
-                if (fillColor && (fillColor.toUpperCase() === targetColor.toUpperCase() || fillColor.toUpperCase() === 'FBC797')) {
-                    element.setAttribute('fill', shareData.bgColor);
-                }
-            });
-        }
+    if (shareData.bgColor) {
+        const targetColor = '#FBC797'; //replacing bg color
+        const allElements = svgDoc.querySelectorAll('*');
         
-        const modifiedSvg = new XMLSerializer().serializeToString(svgDoc.documentElement);
+        allElements.forEach(element => {
+            const fillColor = element.getAttribute('fill');
+            if (fillColor && (fillColor.toUpperCase() === targetColor.toUpperCase() || fillColor.toUpperCase() === 'FBC797')) {
+                element.setAttribute('fill', shareData.bgColor);
+            }
+        });
+    }
         
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
         
-        const svgWidth = parseFloat(svgRoot.getAttribute('width')) || 680;
-        const svgHeight = parseFloat(svgRoot.getAttribute('height')) || 474;
-        const scale = 2;
-        
-        canvas.width = svgWidth * scale;
-        canvas.height = svgHeight * scale;
-        
-        const slug = (str) => (str || '')
-            .toString()
-            .replace(/<[^>]+>/g, '') // strip HTML
-            .replace(/[^a-z0-9]+/gi, '_')
-            .replace(/^_+|_+$/g, '')
-            .substring(0, 25); // limit fragment length
+    const slug = (str) => (str || '')
+        .toString()
+        .replace(/<[^>]+>/g, '') // strip HTML
+        .replace(/[^a-z0-9]+/gi, '_')
+        .replace(/^_+|_+$/g, '')
+        .substring(0, 25); // limit fragment length
 
-        const main = slug(shareData.title) || 'EL2MP';
-        const ex = slug(shareData.exTitle) || 'Exercise';
-        const filename = `${main}_${ex}.jpg`;
+    const main = slug(shareData.title) || 'EL2MP';
+    const ex = slug(shareData.exTitle) || 'Exercise';
+    const filename = `${main}_${ex}.jpg`;
         
         console.log("Starting SVG to JPEG conversion");
 
@@ -369,17 +375,15 @@ const generateShareContent = async (shareData) => {
             console.log('Promise created');
 
             const img = new Image();
-
             
             const svgDataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(modifiedSvg)));
-            
 
             img.onload = () => {
                 try {
                     
                     ctx.fillStyle = 'white';
                     ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.scale(scale, scale);
+                    ctx.scale(svgScale, svgScale);
                     ctx.drawImage(img, 0, 0, svgWidth, svgHeight);
                     
 
@@ -427,8 +431,8 @@ const generateShareContent = async (shareData) => {
         
         const link = shareData.url || window.location.href;
         const socialMessage =
-          `\n*Exercise ${exLabel} of block ${blockLabel}*\n\n` +
-          `${desc}\n\n🔗`;
+          `\nExercise ${exLabel} | Block ${blockLabel}\n\n`+
+          `${desc}`;
         
         $finalShareData = {
             text: socialMessage,
@@ -436,7 +440,6 @@ const generateShareContent = async (shareData) => {
             files: [jpegFile]
         };
         
-
         const textOnlyPayload = {
             text: socialMessage,
             url: link
@@ -555,6 +558,18 @@ const generateShareContent = async (shareData) => {
                         data-sveltekit-preload-data
                         data-section={`Ex_${section.exNum}`}
                         onmouseenter={() => {
+                            if (!$isMobileDevice) {
+                                $currentFocus = `${card.Title}_Ex_${section.exNum}`
+                                console.log($currentFocus)
+                            }
+                        }}
+                        ontouchstart={() => {
+                            if ($isMobileDevice) {
+                                $currentFocus = `${card.Title}_Ex_${section.exNum}`
+                                console.log($currentFocus)
+                            }
+                        }}
+                        onfocus={() => {
                             $currentFocus = `${card.Title}_Ex_${section.exNum}`
                             console.log($currentFocus)
                         }}> 
@@ -1308,6 +1323,7 @@ const generateShareContent = async (shareData) => {
             width: 100%;
             place-self: center;
             align-self: center;
+            padding-bottom: 5px;
         }
 
         .flex_header > button {

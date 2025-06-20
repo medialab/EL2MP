@@ -1,11 +1,17 @@
 <script>
-    import { selectedCard, isAlterEgoMode, currentCardColor } from '$lib/stores/globalStores';
+    import { selectedCard, isAlterEgoMode, currentCardColor, currentFocus } from '$lib/stores/globalStores';
+    
+    const handleProjectClick = () => {
+        $isAlterEgoMode = true;
+        $currentFocus = '';
+        window.location.hash = $currentFocus;
+    };
 </script>
 
 <div class="slider_container">
     <button 
         class="slider-button first {$isAlterEgoMode ? 'active' : ''}" 
-        on:click={() => $isAlterEgoMode = true}
+        onclick={handleProjectClick}
         disabled={$isAlterEgoMode}
         style="pointer-events: {$isAlterEgoMode ? 'none' : 'auto'};"
     >
@@ -13,7 +19,7 @@
     </button>
     <button 
         class="slider-button second {!$isAlterEgoMode ? 'active' : ''}" 
-        on:click={() => $isAlterEgoMode = false}
+        onclick={() => $isAlterEgoMode = false}
         disabled={!$isAlterEgoMode}
         style="pointer-events: {!$isAlterEgoMode ? 'none' : 'auto'};"
     >

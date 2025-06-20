@@ -130,11 +130,6 @@
     }
   }
 
-  $: if($isAlterEgoMode) {
-    $currentFocus = ''
-    window.location.hash = $currentFocus
-  }
-
   onMount(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
