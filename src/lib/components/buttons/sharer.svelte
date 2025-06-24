@@ -216,7 +216,9 @@ const shareOnReddit = () => {
             {#key $sharingTextMobile}
                 <p class="p3">
                     {#if $isDesktop}
-                        Share {$shareInfo.exTitle}
+                        Sharing "{$shareInfo.exTitle && $shareInfo.exTitle.length > 20 
+                            ? $shareInfo.exTitle.substring(0, 20) + '...' 
+                            : $shareInfo.exTitle}"
                     {:else}
                         {$sharingTextMobile}
                     {/if}

@@ -225,10 +225,34 @@ const isSecureContext = writable(false);
             style="background-color: {alterEgoCard.bgColor} !important; transition: transform {transitionTime}s {transitionCurve} {transitionDelay}ms;"
         >
 
-        <div class="block_num">
-            <p class="h3" style="color: white;">
+        <div class="block_num" id="altergo_block_num">
+            <!-- <p class="h3" style="color: white;">
                 Card {card.IndexNum}
-            </p>
+            </p>-->
+            <button id="share_button"
+                
+                onclick={(event) => {
+                    event.preventDefault();
+                    
+                    $shareData = ({
+                        title: alterEgoCard.Title,
+                        exTitle: alterEgoCard.Question,
+                        exText: '',
+                        exDescription: alterEgoCard.Description,
+                        exImage: '',
+                        bgColor: alterEgoCard.bgColor,
+                        url: `${window.location.href}`
+                    });
+
+                    console.log($shareData)
+                }}
+
+                tabindex="0"
+                role="button"
+                class="share_button"
+                aria-label="Share content">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M264.62-80Q237-80 218.5-98.5 200-117 200-144.62v-390.76q0-27.62 18.5-46.12Q237-600 264.62-600h84.61v40h-84.61q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v390.76q0 9.24 7.69 16.93 7.69 7.69 7.69 16.93h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-390.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69h-84.61v-40h84.61q27.62 0 46.12 18.5Q760-563 760-535.38v390.76q0 27.62-18.5 46.12Q723-80 695.38-80H264.62ZM460-340v-435.46l-84 84L347.69-720 480-852.31 612.31-720 584-691.46l-84-84V-340h-40Z"/></svg>
+            </button>
         </div>
 
             <div class="description_container" style="background-color: {alterEgoCard.bgColor}; border: 5px solid {alterEgoCard.bgColor};"
@@ -278,7 +302,7 @@ const isSecureContext = writable(false);
         width: 50px;
         height: 50px;
         position: absolute;
-        top: 20px;
+        top: 10px;
         right: 10px;
         z-index: 20;
         color: black;
@@ -290,15 +314,16 @@ const isSecureContext = writable(false);
         flex-direction: row;
         align-items: center;
         justify-content: center;
+        fill: #1f1f1f;
+    }
+
+    #altergo_block_num {
+        fill: white;
     }
 
     .block_num > .share_button {
         width: 100%;
         height: 100%;
-    }
-
-    .block_num > p {
-        font-size: 0.9vw;
     }
 
     .description_container {
@@ -487,7 +512,6 @@ const isSecureContext = writable(false);
     .share_button > svg {
         height: 100%;
         width: 100%;
-        fill: #1f1f1f;
         opacity: 0.5;
     }
 

@@ -472,7 +472,7 @@
     let ctx;
     let svgWidth; 
     let svgHeight;
-    let svgScale = 1;
+    let svgScale = 2;
     let modifiedSvg;
 
 
@@ -646,6 +646,23 @@
     };
 
 const generateShareContent = async () => {
+    // Helper function to determine if a color is dark
+    const isColorDark = (hexColor) => {
+        // Remove # if present
+        const hex = hexColor.replace('#', '');
+        
+        // Convert to RGB
+        const r = parseInt(hex.substr(0, 2), 16);
+        const g = parseInt(hex.substr(2, 2), 16);
+        const b = parseInt(hex.substr(4, 2), 16);
+        
+        // Calculate brightness using luminance formula
+        const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+        
+        // Return true if dark (brightness < 128)
+        return brightness < 128;
+    };
+
     $showSharer = true;
         
         setTimeout(() => {
@@ -791,38 +808,43 @@ const generateShareContent = async () => {
                 allContentLines.push({ text: line, type: 'text', lineHeight: textLineHeight });
             });
             
-            // Apply desktop line limit
+            // Apply line limits based on device and background color
+            let maxLines;
+            const isDarkBackground = $shareData.bgColor && isColorDark($shareData.bgColor);
             if (!$isMobileDevice) {
-                const maxLines = 6;
-                if (allContentLines.filter(line => line.text !== '').length > maxLines) {
-                    // Find the 6th content line (excluding spacing)
-                    let contentLineCount = 0;
-                    let truncateIndex = -1;
-                    
-                    for (let i = 0; i < allContentLines.length; i++) {
-                        if (allContentLines[i].text !== '') {
-                            contentLineCount++;
-                            if (contentLineCount === maxLines) {
-                                truncateIndex = i;
-                                break;
-                            }
+                maxLines = isDarkBackground ? 15 : 6;
+            } else {
+                maxLines = isDarkBackground ? 26 : 10;
+            }
+            
+            if (allContentLines.filter(line => line.text !== '').length > maxLines) {
+                // Find the content line at the limit (excluding spacing)
+                let contentLineCount = 0;
+                let truncateIndex = -1;
+                
+                for (let i = 0; i < allContentLines.length; i++) {
+                    if (allContentLines[i].text !== '') {
+                        contentLineCount++;
+                        if (contentLineCount === maxLines) {
+                            truncateIndex = i;
+                            break;
                         }
                     }
+                }
+                
+                if (truncateIndex !== -1) {
+                    // Truncate the last line and add ellipsis
+                    const lastLine = allContentLines[truncateIndex];
+                    const maxCharsForEllipsis = lastLine.text.length - 3; // Leave room for "..."
                     
-                    if (truncateIndex !== -1) {
-                        // Truncate the last line and add ellipsis
-                        const lastLine = allContentLines[truncateIndex];
-                        const maxCharsForEllipsis = lastLine.text.length - 3; // Leave room for "..."
-                        
-                        if (maxCharsForEllipsis > 0) {
-                            lastLine.text = lastLine.text.substring(0, maxCharsForEllipsis).trim() + '...';
-                        } else {
-                            lastLine.text = lastLine.text.trim() + '...';
-                        }
-                        
-                        // Remove all lines after the truncation point
-                        allContentLines = allContentLines.slice(0, truncateIndex + 1);
+                    if (maxCharsForEllipsis > 0) {
+                        lastLine.text = lastLine.text.substring(0, maxCharsForEllipsis).trim() + '...';
+                    } else {
+                        lastLine.text = lastLine.text.trim() + '...';
                     }
+                    
+                    // Remove all lines after the truncation point
+                    allContentLines = allContentLines.slice(0, truncateIndex + 1);
                 }
             }
             
@@ -848,64 +870,73 @@ const generateShareContent = async () => {
         }
     }
         
-    if ($shareData.exImage) {
-        let imageUrl = null;
+    // Handle image element - either populate it with an image or remove it completely
+    const legacyId = $isMobileDevice ? '#image1_777_3516' : '#image1_798_3654';
+    let targetImage = workingSvgDoc.querySelector(legacyId);
+
+    if ($shareData.exImage && $shareData.exImage.img?.src) {
+        // Image is provided - populate the image element
+        let imageUrl = new URL($shareData.exImage.img.src, window.location.origin).href;
         let imageEmbedded = false;
-        if ($shareData.exImage.img?.src) {
-            imageUrl = new URL($shareData.exImage.img.src, window.location.origin).href;
 
-            const legacyId   = $isMobileDevice ? '#image1_777_3516' : '#image1_798_3654';
-            let targetImage = workingSvgDoc.querySelector(legacyId);
+        if (targetImage) {
+            try {
+                const imageResponse = await fetch(imageUrl);
+                if (imageResponse.ok) {
+                    const imageBlob = await imageResponse.blob();
+                    const base64Promise = new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve(reader.result);
+                        reader.onerror = reject;
+                        reader.readAsDataURL(imageBlob);
+                    });
+                    
+                    const imageDataUrl = await base64Promise;
 
-            
-            if (targetImage) {
-                try {
-                    const imageResponse = await fetch(imageUrl);
-                    if (imageResponse.ok) {
-                        const imageBlob = await imageResponse.blob();
-                        const base64Promise = new Promise((resolve, reject) => {
-                            const reader = new FileReader();
-                            reader.onload = () => resolve(reader.result);
-                            reader.onerror = reject;
-                            reader.readAsDataURL(imageBlob);
-                        });
-                        
-                        const imageDataUrl = await base64Promise;
+                    targetImage.setAttribute('href', imageDataUrl);
+                    targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageDataUrl);
+                    targetImage.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+                    
+                    let defs = workingSvgDoc.querySelector('defs');
 
-                        targetImage.setAttribute('href', imageDataUrl);
-                        targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageDataUrl);
-                        targetImage.setAttribute('preserveAspectRatio', 'xMidYMid slice');
-                        
-
-
-                        let defs = workingSvgDoc.querySelector('defs');
-
-                        if (!defs) {
-                            defs = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
-                            workingSvgDoc.documentElement.appendChild(defs);
-                        }
-                        
-                        const filter = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'filter');
-                        filter.setAttribute('id', 'grayscale');
-                        const colorMatrix = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
-                        colorMatrix.setAttribute('type', 'saturate');
-                        colorMatrix.setAttribute('values', '0');
-                        filter.appendChild(colorMatrix);
-                        defs.appendChild(filter);
-                        targetImage.setAttribute('filter', 'url(#grayscale)');
-                        
-                        await new Promise(resolve => setTimeout(resolve, 100));
-                        imageEmbedded = true;
-                        
+                    if (!defs) {
+                        defs = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'defs');
+                        workingSvgDoc.documentElement.appendChild(defs);
                     }
-                } catch (error) {
-                    // Try a simpler approach for mobile - just set the original URL
-                    if ($isMobileDevice) {
-                        targetImage.setAttribute('href', imageUrl);
-                        targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageUrl);
-                    }
+                    
+                    const filter = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'filter');
+                    filter.setAttribute('id', 'grayscale');
+                    const colorMatrix = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'feColorMatrix');
+                    colorMatrix.setAttribute('type', 'saturate');
+                    colorMatrix.setAttribute('values', '0');
+                    filter.appendChild(colorMatrix);
+                    defs.appendChild(filter);
+                    targetImage.setAttribute('filter', 'url(#grayscale)');
+                    
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    imageEmbedded = true;
+                    
+                }
+            } catch (error) {
+                // Try a simpler approach for mobile - just set the original URL
+                if ($isMobileDevice) {
+                    targetImage.setAttribute('href', imageUrl);
+                    targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageUrl);
                 }
             }
+        }
+    } else {
+        // No image provided - remove the image element and color block completely
+        if (targetImage) {
+            targetImage.remove();
+            console.log('🖼️ Image element removed from SVG (no image provided)');
+        }
+        
+        // Also remove the Ex_colorBlock element
+        const colorBlock = workingSvgDoc.querySelector('#Ex_colorBlock');
+        if (colorBlock) {
+            colorBlock.remove();
+            console.log('🎨 Ex_colorBlock element removed from SVG (no image provided)');
         }
     }
         
@@ -919,6 +950,27 @@ const generateShareContent = async () => {
                 element.setAttribute('fill', $shareData.bgColor);
             }
         });
+
+        // Check if the background color is dark and adjust text color accordingly
+        if (isColorDark($shareData.bgColor)) {
+            const textElements = workingSvgDoc.querySelectorAll('text');
+            textElements.forEach(textElement => {
+                const currentFill = textElement.getAttribute('fill');
+                // Only change black text to white (preserve other colored text)
+                if (!currentFill || currentFill === 'black' || currentFill === '#000000' || currentFill === '#000') {
+                    textElement.setAttribute('fill', 'white');
+                }
+            });
+
+            // Also check for tspan elements that might have fill attributes
+            const tspanElements = workingSvgDoc.querySelectorAll('tspan');
+            tspanElements.forEach(tspanElement => {
+                const currentFill = tspanElement.getAttribute('fill');
+                if (!currentFill || currentFill === 'black' || currentFill === '#000000' || currentFill === '#000') {
+                    tspanElement.setAttribute('fill', 'white');
+                }
+            });
+        }
     }
         
         
