@@ -27,7 +27,7 @@ const isSecureContext = writable(false);
 
     onMount( () => {
         $isSecureContext = window.isSecureContext;
-        console.log("isSecureContext", $isSecureContext);
+        //console.log("isSecureContext", $isSecureContext);
     });
 
 </script>
@@ -68,9 +68,33 @@ const isSecureContext = writable(false);
         >
 
         <div class="block_num" style="right: {$isMobileDevice ? '10px' : '0px'};">
-            <p class="h3">
+            <!--<p class="h3">
                 Block {card.IndexNum}
-            </p>
+            </p>-->
+            <button id="share_button"
+                
+                onclick={(event) => {
+                    event.preventDefault();
+                    
+                    $shareData = ({
+                        title: card.Title,
+                        exTitle: card.Question,
+                        exText: '',
+                        exDescription: card.Description,
+                        exImage: card.CoverImg,
+                        bgColor: card.bgColor,
+                        url: `${window.location.href}`
+                    });
+
+                    console.log($shareData)
+                }}
+
+                tabindex="0"
+                role="button"
+                class="share_button"
+                aria-label="Share content">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M264.62-80Q237-80 218.5-98.5 200-117 200-144.62v-390.76q0-27.62 18.5-46.12Q237-600 264.62-600h84.61v40h-84.61q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v390.76q0 9.24 7.69 16.93 7.69 7.69 7.69 16.93h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-390.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69h-84.61v-40h84.61q27.62 0 46.12 18.5Q760-563 760-535.38v390.76q0 27.62-18.5 46.12Q723-80 695.38-80H264.62ZM460-340v-435.46l-84 84L347.69-720 480-852.31 612.31-720 584-691.46l-84-84V-340h-40Z"/></svg>
+            </button>
         </div>
 
         
@@ -89,7 +113,6 @@ const isSecureContext = writable(false);
                 data-simplebar-auto-hide="false"
                 data-section={card.Title}>
 
-                
                 
                 <div class="card_scroll_flex" data-section={card.Title}>
                     
@@ -160,7 +183,8 @@ const isSecureContext = writable(false);
 
                                             tabindex="0"
                                             role="button"
-                                            aria-label="Share content">
+                                            aria-label="Share content"
+                                            class="share_button">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M264.62-80Q237-80 218.5-98.5 200-117 200-144.62v-390.76q0-27.62 18.5-46.12Q237-600 264.62-600h84.61v40h-84.61q-9.24 0-16.93 7.69-7.69 7.69-7.69 16.93v390.76q0 9.24 7.69 16.93 7.69 7.69 7.69 16.93h430.76q9.24 0 16.93-7.69 7.69-7.69 7.69-16.93v-390.76q0-9.24-7.69-16.93-7.69-7.69-16.93-7.69h-84.61v-40h84.61q27.62 0 46.12 18.5Q760-563 760-535.38v390.76q0 27.62-18.5 46.12Q723-80 695.38-80H264.62ZM460-340v-435.46l-84 84L347.69-720 480-852.31 612.31-720 584-691.46l-84-84V-340h-40Z"/></svg>
                                         </button>
                                     {/if}
@@ -251,14 +275,26 @@ const isSecureContext = writable(false);
     }
 
     .block_num {
-        width: fit-content;
-        height: fit-content;
+        width: 50px;
+        height: 50px;
         position: absolute;
-        top: 10px;
+        top: 20px;
         right: 10px;
         z-index: 20;
-        pointer-events: none;
         color: black;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .block_num > .share_button {
+        width: 100%;
+        height: 100%;
     }
 
     .block_num > p {
@@ -447,14 +483,15 @@ const isSecureContext = writable(false);
         gap: var(--spacing-M);
     }
 
-    .flex_header > button > svg {
+
+    .share_button > svg {
         height: 100%;
         width: 100%;
         fill: #1f1f1f;
         opacity: 0.5;
     }
 
-    .flex_header > button {
+    .share_button {
         width: 30px;
         height: 30px;
         background-color: transparent;
@@ -471,9 +508,10 @@ const isSecureContext = writable(false);
         position: relative;
         border-radius: 0%;
         padding: 0;
+        cursor: pointer;
     }
 
-    .flex_header > button:active {
+    .share_button:active {
         width: 30px;
         height: 30px;
         transform: scale(0.9) rotate(5deg);
@@ -793,25 +831,6 @@ const isSecureContext = writable(false);
         -ms-overflow-style: none;
     }
 
-    .download_overlay {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        background-color: none;
-        user-select: none;
-        pointer-events: none;
-        z-index: 500;
-        display: flex;
-        flex-direction: column;
-        row-gap: var(--spacing-S);
-        align-items: center;
-        justify-content: center;
-    }
-
-    .download_overlay > img {
-        width: 40%;
-    }
-
     @media (max-width: 768px) {
         :global(.card_container){
             width: 90vw !important;
@@ -875,7 +894,7 @@ const isSecureContext = writable(false);
         }
         
 
-        .flex_header > button > svg {
+        .share_button > svg {
             height: 100%;
             width: 100%;
             place-self: center;
@@ -883,7 +902,7 @@ const isSecureContext = writable(false);
             padding-bottom: 5px;
         }
 
-        .flex_header > button {
+        .share_button {
             width: 30px;
             height: 30px;
             background-color: transparent;
@@ -897,6 +916,12 @@ const isSecureContext = writable(false);
             position: relative;
             border-radius: 0%;
             padding: 0;
+        }
+
+        .block_num { 
+            width: 40px;
+            height: 40px;
+            top: 10px;
         }
 
         .block_num > p {

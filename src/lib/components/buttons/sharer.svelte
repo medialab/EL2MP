@@ -192,7 +192,7 @@ const downloadImage = () => {
     } else {
         console.warn('⚠ No image available for download');
     }
-    closeSharer();
+    //closeSharer();
 };
 
 // Reddit share (desktop only)

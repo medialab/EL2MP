@@ -47,7 +47,6 @@
 
     let lastDeviceType = null; 
     let isSwapping = false;
-    
 
     const areCardsLoaded = writable(false);
 
@@ -492,7 +491,7 @@
     let preloadFonts;
     
     const prepareSVG = async () => {
-        // Initialize font preloading inside the function (not at module level)
+        
         if (!preloadFonts) {
             preloadFonts = Promise.all([
                 loadFontAsBase64Cached('/fonts/InstrumentSerif-Regular.ttf'),
@@ -530,10 +529,21 @@
         svgRoot.insertBefore(defs, svgRoot.firstChild);
 
         maxCharsPerLine = $isMobileDevice ? 50 : 75;
+        
+        const textLimits = {
+            default: maxCharsPerLine,
+            exDescription: $isMobileDevice ? 50 : 70,
+            exText: $isMobileDevice ? 65 : 70,
+            exTitle: $isMobileDevice ? 35 : 45
+        };
+            
+        // Store text limits globally for use in other functions
+        window.svgTextLimits = textLimits;
+        
         lineHeightConfig = {
-            exTitle: 1.1,
-            exDescription: 1.3,
-            exText: 1.4
+            exTitle: $isMobileDevice ? 1.05 : 1.1,      // Tighter line height on mobile
+            exDescription: $isMobileDevice ? 1.25 : 1.3, // Slightly tighter on mobile
+            exText: $isMobileDevice ? 1.35 : 1.4         // Slightly tighter on mobile
         };
 
         modifiedSvg = new XMLSerializer().serializeToString(svgDoc.documentElement);
@@ -546,46 +556,92 @@
         
         canvas.width = svgWidth * svgScale;
         canvas.height = svgHeight * svgScale;
-        console.log("SVG preloaded");
-        }
+    }
 
-        const stripHTML = (html) => {
+    const stripHTML = (html) => {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = html;
         return tempDiv.textContent || tempDiv.innerText || '';
     };
 
-    const wrapText = (textToWrap, customMaxChars = maxCharsPerLine) => {
+    // Helper function to calculate content height before rendering
+    const calculateContentHeight = (title, description, text, baseFontSize = 16) => {
+        if (!description && !text) return 0;
+
+        let titleOffset = 0;
+        if (title) {
+            const titleLines = wrapText(stripHTML(title), 'exTitle').length;
+            const titleLineHeight = baseFontSize * lineHeightConfig.exTitle;
+            const singleLineHeight = titleLineHeight;
+            const totalTitleHeight = titleLines * titleLineHeight;
+            const extraTitleHeight = Math.max(0, totalTitleHeight - singleLineHeight);
+            
+            // Apply mobile scaling to reduce excessive spacing
+            const mobileOffsetScale = $isMobileDevice ? 0.4 : 1.0;
+            titleOffset = extraTitleHeight * mobileOffsetScale;
+        }
+
+        const descriptionLines = description ? wrapText(stripHTML(description), 'exDescription').length : 0;
+        const textLines = text ? wrapText(stripHTML(text), 'exText').length : 0;
         
-        const words = textToWrap.split(' ');
+        const descriptionLineHeight = baseFontSize * lineHeightConfig.exDescription;
+        const textLineHeight = baseFontSize * lineHeightConfig.exText;
+        
+        const descriptionHeight = descriptionLines * descriptionLineHeight;
+        const textHeight = textLines * textLineHeight;
+        const spacingHeight = (descriptionLines > 0 && textLines > 0) ? descriptionLineHeight * 0.5 : 0;
+        // Eliminate additional spacing on mobile due to large font sizes
+        const spacingMultiplier = $isMobileDevice ? 0 : 0.3;
+        const additionalSpacing = titleOffset > 0 ? baseFontSize * spacingMultiplier : 0;
+        
+        return {
+            titleOffset,
+            descriptionLines,
+            textLines,
+            totalHeight: titleOffset + additionalSpacing + descriptionHeight + textHeight + spacingHeight,
+            descriptionHeight,
+            textHeight,
+            spacingHeight,
+            additionalSpacing
+        };
+    };
+
+    const wrapText = (textToWrap, textType = 'default') => {
+        // Validate input
+        if (!textToWrap || typeof textToWrap !== 'string') {
+            return [];
+        }
+        
+        const textLimits = window.svgTextLimits
+        const customMaxChars = textLimits[textType] || textLimits.default;
+        
+        const words = textToWrap.trim().split(' ');
         const lines = [];
-        let word = '';
         let currentLine = '';
 
-        for (word of words) {
-
+        for (let i = 0; i < words.length; i++) {
+            const word = words[i];
             const testLine = currentLine ? `${currentLine} ${word}` : word;
-
 
             if (testLine.length <= customMaxChars) {
                 currentLine = testLine;
-                
             } else {
-                
                 if (currentLine) {
                     lines.push(currentLine);
                     currentLine = word;
                 } else {
+                    // Handle case where a single word is longer than the limit
                     lines.push(word);
+                    currentLine = '';
                 }
             }
         }
 
         if (currentLine) {
             lines.push(currentLine);
-            console.log("currentLine", currentLine)
         }
         
+
         return lines;
     };
 
@@ -599,6 +655,9 @@ const generateShareContent = async () => {
         }, 1500);
 
     const workingSvgDoc = svgDoc.cloneNode(true);
+
+    // Track title height for positioning adjustments
+    let titleHeightOffset = 0;
 
     if ($shareData.title) {
         const titleElement = workingSvgDoc.querySelector('#Title');
@@ -628,8 +687,10 @@ const generateShareContent = async () => {
         
     if ($shareData.exTitle) {
         const exTitleElement = workingSvgDoc.querySelector('#Ex_Title');
+        
         if (exTitleElement) {
             const firstTspan = exTitleElement.querySelector('tspan');
+            
             if (firstTspan) {
                 const x = firstTspan.getAttribute('x');
                 const y = firstTspan.getAttribute('y');
@@ -637,55 +698,49 @@ const generateShareContent = async () => {
                 const dy = firstTspan.getAttribute('dy');
                 const transform = firstTspan.getAttribute('transform');
 
+                const fontSize = parseFloat(exTitleElement.getAttribute('font-size')) || 24;
+                const lineHeight = fontSize * lineHeightConfig.exTitle;
+
                 exTitleElement.innerHTML = '';
 
-                // Split title on mobile using dash separator
-                if ($isMobileDevice && $shareData.exTitle.includes('-')) {
-                    const parts = $shareData.exTitle.split('-');
-                    const firstPart = parts[0].trim();
-                    const secondPart = parts.slice(1).join('-').trim();
+                // Strip HTML from title
+                const strippedTitle = stripHTML($shareData.exTitle);
 
-                    const fontSize = parseFloat(exTitleElement.getAttribute('font-size')) || 24;
-                    const lineHeight = fontSize * lineHeightConfig.exTitle;
+                // Use wrapText function for consistent wrapping
+                const titleLines = wrapText(strippedTitle, 'exTitle');
 
-                    const firstSpan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-                    if (x) firstSpan.setAttribute('x', x);
-                    if (y) firstSpan.setAttribute('y', y);
-                    if (dx) firstSpan.setAttribute('dx', dx);
-                    if (dy) firstSpan.setAttribute('dy', dy);
-                    if (transform) firstSpan.setAttribute('transform', transform);
-                    firstSpan.textContent = stripHTML(firstPart);
-                    exTitleElement.appendChild(firstSpan);
+                let currentY = parseFloat(y);
 
-                    const secondSpan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-                    if (x) secondSpan.setAttribute('x', x);
-                    if (y) {
-                        const yPos = parseFloat(y) + lineHeight;
-                        secondSpan.setAttribute('y', yPos.toString());
-                    }
-                    if (transform) secondSpan.setAttribute('transform', transform);
-                    secondSpan.textContent = stripHTML(secondPart);
-                    exTitleElement.appendChild(secondSpan);
-                } else {
-                    const newTspan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-                    if (x) newTspan.setAttribute('x', x);
-                    if (y) newTspan.setAttribute('y', y);
-                    if (dx) newTspan.setAttribute('dx', dx);
-                    if (dy) newTspan.setAttribute('dy', dy);
-                    if (transform) newTspan.setAttribute('transform', transform);
-                    newTspan.textContent = stripHTML($shareData.exTitle);
-                    exTitleElement.appendChild(newTspan);
-                }
+                // Create tspan for each line
+                titleLines.forEach((line, index) => {
+                    const tspan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                    if (x) tspan.setAttribute('x', x);
+                    tspan.setAttribute('y', currentY.toString());
+                    if (dx && index === 0) tspan.setAttribute('dx', dx); // Only first line gets dx
+                    if (dy && index === 0) tspan.setAttribute('dy', dy); // Only first line gets dy
+                    if (transform) tspan.setAttribute('transform', transform);
+                    tspan.textContent = line;
+                    exTitleElement.appendChild(tspan);
+
+                    currentY += lineHeight;
+                });
+
+                const totalTitleHeight = currentY - parseFloat(y);
+                const singleLineHeight = lineHeight;
+                const extraTitleHeight = Math.max(0, totalTitleHeight - singleLineHeight);
+                
+                // Apply mobile scaling to reduce excessive spacing
+                const mobileOffsetScale = $isMobileDevice ? 0.4 : 1.0; // Reduce to 40% on mobile
+                titleHeightOffset = extraTitleHeight * mobileOffsetScale;
+                
+
             }
         }
     }
         
-    if ($shareData.exText && $shareData.exDescription) {
-        const completeText = `${$shareData.exDescription} § ${$shareData.exText}`;
-        //console.log("completeText:", completeText)
+    if ($shareData.exText !== null && $shareData.exDescription !== null) {
         const exDescElement = workingSvgDoc.querySelector('#Ex_description');
         const firstTspan = exDescElement.querySelector('tspan');
-        //console.log("exDescElement:", exDescElement)
 
         if (exDescElement) {
             const x = firstTspan.getAttribute('x');
@@ -695,37 +750,101 @@ const generateShareContent = async () => {
             const transform = firstTspan.getAttribute('transform');
             
             const fontSize = parseFloat(exDescElement.getAttribute('font-size')) || 16;
-            const lineHeight = fontSize * lineHeightConfig.exDescription;
+            const descriptionLineHeight = fontSize * lineHeightConfig.exDescription;
+            const textLineHeight = fontSize * lineHeightConfig.exText;
             
             exDescElement.innerHTML = '';
 
-            const strippedText = stripHTML(completeText)
+            // Process description and text separately with different character limits
+            const strippedDescription = stripHTML($shareData.exDescription);
+            const strippedText = stripHTML($shareData.exText);
 
-            const paragraphs = [$shareData.exDescription, $shareData.exText]
-                .filter(Boolean)                 
-                .map(p => stripHTML(p));
+            // Adjust starting Y position based on title height
+            // Eliminate additional spacing on mobile due to large font sizes
+            const spacingMultiplier = $isMobileDevice ? 0 : 0.3;
+            const additionalSpacing = titleHeightOffset > 0 ? fontSize * spacingMultiplier : 0;
+            let currentY = parseFloat(y) + titleHeightOffset + additionalSpacing;
+            
 
-            let currentY = parseFloat(y);      
 
-            paragraphs.forEach((para, pIdx) => {
-                const lines = wrapText(para);
-
-                lines.forEach((line) => {
+            // Process DESCRIPTION first with its specific character limit
+            const descriptionLines = wrapText(strippedDescription, 'exDescription');
+            
+            // Process TEXT with its specific character limit
+            const textLines = wrapText(strippedText, 'exText');
+            
+            // Combine all content lines
+            let allContentLines = [];
+            
+            // Add description lines with type marker
+            descriptionLines.forEach(line => {
+                allContentLines.push({ text: line, type: 'description', lineHeight: descriptionLineHeight });
+            });
+            
+            // Add spacing line between description and text if both exist
+            if (descriptionLines.length > 0 && textLines.length > 0) {
+                allContentLines.push({ text: '', type: 'spacing', lineHeight: descriptionLineHeight * 0.5 });
+            }
+            
+            // Add text lines with type marker
+            textLines.forEach(line => {
+                allContentLines.push({ text: line, type: 'text', lineHeight: textLineHeight });
+            });
+            
+            // Apply desktop line limit
+            if (!$isMobileDevice) {
+                const maxLines = 6;
+                if (allContentLines.filter(line => line.text !== '').length > maxLines) {
+                    // Find the 6th content line (excluding spacing)
+                    let contentLineCount = 0;
+                    let truncateIndex = -1;
+                    
+                    for (let i = 0; i < allContentLines.length; i++) {
+                        if (allContentLines[i].text !== '') {
+                            contentLineCount++;
+                            if (contentLineCount === maxLines) {
+                                truncateIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if (truncateIndex !== -1) {
+                        // Truncate the last line and add ellipsis
+                        const lastLine = allContentLines[truncateIndex];
+                        const maxCharsForEllipsis = lastLine.text.length - 3; // Leave room for "..."
+                        
+                        if (maxCharsForEllipsis > 0) {
+                            lastLine.text = lastLine.text.substring(0, maxCharsForEllipsis).trim() + '...';
+                        } else {
+                            lastLine.text = lastLine.text.trim() + '...';
+                        }
+                        
+                        // Remove all lines after the truncation point
+                        allContentLines = allContentLines.slice(0, truncateIndex + 1);
+                    }
+                }
+            }
+            
+            // Render all content lines
+            allContentLines.forEach((lineObj) => {
+                if (lineObj.text === '' && lineObj.type === 'spacing') {
+                    // Just add spacing, no tspan
+                    currentY += lineObj.lineHeight;
+                } else if (lineObj.text !== '') {
                     const tspan = workingSvgDoc.createElementNS('http://www.w3.org/2000/svg', 'tspan');
                     tspan.setAttribute('x', x);
                     tspan.setAttribute('y', currentY.toString());
                     if (transform) tspan.setAttribute('transform', transform);
-                    tspan.textContent = line;
+                    tspan.textContent = lineObj.text;
                     exDescElement.appendChild(tspan);
-
-                    currentY += lineHeight;   
-                });
-
-                // add a blank line *between* paragraphs (not after the last one)
-                if (pIdx < paragraphs.length - 1) {
-                    currentY += lineHeight;
+                    
+                    currentY += lineObj.lineHeight;
                 }
             });
+
+
+
         }
     }
         
@@ -737,20 +856,11 @@ const generateShareContent = async () => {
 
             const legacyId   = $isMobileDevice ? '#image1_777_3516' : '#image1_798_3654';
             let targetImage = workingSvgDoc.querySelector(legacyId);
-            console.log("Looking for image with ID:", legacyId);
-            console.log("targetImage found:", !!targetImage);
+
             
             if (targetImage) {
                 try {
-                    console.log("Processing image:", imageUrl);
-                    console.log("Original image element:", {
-                        id: targetImage.getAttribute('id'),
-                        href: targetImage.getAttribute('href'),
-                        xlinkHref: targetImage.getAttributeNS('http://www.w3.org/1999/xlink', 'href')
-                    });
-                    
                     const imageResponse = await fetch(imageUrl);
-                    console.log("Image fetch response:", imageResponse.status, imageResponse.ok);
                     if (imageResponse.ok) {
                         const imageBlob = await imageResponse.blob();
                         const base64Promise = new Promise((resolve, reject) => {
@@ -761,19 +871,12 @@ const generateShareContent = async () => {
                         });
                         
                         const imageDataUrl = await base64Promise;
-                        console.log("Base64 data URL length:", imageDataUrl.length);
-                        console.log("Base64 starts with:", imageDataUrl.substring(0, 50));
 
                         targetImage.setAttribute('href', imageDataUrl);
                         targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageDataUrl);
                         targetImage.setAttribute('preserveAspectRatio', 'xMidYMid slice');
                         
-                        console.log("✅ Image successfully embedded in SVG");
-                        console.log("Updated image element:", {
-                            id: targetImage.getAttribute('id'),
-                            href: targetImage.getAttribute('href') ? targetImage.getAttribute('href').substring(0, 50) + '...' : null,
-                            xlinkHref: targetImage.getAttributeNS('http://www.w3.org/1999/xlink', 'href') ? targetImage.getAttributeNS('http://www.w3.org/1999/xlink', 'href').substring(0, 50) + '...' : null
-                        });
+
 
                         let defs = workingSvgDoc.querySelector('defs');
 
@@ -796,23 +899,13 @@ const generateShareContent = async () => {
                         
                     }
                 } catch (error) {
-                    console.error("Error processing image:", error);
-                    console.error("Error details:", {
-                        name: error.name,
-                        message: error.message,
-                        stack: error.stack
-                    });
-                    
                     // Try a simpler approach for mobile - just set the original URL
                     if ($isMobileDevice) {
-                        console.log("Trying fallback for mobile...");
                         targetImage.setAttribute('href', imageUrl);
                         targetImage.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', imageUrl);
-                        console.log("Applied fallback image URL");
                     }
                 }
             }
-            console.log("Image embedding completed:", imageEmbedded);
         }
     }
         
@@ -840,16 +933,8 @@ const generateShareContent = async () => {
     const ex = slug($shareData.exTitle) || 'Exercise';
     const filename = `${main}_${ex}.jpg`;
         
-        console.log("Starting SVG to JPEG conversion");
-
         // Serialize the modified SVG document
         modifiedSvg = new XMLSerializer().serializeToString(workingSvgDoc.documentElement);
-        console.log("SVG content length:", modifiedSvg.length);
-        console.log("SVG has title element:", modifiedSvg.includes('#Title'));
-        console.log("SVG content preview:", modifiedSvg.substring(0, 500));
-        console.log("SVG contains image data:", modifiedSvg.includes('data:image'));
-        console.log("SVG has xlink:href with data:", modifiedSvg.includes('xlink:href="data:'));
-        console.log("SVG has href with data:", modifiedSvg.includes('href="data:'));
 
         // Function to preload all images in the SVG
         const preloadSvgImages = async (svgString) => {
@@ -857,37 +942,25 @@ const generateShareContent = async () => {
             const imageUrls = imageUrlMatches.map(match => match.split('"')[1]);
             
             if (imageUrls.length === 0) {
-                console.log("No embedded images found in SVG");
                 return;
             }
-            
-            console.log(`Found ${imageUrls.length} embedded images, preloading...`);
             
             const imageLoadPromises = imageUrls.map((url, index) => {
                 return new Promise((resolve, reject) => {
                     const img = new Image();
-                    img.onload = () => {
-                        console.log(`Image ${index + 1} preloaded successfully`);
-                        resolve();
-                    };
-                    img.onerror = () => {
-                        console.warn(`Failed to preload image ${index + 1}`);
-                        resolve();
-                    };
+                    img.onload = () => resolve();
+                    img.onerror = () => resolve();
                     img.src = url;
                 });
             });
             
             await Promise.all(imageLoadPromises);
-            console.log("All images preloaded");
         };
 
         // Preload images before rendering
         await preloadSvgImages(modifiedSvg);
 
         const jpegFile = await new Promise((resolve, reject) => {
-            console.log('Promise created');
-
             const img = new Image();
             
             const svgDataUrl = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(modifiedSvg)));
@@ -899,7 +972,6 @@ const generateShareContent = async () => {
             img.onload = () => {
                 try {
                     clearTimeout(timeout);
-                    console.log('SVG image loaded successfully');
 
                     setTimeout(() => {
                         try {
@@ -938,11 +1010,8 @@ const generateShareContent = async () => {
 
             img.onerror = (error) => {
                 clearTimeout(timeout);
-                console.error('SVG image failed to load:', error);
                 reject(new Error('Failed to load SVG'));
             };
-
-            console.log('Setting image source...');
             img.src = svgDataUrl;
         });
         
@@ -982,7 +1051,7 @@ const generateShareContent = async () => {
             url: link
         };
         
-        console.log('✅ Share content generated successfully');
+
     };
 
     onMount(async () => {

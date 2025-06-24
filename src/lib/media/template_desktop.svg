@@ -42,8 +42,8 @@
 <text id="Title" fill="black" xml:space="preserve" style="white-space: pre" font-family="Instrument Serif" font-size="103.291" letter-spacing="0px"><tspan x="416.118" y="344.37">Benchmarking</tspan></text>
 <text id="Ex_Title" fill="black" xml:space="preserve" style="white-space: pre" font-family="Instrument Serif" font-size="28.3218" letter-spacing="0px"><tspan x="618.417" y="398.392">Exercise 6 - Design your AI trial</tspan></text>
 <text id="Ex_description" fill="black" xml:space="preserve" style="white-space: pre" font-family="Instrument Sans" font-size="13.3279" letter-spacing="0px"><tspan x="618.417" y="427.588">Lorem </tspan><tspan x="664.8" y="427.588">ipsum </tspan><tspan x="709.439" y="427.588">dolor </tspan><tspan x="748.117" y="427.588">sit </tspan><tspan x="769.549" y="427.588">amet </tspan><tspan x="808.24" y="427.588">consectetur. </tspan><tspan x="891.209" y="427.588">Aliquet </tspan><tspan x="942.486" y="427.588">hendrerit </tspan><tspan x="1006.25" y="427.588">libero </tspan><tspan x="1047.86" y="427.588">turpis </tspan><tspan x="618.417" y="443.588">viverra </tspan><tspan x="662.318" y="443.588">volutpat </tspan><tspan x="715.669" y="443.588">arcu </tspan><tspan x="745.045" y="443.588">egestas </tspan><tspan x="795.545" y="443.588">erat. </tspan><tspan x="825.741" y="443.588">Nunc </tspan><tspan x="861.157" y="443.588">ultricies </tspan><tspan x="912.008" y="443.588">pellentesque </tspan><tspan x="994.384" y="443.588">sed </tspan><tspan x="1019.19" y="443.588">odio </tspan></text>
-<rect id="image" x="618" y="580" width="465" height="151" rx="5" fill="url(#pattern1_798_3654)"/>
-<rect id="Ex_colorBlock" x="618.5" y="580.5" width="464" height="150" rx="4.5" fill="#FBC797" fill-opacity="0.6" stroke="black"/>
+<rect id="image" x="618" y="565" width="465" height="166" rx="5" fill="url(#pattern1_798_3654)"/>
+<rect id="Ex_colorBlock" x="618.5" y="565.5" width="464" height="165" rx="4.5" fill="#FBC797" fill-opacity="0.6" stroke="black"/>
 </g>
 <rect x="416.416" y="270.416" width="678.89" height="473.141" rx="9.5835" stroke="black" stroke-width="0.832994"/>
 </g>
@@ -68,7 +68,7 @@
 <use xlink:href="#image0_798_3654" transform="scale(0.000330688 0.000509165)"/>
 </pattern>
 <pattern id="pattern1_798_3654" patternContentUnits="objectBoundingBox" width="1" height="1">
-<use xlink:href="#image1_798_3654" transform="matrix(0.000520833 0 0 0.00160389 0 -0.525688)"/>
+<use xlink:href="#image1_798_3654" transform="matrix(0.000520833 0 0 0.00145896 0 -0.387825)"/>
 </pattern>
 <clipPath id="clip0_798_3654">
 <rect x="126" y="82" width="1259.49" height="818" rx="15" fill="white"/>
