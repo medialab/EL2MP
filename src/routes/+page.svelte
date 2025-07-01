@@ -1687,8 +1687,8 @@ const generateShareContent = async () => {
         -moz-osx-font-smoothing: grayscale; /* Improves font rendering on macOS */
         overflow: hidden;
         background-color: white !important;
-        background-image: url('/og_images/background.png');
-        background-size: cover;
+        background-image: url('/og_images/background.jpg');
+        background-size: repeat;
         background-position: center;
         background-repeat: no-repeat;
         background-attachment: fixed;

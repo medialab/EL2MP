@@ -395,7 +395,8 @@ const isSecureContext = writable(false);
         
         transition: border 3s ease-in-out;
         border: 1.5px solid white;
-        
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%, 0 94%);
+
     }
 
     .card_container_inner {
@@ -946,10 +947,6 @@ const isSecureContext = writable(false);
             width: 40px;
             height: 40px;
             top: 10px;
-        }
-
-        .block_num > p {
-            font-size: 3vw;
         }
     }
     
