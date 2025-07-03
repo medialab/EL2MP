@@ -66,15 +66,15 @@ const cardsDb = {
     CoverImg: capitolsCover.coverBenchmarking,
     Content: [
       {
-        title: "Ex 6 - Design your AI Trial",
+        title: "Ex 6 - Design your AI Test",
         subtitle:
-          "Participants design a trial to test the usefulness of an LLM, choosing four tasks that are essential or enjoyable parts of their work.",
-        text: "This exercise guides participants through a <b>selection process</b>, drawing from their current work practices and the potential implementation of new tasks. <br>In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a trial that revolves around <b>their own professional experience</b>. <br>This personalized benchmark aims to assess whether the models can provide <b>practical value</b> that actually matters in a specific professional situation.",
+          "Participants design a test to assess the usefulness of an LLM, choosing four tasks that are essential or enjoyable parts of their work.",
+        text: "This exercise guides participants through a <b>selection process</b>, drawing from their current work practices and the potential implementation of new tasks. <br>In contrast to standardized benchmarks, which are tailor-made by engineers for LLMs, participants design a test that revolves around <b>their own professional experience</b>. <br>This personalized benchmark aims to assess whether the models can provide <b>practical value</b> that actually matters in a specific professional situation.",
         picture: photos.Ex_6,
         exNum: 6,
       },
       {
-        title: "Ex 7 - Preparing for the Trial",
+        title: "Ex 7 - Setting Up the Test",
         subtitle:
           "Participants write detailed instructions for their tasks and choose four LLMs they wish to test.",
         text: "By formulating <b>detailed instructions</b>, participants reflect on how they can effectively guide an LLM towards accomplishing a simple or complex task. They are led to reflect on the <b>weight of their own prompt</b> on the final result. <br>By selecting a human or a specialized model, participants explore different avenues of comparison - <b>machine versus machine</b> or <b>human versus machine</b>.",
@@ -85,14 +85,14 @@ const cardsDb = {
         title: "Ex 8 - Gathering Evidence",
         subtitle:
           "Participants ask an acquaintance to collect answers from LLMs and anonymize results to avoid bias.",
-        text: "In this exercise, participants <b>enlist the help</b> of a fellow co-inquirer, a good friend, or a colleague. <br>In addition to anonymizing results and ensuring fairness in the upcoming trial, this exercise allows participants to <b>concretely experience</b> the collaborative nature of LLM performance evaluation.",
+        text: "In this exercise, participants <b>enlist the help</b> of a fellow co-inquirer, a good friend, or a colleague. <br>In addition to anonymizing results and ensuring fairness in the upcoming mock trial, this exercise allows participants to <b>concretely experience</b> the collaborative nature of LLM performance evaluation.",
         picture: photos.Ex_8,
         exNum: 8,
       },
       {
         title: "Ex 9 - Judgment Day",
         subtitle:
-          "Participants assess the blind results of their AI trial: they rank them, explain on what ground they assessed each performance, and reflect on the trial process.",
+          "Participants assess the blind results in a mock trial: they rank them, explain on what ground they assessed each performance, and reflect on the testing process.",
         text: "Participants <b>rank anonymized LLM responses</b> for each task, determine the best-performing model, and <b>critically review</b> the trial's fairness and relevance.<br>This evaluation encourages participants to reflect on what matters in assessing the <b>situated value</b> of LLMs.",
         picture: photos.Ex_9,
         exNum: 9,
