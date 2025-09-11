@@ -91,9 +91,9 @@
             overflow: hidden;
             background-color: white !important;
             background-image: url('/og_images/background.png');
-            background-size: cover;
+            background-size: 1000px;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             background-attachment: fixed;
             font-family: 'Instrument Serif', serif;
         }

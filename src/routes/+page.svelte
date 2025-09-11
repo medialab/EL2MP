@@ -14,10 +14,13 @@
     import templateMobileSvg from '$lib/media/template_mobile.svg?raw';
     import templateDesktopSvg from '$lib/media/template_desktop.svg?raw';
 
+    import vademecumImage from '$lib/media/photos/Vad_cover.png?enhanced';
+    import tediumImage from '$lib/media/photos/tedium.png?enhanced';
+
     // Here we start to implement more stores
     import { currentHash, selectedCard, isAlterEgoMode, currentCardColor, highestZIndex, lastCardColor, isDesktop, isMobileDevice, startX, startY, transitionTime, transitionCurve, currentFocus, isPageLoaded, showSharer, shareInfo, sharingTextMobile, sharerVisibility, finalShareData, shareData } from '$lib/stores/globalStores';
 
-    let interact, vademecumFloater;
+    let interact, vademecumFloater, tediumFloater;
     let totalBlockWidth, totalBlockHeight, x, y, topLeftCornerX, topLeftCornerY, windowWidth, windowHeight, initialsY, topYCorner, bottomYCorner, initialX;
 
     let width = 0;
@@ -1613,6 +1616,19 @@ const generateShareContent = async () => {
             <VademecumFloater 
                 bind:this={vademecumFloater}
                 randomPosition={calculateRandomPosition(vademecumFloater)}
+                title="ARTIFICIAL INQUIRIES"
+                fileRef="/ArtificialInquiries_Vademecum.pdf"
+                img={vademecumImage}
+                type="download"
+            />
+
+            <VademecumFloater 
+                bind:this={tediumFloater}
+                randomPosition={calculateRandomPosition(tediumFloater)}
+                title="TEDIUM: EXHIBITION"
+                fileRef="/tedium"
+                img={tediumImage}
+                type="navigator"
             />
 
             <LogoButton
@@ -1688,9 +1704,9 @@ const generateShareContent = async () => {
         overflow: hidden;
         background-color: white !important;
         background-image: url('/og_images/background.jpg');
-        background-size: repeat;
+        background-size: 1000px;
         background-position: center;
-        background-repeat: no-repeat;
+        background-repeat: repeat;
         background-attachment: fixed;
         max-width: 100vw;
         max-height: 100vh;

@@ -4,9 +4,13 @@
     // interact will be imported dynamically in onMount
     import { slide } from 'svelte/transition';
     import { writable } from 'svelte/store';
-    import vademecumImage from '$lib/media/photos/Vad_cover.png?enhanced';
+    import { goto } from '$app/navigation';
 
     export let randomPosition;
+    export let title;
+    export let fileRef;
+    export let img;
+    export let type;
 
     let floaterElement;
     let interactRef;
@@ -14,9 +18,6 @@
     let downloadTimeout;
     let isDragging = false; 
     let svgFill = writable("#FFFFFF");
-
-    let buttonText = "ARTIFICIAL INQUIRIES";
-    const VADEMECUM_PATH = '/ArtificialInquiries_Vademecum.pdf';
 
     const downloadFile = (e) => {
         if ($isDownloaded || isDragging) return;
@@ -29,7 +30,7 @@
         //console.log("Starting download…");
 
         /* ---- Extract filename for reuse ---- */
-        const filePath = VADEMECUM_PATH.split("/").pop() || "ArtificialInquiries_Vademecum.pdf";
+        const filePath = fileRef.split("/").pop();
         const fileExt = filePath.split(".").pop().toLowerCase();
 
         /* ---- GA4 event ---- */
@@ -47,7 +48,7 @@
 
         /* ---- start the actual download ---- */
         const link = document.createElement("a");
-        link.href = VADEMECUM_PATH;
+        link.href = fileRef;
         link.download = filePath;
         document.body.appendChild(link);
         link.click();
@@ -57,8 +58,27 @@
         $isDownloaded = true;
         if (downloadTimeout) clearTimeout(downloadTimeout);
         downloadTimeout = setTimeout(() => { $isDownloaded = false; }, 6000);
-        };
+    };
 
+    const navigateTo = (e) => {
+        if (isDragging) return;
+        
+        if (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+        if (fileRef) {
+            goto(fileRef);
+        }
+    };
+
+    const handleInteraction = (e) => {
+        if (type === 'navigator') {
+            navigateTo(e);
+        } else if (type === 'download') {
+            downloadFile(e);
+        }
+    }
 
     // Simplified KeyDown Handler
     const handleKeyDown = (event) => {
@@ -295,24 +315,25 @@
         left: {randomPosition.left};
         z-index: {randomPosition.zIndex || $highestZIndex};"
     on:mousedown={bringToFront}
-    on:click={(e) => downloadFile(e)}
+    on:click={(e) => handleInteraction(e)}
     on:keydown={handleKeyDown}
     aria-label="Draggable vademecum download button">
 
     <div class="vademecum-image-container">
-        <enhanced:img src={vademecumImage} alt="Vademecum cover" class="vademecum-image" />
+        <enhanced:img src={img} alt="Vademecum cover" class="vademecum-image" />
     </div>
 
+    {#if type === 'download'}
     <div 
         class="custom-floater-bottom"
         class:downloaded={$isDownloaded}
     >
         <span class="custom-floater-text" style="font-weight: 600;">
-            {$isDownloaded ? "PDF DOWNLOADED" : buttonText}
+            {$isDownloaded ? "PDF DOWNLOADED" : title}
         </span>
 
         <span class="custom-floater-text-absolute" style="font-weight: 600;">
-            {$isDownloaded ? "PDF DOWNLOADED" : buttonText}
+            {$isDownloaded ? "PDF DOWNLOADED" : title}
         </span>
 
         <div class="category-icon">
@@ -339,45 +360,81 @@
                 </svg>
             {/if}
         </div>
+    
     </div>
+    {:else if type === 'navigator'}
+    <div 
+        class="custom-floater-bottom"
+    >
+
+        <span class="custom-floater-text" style="font-weight: 600;">
+            {title}
+        </span>
+
+        <span class="custom-floater-text-absolute" style="font-weight: 600;">
+            {title}
+        </span>
+
+        <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill={$svgFill}><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg>
+        </div>
+    
+    </div>
+    {/if}
 </button>
 {/if}
 {#if $isMobileDevice}
 
-<button class="mobile_vd_container"
-    on:click={(e) => downloadFile(e)}
-    on:keydown={handleKeyDown}
-    aria-label="Mobile vademecum download button"
-    style="{!$isDownloaded ? 'background-color: #f0f0f0;' : 'background-color: #2ecc71 !important;'}">
-    <p class="p3" style="font-weight: 700;">GET THE ARTIFICIAL INQUIRIES PDF</p>
-    <div class="category-icon">
-        <!-- Custom icon SVG -->
-        {#if !$isDownloaded}
-            <!-- Download Icon -->
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 -960 960 960"
-                fill={$svgFill}
-                in:slide={{ axis: 'y', y: -20, duration: 200 }}
-                out:slide={{ axis: 'y', y: 20, duration: 150 }}>
-                <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
-            </svg>
-        {:else}
-            <!-- Checkmark Icon -->
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 -960 960 960"
-                fill={$svgFill}
-                in:slide={{ axis: 'y', y: -20, duration: 300, delay: 50 }}
-                out:slide={{ axis: 'y', y: 20, duration: 150 }}>
-                <path d="M382-320 155-547l57-57 170 170 366-366 57 57-423 423ZM200-160v-80h560v80H200Z"/>
-            </svg>
-        {/if}
-    </div>
-</button>
+<div class="mobile_button_container">
+    <button class="mobile_vd_container"
+        on:click={(e) => downloadFile(e)}
+        on:keydown={handleKeyDown}
+        aria-label="Mobile vademecum download button"
+        style="{!$isDownloaded ? 'background-color: #f0f0f0;' : 'background-color: #2ecc71 !important;'}">
+        <p class="p3" style="font-weight: 700;">GET THE PDF</p>
+        <div class="category-icon">
+            <!-- Custom icon SVG -->
+            {#if !$isDownloaded}
+                <!-- Download Icon -->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill={$svgFill}
+                    in:slide={{ axis: 'y', y: -20, duration: 200 }}
+                    out:slide={{ axis: 'y', y: 20, duration: 150 }}>
+                    <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
+                </svg>
+            {:else}
+                <!-- Checkmark Icon -->
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 -960 960 960"
+                    fill={$svgFill}
+                    in:slide={{ axis: 'y', y: -20, duration: 300, delay: 50 }}
+                    out:slide={{ axis: 'y', y: 20, duration: 150 }}>
+                    <path d="M382-320 155-547l57-57 170 170 366-366 57 57-423 423ZM200-160v-80h560v80H200Z"/>
+                </svg>
+            {/if}
+        </div>
+    </button>
+    <button class="mobile_vd_container"
+        on:click={(e) => navigateTo(e)}
+        on:keydown={handleKeyDown}
+        aria-label="Mobile vademecum download button"
+        style="{!$isDownloaded ? 'background-color: #f0f0f0;' : 'background-color: #2ecc71 !important;'}">
+        <p class="p3" style="font-weight: 700;">TEDIUM</p>
+        <div class="category-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill={$svgFill}><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"/></svg>
+        </div>
+    </button>
+</div>
+
+
 {/if}
 
 <style>
+
+    
 
     .mobile_vd_container {
         display: none;
@@ -540,28 +597,39 @@
             display: none;
         }
 
+        .mobile_button_container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: fit-content;
+            padding-bottom: var(--spacing-S);
+            padding-right: var(--spacing-L);
+            padding-left: var(--spacing-L);
+            column-gap: var(--spacing-S);
+        }
+
         .mobile_vd_container {
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            bottom: 1vh;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 300;
-            position: fixed;
-            width: max-content;
+            width: 50%;
             height: auto;
             pointer-events:visible;
             user-select: none;
             touch-action: none;
             transition: transform 0.135s ease-in-out, background-color 0.835s ease-in;
             transform-origin: left center !important;
+            position: static;
+            column-gap: var(--spacing-S);
         } 
 
         .mobile_vd_container > .p3 {
-            text-rendering: optimizeLegibility;
             hyphens: none;
             overflow: hidden;
         }

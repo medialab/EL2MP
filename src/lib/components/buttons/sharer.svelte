@@ -332,9 +332,9 @@ const shareOnReddit = () => {
 
     background-color: white;
     background-image: url('/og_images/background.png');
-    background-size: cover;
+    background-size: 1000px;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
     background-attachment: fixed;
     transition: height 0.8s ease-in-out;
 }
