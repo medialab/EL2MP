@@ -447,9 +447,10 @@
         font-weight: 400;
 
         @media (min-width: 1920px) {
-                font-size: 1.4vw;
+                font-size: 1.6vw;
                 margin-top: -0.14em;
         }
+
     }
 
     :global(.p3) {

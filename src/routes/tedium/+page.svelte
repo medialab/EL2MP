@@ -45,7 +45,7 @@
 
         <div class="hype_column">
             <div class="hype_header">
-                <h2><i>The full plot:</i></h2>
+                <h2><i>Complete text:</i></h2>
                 <h3>the commentary of the video installation</h3>
             </div>
             <article class="hype_commentary">
@@ -70,7 +70,89 @@
                     These conversations were inseparable from the slow accumulation of experience. Each participant brought their own situated practice into the room. Discussions were grounded in specific examples, avoiding abstraction unless it was tied to practical use. Over time, the group became more adept at articulating concrete insights, supported by the regular rhythm of individual and collective sessions. Researchers refined the exercises; participants grew more comfortable voicing direct, sometimes messy reflections.
                     Speaking about practice is never straightforward. Work is fractured, overlapping, and often contradictory. Retrospective accounts impose coherence, shaped by what we think we should have done rather than what we did. LLMs promise to streamline this mess—to purify work.
                     Ironically, this first scene highlights the absence of practice. It captures our initial meeting, before exercises began, when discussions circled balanced impressions—bias, confabulation, and environmental costs. But deeper expectations emerged only later, through lived use. Some participants, surprised by the limits of LLMs, realised they had held unspoken hopes. LLMs, it turned out, were not magic. Yet for some, it took using them to recognise that they had ever imagined they might be.
-                    </p>
+                </p>
+            </article>
+            <article class="hype_commentary">
+                <p class="p2">November-December 2024 − Discretisation
+                </p>
+                <p class="p3">
+                    Using an LLM involves making choices: when to engage it and for what purpose. Despite the hype about LLMs being able to do anything, the chat interface reveals a core truth: we still have to ask! Everything must be funnelled through a narrow text box. This isn’t just a technical limitation (like token limits) but a cognitive one: work must be reframed, described, and justified. Before the LLM can be helpful, we must summarise and select aspects of our work to fit this tight window. We call this discretisation—breaking work into smaller, more manageable parts that the LLM can process. Participants initially gravitated toward tasks that required little or no discretisation: pre-structured, self-contained activities like grammar checks, translations, or summaries. Many were already familiar with using services like Google or DeepL for these tasks. Others leaned on existing divisions of labour. In domains with standardised formats or templates, the LLM integrated more easily.
+                    But the LLM didn’t just slip into pre-structured workflows. It actively encouraged participants to fragment their work further. Some opened new chats for each task to keep things clear. Yet not all tasks could be discretised. Some were too expansive, slow, or rooted in tacit knowledge to be rendered as text. For these, the act of breaking them down could exceed the effort required to complete the task itself.
+                    The effort to break them down exceeded the work required by doing them directly. This effort can lead to near exhaustion, with no results to show in return.
+                    
+                </p>
+            </article>
+            <article class="hype_commentary">
+                <p class="p2">January 2024 − “Discretisation”
+                </p>
+                <p class="p3">
+                    From the onset of the protocol, we asked participants: What tasks do you do with LLMs? What else could you use them for? 
+                    Most first turned to clearly defined tasks already supported by technological services, such as Google and Wikipedia for research, DeepL for translation, or Stack Overflow for coding. ChatGPT seems to replace them all, akin to a convenience store. Everybody appears to appreciate the time it saved. 
+                    Some participants relied on what LLMs were “good at”, depending on what they picked up from the media, friends, or colleagues. Nearly everyone used ChatGPT to “paraphrase.” Using it for coding purposes was also widespread. “It’s good at it,” they heard, because it had been trained on a lot of code. But coding was mostly seen as a means to achieve a more valuable end. Constance said she didn’t care if her code was pretty or fast, only that it ran. Tobias went further, rejecting the idea of coding as “creative” work: “I think for me, it’s more like implementing something I've already set out. I did my research design, so I kind of mapped out the process of data collection or data analysis. It feels like I’ve already put the thought into how I wanted to do it, and then I just tell it [ChatGPT] to implement.”
+                    Participants also built on the existing division of labour to assign tasks to an LLM. As such, researchers quickly sought to test the accuracy of literature reviews. Yichen found ChatGPT “incredibly efficient, especially in the writing of [quantitative] social science essays since they tend to be standard in format.” At the same time, Charlotte noticed that “they're quite good when it comes to referencing with rigid guidelines. So if there’s something really clear, like a formula for how to do referencing, for example, it usually can do that.” Most agreed that LLMs performed best on standardised tasks, governed by precise rules.
+                    Over time, however, participants began to push beyond these obvious use cases. In law, for instance, Alice realised that what she thought of as a single task was too unwieldy for an LLM. What felt like one smooth action to her had to be broken into smaller, more manageable steps: “I think one of the key things to get proper results is really to dissect every part of what you want to reflect on and go step by step. Because even if you give the big picture at the beginning and then try to break it down, it tends to try to do everything at once. I mean, it was really confused.”
+                    Camille viewed many of her tasks as long-term processes, cumulative in nature, which didn’t translate well to the kind of short-term, local, iterative problems LLMs seemed able to tackle: “LLMs have difficulty following a progressive and logical approach over the long term. At first, I thought, ‘OK, law mostly relies on logic, and even on reasoning that’s very close to mathematics, so LLMs could be really good at it’. But working with them showed me that it's often very hard for the machine to build on previous versions, to integrate feedback. And since my work required that kind of continuity, sometimes the long process became the most frustrating aspect of the project. [...] 
+                    That’s a more global kind of reasoning. [...] And I think the LLM doesn’t really do that, because it responds to specific prompts and tasks. So when, at the end, you ask for a global answer, it struggles.”
+                    After all, this was a disappointing reminder for participants that their jobs were not so easily automated. “I thought my work would be simpler,” Guillaume reflected. “Something so standardized that an LLM would handle it quickly. But actually, it wasn’t.” 
+                    Charlotte introduced a metaphor that resonated with many: working with an LLM felt like trying to fit your job into a “small window.” Even the act of framing a task is a hassle: “Yeah, I think… Do you ever feel that too? Because I keep struggling with it, like… The window to put in the information and all the context just feels so small. Like, sometimes, you don’t even know how to fit everything in. The struggle already starts with just trying to frame it.”
+                    Fitting information within the “small window” was challenging because it wasn’t just a matter of providing more context to an LLM, as too much context could backfire. Constance noticed that overloading the prompt “creates noise in the response—like it's farther from what I actually want than if I just provide one document with a more precise question.” This insight led her to change strategy: “I didn’t change the way I prompt, but I did change how I use the chats. Now I use way more separate chats to get more precise responses.”
+                    
+                </p>
+                <hr>
+                <p class="caption">
+                    Even after participants had managed to discretise their work, a deeper challenge remained: getting the LLM to do what they wanted. The issue wasn’t what the model could do in theory, but whether users could control its behaviour in practice. Most settled for outputs that were “good enough,” yet what frustrated them more was the inconsistency. Results felt random and unreliable. The problem was less about capacity than about control. Many assumed this unpredictability was due to their lack of prompting skill. They believed experience would help them tame the system. But mastery came at a cost. Participants had to closely monitor outputs, evaluate responses, and repeatedly adjust prompts. While faster than writing from scratch, this process was cognitively draining.
+                    Prompting emerged as the most taxing part. Failures often exposed unspoken assumptions, forcing participants to spell out what they thought was obvious. Translating tacit knowledge or professional intuition into literal prompts proved unexpectedly exhausting, revealing the extent to which workplace communication relies on shared context. And prompting felt uniquely unrewarding. As Agnès described, it was like standing on “shaky ground”. Even well-crafted prompts could produce random-feeling outputs. Minor tweaks rarely led to significant improvements. Many likened ChatGPT to a blunt knife: imprecise and unpredictable.
+                    Ultimately, few saw LLM use as skilled labour. While tricks could be learned, there was no clear path to mastery. The model offered little feedback or recognition, making the effort feel futile, like throwing work into a void. Over time, this eroded motivation and discouraged further experimentation.
+                </p>
+            </article>
+            <article class="hype_commentary">
+                <p class="p2">February 2024 − “Cluttering”
+                </p>
+                <p class="p3">
+                    No one enjoyed using LLMs. As researchers, this caught us off guard. Two months into the study, we expected some participants would have fun getting better answers from the machine. Guillaume was the ideal candidate who could enjoy the process. He had gained a bit of a reputation for how playfully and inventively he pushed the machine’s limits. But even he declared: “No, there’s no joy in it because I don’t want to prompt the machine to do it. I just want the machine to do it. I don’t want to have a role in the process. My ideal AI would be the one that automatically knows when to send an email, sends it, and just gets it out of my head.”
+Prompting was a chore, something to skip whenever possible. The goal was to paste the content, press Enter, copy the output, and proceed. Participants rarely bothered with careful prompting unless something went wrong. On the topic of getting help with the LaTeX language, Constance confided: “I didn’t try to perfect my prompts for this type of task, as the responses were generally satisfactory, even with very implicit formulations.”
+A quick review of their prompts confirmed this carelessness. Participants acknowledged they were full of typos, hastily written, and awkwardly phrased. Regarding prompting techniques, many preferred simple ritual phrases over complex strategies. Tobias explained: “I especially love [the] emotional stimuli [technique], because no matter the prompt, just adding ‘this is very important for my work’ already leads me to believe I put sufficient effort in maxing out the LLM.”
+Evaluating outputs posed another challenge. As participants encountered more frequent confabulations, they grew increasingly wary of their answers. While the machine sped up
+the act of writing, it multiplied the work of reading. With chatty models, like ChatGPT, the vigilance required became exhausting. Many participants worried about the sustainability of providing such constant attention, afraid that fatigue might wear them down over time. 
+Evaluation became even trickier when an LLM convincingly mimicked professional voices. Camille noted ChatGPT’s ability to sound lawyerly, and Constance felt it could pass as a typical economist, making errors harder to catch.
+Participants coped by turning towards tasks that were easier to evaluate. Some, like Charlotte, preferred tasks with “a certain baseline of reference”, in which they had enough prior experience to judge the result quickly. For others, tasks outside their expertise offered relief, either because they didn’t care or knew less about them. Unburdened by expert knowledge, their evaluation employed more straightforward criteria, making it less cognitively demanding. 
+Yet, despite efforts to minimise prompting, some tasks inevitably required more careful crafting. This usually happened when participants believed initial effort would yield general prompt setups that could be reused in other conversations. Agnès discovered early on that crafting precise prompts tends to produce better results, making the initial effort a worthwhile investment: “I think I tend to do quite detailed prompts because I want the LLM to be effective. I really put a lot of information in it. When we did the first experiments with this group, I asked more general questions and I got a lot of hallucinations with ChatGPT.”
+A recurring challenge was setting the proper context. Participants preferred quick, role-play-based prompts, such as “you’re a social media marketing expert”, rather than a detailed explanation of what constituted expertise. It was easier “to make GPT-4 believe it’s an expert on the topic” than doing the work of context-setting, which “takes a lot of energy and thought I am sometimes too lazy to do”. 
+Another source of difficulty was understanding why the LLM didn’t perform well. Constance describes her frustration: “I didn’t have the tools to understand the breakdown, and so I couldn’t solve the problem.” The core challenge lay in choosing the right words, whether it was articulating what felt off in the machine’s reply or describing precisely what they wanted. Guillaume arrived at a point of wordlessness: “I just didn’t really know what to say to it anymore.” Agnes described a similar dead-end when she realised she didn’t know enough about the subject matter to address an LLM adequately: “when the result is too general, and I don't know enough about the subject to ask more precise questions, I feel like I'm at a dead end, because I can't choose a new path of questions.”
+Trying harder to perfect prompts often intensified frustration, especially when participants couldn’t gauge if their alterations improved results. Tobias ultimately determined that prompting techniques were almost closer to superstition than engineering:
+Agnes shared: “[At the beginning], I thought I could kind of adjust how it worked. But in the end, I found that the more I tried to get a precise formulation, the more random the results became. I had this experience while trying to get it to use one specific word, ‘populism’, and the more I pushed for that, the weirder the answers got. I had no way of knowing how to influence the outcome. So it gave me this kind of feeling of absurdity, which was surprising, because I actually expected the opposite by the end of the experiments.”
+Not everyone agreed. Some felt they could learn, adapt, and sometimes get better results. But even those whose results improved often found the extra effort unrewarding. Camille captured this common experience: “There’s this moment when I realize, after giving multiple instructions, clarifying, or rephrasing, that ChatGPT is giving me completely off-topic information. I end up feeling really frustrated and give up, out of lack of time and motivation. [...] ChatGPT just doesn’t understand what I asked, despite all my efforts.”
+                    
+                </p>
+                <hr>
+                <p class="caption">
+                    What first appeared as a general-purpose machine capable of anything gradually revealed itself as merely generic, unable to inhabit the specificity of professional worlds truly. Participants had hoped the LLM would adapt over time, shaped by their practices like a rock in a river. Instead, it behaved more like a buoy: fixed in place, bobbing with each prompt, but untouched by the current. Always available, occasionally helpful, but ultimately unresponsive. It did not shift, learn, or integrate. Over time, participants stopped expecting adaptation and began relating to it as something static: an alien presence within their routines, not hostile, but unmistakably other.
+As this perception solidified, expectations shifted. Participants reassessed what the LLM could offer. Ironically, its very alienness opened space for unexpected forms of value. One was what Charlotte called silly work: not meaningful for its output, but for the support it offered. In these moments, the LLM’s limitations—its lack of memory, its shallow contextual grasp—created a kind of present-tense intimacy. It became a space that felt emotionally safe, detached from institutional or social judgment.
+Silly work initially emerged in private logs, rather than group discussions, revealing how it served as a refuge from professional scrutiny. Participants could ask what they wouldn’t dare voice to a colleague or superior. When Charlotte was anxious before a call, or Constance needed reassurance in technical tasks, the LLM offered quiet companionship. Its value lay not in performance, but in presence. A shift had occurred—from viewing the LLM as a tool of productivity to recognising it as an alien companion.
+
+                </p>
+            </article>
+            <article class="hype_commentary">
+                <p class="p2">March-April 2025 − “Attunement”
+                </p>
+                <p class="p3">
+                    As months pass, participants grow more confident that ChatGPT won’t replace them. Some even begin to wonder if LLMs were ever genuine contenders. At first, many treated the AI like a fellow expert. Now, they speak to it as if it were an alien—someone unfamiliar with their field. Camille realised this shift the day she noticed how similar prompting felt to explaining the basics to a clueless and stubborn client, rather than collaborating with a seasoned colleague: “The most difficult part of legal reasoning is reformulating. When you have a client coming in with a question that's all over the place, and you have to figure out what the actual problem is, and then explain it. And with the LLM, it was kind of the same, because we always had to explain it again. You can’t really assume that you're talking to a lawyer.”
+                    Their main frustration isn’t that the AI falls short of professional standards. It doesn’t seem able to adapt. No matter how carefully they prompt or how much context they provide, the LLM fails to improve its performance. Camille compared LLMs to non-socialised interns. Sure, they can handle repetitive tasks, like sorting and renaming files, but they don’t “know” how to behave. Unlike good interns, LLMs don’t learn through context or observation. She puts it bluntly: an intern would “revise her emails five times” without being told. An LLM has to be reminded of instructions incessantly.
+                    Others nod around the table. Agnes recalled her internship at an embassy when Charlotte challenged her. “Colleagues make mistakes too, so how are they different from ChatGPT?”. Agnes replied: “I think I distrust the machine more, and maybe I’m just biased, because it's probabilistic—I really don't think it understands. But if it's a colleague or an intern, that person can still learn, and you can actually teach them how to do it.”
+                    Many agreed. It’s not the mistakes that bother them; it’s the lack of a learning process. 
+                    Yet, for some, LLMs as an alien presence in their professional world makes them valuable. Alice appreciates that ChatGPT isn’t part of her social or work circle. As she once told the group: “It's kind of a tool you can use anytime, day or night. So you develop a certain kind of strange relationship with the LLM, and it feels safe to ask it any question, even the kind of question you might feel stupid asking someone else. You don't feel like you're going to be judged afterwards, even if you say something dumb.”
+                    This type of task was so vital to Charlotte that she referred to it as “silly work.” In a moment of vulnerability, she confided to the group that to calm her anxiety before phone calls, she would ask ChatGPT for a short script. She rarely used it, but just having it there made her feel prepared. The ritual itself mattered more than the result. She explained: “I always feel a bit weird telling people that I still write myself notes before making a phone call. It’s like, yeah, maybe in the professional world there’s this kind of judgment. Like, you can’t even make a call without prepping? So that’s why it feels lower stakes to do it with something like ChatGPT than to just do it on my own. I could do it myself, but it would take a lot of time. And I’d probably feel a bit guilty spending so much time on a task that, in the end, maybe I don’t even need, because I often don’t even look at the notes that much. But because it gives me a sense of security, and because it’s fast with ChatGPT, it kind of resolves that tension.”
+                    Though Charlotte was the first to label it, we had encountered this kind of “silly work” long before in others’ private written logs. Constance and Agnes also described turning to ChatGPT for reassurance, precisely because it wasn’t part of their social world. For Constance, an economist who felt intimidated by programming, LLMs offered patient support that made her feel capable again. For Agnes, the value wasn’t in doing more or faster, but in feeling at ease: you do not go “further” with the LLM, just “more serenely.”                    
+                    
+                </p>
+                <hr>
+                <p class="caption">
+                    Rather than liberating participants from low-value labour, the LLM subtly redefined their relationship to it. Like a low-pass filter in signal processing, it amplified low-intensity, repetitive tasks while dampening those requiring sustained attention or creativity. What remained visible was the background hum of uninteresting work.
+                    This shift wasn’t just about content. It changed the texture of work itself. Tasks increasingly unfolded through dialogue and copy-paste exchanges. People no longer wrote texts; they moved them, circulated them. As Constance put it, she felt like an interface, relaying code or curating prompts without the sense of having made anything.
+                    By the final session, some worried that this filtering effect had become embedded in habit. What began as a choice now felt like a default. The ethical question “should I use this?“ blurred into routine. The LLM was always present, whether used or not. Using it was effortless; resisting it took conscious effort. Even refusals added labour: weighing options, justifying abstention, and staying alert to its pull had become part of the workflow.
+                    These insights only emerged over time, through shared analysis and collective dialogue. Many knew that their peers were using LLMs, but rarely discussed the specifics. Usage was often wrapped in secrecy or shame, making it hard to articulate. Yet opening space for these conversations proved essential. They revealed vulnerable practices and allowed for reflection on what LLMs were displacing. These scenes underscore the need for collective spaces of reflection—spaces that only emerge through long-term, trust-based engagement and shift away from hype.                    
+
+                </p>
             </article>
         </div>
         
@@ -206,11 +288,11 @@ h3 {
 
 .hype_text p, .hype_commentary p, .hype_commentary .p2, .hype_text .p2 {
     width: 80%;
-    align-self: center;
     white-space: pre-line;
     line-height: 1.6;
     margin-bottom: var(--spacing-S);
 }
+
 .hype_commentary {
     width: 100%;
     height: fit-content;
@@ -333,26 +415,24 @@ header {
     .hype_text {
         row-gap: var(--spacing-M);
         line-height: 1.4;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
-    .hype_text p, .hype_commentary p, .hype_commentary h3 {
+    .hype_text p, .hype_commentary p {
         width: 100%;
         line-height: 1.5;
-        font-size: 4vw;
         margin-bottom: var(--spacing-M);
+    }
+
+    .hype_text .p2, .hype_commentary .p2 {
+        font-size: 5vw;
+        margin: 0px;
+        line-height: 1.1;
     }
 
     .hype_commentary {
         row-gap: var(--spacing-S);
-    }
-
-    .hype_commentary h3 {
-        font-size: 5vw;
-        margin: 0px;
-    }
-
-    .hype_commentary h3:first-child {
-        margin-top: 0;
     }
 
     .hype_commentary hr {
