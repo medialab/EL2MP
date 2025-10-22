@@ -19,7 +19,7 @@
     let isDragging = false; 
     let svgFill = writable("#FFFFFF");
 
-    const downloadFile = (e) => {
+	const downloadFile = async (e) => {
         if ($isDownloaded || isDragging) return;
 
         if (e) {
@@ -27,37 +27,49 @@
             e.preventDefault();
         }
 
-        //console.log("Starting download…");
+        console.log("Starting download…");
 
-        /* ---- Extract filename for reuse ---- */
         const filePath = fileRef.split("/").pop();
         const fileExt = filePath.split(".").pop().toLowerCase();
 
-        /* ---- GA4 event ---- */
-        if (typeof gtag === "function") {
+		try {
+			if (!fileRef) {
+				console.error("Download aborted: no file reference provided.");
+				return;
+			}
 
-            gtag("event", "file_download", {          // GA4’s standard event name
-            file_name: filePath,                    // recommended parameter
-            file_extension: fileExt,                // recommended parameter
-            value: 1,                               // optional metric
-            debug_mode: true                        // remove when done testing
-            });
-        } else {
-            console.log("Google Analytics not available");
-        }
+			// Verify the file exists before attempting download
+			const headResponse = await fetch(fileRef, { method: "HEAD", cache: "no-store" });
+			if (!headResponse.ok) {
+				console.error(`Download failed: ${filePath} not found (status ${headResponse.status}).`);
+				return;
+			}
 
-        /* ---- start the actual download ---- */
-        const link = document.createElement("a");
-        link.href = fileRef;
-        link.download = filePath;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
+			const link = document.createElement("a");
+			link.href = fileRef;
+			link.download = filePath;
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
 
-        /* ---- UI state handling ---- */
-        $isDownloaded = true;
-        if (downloadTimeout) clearTimeout(downloadTimeout);
-        downloadTimeout = setTimeout(() => { $isDownloaded = false; }, 6000);
+			// Mark as downloaded only on success
+			$isDownloaded = true;
+			if (downloadTimeout) clearTimeout(downloadTimeout);
+			downloadTimeout = setTimeout(() => { $isDownloaded = false; }, 6000);
+
+			/* ---- GA4 event (on success) ---- */
+			if (typeof gtag === "function") {
+				gtag("event", "file_download", {
+					file_name: filePath,
+					file_extension: fileExt,
+					value: 1
+				});
+			} else {
+				console.log("Google Analytics not available");
+			}
+		} catch (err) {
+			console.error("Download error:", err);
+		}
     };
 
     const navigateTo = (e) => {
@@ -383,6 +395,7 @@
     {/if}
 </button>
 {/if}
+<!--
 {#if $isMobileDevice}
 
 <div class="mobile_button_container">
@@ -393,9 +406,9 @@
         style="{!$isDownloaded ? 'background-color: #f0f0f0;' : 'background-color: #2ecc71 !important;'}">
         <p class="p3" style="font-weight: 700;">GET THE PDF</p>
         <div class="category-icon">
-            <!-- Custom icon SVG -->
+            
             {#if !$isDownloaded}
-                <!-- Download Icon -->
+               
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 -960 960 960"
@@ -405,7 +418,7 @@
                     <path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/>
                 </svg>
             {:else}
-                <!-- Checkmark Icon -->
+                
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 -960 960 960"
@@ -430,7 +443,7 @@
 </div>
 
 
-{/if}
+{/if}-->
 
 <style>
 

@@ -233,6 +233,13 @@
         cursor: pointer;
     }
 
+    :root {
+      --slider-radius: 4vw;
+      @media (max-width: 768px) {
+        --slider-radius: 3vw;
+      }
+    }
+
     :global(body) {
         margin: 0; /* Removes default body margin */
         padding: 0; /* Removes default body padding */

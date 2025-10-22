@@ -26,6 +26,8 @@
     let width = 0;
     let height = 0;
 
+    let isBurgerMenuOpen = writable(false);
+
     let contentContainer;
 
     let containers;
@@ -50,6 +52,7 @@
 
     let lastDeviceType = null; 
     let isSwapping = false;
+    let isInteractionLocked = false;
 
     const areCardsLoaded = writable(false);
 
@@ -78,7 +81,7 @@
        
         isMobileDevice.set(windowWidth <= 768);
         isDesktop.set(windowWidth > 768);
-        console.log("updateWindowSize", windowWidth, windowHeight);
+        //console.log("updateWindowSize", windowWidth, windowHeight);
 
         // Notify that viewport dimensions are now known
         windowSizeReady.set(true);
@@ -250,11 +253,12 @@
 
 
                     } else if ($isMobileDevice) {
-                        offset = -45;
+                        offset = -35;
+                        const correction = 20;
                         totalBlockWidth = cardWidth;
                         totalBlockHeight = cardHeight + ((containers.length - 1) * Math.abs(offset));
                         $startX = ((windowWidth - totalBlockWidth) / 2);
-                        $startY = ((windowHeight - totalBlockHeight) / 2) - offset * (containers.length -1 );
+                        $startY = ((windowHeight - totalBlockHeight) / 2) + (correction) - offset * (containers.length -1 );
                     }
 
                 containers.forEach(async (container, index) => {
@@ -332,6 +336,7 @@
         }
 
         isSwapping = true;
+        isInteractionLocked = true;
 
         const clickedCardY = Number(clickedCard.dataset.y);
         const clickedCardX = Number(clickedCard.dataset.x);
@@ -379,6 +384,7 @@
                     });
 
                     isSwapping = false;
+                    isInteractionLocked = false;
                     // console.log("Card swap animation complete");
                 }, swapDuration);
             }, 100); // Small delay before final movement
@@ -397,7 +403,6 @@
         const isExerciseHash = cleanHash.includes('_');
 
         if (isExerciseHash) {
-            /* ----------------------------- EXISTING EXERCISE FLOW ----------------------------- */
             $waitForHash = true;
             $isAlterEgoMode = false;
 
@@ -648,7 +653,7 @@
         return lines;
     };
 
-const generateShareContent = async () => {
+    const generateShareContent = async () => {
     // Helper function to determine if a color is dark
     const isColorDark = (hexColor) => {
         // Remove # if present
@@ -1109,6 +1114,11 @@ const generateShareContent = async () => {
 
     };
 
+    const intentionalNavigationToHash = () => {
+        navigateToExercise();
+        window.location.reload();
+    }
+
     onMount(async () => {
         const interact = (await import('interactjs')).default;
         const simpleBar = (await import('simplebar')).default;
@@ -1126,8 +1136,6 @@ const generateShareContent = async () => {
 
         await tick();
 
-        
-
         containers = document.querySelectorAll('.card_container')
         floaters = document.querySelectorAll('.floater_container')
         scrollContainers = document.querySelectorAll('.card_scrollable_container')
@@ -1137,6 +1145,7 @@ const generateShareContent = async () => {
 
         placeCards(containers);
         navigateToExercise();
+        
         await prepareSVG();
         
         if ($isMobileDevice) {
@@ -1437,6 +1446,9 @@ const generateShareContent = async () => {
     }); 
 
     onDestroy(() => {
+        try {
+            window.removeEventListener('hashchange', navigateToExercise);
+        } catch {}
         
         // Cancel any animation frames or timeouts
         if (typeof holdTimeout !== 'undefined' && holdTimeout) {
@@ -1580,6 +1592,9 @@ const generateShareContent = async () => {
 <div class="content_container" bind:this={contentContainer}>
 
     <section class="host" bind:this={hostElement}>
+        {#if isInteractionLocked}
+            <div class="global_interaction_lock" aria-hidden="true"></div>
+        {/if}
 
         {#if !$isMobileDevice}
             <Textbox bringToFront={bringToFront}/>
@@ -1617,7 +1632,7 @@ const generateShareContent = async () => {
                 bind:this={vademecumFloater}
                 randomPosition={calculateRandomPosition(vademecumFloater)}
                 title="ARTIFICIAL INQUIRIES"
-                fileRef="/ArtificialInquiries_Vademecum.pdf"
+                fileRef="/Artificial_Inquiries_Vademecum.pdf"
                 img={vademecumImage}
                 type="download"
             />
@@ -1630,6 +1645,90 @@ const generateShareContent = async () => {
                 img={tediumImage}
                 type="navigator"
             />
+
+            <button class="burger_menu" aria-label="Burger menu" onclick={() => $isBurgerMenuOpen = !$isBurgerMenuOpen}>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+            </button>
+
+            {#if $isBurgerMenuOpen}
+                <div class="burger_overlay">
+                    <div class="burger_content">
+                        <div class="burger_index">
+                            <a href="/Artificial_Inquiries_Vademecum.pdf" target="_blank" data-sveltekit-reload>
+                                <div>
+                                    <h2>
+                                        Download the book
+                                        
+                                    </h2>
+                                    <div class="inline_svg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M480-320 280-520l56-58 104 104v-326h80v326l104-104 56 58-200 200ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"/></svg>
+                                    </div>
+                                </div>
+                                
+                                <p class="p1">
+                                    Download "Artificial Inquiries", the book of exercises which is both the base and the outcome of Ecologies of LLM Practices project.
+                                </p>
+                            </a>
+
+                            <a href="/Tedium.pdf" onclick={() => goto('/tedium')} data-sveltekit-reload>
+                                <div>
+                                    <h2>
+                                        Tedium:exhibition
+                                        
+                                    </h2>
+                                    <div class="inline_svg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M160-80q-33 0-56.5-23.5T80-160v-480q0-33 23.5-56.5T160-720h160l160-160 160 160h160q33 0 56.5 23.5T880-640v480q0 33-23.5 56.5T800-80H160Zm0-80h640v-480H160v480Zm80-80h480L570-440 450-280l-90-120-120 160Zm460-200q25 0 42.5-17.5T760-500q0-25-17.5-42.5T700-560q-25 0-42.5 17.5T640-500q0 25 17.5 42.5T700-440ZM404-720h152l-76-76-76 76ZM160-160v-480 480Z"/></svg>
+                                    </div>
+                                </div>
+                                
+                                <p class="p1">
+                                    Tedium is the exhibition displayed at Hype-Studies conference in Barcelona. It showcases the boredom of daily LLMs usage.
+                                </p>
+                            </a>
+
+                            <a href="#Qualifying_" aria-label="Qualifying" data-sveltekit-reload onclick={() => setTimeout(() => intentionalNavigationToHash(), 100)}>
+                                <div>
+                                    <h2>
+                                        Exercises 
+                                    </h2>
+                                    <div class="inline_svg">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" ><path d="M440-280H280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h160v80H280q-50 0-85 35t-35 85q0 50 35 85t85 35h160v80ZM320-440v-80h320v80H320Zm200 160v-80h160q50 0 85-35t35-85q0-50-35-85t-85-35H520v-80h160q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H520Z"/></svg>
+                                    </div>
+                                </div>
+                                
+                                <p class="p1">
+                                    Access all the exercises abstract of the project, divided in the 5 key blocks. Each of them is designed for replicability, to be paired with the Artificial Inquiries pdf.
+                                </p>
+                            </a>
+
+                            <a href="#Contacts" aria-label="Contacts" data-sveltekit-reload>
+                                <div>
+                                    <h2>
+                                        Contacts 
+                                    </h2>
+                                    <div class="inline_svg">
+                                        <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 -960 960 960" ><path d="M480-400q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400ZM320-240h320v-23q0-24-13-44t-36-30q-26-11-53.5-17t-57.5-6q-30 0-57.5 6T369-337q-23 10-36 30t-13 44v23ZM720-80H240q-33 0-56.5-23.5T160-160v-640q0-33 23.5-56.5T240-880h320l240 240v480q0 33-23.5 56.5T720-80Zm0-80v-446L526-800H240v640h480Zm-480 0v-640 640Z"/></svg>
+                                    </div>
+                                </div>
+                                
+                                <p class="p1">
+                                    We are a team of designers and researchers, deeply interested on fostering the dialogue around common integration of LLMs in professional practices.
+                                </p>
+                            </a>
+                        </div>
+                        
+                        <div class="burger_logo">
+                            <img src={data.logoImage} alt="EL2MP Logo">
+                        </div>
+                    </div>
+                    
+                </div>
+
+                
+
+                <div class="burger_bg"></div>
+                
+            {/if}
 
             <LogoButton
                 logoImage = {data.logoImage}
@@ -1667,6 +1766,7 @@ const generateShareContent = async () => {
     :global(.host) {
         width: 100%;
         max-width: 100vw;
+        max-width: 100dvw;
         max-height: 100vh;
         height: 100%;
         overflow: hidden;
@@ -1724,7 +1824,6 @@ const generateShareContent = async () => {
                 
         }
     }
-
     
 
     @media (min-width: 1920px) {
@@ -1749,8 +1848,24 @@ const generateShareContent = async () => {
         font-family: var(--sans-font-family), var(--fallback-sans-font);
         font-weight: 400;
     }
+
     
 
+    .global_interaction_lock {
+        position: fixed;
+        inset: 0;
+        z-index: 10000;
+        background: transparent;
+        pointer-events: all;
+        /* Prevent focus while active */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .burger_menu {
+        display: none;
+    }
+    
+    
 
     @media only screen and (max-width: 768px) {
 
@@ -1776,6 +1891,110 @@ const generateShareContent = async () => {
 
         .loading_text {
             display: block;
+        }
+
+        .burger_menu {
+            display: flex;
+            position: fixed;
+            right: 20px;
+            top: 1vh;
+            background-color: #f0f0f0;
+            height: 40px;
+            padding: 10px;
+            border-radius: var(--slider-radius);
+            place-content: center;
+            align-items: center;
+            z-index: 502;
+        }
+
+        .burger_menu > svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .burger_bg {
+            width: 100vw;
+            height: 100vh;
+            z-index: 499;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .burger_overlay {
+            width: auto;
+            height: 88%;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 501;
+            background-color: white;
+            border-radius: var(--slider-radius);
+            border: 1px solid black;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .burger_content {
+            display: flex;
+            height: 100%;
+            flex-direction: column;
+            row-gap: 20px;
+            position: relative;
+            justify-content: space-between;
+            align-items: flex-start;
+            overflow-y: scroll ;
+        }
+
+        .burger_index {
+            display: flex;
+            flex-direction: column;
+            row-gap: var(--spacing-L);
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .burger_index > a {
+            text-decoration: none;
+            color: black;
+            display: flex;
+            flex-direction: column;
+            row-gap: 5px;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .burger_index > a > div {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            column-gap: 10px;
+        }
+
+        .burger_index > a > div > h2 {
+            font-size: 32px;
+        }
+
+        .inline_svg {
+            display: inline-block;
+            place-content: center;
+            align-items: center;
+            width: 25px;
+            height: 25px;
+        }
+
+        .inline_svg > svg {
+            fill: rgb(48, 48, 48);
+            align-self: center;
+            place-self: center;
+        }
+
+        .burger_logo {
+            bottom: 10px;
+            width: 50%;
+            object-fit: contain;
+            overflow: hidden;
+            place-self: center;
         }
     }
 

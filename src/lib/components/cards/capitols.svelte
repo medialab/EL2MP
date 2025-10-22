@@ -860,9 +860,10 @@ const isSecureContext = writable(false);
         :global(.card_container){
             width: 90vw !important;
             max-height: none;
-            border-radius: 20px;
+            border-radius: var(--slider-radius);
             padding-right: 0px !important;
             transition: transform var(--card-transition-duration) ease-in-out;
+            clip-path: none !important;
         }
 
         :global(.card_container.down) {

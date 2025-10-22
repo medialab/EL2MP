@@ -59,8 +59,8 @@
         width: -webkit-fit-content;
         width: fit-content;
 
-        border: solid 0.05vw black;    
-        z-index: 500;
+        border: solid 1px black;    
+        z-index: 350;
         /* Disallow text selection across engines */
         -webkit-user-select: none; /* Safari */
         -moz-user-select: none;    /* Firefox */
@@ -173,9 +173,11 @@
         .slider_container {
             padding: 0px;
             width: 200px;
-            height: 36px;
+            height: 40px;
             border-radius: var(--slider-radius);
-            --slider-radius: 3.5vw;
+            
+            left: 20px;
+            transform: translateX(0%) scale(1);
         }
 
         .slider_container:hover {
