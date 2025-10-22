@@ -1654,7 +1654,7 @@
                 <div class="burger_overlay">
                     <div class="burger_content">
                         <div class="burger_index">
-                            <a href="/Artificial_Inquiries_Vademecum.pdf" target="_blank" data-sveltekit-reload>
+                            <a href="/Artificial_Inquiries_Vademecum.pdf" download data-sveltekit-reload>
                                 <div>
                                     <h2>
                                         Download the book

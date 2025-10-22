@@ -78,7 +78,7 @@ vite.config.ts.timestamp-*
 #*.jpg
 #*.png
 #*.svg
-*.pdf
+#*.pdf
 .env
 *.pem
 *.sqlite
