@@ -1670,7 +1670,7 @@
                                 </p>
                             </a>
 
-                            <a href="/Tedium.pdf" onclick={() => goto('/tedium')} data-sveltekit-reload>
+                            <a href="/tedium" onclick={() => goto('/tedium')} data-sveltekit-reload>
                                 <div>
                                     <h2>
                                         Tedium:exhibition
